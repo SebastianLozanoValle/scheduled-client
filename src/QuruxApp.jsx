@@ -1,8 +1,11 @@
+import { ChakraBaseProvider } from "@chakra-ui/react";
+import { QuruxRoutes } from "./routes/QuruxRoutes";
+
 export const QuruxApp = () => {
     return (
-        <>
-            <h1>pseudonav</h1>
-            
-        </>
+        <ChakraBaseProvider>
+            <h1>Qurux App</h1>
+            <QuruxRoutes />
+        </ChakraBaseProvider>
     );
 }
