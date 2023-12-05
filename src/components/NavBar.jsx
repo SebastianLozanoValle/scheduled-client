@@ -23,7 +23,7 @@ export const NavBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <Box bg="teal.500" px={4} position={'fixed'} top={0} w={'100vw'}>
-            <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+            <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
                 <Text fontSize="xl" color="white">Marca</Text>
                 <Box display={{ base: 'block', md: 'none' }} onClick={onOpen}>
                     <RxHamburgerMenu />

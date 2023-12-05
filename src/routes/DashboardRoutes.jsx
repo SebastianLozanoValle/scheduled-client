@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import DashboardBottomNavBar from "../components/DashboardBottomNavBar"
 import { DashboardSideNavBar } from "../components/DashboardSideNavBar"
 import { useEffect, useState } from "react";
+import { General } from "../pages/dashboard/General";
+import { Flex } from "@chakra-ui/react";
 
 export const DashboardRoutes = () => {
 
@@ -24,14 +26,14 @@ export const DashboardRoutes = () => {
     }, []);
 
     return (
-        <>
+        <Flex>
             {isMobile ? (
                 <DashboardBottomNavBar />
             ) : (
                 <DashboardSideNavBar />
             )}
             <Routes>
-                <Route path="/" element={<>inicio de dashboard</>} />
+                <Route path="/" element={<General isMobile={isMobile} />} />
                 <Route path="specialists" element={<>muestra opcion1</>} />
                 {/* Ruta comodín para cualquier ruta no coincidente */}
                 <Route path="*" element={<Navigate to="/404" />} />
@@ -39,6 +41,6 @@ export const DashboardRoutes = () => {
                 {/* Página 404 */}
                 <Route path="404" element={<>Página no encontrada (404)</>} />
             </Routes>
-        </>
+        </Flex>
     )
 }
