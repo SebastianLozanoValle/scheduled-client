@@ -1,10 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { DashboardRoutes } from "./DashboardRoutes"
+import {Inicio} from '../pages/Inicio'
 
 export const QuruxRoutes = () =>{
     return (
         <Routes>
-            <Route path="/" element={<>Inicio</>} />
+            <Route path="/" element={<><Inicio/></>} />
             <Route path="/nosotros" element={<>nosotros</>} />
             <Route path="/servicios" element={<>servicios</>} />
             <Route path="/boletin" element={<>boletin</>} />
