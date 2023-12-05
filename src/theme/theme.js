@@ -12,25 +12,41 @@ const theme = extendTheme({
     components: {
       Link: {
         baseStyle: {
-          textDecoration: 'none',
+          _hover:{
+            textDecoration: 'none',
+          }
         },
       },
-      MenuButton: {
+      Menu:{
         baseStyle: {
+          list: {
+            border: 'none',
+            bg: "#ccc",
+            color: "black",
+          },
+        },
+      },
+      Button: {
+        baseStyle: {
+          bg: "green",
           _active: {
-            bg: "red.500",
-            color: "white",
+            color: "red",
+          },
+          _hover: {
+            color: "black",
           },
           px: 6,
         },
       },
-      MenuItem: {
-        baseStyle: {
-          _hover: {
-            bg: "teal.600",
-          },
-        },
-      },
+      // MenuItem: {
+      //   baseStyle: {
+      //     color: 'inherit',
+      //     bg: 'red',
+      //     _hover: {
+      //       bg: "teal.600",
+      //     },
+      //   },
+      // },
     },
   });
   

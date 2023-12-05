@@ -6,7 +6,7 @@ import { Link as ChakraLink } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { forwardRef } from 'react';
 
-const Link = forwardRef((props, ref) => {
+const CustomLink = forwardRef((props, ref) => {
   const location = useLocation();
   const isActive = location.pathname === props.to;
   return (
@@ -17,6 +17,9 @@ const Link = forwardRef((props, ref) => {
 });
 
 export const NavBar = () => {
+
+  const location = useLocation();
+
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <Box bg="teal.500" px={4} position={'fixed'} top={0} w={'100vw'}>
@@ -27,19 +30,21 @@ export const NavBar = () => {
                 </Box>
                 <Box display={{ base: 'none', md: 'block' }}>
                 <Flex>
-                    <Link to="/" px={8} color="white">Inicio</Link>
+                    <CustomLink to="/" px={8} my='auto' color="white">Inicio</CustomLink>
                     <Menu>
                     <MenuButton
                       // px={6}
+                      bg={'teal.500'}
+                      color={'white'}
                       as={Button} leftIcon={<RiUser3Line />}>
                       Sebastian
                     </MenuButton>
                       <MenuList
                         // bg={'teal.500'} borderRadius={6} p={6}
                       >
-                        <MenuItem as={Link} to="/perfil">Perfil</MenuItem>
-                        <MenuItem as={Link} to="/dashboard">Dashboard</MenuItem>
-                        <MenuItem as={Link} to="/logout">Cerrar sesión</MenuItem>
+                        <MenuItem bg='#ccc' color={location.pathname === "/perfil" ? 'red' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
+                        <MenuItem bg='#ccc' color={location.pathname === "/dashboard" ? 'red' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
+                        <MenuItem bg='#ccc' color={location.pathname === "/logout" ? 'red' : 'white'} as={CustomLink} to="/logout">Cerrar sesión</MenuItem>
                       </MenuList>
                     </Menu>
                 </Flex>
@@ -50,12 +55,12 @@ export const NavBar = () => {
                 <ModalContent mt={16} bg={'#ccc'} p={8}>
                   <ModalBody>
                       <VStack align="start" spacing={4}>
-                      <Link to="/" onClick={onClose}>Inicio</Link>
-                      <Link to="/nosotros" onClick={onClose}>Nosotros</Link>
-                      <Link to="/servicios" onClick={onClose}>Servicios</Link>
-                      <Link to="/boletin" onClick={onClose}>Boletín</Link>
-                      <Link to="/contacto" onClick={onClose}>Contacto</Link>
-                      <Link to="/dashboard" onClick={onClose}>Dashboard</Link>
+                      <CustomLink to="/" onClick={onClose}>Inicio</CustomLink>
+                      <CustomLink to="/nosotros" onClick={onClose}>Nosotros</CustomLink>
+                      <CustomLink to="/servicios" onClick={onClose}>Servicios</CustomLink>
+                      <CustomLink to="/boletin" onClick={onClose}>Boletín</CustomLink>
+                      <CustomLink to="/contacto" onClick={onClose}>Contacto</CustomLink>
+                      <CustomLink to="/dashboard" onClick={onClose}>Dashboard</CustomLink>
                       </VStack>
                   </ModalBody>
                 </ModalContent>
