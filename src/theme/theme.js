@@ -21,7 +21,7 @@ const theme = extendTheme({
         baseStyle: {
           list: {
             border: 'none',
-            bg: "#ccc",
+            bg: "#212024",
             color: "black",
           },
         },
@@ -33,6 +33,7 @@ const theme = extendTheme({
             color: "#caa776",
           },
           _hover: {
+            bg: "#212024",
             color: "black",
           },
           px: 6,

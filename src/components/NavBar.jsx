@@ -22,9 +22,9 @@ export const NavBar = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box bg="#242424" px={4} position={'fixed'} top={0} w={'100vw'}>
+        <Box bg="#242424" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' zIndex={2}>
             <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
-                <Text fontSize="xl" color="white">Marca</Text>
+                <Text fontSize="xl" color="#caa776">Qurux</Text>
                 <Box display={{ base: 'block', md: 'none' }} onClick={onOpen}>
                     <RxHamburgerMenu />
                 </Box>
@@ -36,15 +36,17 @@ export const NavBar = () => {
                       // px={6}
                       bg={'#242424'}
                       color={'white'}
+                      _active={{ bg: '#212024',
+                      color: '#caa776' }}
                       as={Button} leftIcon={<RiUser3Line />}>
                       Sebastian
                     </MenuButton>
                       <MenuList
                         // bg={'teal.500'} borderRadius={6} p={6}
                       >
-                        <MenuItem bg='#ccc' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
-                        <MenuItem bg='#ccc' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
-                        <MenuItem bg='#ccc' color={location.pathname === "/logout" ? '#caa776' : 'white'} as={CustomLink} to="/logout">Cerrar sesión</MenuItem>
+                        <MenuItem bg='#212024' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
+                        <MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
+                        <MenuItem bg='#212024' color={location.pathname === "/logout" ? '#caa776' : 'white'} as={CustomLink} to="/logout">Cerrar sesión</MenuItem>
                       </MenuList>
                     </Menu>
                 </Flex>
