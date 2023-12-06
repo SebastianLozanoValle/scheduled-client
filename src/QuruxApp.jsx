@@ -3,6 +3,8 @@ import { QuruxRoutes } from "./routes/QuruxRoutes";
 import { NavBar } from "./components/NavBar";
 import theme from "./theme/theme";
 
+
+
 export const QuruxApp = () => {
     return (
         <ChakraBaseProvider theme={theme}>
@@ -10,6 +12,8 @@ export const QuruxApp = () => {
             <Box mt='60px'>
                 <QuruxRoutes />
             </Box>
+            
         </ChakraBaseProvider>
+        
     );
 }

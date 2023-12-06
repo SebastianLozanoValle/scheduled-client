@@ -54,14 +54,13 @@ export const NavBar = () => {
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent mt={16} bg={'#ccc'} p={8}>
+                <ModalContent mt={16} bg={'black'} p={8}>
                   <ModalBody>
                       <VStack align="start" spacing={4}>
                       <CustomLink to="/" onClick={onClose}>Inicio</CustomLink>
-                      <CustomLink to="/nosotros" onClick={onClose}>Nosotros</CustomLink>
-                      <CustomLink to="/servicios" onClick={onClose}>Servicios</CustomLink>
-                      <CustomLink to="/boletin" onClick={onClose}>Boletín</CustomLink>
-                      <CustomLink to="/contacto" onClick={onClose}>Contacto</CustomLink>
+                      <CustomLink to="/Mundohombres" onClick={onClose}>Mundohombres</CustomLink>
+                      <CustomLink to="/Mundomujeres" onClick={onClose}>Mundomujeres</CustomLink>
+                      <CustomLink to="/Mundomascotas" onClick={onClose}>Mundomascotas</CustomLink>
                       <CustomLink to="/dashboard" onClick={onClose}>Dashboard</CustomLink>
                       </VStack>
                   </ModalBody>
