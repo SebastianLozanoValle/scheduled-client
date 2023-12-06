@@ -1,15 +1,20 @@
 import { Box, Heading, Text, Container } from "@chakra-ui/react"
 import vino from '../assets/imagenes/sirviendo.jpg'
 import barbero1 from '../assets/imagenes/barbero1.jpg'
-
+import { MdTouchApp } from "react-icons/md";
+import blancoynegro from'../assets/imagenes/blancoynegro.jpg'
+import { LuLassoSelect } from "react-icons/lu";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { Sub } from "../components/SubNav";
 
 
 
 export const Inicio = () => {
     return(
       <>
-      
+         <Sub/>
         <Box>
+        
           <Box marginTop='100px'>
              <Heading color='#D4AF37' fontSize='10px'  textAlign='center'>AROUND THE WORD</Heading>
              <Heading fontSize='20px' textAlign='center'><b>Mundos</b></Heading>
@@ -59,49 +64,37 @@ export const Inicio = () => {
             <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.4)'></Box>
             <Text color='white' position='relative' fontSize='25px' width='300px' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
            </Container>
-
-           <Box position="relative" height="400px" marginTop="200px" overflow="hidden">
-         {/* Contenedor negro */}
-         <Container
-            position="absolute"
-            top="0"
-            left="0"
-            maxWidth='100%'
-            height="50%"
-            background="black"
-            zIndex={1}
-           ></Container>
-
-           <Container
-            position="absolute"
-            top="0"
-            left="0"
-            width="100%"
-            height="100%"
-            zIndex={2}>
-              <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/TU_yrUe7P2Y"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              ></iframe>
-            </Container>
-            
-            <Container
-            position="absolute"
-            top="50%"
-            left="0"
-            maxW='100%'
-            height="50%"
-            background="blue"
-            zIndex={1}
-            ></Container>
-
            
+           <Box bg={`url(${blancoynegro})`}  height='100%'  width='auto' marginTop='80px'>
+              <Box height='100px'>
+              <Heading  marginTop='40px' color='black' textAlign='center' fontSize='32px' >COMO FUNCIONA QURUX</Heading><Text color='black' textAlign='center' >Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
+              </Box>
+             <Container
+              display='flex'
+              alignItems='center'
+              height="auto"
+              left="25%"
+              maxW='auto'
+              marginTop='40px'
+              justifyContent='center'>
+                <iframe
+                width="700px"
+                height='300px'
+                src="https://www.youtube.com/embed/TU_yrUe7P2Y"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                ></iframe>
+              </Container>
+              <Box display='flex' justifyContent='center' gap='100px' flexWrap='wrap' height='400px' alignItems='center'>
+              <Box display='flex' flexDirection='column' alignItems='center' width='100px' ><MdTouchApp fontSize='40px'></MdTouchApp><Heading marginTop='20px' fontSize='14px' textAlign='center'>Elige el mundo del servicio</Heading><Text fontSize='10px' textAlign='center' color='white' marginTop='20px'>Mascotas,Mujeres,Hombres</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='100px' marginTop='25px'><LuLassoSelect fontSize='40px'></LuLassoSelect><Heading marginTop='20px' fontSize='14px' textAlign='center'>Selecciona los servicios deseados</Heading><Text fontSize='10px' textAlign='center' color='white' marginTop='20px'>Puedes escoger mas de uno</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='100px' marginTop='35px'><FaMapMarkerAlt fontSize='40px'></FaMapMarkerAlt ><Heading marginTop='20px' fontSize='14px' textAlign='center'>Escoge la ubicacion del servicio</Heading><Text fontSize='10px' textAlign='center' color='white' marginTop='20px'>si es adomicilio tu especilista debera ser del mismo distrito</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='100px' marginTop='25px'><LuLassoSelect fontSize='40px'></LuLassoSelect><Heading marginTop='20px' fontSize='14px' textAlign='center'>Selecciona los servicios deseados</Heading><Text fontSize='10px' textAlign='center' color='white' marginTop='20px'>Puedes escoger mas de uno</Text></Box>
+              </Box> 
+           </Box>
          
-          </Box>
+           <Box height='200px'></Box>
        </Box>
      </>
     

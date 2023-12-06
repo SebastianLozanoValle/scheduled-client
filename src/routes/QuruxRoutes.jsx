@@ -9,7 +9,6 @@ export const QuruxRoutes = () =>{
             <Route path="/Mundohombres" element={<>MUNDO HOMBRES</>} />
             <Route path="/Mundomujeres" element={<>MUNDO MUJERES</>} />
             <Route path="/Mundomascotas" element={<>MUNDO MASCOTAS</>} />
-            <Route path="/contacto" element={<>contacto</>} />
             <Route path="/dashboard/*" element={<><DashboardRoutes/></>} />
             {/* Ruta comodín para cualquier ruta no coincidente */}
             <Route path="/*" element={<Navigate to="/404" />} />
