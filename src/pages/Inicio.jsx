@@ -1,21 +1,133 @@
-import { Box, Heading, Text, Container } from "@chakra-ui/react"
+import { Box, Heading, Text, Container, background } from "@chakra-ui/react"
 import vino from '../assets/imagenes/sirviendo.jpg'
 import barbero1 from '../assets/imagenes/barbero1.jpg'
 import { MdTouchApp } from "react-icons/md";
 import blancoynegro from'../assets/imagenes/blancoynegro.jpg'
 import { LuLassoSelect } from "react-icons/lu";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { Sub } from "../components/SubNav";
+import React, { useState } from 'react';
+import { Input, Select, Button } from '@chakra-ui/react';
+
 
 
 
 export const Inicio = () => {
+  const mockPeluqueros = [
+    { id: 1, nombre: 'Peluquero 1', servicio: 'servicio1', mundo: 'mundo1', distrito: 'distrito1' },
+    { id: 2, nombre: 'Peluquero 2', servicio: 'servicio2', mundo: 'mundo2', distrito: 'distrito2' },
+    { id: 3, nombre: 'Peluquero 3', servicio: 'servicio1', mundo: 'mundo3', distrito: 'distrito3' },
+    // Agrega más datos según sea necesario
+  ];
+  
+  const YourComponent = () => {
+    const [searchParams, setSearchParams] = useState({
+      servicio: '',
+      mundo: '',
+      distrito: '',
+    });
+  
+    const [peluquerosResult, setPeluquerosResult] = useState([]);
+  
+    const handleInputChange = (field, value) => {
+      setSearchParams((prevParams) => ({
+        ...prevParams,
+        [field]: value,
+      }));
+    };
+  
+    const handleSearchClick = () => {
+      // Simulación de búsqueda de peluqueros
+      const results = mockPeluqueros.filter((peluquero) => {
+        return (
+          (!searchParams.servicio || peluquero.servicio === searchParams.servicio) &&
+          (!searchParams.mundo || peluquero.mundo === searchParams.mundo) &&
+          (!searchParams.distrito || peluquero.distrito === searchParams.distrito)
+        );
+      });
+  
+      // Actualiza el estado con los resultados de la búsqueda
+      setPeluquerosResult(results);
+    };
+    return (
+      <Box  display='flex' justifyContent='center' marginTop='60px'>
+        
+        <Box width='800px' display='flex' justifyContent='center' gap='20px'>
+          
+          
+          <Select
+            background='white' width='auto'
+            placeholder='Selecciona Servicio'
+            value={searchParams.servicio}
+            onChange={(e) => handleInputChange('servicio', e.target.value)}
+          >
+            {/* Opciones para Servicio 1 */}
+            {/* Puedes agregar opciones dinámicamente según tus necesidades */}
+            <option value='servicio1'>Servicio 1</option>
+            <option value='servicio2'>Servicio 2</option>KK
+            <option value='servicio3'>Servicio 3</option>
+          </Select>
+  
+          <Select background='white' width='auto'
+            placeholder='Ingrese Mundo'
+            value={searchParams.mundo}
+            onChange={(e) => handleInputChange('mundo', e.target.value)}
+
+          ><option value='Mundohombres'>Mundohombres</option>
+          <option value='Mundomujeres'>Mundomuejres</option>
+          <option value='Mundomascotas'>Mundomascotas</option>
+          </Select>
+  
+          <Input
+           background='white' width='auto'
+            placeholder='Ingrese Distrito'
+            value={searchParams.distrito}
+            onChange={(e) => handleInputChange('distrito', e.target.value)}
+          />
+        </Box>
+  
+        
+        
+  
+        {/* Resultados de la búsqueda */}
+        {peluquerosResult.length > 0 && (
+          <Box marginTop='20px'>
+            <Heading fontSize='20px'>Resultados de la búsqueda</Heading>
+            {/* Muestra los datos de los peluqueros encontrados */}
+            {peluquerosResult.map((peluquero) => (
+              <Box key={peluquero.id} marginTop='10px'>
+                <p>{peluquero.nombre}</p>
+                {/* Puedes mostrar más información del peluquero según tus necesidades */}
+              </Box>
+            ))}
+          </Box>
+        )}
+
+      </Box>
+      
+
+    );
+  };
+
     return(
       <>
-         <Sub/>
         <Box>
-        
-          <Box marginTop='100px'>
+            <Box bg={`url(${barbero1})`} backgroundPosition='center' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
+              <Box display='flex' paddingTop='40px' gap='30px' color='blue' justifyContent='left' paddingLeft='60px'>
+              <Box width='150px' ><a href='Mundohombres'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px'}}>Mundo hombres</Heading></a></Box>
+              <Box width='140px'><a href='Mundomujeres'><Heading fontSize='18px'fontFamily='wraper' borderBottom='1px solid black'textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '140px' }} >Mundo mujeres</Heading></a></Box>
+              <Box width='150px'><a href='Mundomascotas'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px' }}>Mundo mascotas</Heading></a></Box>
+              </Box>
+
+              <Box width='100%' marginTop='60px'>
+               <Heading textAlign='center' fontSize='20px'>El mundo de la belleza digital</Heading> 
+               <Heading textAlign='center'><b>BIENVENIDO A QURUX</b></Heading>
+              </Box>
+              <YourComponent /> {/* Renderiza el componente YourComponent */}
+              
+             </Box>
+
+
+           <Box marginTop='100px'>
              <Heading color='#D4AF37' fontSize='10px'  textAlign='center'>AROUND THE WORD</Heading>
              <Heading fontSize='20px' textAlign='center'><b>Mundos</b></Heading>
              <Text textAlign='center' fontSize='12px'><b>Loren ipsum dolor sit amet, cibo mundi ea duo, vim exerci phaedrum</b></Text>
