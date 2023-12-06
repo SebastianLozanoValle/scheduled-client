@@ -30,7 +30,7 @@ const theme = extendTheme({
         baseStyle: {
           bg: "green",
           _active: {
-            color: "red",
+            color: "#caa776",
           },
           _hover: {
             color: "black",

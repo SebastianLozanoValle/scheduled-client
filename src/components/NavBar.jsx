@@ -10,7 +10,7 @@ const CustomLink = forwardRef((props, ref) => {
   const location = useLocation();
   const isActive = location.pathname === props.to;
   return (
-    <ChakraLink ref={ref} as={NavLink} {...props} color={isActive ? 'red' : 'white'}>
+    <ChakraLink ref={ref} as={NavLink} {...props} color={isActive ? '#caa776' : 'white'}>
       {props.children}
     </ChakraLink>
   );
@@ -22,7 +22,7 @@ export const NavBar = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box bg="teal.500" px={4} position={'fixed'} top={0} w={'100vw'}>
+        <Box bg="#242424" px={4} position={'fixed'} top={0} w={'100vw'}>
             <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
                 <Text fontSize="xl" color="white">Marca</Text>
                 <Box display={{ base: 'block', md: 'none' }} onClick={onOpen}>
@@ -34,7 +34,7 @@ export const NavBar = () => {
                     <Menu>
                     <MenuButton
                       // px={6}
-                      bg={'teal.500'}
+                      bg={'#242424'}
                       color={'white'}
                       as={Button} leftIcon={<RiUser3Line />}>
                       Sebastian
@@ -42,9 +42,9 @@ export const NavBar = () => {
                       <MenuList
                         // bg={'teal.500'} borderRadius={6} p={6}
                       >
-                        <MenuItem bg='#ccc' color={location.pathname === "/perfil" ? 'red' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
-                        <MenuItem bg='#ccc' color={location.pathname === "/dashboard" ? 'red' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
-                        <MenuItem bg='#ccc' color={location.pathname === "/logout" ? 'red' : 'white'} as={CustomLink} to="/logout">Cerrar sesión</MenuItem>
+                        <MenuItem bg='#ccc' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
+                        <MenuItem bg='#ccc' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
+                        <MenuItem bg='#ccc' color={location.pathname === "/logout" ? '#caa776' : 'white'} as={CustomLink} to="/logout">Cerrar sesión</MenuItem>
                       </MenuList>
                     </Menu>
                 </Flex>
