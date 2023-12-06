@@ -9,7 +9,7 @@ export const QuruxApp = () => {
     return (
         <ChakraBaseProvider theme={theme}>
             <NavBar />
-            <Box mt={16}>
+            <Box mt='60px'>
                 <QuruxRoutes />
             </Box>
             

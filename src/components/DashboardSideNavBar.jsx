@@ -16,8 +16,8 @@ export const DashboardSideNavBar = () => {
   };
 
   return (
-    <Box w="64" bg="gray.200" p="4" h="100vh">
-      <VStack spacing="4" align="start">
+    <Box position='fixed' left={0} w="265px" bg="gray.200" p="4" h="calc(100vh - 60px)">
+      <VStack spacing="4" align="start" height='100%'>
         <Link to="/dashboard" icon={RiDashboardLine}>Dashboard</Link>
         <Link to="/settings" icon={RiSettingsLine}>Settings</Link>
         <Link to="/logout" icon={RiLogoutBoxLine}>Logout</Link>
