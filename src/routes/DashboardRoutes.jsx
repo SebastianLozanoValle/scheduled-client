@@ -4,6 +4,7 @@ import { DashboardSideNavBar } from "../components/DashboardSideNavBar"
 import { useEffect, useState } from "react";
 import { General } from "../pages/dashboard/General";
 import { Flex } from "@chakra-ui/react";
+import { Especialistas } from "../pages/dashboard/Especialistas";
 
 export const DashboardRoutes = () => {
 
@@ -34,7 +35,7 @@ export const DashboardRoutes = () => {
             )}
             <Routes>
                 <Route path="/" element={<General isMobile={isMobile} />} />
-                <Route path="specialists" element={<>muestra opcion1</>} />
+                <Route path="especialistas" element={<Especialistas/>} />
                 {/* Ruta comodín para cualquier ruta no coincidente */}
                 <Route path="*" element={<Navigate to="/404" />} />
                 

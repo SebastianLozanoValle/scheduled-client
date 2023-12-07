@@ -1,7 +1,9 @@
-import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react"
+import { Box, Center, Flex, Heading, Text } from "@chakra-ui/react"
 import { GeneralBox } from "../../../components/GeneralBox"
+import { GeneralReseña } from "../../../components/GeneralReseña"
 
-export const GeneralDesktop = () => {
+
+export const GeneralDesktop = ({ reseñas }) => {
     return (
         <Box ml='265px'>
             <Heading>Vista general</Heading>
@@ -15,13 +17,19 @@ export const GeneralDesktop = () => {
                                         w={{ md: '10vw', lg: '10vw', xl: '14vw' }}
                                         h='100px'
                                     >
-                                        <Heading as='h3' fontSize='lg'>User:</Heading>
+                                        <Heading as='h3' fontSize='lg'>Roll:</Heading>
+                                        <Center>
+                                            <Heading>Admin</Heading>
+                                        </Center>
                                     </GeneralBox>
                                     <GeneralBox
                                         w={{ md: '10vw', lg: '10vw', xl: '15vw' }}
                                         h='100px'
                                     >
-                                        <Heading as='h3' fontSize='lg'>Deals:</Heading>
+                                        <Heading as='h3' fontSize='lg'>Serv:</Heading>
+                                        <Center>
+                                            <Heading>20</Heading>
+                                        </Center>
                                     </GeneralBox>
                                 </Flex>
                                 <Flex flexWrap={'wrap'} w='100%' gap={4} flex={0} p={2}>
@@ -29,13 +37,19 @@ export const GeneralDesktop = () => {
                                         w={{ md: '10vw', lg: '10vw', xl: '14vw' }}
                                         h='100px'
                                     >
-                                        <Heading as='h3' fontSize='lg'>Cli:</Heading>   
+                                        <Heading as='h3' fontSize='lg'>Cli:</Heading>
+                                        <Center>
+                                            <Heading>12</Heading>
+                                        </Center>   
                                     </GeneralBox>
                                     <GeneralBox
                                         w={{ md: '10vw', lg: '10vw', xl: '15vw' }}
                                         h='100px'
                                     >
                                         <Heading as='h3' fontSize='lg'>Esp:</Heading>
+                                        <Center>
+                                            <Heading>5</Heading>
+                                        </Center>
                                     </GeneralBox>
                                 </Flex>
                             </Box>
@@ -50,9 +64,10 @@ export const GeneralDesktop = () => {
                         <Flex w='100%' ml={4}>
                             <GeneralBox
                                 w='100%'
-                                h='100px'
+                                h='200px'
                             >
-                                <Heading as='h3' fontSize='lg'>Comentarios:</Heading>
+                                <Heading as='h3' fontSize='lg'>Reseñas:</Heading>
+                                <GeneralReseña reseñas={reseñas} />
                             </GeneralBox>
                         </Flex>
                         <Flex w='100%' ml={2}>
@@ -62,7 +77,7 @@ export const GeneralDesktop = () => {
                                     h='100px'
                                     flex={3}
                                 >
-                                    <Heading as='h3' fontSize='lg'>Informacion:</Heading>
+                                    <Heading as='h3' fontSize='lg'>Información:</Heading>
                                 </GeneralBox>
                                 <GeneralBox
                                     w={{ md: '20vw', lg: '50vw', xl: '66.5vw' }}
