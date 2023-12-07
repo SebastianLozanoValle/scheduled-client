@@ -3,7 +3,7 @@ import { extendTheme } from '@chakra-ui/react';
 const theme = extendTheme({
     colors: {
       brand: {
-        primary: '#BF292E',
+        primary: '#caa776',
         secondary: '#707070',
         terciary: '',
         background: '#DCDCDC',

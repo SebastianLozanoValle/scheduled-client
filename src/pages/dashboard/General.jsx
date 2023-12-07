@@ -3,7 +3,7 @@ import { GeneralDesktop } from "./desktop/GeneralDesktop"
 
 export const General = ({ isMobile }) => {
     return (
-        <Box ml='265px' p={6} bg='black' w='100vw' color='white'>
+        <Box p={6} bg='black' w='100vw' color='white'>
             {isMobile ? <h1>General Mobile</h1> : <GeneralDesktop />}
         </Box>
     )
