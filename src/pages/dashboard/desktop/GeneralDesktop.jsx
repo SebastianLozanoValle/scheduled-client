@@ -3,8 +3,8 @@ import { GeneralBox } from "../../../components/GeneralBox"
 
 export const GeneralDesktop = () => {
     return (
-        <Box>
-            <Heading>General Desktop</Heading>
+        <Box ml='265px'>
+            <Heading>Vista general</Heading>
             <Box  w={{ md: '60vw', lg: '60vw', xl: '70vw' }} m={4} p={4}>
                 <Box w='50%'>
                     <Flex flexWrap={'wrap'} gap={4} w='200%'>
