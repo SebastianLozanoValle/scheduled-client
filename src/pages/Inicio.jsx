@@ -11,7 +11,16 @@ import { Input, Select, Button } from '@chakra-ui/react';
 
 
 
+
 export const Inicio = () => {
+
+  const [estilistasSeleccionados, setEstilistasSeleccionados] = useState([]);
+
+  // Función para agregar estilista seleccionado por el administrador
+  const handleEstilistaSeleccionado = (estilista) => {
+    setEstilistasSeleccionados((prevEstilistas) => [...prevEstilistas, estilista]);
+  };
+
   const mockPeluqueros = [
     { id: 1, nombre: 'Peluquero 1', servicio: 'servicio1', mundo: 'mundo1', distrito: 'distrito1' },
     { id: 2, nombre: 'Peluquero 2', servicio: 'servicio2', mundo: 'mundo2', distrito: 'distrito2' },
@@ -83,7 +92,16 @@ export const Inicio = () => {
             value={searchParams.distrito}
             onChange={(e) => handleInputChange('distrito', e.target.value)}
           />
-        </Box>
+
+           <a href='especilistas'><Button
+           display='flex'
+           justifyContent='center'
+        
+           /*mirar onClick={handleSearchClick}*/
+           >
+           Buscar 
+           </Button></a>
+         </Box>
   
         
         
@@ -112,14 +130,15 @@ export const Inicio = () => {
       <>
         <Box>
             <Box bg={`url(${barbero1})`} backgroundPosition='center' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
-              <Box display='flex' paddingTop='40px' gap='30px' color='blue' justifyContent='left' paddingLeft='60px'>
+              <Box display='flex' paddingTop='40px' gap='30px' color='#D4AF37' justifyContent='left' paddingLeft='60px'>
               <Box width='150px' ><a href='Mundohombres'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px'}}>Mundo hombres</Heading></a></Box>
               <Box width='140px'><a href='Mundomujeres'><Heading fontSize='18px'fontFamily='wraper' borderBottom='1px solid black'textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '140px' }} >Mundo mujeres</Heading></a></Box>
               <Box width='150px'><a href='Mundomascotas'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px' }}>Mundo mascotas</Heading></a></Box>
               </Box>
 
+              {/*buscador de servicios y estilistas en inicio*/}
               <Box width='100%' marginTop='60px'>
-               <Heading textAlign='center' fontSize='20px'>El mundo de la belleza digital</Heading> 
+               <Heading textAlign='center' fontSize='20px' color='#D4AF37'>El mundo de la belleza digital</Heading> 
                <Heading textAlign='center'><b>BIENVENIDO A QURUX</b></Heading>
               </Box>
               <YourComponent /> {/* Renderiza el componente YourComponent */}
@@ -142,7 +161,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='0px 20px 0px 20px'>
-              <a href='Mundohombres'><Text color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Text></a>
+              <a href='Mundohombres'><Box color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box></a>
 
               </Box>
 
@@ -154,7 +173,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='20px 0px 20px 0px'>
-              <a href='Mundomujeres'><Text color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Text></a>
+              <a href='Mundomujeres'><Box color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box></a>
 
              </Box>
 
@@ -166,7 +185,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='20px 0px 20px 0px'>
-              <a href='Mundomascotas'><Text color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Text></a>
+              <a href='Mundomascotas'><Box color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box></a>
 
              </Box>
            </Container>
@@ -176,7 +195,21 @@ export const Inicio = () => {
             <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.4)'></Box>
             <Text color='white' position='relative' fontSize='25px' width='300px' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
            </Container>
-           
+
+           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
+           <Box bg='gray' height='500px'marginTop='50px' >
+            <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
+            <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
+            <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
+           {/* Sección de estilistas seleccionados */}
+            {estilistasSeleccionados.length > 0 && (
+             <Box> 
+            <EstilistasSeleccionados estilistas={estilistasSeleccionados} />
+            </Box>
+             )}
+             </Box>
+
+
            <Box bg={`url(${blancoynegro})`}  height='100%'  width='auto' marginTop='80px'>
               <Box height='100px'>
               <Heading  marginTop='40px' color='black' textAlign='center' fontSize='32px' >COMO FUNCIONA QURUX</Heading><Text color='black' textAlign='center' >Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
@@ -192,7 +225,7 @@ export const Inicio = () => {
                 <iframe
                 width="700px"
                 height='300px'
-                src="https://www.youtube.com/embed/TU_yrUe7P2Y"
+                src="https://www.youtube.com/embed/dsLjyLn859g?si=yPE3byugBzpWs2dO"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
