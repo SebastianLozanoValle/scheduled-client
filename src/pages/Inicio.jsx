@@ -239,7 +239,7 @@ export const Inicio = () => {
               </Box> 
            </Box>
          
-           <Box height='200px'></Box>
+           
        </Box>
      </>
     
