@@ -131,9 +131,9 @@ export const Inicio = () => {
         <Box>
             <Box bg={`url(${barbero1})`} backgroundPosition='center' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
               <Box display='flex' paddingTop='40px' gap='30px' color='#D4AF37' justifyContent='left' paddingLeft='60px'>
-              <Box width='150px' ><a href='Mundohombres'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px'}}>Mundo hombres</Heading></a></Box>
-              <Box width='140px'><a href='Mundomujeres'><Heading fontSize='18px'fontFamily='wraper' borderBottom='1px solid black'textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '140px' }} >Mundo mujeres</Heading></a></Box>
-              <Box width='150px'><a href='Mundomascotas'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px' }}>Mundo mascotas</Heading></a></Box>
+              <Box width='150px' ><a href='Mundohombres'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'white',  borderRadius: '8px', width: '160px'}}>Mundo hombres</Heading></a></Box>
+              <Box width='140px'><a href='Mundomujeres'><Heading fontSize='18px'fontFamily='wraper' borderBottom='1px solid black'textAlign='center' _hover={{ background: 'white',  borderRadius: '8px', width: '140px' }} >Mundo mujeres</Heading></a></Box>
+              <Box width='150px'><a href='Mundomascotas'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'white',  borderRadius: '8px', width: '160px' }}>Mundo mascotas</Heading></a></Box>
               </Box>
 
               {/*buscador de servicios y estilistas en inicio*/}

@@ -1,13 +1,23 @@
-import { Accordion, Box, Flex, Icon, Text, VStack } from "@chakra-ui/react";
-import { RiUserLine } from "react-icons/ri";
+import { Accordion, Box, Flex, Icon, IconButton, Text, VStack } from "@chakra-ui/react";
+import { RiDeleteBinLine, RiPencilLine, RiUserLine } from "react-icons/ri";
 import { CustomAccordionItem } from "./CustomAccordionItem";
 
 export const Especialista = ({ especialista }) => {
     return (
         <Box p={4} borderWidth="1px" borderRadius="md" mb={4} bg="white" shadow="md" color='black'>
-            <Flex align="center" mb={4}>
-                <Icon as={RiUserLine} boxSize={6} mr={2} />
-                <Text fontSize="xl">{especialista.nombre}</Text>
+            <Flex align="center" mb={4} justifyContent='space-between'>
+                <Flex>
+                    <Icon as={RiUserLine} boxSize={6} mr={2} />
+                    <Text fontSize="xl">{especialista.nombre}</Text>
+                </Flex>
+                <Flex gap={4}>
+                    <IconButton colorScheme='blue' aria-label="Editar" icon={<RiPencilLine />}
+                        // onClick={/* función para editar */}
+                    />
+                    <IconButton colorScheme='red' aria-label="Borrar" icon={<RiDeleteBinLine />}
+                        // onClick={/* función para borrar */}
+                    />
+                </Flex>
             </Flex>
             <Accordion allowToggle>
                 <CustomAccordionItem title="Información Personal">
