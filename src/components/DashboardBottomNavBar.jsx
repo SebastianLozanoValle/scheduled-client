@@ -26,11 +26,11 @@ const DashboardBottomNavBar = () => {
                     _hover={{ color: 'blue.500' }}
                 />
             </Link>
-            <Link to="/notifications">
+            <Link to="/dashboard/especialistas">
                 <Box
                     as={FaBell}
                     size="48px"
-                    color={window.location.pathname === '/notifications' ? 'blue.500' : 'gray.500'}
+                    color={window.location.pathname === '/dashboard/especialistas' ? 'blue.500' : 'gray.500'}
                     borderRadius="full"
                     p={2}
                     _hover={{ color: 'blue.500' }}
