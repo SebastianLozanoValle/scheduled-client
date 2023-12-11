@@ -19,7 +19,7 @@ export const GeneralDesktop = ({ reseñas }) => {
                                     >
                                         <Heading as='h3' fontSize='lg'>Roll:</Heading>
                                         <Center>
-                                            <Heading>Admin</Heading>
+                                            <Heading fontSize={{ md: 'xl', lg: '2xl', xl: '3xl'}}>Admin</Heading>
                                         </Center>
                                     </GeneralBox>
                                     <GeneralBox

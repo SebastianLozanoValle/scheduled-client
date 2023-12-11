@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Especialista } from "../../../components/Especialista";
 import { RiAddLine } from "react-icons/ri";
 
-export const EspecialistasDesktop = ({ especialistas }) => {
+export const EspecialistasMobile = ({ especialistas }) => {
     const [search, setSearch] = useState('');
 
     const filteredEspecialistas = especialistas.filter(especialista =>
@@ -11,7 +11,7 @@ export const EspecialistasDesktop = ({ especialistas }) => {
     );
 
     return (
-        <Box ml={{base:'' ,md: '265px' }} color='black' minH="calc(100vh - 108px)">
+        <Box color='black' minH="calc(100vh - 108px)" pb='64px'>
             <Flex gap={2}>
                 <Input
                     color='white'

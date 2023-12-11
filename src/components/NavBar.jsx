@@ -24,8 +24,8 @@ export const NavBar = () => {
     return (
         <Box bg="#242424" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' zIndex={2}>
             <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
-                <Text fontSize="xl" color="#caa776">Qurux</Text>
-                <Box display={{ base: 'block', md: 'none' }} onClick={onOpen}>
+                <Text fontSize="xl" color="brand.primary">Qurux</Text>
+                <Box display={{ base: 'block', md: 'none' }} onClick={onOpen} color='brand.primary' fontSize='2xl'>
                     <RxHamburgerMenu />
                 </Box>
                 <Box display={{ base: 'none', md: 'block' }}>
