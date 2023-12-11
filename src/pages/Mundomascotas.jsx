@@ -15,7 +15,7 @@ const StyledDatePicker = styled(DatePicker)`
   /* Otros estilos personalizados */
 `;
 
-export const Mundohombres = () => {
+export const Mundomascotas = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (date) => {
@@ -109,8 +109,7 @@ export const Mundohombres = () => {
            <a href='ListaE'><Button
            display='flex'
            justifyContent='center'
-        
-           /*mirar onClick={handleSearchClick}*/
+    
            >
            Buscar 
            </Button></a>
@@ -154,7 +153,7 @@ export const Mundohombres = () => {
 
               <Box display='flex' justifyContent='center' alignItems='end' height='300px'>
                 <Box position='relative'>
-                  <Heading textAlign='center' color='white'><b>Mundo hombres</b></Heading>
+                  <Heading textAlign='center' color='white'><b>Mundo mascotas</b></Heading>
                   <a href='/'><Text position='relative' textAlign='center' fontSize='15px' color='white'>inicio</Text></a>
                </Box>
               </Box>

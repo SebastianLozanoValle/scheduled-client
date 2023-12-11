@@ -2,7 +2,10 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import { DashboardRoutes } from "./DashboardRoutes"
 import {Inicio} from '../pages/Inicio'
 import {Mundohombres}  from '../pages/Mundohombres'
-import {Especialista} from '../pages/Especialista'
+import {ListaE} from '../pages/ListaE'
+import {Mundomujeres} from '../pages/Mundomujeres'
+import { Mundomascotas } from "../pages/Mundomascotas"
+import { Pasarelap } from "../pages/Pasarelap"
 
 
 
@@ -11,10 +14,12 @@ export const QuruxRoutes = () =>{
         <Routes>
             <Route path="/" element={<><Inicio/></>} />
             <Route path="/Mundohombres" element={<><Mundohombres/></>} />
-            <Route path="/Mundomujeres" element={<>MUNDO MUJERES</>} />
-            <Route path="/Mundomascotas" element={<>MUNDO MASCOTAS</>} />
+            <Route path="/Mundomujeres" element={<><Mundomujeres/></>} />
+            <Route path="/Mundomascotas" element={<><Mundomascotas/></>} />
             <Route path="/dashboard/*" element={<><DashboardRoutes/></>} />
-            <Route path="/Especialista" element={<><Especialista/></>} />
+            <Route path="/ListaE" element={<><ListaE/></>} />
+            <Route path="/Pasarelap" element={<><Pasarelap/></>} />
+
             {/* Ruta comodín para cualquier ruta no coincidente */}
             <Route path="/*" element={<Navigate to="/404" />} />
             

@@ -7,8 +7,10 @@ import { LuLassoSelect } from "react-icons/lu";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import React, { useState } from 'react';
 import { Input, Select, Button } from '@chakra-ui/react';
-
-
+import hombre from '../assets/imagenes/hombre.jpeg'
+import mujer from '../assets/imagenes/mujer.jpeg'
+import mascotas from '../assets/imagenes/mascotas.jpeg'
+import peluquerias from '../assets/imagenes/peluquerias.jpg'
 
 
 
@@ -65,7 +67,9 @@ export const Inicio = () => {
           
           <Select
             background='white' width='auto'
-            placeholder='Selecciona Servicio'
+            placeholder=' Servicio'
+            border='2px solid black'
+            fontSize='12px'
             value={searchParams.servicio}
             onChange={(e) => handleInputChange('servicio', e.target.value)}
           >
@@ -78,6 +82,8 @@ export const Inicio = () => {
   
           <Select background='white' width='auto'
             placeholder='Ingrese Mundo'
+            border='2px solid black'
+           fontSize='12px'
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
 
@@ -88,6 +94,8 @@ export const Inicio = () => {
   
           <Input
            background='white' width='auto'
+           border='2px solid black'
+           fontSize='12px'
             placeholder='Ingrese Distrito'
             value={searchParams.distrito}
             onChange={(e) => handleInputChange('distrito', e.target.value)}
@@ -96,10 +104,9 @@ export const Inicio = () => {
            <a href='especilistas'><Button
            display='flex'
            justifyContent='center'
-        
-           /*mirar onClick={handleSearchClick}*/
+           bg='#B69132'
            >
-           Buscar 
+           <b>Buscar</b>
            </Button></a>
          </Box>
   
@@ -129,15 +136,16 @@ export const Inicio = () => {
     return(
       <>
         <Box>
-            <Box bg={`url(${barbero1})`} backgroundPosition='center' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
-              <Box display='flex' paddingTop='40px' gap='30px' color='#D4AF37' justifyContent='left' paddingLeft='60px'>
-              <Box width='150px' ><a href='Mundohombres'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px'}}>Mundo hombres</Heading></a></Box>
-              <Box width='140px'><a href='Mundomujeres'><Heading fontSize='18px'fontFamily='wraper' borderBottom='1px solid black'textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '140px' }} >Mundo mujeres</Heading></a></Box>
-              <Box width='150px'><a href='Mundomascotas'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px' }}>Mundo mascotas</Heading></a></Box>
+            <Box bg={`url(${peluquerias})`}  position='relative' backgroundPosition='center' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
+            <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.3)'></Box>
+              <Box  position='relative' display='flex' paddingTop='40px' gap='30px'  justifyContent='left' paddingLeft='60px'color='#B69132' >
+              <Box width='150px' ><a href='Mundohombres'><Heading fontSize='18px' fontFamily='wraper'  textAlign='center'  _hover={{ background: 'red',  borderRadius: '8px', width: '160px'}}>Mundo hombres</Heading></a></Box>
+              <Box width='140px'><a href='Mundomujeres'><Heading fontSize='18px'fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '140px' }} >Mundo mujeres</Heading></a></Box>
+              <Box width='150px'><a href='Mundomascotas'><Heading fontSize='18px' fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px' }}>Mundo mascotas</Heading></a></Box>
               </Box>
 
               {/*buscador de servicios y estilistas en inicio*/}
-              <Box width='100%' marginTop='60px'>
+              <Box width='100%' marginTop='60px' position='relative'>
                <Heading textAlign='center' fontSize='20px' color='#D4AF37'>El mundo de la belleza digital</Heading> 
                <Heading textAlign='center'><b>BIENVENIDO A QURUX</b></Heading>
               </Box>
@@ -153,7 +161,7 @@ export const Inicio = () => {
            </Box>
 
            <Container margin='100px 0px ' display='flex'  gap='60px'  flexWrap='wrap' justifyContent='center' maxW='100%'>
-              <Box  bg={`url(${vino})`}
+              <Box  bg={`url(${hombre})`}
               width='300px'
               height='300px'
               backgroundSize='cover' 
@@ -161,11 +169,11 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='0px 20px 0px 20px'>
-              <a href='Mundohombres'><Box color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box></a>
+              <a href='Mundohombres'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box></a>
 
               </Box>
 
-              <Box  bg={`url(${vino})`}
+              <Box  bg={`url(${mujer})`}
               width='300px'
               height='300px'
               backgroundSize='cover' 
@@ -173,11 +181,12 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='20px 0px 20px 0px'>
-              <a href='Mundomujeres'><Box color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box></a>
+              <a href='Mundomujeres'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box></a>
 
              </Box>
 
-             <Box  bg={`url(${vino})`}
+             <Box  bg={`url(${mascotas})`}
+             backgroundPosition='center'
               width='300px'
               height='300px'
               backgroundSize='cover' 
@@ -185,7 +194,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='20px 0px 20px 0px'>
-              <a href='Mundomascotas'><Box color='white' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box></a>
+              <a href='Mundomascotas'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='13px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box></a>
 
              </Box>
            </Container>
@@ -197,8 +206,8 @@ export const Inicio = () => {
            </Container>
 
            {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-           <Box bg='gray' height='500px'marginTop='50px' >
-            <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
+           <Box  height='500px'marginTop='50px' >
+            <Heading color='#B69132' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
            {/* Sección de estilistas seleccionados */}
@@ -241,6 +250,8 @@ export const Inicio = () => {
          
            
        </Box>
+
+       
      </>
     
     )
