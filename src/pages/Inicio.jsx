@@ -155,7 +155,7 @@ export const Inicio = () => {
 
 
            <Box marginTop='100px'>
-             <Heading color='#D4AF37' fontSize='10px'  textAlign='center'>AROUND THE WORD</Heading>
+             <Heading color='#D4AF37' fontSize='11px'  textAlign='center'>AROUND THE WORD</Heading>
              <Heading fontSize='20px' textAlign='center'><b>Mundos</b></Heading>
              <Text textAlign='center' fontSize='12px'><b>Loren ipsum dolor sit amet, cibo mundi ea duo, vim exerci phaedrum</b></Text>
            </Box>
