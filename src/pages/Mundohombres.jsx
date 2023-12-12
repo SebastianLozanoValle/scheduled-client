@@ -2,18 +2,6 @@ import { Box, Heading, Text, Container, background } from "@chakra-ui/react"
 import barbero1 from '../assets/imagenes/barbero1.jpg'
 import React, { useState } from 'react';
 import { Input, Select, Button } from '@chakra-ui/react';
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
-// import styled from 'styled-components';
-
- 
-
-// const StyledDatePicker = styled(DatePicker)`
-//   background: white;
-//   width: auto;
-//   height: 40px
-//   /* Otros estilos personalizados */
-// `;
 
 export const Mundohombres = () => {
   const [selectedDate, setSelectedDate] = useState(null);

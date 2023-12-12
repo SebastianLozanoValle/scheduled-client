@@ -39,20 +39,20 @@ export const Footer = () => {
                             >
                                 <Box  fontSize='15px'>
                                 <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombre'>Mundo hombre</a><br/>
-                                <a href= "Mundomujer">Mundo mujer</a><br/>
+                                <a href='/Mundohombres'>Mundo hombre</a><br/>
+                                <a href= "Mundomujeres">Mundo mujer</a><br/>
                                 <a href= "Mundomascotas">Mundo mascotas</a><br/>
                                 </Box>
                                 <Box fontSize='15px'>
                                 <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombre'>Mundo hombre</a><br/>
-                                <a href= "Mundomujer">Mundo mujer</a><br/>
+                                <a href='Mundohombres'>Mundo hombre</a><br/>
+                                <a href= "Mundomujeres">Mundo mujer</a><br/>
                                 <a href= "Mundomascotas">Mundo mascotas</a><br/>
                                 </Box>
                                 <Box fontSize='15px'>
                                 <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombre'>Mundo hombre</a><br/>
-                                <a href= "Mundomujer">Mundo mujer</a><br/>
+                                <a href='Mundohombres'>Mundo hombre</a><br/>
+                                <a href= "Mundomujeres">Mundo mujer</a><br/>
                                 <a href= "Mundomascotas">Mundo mascotas</a><br/>
                                 </Box>
                                 
