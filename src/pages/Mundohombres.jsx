@@ -2,6 +2,8 @@ import { Box, Heading, Text, Container, background } from "@chakra-ui/react"
 import barbero1 from '../assets/imagenes/barbero1.jpg'
 import React, { useState } from 'react';
 import { Input, Select, Button } from '@chakra-ui/react';
+import { StyledDatePicker } from 'ruta-o-nombre-de-la-libreria';
+
 
 export const Mundohombres = () => {
   const [selectedDate, setSelectedDate] = useState(null);

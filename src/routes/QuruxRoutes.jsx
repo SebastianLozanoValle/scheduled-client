@@ -5,7 +5,7 @@ import {Mundohombres}  from '../pages/Mundohombres'
 import {ListaE} from '../pages/ListaE'
 import {Mundomujeres} from '../pages/Mundomujeres'
 import { Mundomascotas } from "../pages/Mundomascotas"
-import { Pasarelap } from "../pages/Pasarelap"
+
 
 
 
@@ -18,7 +18,7 @@ export const QuruxRoutes = () =>{
             <Route path="/Mundomascotas" element={<><Mundomascotas/></>} />
             <Route path="/dashboard/*" element={<><DashboardRoutes/></>} />
             <Route path="/ListaE" element={<><ListaE/></>} />
-            <Route path="/Pasarelap" element={<><Pasarelap/></>} />
+           
 
             {/* Ruta comodín para cualquier ruta no coincidente */}
             <Route path="/*" element={<Navigate to="/404" />} />

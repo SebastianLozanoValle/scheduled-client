@@ -2,7 +2,7 @@
 import { Box, Heading, Text, Container, background } from "@chakra-ui/react"
 import React, { useState } from 'react';
 import { Button } from '@chakra-ui/react';
-import { Pasarelap } from "./Pasarelap";
+
 
 
 export const ListaE = () => {
@@ -45,7 +45,7 @@ export const ListaE = () => {
           <Text>Información del Especialista:</Text>
           <Text>{`Especialista: ${selectedSpecialist.name}`}</Text>
           <Text>{`Descripción: ${selectedSpecialist.description}`}</Text>
-          <a href='Pasarelap'><Button onClick={handlePayButtonClick}>Pagar</Button></a>
+          <Button onClick={handlePayButtonClick}>Pagar</Button>
         </Box>
       )}
     </Box>
