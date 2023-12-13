@@ -33,7 +33,7 @@ export const Footer = () => {
                                 textAlign='center'
                                 margin='0px'
                                 height='100%'
-                                gap='190px'
+                                gap='90px'
                                 marginTop='60px'
                             
                             >
