@@ -31,7 +31,7 @@ export const ListaE = () => {
     <>
 
      <Box  height='100vh'  bg={`url(${barbero1})`} bgRepeat='no-repeat' backgroundSize='cover'>
-       <Heading  color='gold' textAlign='center' fontSize='18px'  paddingTop='30px'>ESPECIALISTAS DISPONIBLES </Heading>
+       <Heading  color='red' textAlign='center' fontSize='18px'  paddingTop='30px'>ESPECIALISTAS DISPONIBLES </Heading>
        <Text>Selecciona un Especialista:</Text>
        <Box display='column' width='100%' marginTop='40px'>
        {specialistsData.map((specialist) => (
