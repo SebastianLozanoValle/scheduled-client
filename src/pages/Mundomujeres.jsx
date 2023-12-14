@@ -73,11 +73,13 @@ export const Mundomujeres = () => {
     return (
       <Box  display='flex' justifyContent='center' marginTop='60px'>
         
-        <Box width='800px' display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' gap='20px'>
+        <Box width='800px' display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' gap='20px' padding={isSmallerThan760 ? '30px' : '0px'}>
           
           
           <Select
             background='white' width='auto'
+            border='1px solid black'
+            marginBottom={isSmallerThan760 ? '15px' : '0px'}
             placeholder='Selecciona Servicio'
             value={searchParams.servicio}
             onChange={(e) => handleInputChange('servicio', e.target.value)}
@@ -91,6 +93,8 @@ export const Mundomujeres = () => {
   
           <Select background='white' width='auto'
             placeholder='Tipodeservicio'
+            border='1px solid black'
+            marginBottom={isSmallerThan760 ? '15px' : '0px'}
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
 
@@ -113,6 +117,10 @@ export const Mundomujeres = () => {
            <a href='ListaE'><Button
            display='flex'
            justifyContent='center'
+           width={isSmallerThan760 ? '80%' : '0px'}
+           marginLeft={isSmallerThan760 ? '10%' : '0px'}
+           bg={isSmallerThan760 ? 'gold' : 'white'}
+           marginTop={isSmallerThan760 ? '8px' : '0px'}
         
            /*mirar onClick={handleSearchClick}*/
            >
@@ -169,7 +177,7 @@ export const Mundomujeres = () => {
           </Box>
 
           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-          <Box bg='gray' height='500px'marginTop='50px' >
+          <Box  height='500px'marginTop={isSmallerThan760 ? '90px' : '50px'} >
             <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>

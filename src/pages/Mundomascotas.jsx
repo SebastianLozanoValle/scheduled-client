@@ -1,10 +1,12 @@
 import { Box, Heading, Text, Container, background } from "@chakra-ui/react"
-import barbero1 from '../assets/imagenes/barbero1.jpg'
+import perros from '../assets/imagenes/perros.png'
 import React, { useState } from 'react';
 import { Input, Select, Button } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import styled from 'styled-components';
+import { useMediaQuery } from "@chakra-ui/react";
+
 
  
 
@@ -16,6 +18,7 @@ const StyledDatePicker = styled(DatePicker)`
 `;
 
 export const Mundomascotas = () => {
+  const [isSmallerThan760] = useMediaQuery('(max-width: 720px)');
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (date) => {
@@ -69,12 +72,14 @@ export const Mundomascotas = () => {
     return (
       <Box  display='flex' justifyContent='center' marginTop='60px'>
         
-        <Box width='800px' display='flex' justifyContent='center' gap='20px'>
+        <Box width='800px' display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' gap='20px' padding={isSmallerThan760 ? '20px' : '0px'}>
           
           
           <Select
             background='white' width='auto'
             placeholder='Selecciona Servicio'
+            border='1px solid black'
+            marginBottom={isSmallerThan760 ? '10px' : '0px'}
             value={searchParams.servicio}
             onChange={(e) => handleInputChange('servicio', e.target.value)}
           >
@@ -87,6 +92,8 @@ export const Mundomascotas = () => {
   
           <Select background='white' width='auto'
             placeholder='Tipodeservicio'
+            border='1px solid black'
+            marginBottom={isSmallerThan760 ? '10px' : '0px'}
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
 
@@ -109,7 +116,10 @@ export const Mundomascotas = () => {
            <a href='ListaE'><Button
            display='flex'
            justifyContent='center'
-    
+            bg={isSmallerThan760 ? 'gold' : 'white'}
+            width={isSmallerThan760 ? '80%' : '0px'}
+            marginLeft={isSmallerThan760 ? '10%' : '0px'}
+            marginTop={isSmallerThan760 ? '20px' : '0px'}
            >
            Buscar 
            </Button></a>
@@ -143,12 +153,12 @@ export const Mundomascotas = () => {
 
      <>
        <Box>
-          <Box bg={`url(${barbero1})`}   backgroundPosition='center'  position='relative' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
+          <Box bg={`url(${perros})`}   backgroundPosition='center'  position='relative' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
             <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.3)'></Box>
-            <Box display='flex' position='relative'  paddingTop='40px' gap='30px' color='#D4AF37' justifyContent='left' paddingLeft='60px'>
-              <Box width='150px'><a href='Mundohombres'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px'}}>Mundo hombres</Heading></a></Box>
-              <Box width='140px'><a href='Mundomujeres'><Heading fontSize='18px'fontFamily='wraper' borderBottom='1px solid black'textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '140px' }} >Mundo mujeres</Heading></a></Box>
-              <Box width='150px'><a href='Mundomascotas'><Heading fontSize='18px' fontFamily='wraper' borderBottom='1px solid black' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '160px' }}>Mundo mascotas</Heading></a></Box>
+            <Box  position='relative' display='flex' paddingTop='40px' gap={isSmallerThan760 ? '3px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '60px'} color='#B69132'>
+              <Box width='150px'><a href='Mundohombres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width:'150px'}} >Mundo hombres</Heading></a></Box>
+              <Box width='140px'><a href='Mundomujeres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '150px' }} >Mundo mujeres</Heading></a></Box>
+              <Box width='150px'><a href='Mundomascotas'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '150px' }}>Mundo mascotas</Heading></a></Box>
               </Box>
 
               <Box display='flex' justifyContent='center' alignItems='end' height='300px'>
@@ -164,7 +174,7 @@ export const Mundomascotas = () => {
           </Box>
 
           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-          <Box bg='gray' height='500px'marginTop='50px' >
+          <Box height='500px'marginTop= {isSmallerThan760 ? '90px' : '50px'}>
             <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>

@@ -16,7 +16,7 @@
     "@emotion/styled": "^11.11.0",
     "@stripe/react-stripe-js": "^2.4.0",
     "@stripe/stripe-js": "^2.2.0",
-    "framer-motion": "^10.16.14",
+    "framer-motion": "^10.16.16",
     "graphql": "^16.8.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.24.0",
