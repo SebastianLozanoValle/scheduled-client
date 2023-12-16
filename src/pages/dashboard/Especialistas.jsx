@@ -166,13 +166,15 @@ export const Especialistas = ({ isMobile }) => {
                         // onClick={/* función para agregar */}
                     />
                 </Flex>
-                {search.length < 3 ? especialistas.map((especialista) => (
-                    // Renderizado normal
-                    <Especialista especialista={especialista} />
-                )) : filteredEspecialistas.length > 0 ? filteredEspecialistas.map((especialista) => (
-                    // Renderizado de búsqueda
-                    <Especialista especialista={especialista} />
-                )) : <Text color='white'>No se ha encontrado ninguna coincidencia con "{search}"</Text>}
+                {
+                    search.length < 3 ? especialistas.map((especialista) => (
+                        // Renderizado normal
+                        <Especialista especialista={especialista} />
+                    )) : filteredEspecialistas.length > 0 ? filteredEspecialistas.map((especialista) => (
+                        // Renderizado de búsqueda
+                        <Especialista especialista={especialista} />
+                    )) : <Text color='white'>No se ha encontrado ninguna coincidencia con "{search}"</Text>
+                }
             </Box>
         </Box>
     );
