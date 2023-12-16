@@ -33,26 +33,26 @@ export const Footer = () => {
                                 textAlign='center'
                                 margin='0px'
                                 height='100%'
-                                gap='190px'
+                                gap='90px'
                                 marginTop='60px'
                             
                             >
                                 <Box  fontSize='15px'>
                                 <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombre'>Mundo hombre</a><br/>
-                                <a href= "Mundomujer">Mundo mujer</a><br/>
+                                <a href='/Mundohombres'>Mundo hombre</a><br/>
+                                <a href= "Mundomujeres">Mundo mujer</a><br/>
                                 <a href= "Mundomascotas">Mundo mascotas</a><br/>
                                 </Box>
                                 <Box fontSize='15px'>
                                 <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombre'>Mundo hombre</a><br/>
-                                <a href= "Mundomujer">Mundo mujer</a><br/>
+                                <a href='Mundohombres'>Mundo hombre</a><br/>
+                                <a href= "Mundomujeres">Mundo mujer</a><br/>
                                 <a href= "Mundomascotas">Mundo mascotas</a><br/>
                                 </Box>
                                 <Box fontSize='15px'>
                                 <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombre'>Mundo hombre</a><br/>
-                                <a href= "Mundomujer">Mundo mujer</a><br/>
+                                <a href='Mundohombres'>Mundo hombre</a><br/>
+                                <a href= "Mundomujeres">Mundo mujer</a><br/>
                                 <a href= "Mundomascotas">Mundo mascotas</a><br/>
                                 </Box>
                                 

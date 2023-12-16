@@ -14,6 +14,7 @@ export const QuruxApp = () => {
                 <QuruxRoutes />
             </Box>
             <Footer />
+            
         </ChakraBaseProvider>
         
     );
