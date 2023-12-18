@@ -3,7 +3,7 @@ import { AccordionItem, AccordionButton, AccordionPanel, Box } from "@chakra-ui/
 export const CustomAccordionItem = ({ title, children }) => (
     <AccordionItem>
         <AccordionButton>
-            <Box flex="1" textAlign="left">
+            <Box flex="1" textAlign="left" fontWeight='bold'>
                 {title}
             </Box>
         </AccordionButton>

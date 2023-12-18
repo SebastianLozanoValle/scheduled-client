@@ -6,6 +6,7 @@ import { FaHome, FaBell, FaEnvelope, FaCog } from 'react-icons/fa';
 const DashboardBottomNavBar = () => {
     return (
         <Flex
+            zIndex='9'
             className="dashboard-bottom-navbar"
             position="fixed"
             bottom={0}
