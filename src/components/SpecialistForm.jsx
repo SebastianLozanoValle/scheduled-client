@@ -3,10 +3,67 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { CustomAccordionItem } from './CustomAccordionItem';
 import { Accordion } from '@chakra-ui/react';
 import { Dialog } from '@headlessui/react';
+import { gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { useToast } from "@chakra-ui/react";
+
+const CREATE_SPECIALIST = gql`
+mutation($input: SpecialistInput!) {createSpecialist(input: $input) {
+    id
+    username
+    age
+    avatar
+    active
+    city
+    street
+    role
+    highlighted
+    specialtys
+    weeklySchedule {
+      Monday {
+        start
+        end
+      }
+      Tuesday {
+        start
+        end
+      }
+      Wednesday {
+        start
+        end
+      }
+      Thursday {
+        start
+        end
+      }
+      Friday {
+        start
+        end
+      }
+      Saturday {
+        start
+        end
+      }
+      Sunday {
+        start
+        end
+      }
+    }
+    appointments {
+      id
+      clientId
+      status
+      startTime
+      estimatedEndTime
+    }
+}}
+`;
 
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
+    const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST);
+    const toast = useToast();
     const { register, handleSubmit, control, formState: { errors } } = useForm();
     const [specialtys, setSpecialtys] = useState([]);
     const fieldArrayOperations = daysOfWeek.reduce((acc, day) => {
@@ -19,9 +76,34 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
 
     const specialtyOptions = ['Peluqueria', 'Manicura', 'Pedicura']; // Hardcoded array of specialties
 
-    const onSubmit = data => {
-      data.specialtys = specialtys;
-      console.log(data);
+    const onSubmit = async (data) => {
+        
+        data.role = "specialist";
+        data.active = true
+        data.age = parseInt(data.age);
+        data.specialtys = specialtys;
+
+        console.log(data);
+
+        try {
+          const { data: response } = await createSpecialist({ variables: { input: data } });
+        //   throw new Error(response);
+          toast({
+            title: "Success",
+            description: "Specialist created successfully",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+        } catch (error) {
+          toast({
+            title: "An error occurred.",
+            description: error.message,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+        }
     };
 
     const handleSpecialtyChange = (event) => {
@@ -109,9 +191,9 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
                                     World*
                                     <select name="world" {...register('world', { required: true })} className="w-full p-2 border rounded shadow-sm">
                                         <option value="">Select World</option>
-                                        <option value="Mundo Hombre">Mundo Hombre</option>
-                                        <option value="Mundo Mujer">Mundo Mujer</option>
-                                        <option value="Mundo Mascota">Mundo Mascota</option>
+                                        <option value="Hombre">Mundo Hombre</option>
+                                        <option value="Mujer">Mundo Mujer</option>
+                                        <option value="Mascota">Mundo Mascota</option>
                                     </select>
                                     {errors.world && <span className="text-red-500">This field is required</span>}
                                 </label>
@@ -136,8 +218,8 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
                                             <h3 className='p-4 font-bold m-auto bg-orange-400 rounded-xl'>{day}</h3>
                                             {fieldArrayOperations[day].fields.map((field, index) => (
                                                 <div key={field.id} className='m-4'>
-                                                    <input type='datetime-local' className='m-2' {...register(`weeklySchedule.${day}.${index}.start`)} placeholder="Start time" />
-                                                    <input type='datetime-local' className='m-2' {...register(`weeklySchedule.${day}.${index}.end`)} placeholder="End time" />
+                                                    <input type='time' className='m-2' {...register(`weeklySchedule.${day}.${index}.start`)} placeholder="Start time" />
+                                                    <input type='time' className='m-2' {...register(`weeklySchedule.${day}.${index}.end`)} placeholder="End time" />
                                                     <button className='rounded-md bg-red-600 p-1' type="button" onClick={() => fieldArrayOperations[day].remove(index)}>Remove</button>
                                                 </div>
                                             ))}

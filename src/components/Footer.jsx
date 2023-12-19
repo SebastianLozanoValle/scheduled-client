@@ -12,69 +12,112 @@ export const Footer = () => {
     const isDashboardRoute = location.pathname.split('/')[1] === 'dashboard';
 
     return (
-        <footer>
-            <Box ml={{base:'0' ,md: isDashboardRoute ? '265px': '0' }} w={{base:'100vw' ,md: isDashboardRoute ? 'calc(100vw - 265px)': '100vw' }}>
-                <Box bg="black" height='450px'>
-                    <Container minW='90vw'>
+        <Box ml={{ base: '0', md: isDashboardRoute ? '265px' : '0' }} w={{ base: '100vw', md: isDashboardRoute ? 'calc(100vw - 265px)' : '100vw' }} mb={{ base: '64px', md: '0' }}>
+            <div>
+                <footer>
+                    <div className='p-10 bg-gray-800 text-gray-200'>
+                        <div className='max-w-7xl mx-auto'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
+                                <div className='mb-5'>
+                                    <h4 className='text-2xl pb-4'>LOGO</h4>
+                                    <p className='text-gray-500'>
+                                        Lorem ipsum dolor sit amet <br />consectetur adipisicing eli <br /><br />
+                                        <strong>telefono:</strong>+57565434 <br />
+                                    </p>
+                                </div>
+                                <div className='mb-5'>
+                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Explore</h4>
+                                    <ul className='text-gray-500'>
 
-                        <Flex display='flex'
-                        justifyContent='center'
-                        alignItems='center'
-                        >
+                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><a href="#" className='hover:text-white'>About Us</a>
+                                        </li>
+                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><a href="#" className='hover:text-white'>My Account</a>
+                                        </li>
+                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><a href="#" className='hover:text-white'>My Listings</a>
+                                        </li>
+                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><a href="#" className='hover:text-white'>Pricing Packages</a>
+                                        </li>
+                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><a href="#" className='hover:text-white'>User Dashboard</a>
+                                        </li>
+                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><a href="#" className='hover:text-white'>Bookmarks</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className='mb-5'>
+                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Categories</h4>
+                                    <ul className='text-gray-500'>
 
-                            {/*<Img*/}
-                            
-                            <Box
-                                paddingTop='10px'
-                                display='flex'
-                                justifyContent='center'
-                                alignItems='center'
-                                color='white'
-                                textAlign='center'
-                                margin='0px'
-                                height='100%'
-                                gap='90px'
-                                marginTop='60px'
-                            
-                            >
-                                <Box  fontSize='15px'>
-                                <a href= "/">Inicio</a><br/>
-                                <a href='/Mundohombres'>Mundo hombre</a><br/>
-                                <a href= "Mundomujeres">Mundo mujer</a><br/>
-                                <a href= "Mundomascotas">Mundo mascotas</a><br/>
-                                </Box>
-                                <Box fontSize='15px'>
-                                <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombres'>Mundo hombre</a><br/>
-                                <a href= "Mundomujeres">Mundo mujer</a><br/>
-                                <a href= "Mundomascotas">Mundo mascotas</a><br/>
-                                </Box>
-                                <Box fontSize='15px'>
-                                <a href= "/">Inicio</a><br/>
-                                <a href='Mundohombres'>Mundo hombre</a><br/>
-                                <a href= "Mundomujeres">Mundo mujer</a><br/>
-                                <a href= "Mundomascotas">Mundo mascotas</a><br/>
-                                </Box>
-                                
-                            </Box>
+                                        <ul>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <a href="#" className='hover:text-white'>Restaurant</a>
+                                            </li>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <a href="#" className='hover:text-white'>Culture</a>
+                                            </li>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <a href="#" className='hover:text-white'>Shopping</a>
+                                            </li>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <a href="#" className='hover:text-white'>Beauty</a>
+                                            </li>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <a href="#" className='hover:text-white'>Hotels</a>
+                                            </li>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <a href="#" className='hover:text-white'>Hospitals</a>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                                <div className='mb-5'>
+                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Newsletter</h4>
+                                    <p className='text-gray-500'>88 Broklyn Golden Street, New York. USA</p>
+                                    <p className='text-gray-500'>needhelp@ziston.com</p><br />
 
-                    </Flex>
-                    
-                    
-                        <Box textAlign='center' justifyContent='center'   color='white' marginTop='90px' fontSize='14px' >
-                            <Container width='auto' display='flex' gap='40px' justifyContent='center' alignItems='center' paddingBottom='40px'>
-                            <a target='_blank' href="https://www.facebook.com/mcshipbrokers/?locale=es_LA"><Box fontSize='40px' color='gold'>{<FaFacebookF />}</Box></a>
-                            <a target='_blank' href="https://www.linkedin.com/company/2879222/admin/feed/posts/"><Box fontSize={'40px'} color='gold'>{<CiLinkedin />}</Box></a>
-                            <a target='_blank' href="https://www.instagram.com/mcshipbrokersint/"><Box fontSize={'40px'} color='gold'>{<FaInstagram />}</Box></a>
-                        </Container>
-                            &copy; 2023 Qurux, Todos los derechos reservados <br/>
-                            Create By: Netword<br/>
-                            <a href='mailto:networdcol@gmail.com'>networdcol@gmail.com</a>
-                        </Box>
-                </Container>
-                    
-                </Box>
-            </Box>
-        </footer>
+                                    <form className="flex flex-col items-center rounded-md p-4">
+                                        <input
+                                            type="email"
+                                            name=""
+                                            id=""
+                                            placeholder='Enter email address'
+                                            className="mb-2 p-2 border border-gray-300 w-80 transition-background duration-300 ease-in-out hover:bg-gray-200 h-16 rounded-md"
+                                        />
+                                        <div>
+                                            <button
+                                                className="bg-red-700 hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16"
+                                            >
+                                                SUBSCRIBE
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* parte de abajo */}
+                    <div className='min-w-full bg-gray-900 text-gray-500 px-10'>
+                        <div className='max-w-7xl flex flex-col sm:flex-row py-4 mx-auto justify-between items-center'>
+                            <div className='text-center'>
+                                <div>
+                                    Copyright  <strong><span>Netword.solutions</span></strong>. All Rights Reserved
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" text-right text xl mb-2">
+                            <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaFacebookF className='w-full h-full' /></a>
+                            <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaInstagram className='w-full h-full' /></a>
+                            {/* <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a>
+                        <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a> */}
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </Box>
     )
 };
