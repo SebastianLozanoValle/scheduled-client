@@ -153,7 +153,7 @@ export const Inicio = () => {
               <Box   display='flex' paddingTop='40px' gap={isSmallerThan760 ? '20px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '0px'}  justifyContent='center' alignItems='center'>
               <Box width='' ><a href='Mundohombres'><Heading  fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='-moz-initial' textAlign='center'  >Mundo hombres</Heading></a></Box>
               <Box width='auto'><a href='Mundomujeres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='wraper' textAlign='center'  >Mundo mujeres</Heading></a></Box>
-              <Box width='auto'><a href='Mundomascotas'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='wraper' textAlign='center' >Mundo mascotas</Heading></a></Box>
+              <Box width='auto'><a href='Mundomascotas'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'red'} fontFamily='wraper' textAlign='center' >Mundo mascotas</Heading></a></Box>
               </Box>
 
               {/*buscador de servicios y estilistas en inicio*/}
