@@ -63,29 +63,30 @@ export const Inicio = () => {
       setPeluquerosResult(results);
     };
     return (
-      <Box  display='flex' justifyContent='center' marginTop={isSmallerThan760 ? '0px' : '60px'}>
+      <Box  display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' marginTop={isSmallerThan760 ? '60px' : '60px'} paddingLeft={isSmallerThan760 ? '60px' : '0px'} >
         
-        <Box width='800px' display='flex' justifyContent='center' gap='20px' flexWrap='wrap'>
+        <Box width='100%' display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center'>
           
           
           <Select
-            background='white' width={isSmallerThan760 ? '80%' : 'auto'}
+            background='white' width={isSmallerThan760 ? '80%' : '330px'}
+            height={isSmallerThan760 ? '80px' : '70px'}
             placeholder=' Servicio'
-            border='2px solid black'
-            fontSize='12px'
+            fontSize='16px'
             value={searchParams.servicio}
             onChange={(e) => handleInputChange('servicio', e.target.value)}
           >
-            {/* Opciones para Servicio 1 */}
+             {/* Opciones para Servicio 1 */}
             {/* Puedes agregar opciones dinámicamente según tus necesidades */}
             <option value='servicio1'>Servicio 1</option>
             <option value='servicio2'>Servicio 2</option>KK
             <option value='servicio3'>Servicio 3</option>
           </Select>
   
-          <Select background='white' width={isSmallerThan760 ? '80%' : 'auto'}
-            placeholder='Ingrese Mundo'
-            border='2px solid black'
+          <Select background='white' width={isSmallerThan760 ? '80%' : '330px'}
+           height={isSmallerThan760 ? '80px' : '70px'}
+           marginTop={isSmallerThan760 ? '10px' : '0px'} 
+           placeholder='Ingrese Mundo'
            fontSize='12px'
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
@@ -96,8 +97,9 @@ export const Inicio = () => {
           </Select>
   
           <Input
-           background='white' width={isSmallerThan760 ? '80%' : 'auto'}
-           border='2px solid black'
+           background='white' width={isSmallerThan760 ? '80%' : '330px'}
+           height={isSmallerThan760 ? '80px' : '70px'}
+           marginTop={isSmallerThan760 ? '10px' : '0px'} 
            fontSize='12px'
             placeholder='Ingrese Distrito'
             value={searchParams.distrito}
@@ -107,10 +109,17 @@ export const Inicio = () => {
            <a href='especilistas'><Button
            display='flex'
            justifyContent='center'
-           bg='#B69132'
+           bg='#fc3c3c'
+           color='white'
+           fontSize='20px'
+           marginTop={isSmallerThan760 ? '10px' : '0px'} 
+           width={isSmallerThan760 ? '160px' : '150px'}
+           height={isSmallerThan760 ? '60px' : '70px'}
+           
+         
           
            >
-           <b>Buscar</b>
+           <b>Searh</b>
            </Button></a>
         </Box>
   
@@ -140,18 +149,17 @@ export const Inicio = () => {
     return(
       <>
         <Box width='100wh'>
-            <Box bg={`url(${peluquerias})`}  position='relative' backgroundPosition='center' height='400px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
-            <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.8)'></Box>
-              <Box  position='relative' display='flex' paddingTop='40px' gap={isSmallerThan760 ? '3px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '60px'} color='#B69132'>
-              <Box width='150px' ><a href='Mundohombres'><Heading  fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='-moz-initial' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width:'150px'}} >Mundo hombres</Heading></a></Box>
-              <Box width='140px'><a href='Mundomujeres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '150px' }} >Mundo mujeres</Heading></a></Box>
-              <Box width='150px'><a href='Mundomascotas'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '150px' }}>Mundo mascotas</Heading></a></Box>
+            <Box bg='#161c26'   backgroundPosition='center' height='800px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover' >
+              <Box   display='flex' paddingTop='40px' gap={isSmallerThan760 ? '20px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '0px'}  justifyContent='center' alignItems='center'>
+              <Box width='' ><a href='Mundohombres'><Heading  fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='-moz-initial' textAlign='center'  >Mundo hombres</Heading></a></Box>
+              <Box width='auto'><a href='Mundomujeres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='wraper' textAlign='center'  >Mundo mujeres</Heading></a></Box>
+              <Box width='auto'><a href='Mundomascotas'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='wraper' textAlign='center' >Mundo mascotas</Heading></a></Box>
               </Box>
 
               {/*buscador de servicios y estilistas en inicio*/}
-              <Box width='100%' marginTop={isSmallerThan760 ? '30px' : '60px'} position='relative' marginBottom={isSmallerThan760 ? '10px' : '0px'} >
-               <Heading textAlign='center' fontSize='40px' color='#D4AF37' fontFamily="Tangerine, cursive">El mundo de la belleza digital</Heading> 
-               <Heading textAlign='center' color={isSmallerThan760 ? 'white' : 'black'} ><b>BIENVENIDO A QURUX</b></Heading>
+              <Box width='100%' marginTop={isSmallerThan760 ? '90px' : '190px'}  marginBottom={isSmallerThan760 ? '10px' : '0px'} >
+               <Heading textAlign='center' fontSize={isSmallerThan760 ? '30px' : '50px'}color='#fc3c3c' fontFamily="Tangerine, cursive">El mundo de la belleza digital</Heading> 
+               <Heading textAlign='center'fontSize={isSmallerThan760 ? '40px' : '70px'} color='white' ><b>BIENVENIDO A QURUX</b></Heading>
               </Box>
               <YourComponent /> {/* Renderiza el componente YourComponent */}
               
@@ -159,8 +167,8 @@ export const Inicio = () => {
 
 
            <Box marginTop='100px'>
-             <Heading color='#D4AF37' fontSize='11px'  textAlign='center'>AROUND THE WORD</Heading>
-             <Heading fontSize='20px' textAlign='center'><b>Mundos</b></Heading>
+             <Heading color='#fc3c3c' fontSize='18px'  textAlign='center'>AROUND THE WORD</Heading>
+             <Heading fontSize='40px' textAlign='center'><b>Mundos</b></Heading>
              <Text textAlign='center' fontSize='12px'><b>Loren ipsum dolor sit amet, cibo mundi ea duo, vim exerci phaedrum</b></Text>
            </Box>
 
