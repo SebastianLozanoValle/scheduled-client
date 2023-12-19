@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { General } from "../pages/dashboard/General";
 import { Flex } from "@chakra-ui/react";
 import { Especialistas } from "../pages/dashboard/Especialistas";
+import { Pruebas } from "../pages/dashboard/Pruebas";
 
 export const DashboardRoutes = () => {
 
@@ -36,6 +37,7 @@ export const DashboardRoutes = () => {
             <Routes>
                 <Route path="/" element={<General isMobile={isMobile} />} />
                 <Route path="especialistas" element={<Especialistas/>} />
+                <Route path="pruebas" element={<Pruebas/>} />
                 {/* Ruta comodín para cualquier ruta no coincidente */}
                 <Route path="*" element={<Navigate to="/404" />} />
                 

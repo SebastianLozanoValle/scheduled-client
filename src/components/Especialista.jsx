@@ -1,6 +1,7 @@
 import { Accordion, Box, Flex, Icon, IconButton, Text, VStack } from "@chakra-ui/react";
 import { RiDeleteBinLine, RiPencilLine, RiUserLine } from "react-icons/ri";
 import { CustomAccordionItem } from "./CustomAccordionItem";
+import { v4 as uuid } from 'uuid';
 
 export const Especialista = ({ especialista }) => {
     return (
@@ -8,7 +9,7 @@ export const Especialista = ({ especialista }) => {
             <Flex align="center" mb={4} justifyContent='space-between'>
                 <Flex>
                     <Icon as={RiUserLine} boxSize={6} mr={2} />
-                    <Text fontSize="xl">{especialista.nombre}</Text>
+                    <Text fontSize="xl">{especialista.username}</Text>
                 </Flex>
                 <Flex gap={4}>
                     <IconButton colorScheme='blue' aria-label="Editar" icon={<RiPencilLine />}
@@ -21,16 +22,17 @@ export const Especialista = ({ especialista }) => {
             </Flex>
             <Accordion allowToggle>
                 <CustomAccordionItem title="Información Personal">
-                    <Text>Edad: {especialista.edad}</Text>
-                    <Text>Sexo: {especialista.sexo}</Text>
-                    <Text>Ciudad: {especialista.ciudad}</Text>
+                    <Text>Edad: {especialista.age}</Text>
+                    {/* <Text>Sexo: {especialista.sexo}</Text> */}
+                    <Text>Ciudad: {especialista.city}</Text>
+                    <Text>Calle: {especialista.street}</Text>
                 </CustomAccordionItem>
                 <CustomAccordionItem title="Especialidades">
-                    {especialista.especialidades.map((especialidad, index) => (
-                        <Text key={index}>{especialidad}</Text>
+                    {especialista.specialtys.map((especialidad, index) => (
+                        <Text key={`${especialista.id}${index}`}>{especialidad}</Text>
                     ))}
                 </CustomAccordionItem>
-                <CustomAccordionItem title="Horario de Atención">
+                {/* <CustomAccordionItem title="Horario de Atención">
                     <VStack align="start" spacing={2} mb={4} overflowY='auto' height='200px'>
                         {Object.entries(especialista.horarios).map(([dia, horas], indexDia) => (
                             <Box key={indexDia}>
@@ -55,7 +57,7 @@ export const Especialista = ({ especialista }) => {
                     ) : (
                         <Text>El especialista {especialista.nombre} no tiene citas agendadas aún.</Text>
                     )}
-                </CustomAccordionItem>
+                </CustomAccordionItem> */}
             </Accordion>
         </Box>
     )

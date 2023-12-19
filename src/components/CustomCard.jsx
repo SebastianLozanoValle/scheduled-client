@@ -1,0 +1,106 @@
+import { Accordion, Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, IconButton, Image, Text, VStack } from "@chakra-ui/react"
+import { RiMore2Line, RiStarLine, RiStarSFill, RiDiscussLine, RiShareForwardLine, RiPencilLine, RiDeleteBinLine } from "react-icons/ri";
+import { CustomAccordionItem } from "./CustomAccordionItem";
+
+export const CustomCard = ({ especialista,  }) => {
+    return (
+        <>
+            <Card maxW='md' boxShadow='xl'>
+                <CardHeader>
+                    <Flex spacing='4'>
+                    <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+                        <Avatar bg='brand.primary' name='Sasuke Uchiha' src='https://bit.ly/broken-link' />
+
+                        <Box>
+                        <Heading size='sm'>{especialista.username}</Heading>
+                        <Text>{especialista.role}</Text>
+                        </Box>
+                    </Flex>
+                    <IconButton
+                        aria-label='See menu'
+                        icon={<RiMore2Line />}
+                    />
+                    </Flex>
+                </CardHeader>
+                <CardBody>
+                    <Accordion allowToggle>
+                        <CustomAccordionItem title="Información Personal">
+                            <Text>Edad: {especialista.age}</Text>
+                            {/* <Text>Sexo: {especialista.sexo}</Text> */}
+                            <Text>Ciudad: {especialista.city}</Text>
+                            <Text>Calle: {especialista.street}</Text>
+                        </CustomAccordionItem>
+                        <CustomAccordionItem title="Especialidades">
+                            {especialista.specialtys.map((especialidad, index) => (
+                                <Text key={`${especialista.id}${index}`}>{especialidad}</Text>
+                            ))}
+                        </CustomAccordionItem>
+                        <CustomAccordionItem title="Horario de Atención">
+                            <VStack align="start" spacing={2} mb={4} overflowY='auto' height='200px'>
+                                {Object.keys(especialista.weeklySchedule).map((dia, indexDia) => {
+                                    const horas = especialista.weeklySchedule[dia];
+                                    console.log(horas, dia);
+                                    if (typeof dia === 'string' && dia === '__typename') {
+                                        return null;  // No renderizar nada si dia es '__typename'
+                                    }
+                                    return (
+                                        especialista.weeklySchedule[dia].length ?(
+                                            <Box key={indexDia}>
+                                                <Text fontWeight="bold">{dia}</Text>
+                                                {especialista.weeklySchedule[dia].map((hora, indexHora) => (
+                                                    <Text key={indexHora}>{hora.start}-{hora.end}</Text>
+                                                ))}
+                                            </Box>
+                                        ) : (
+                                            <Box key={indexDia}>
+                                                <Text fontWeight="bold">{dia}</Text>
+                                                <Text>No hay horarios disponibles</Text>
+                                            </Box>
+                                        )
+                                    );
+                                })}
+                            </VStack>
+                        </CustomAccordionItem>
+                        <CustomAccordionItem title="Citas">
+                            {especialista.appointments.length > 0 ? (
+                                <VStack align="start" spacing={2} mb={4}>
+                                    {especialista.appointments.map((appointment, indexCita) => (
+                                        <VStack align="start" spacing={2} mb={4} borderTop='1px' borderBottom='1px' key={appointment.id}>
+                                            <Text fontWeight="bold">id: {appointment.id}</Text>
+                                            <Text>{appointment.startTime} - {appointment.estimatedEndTime}</Text>
+                                            <Text fontWeight="bold">Status: {appointment.status}</Text>
+
+                                        </VStack>
+                                    ))}
+                                </VStack>
+                            ) : (
+                                <Text>El especialista {especialista.nombre} no tiene citas agendadas aún.</Text>
+                            )}
+                        </CustomAccordionItem>
+                    </Accordion>
+                </CardBody>
+
+                <CardFooter
+                    justify='space-between'
+                    flexWrap='wrap'
+                    sx={{
+                    '& > button': {
+                        minW: '136px',
+                    },
+                    }}
+                    gap={2}
+                >
+                    <Button colorScheme='orange' color='white' aria-label="Destacar" flex='1' leftIcon={especialista.highlighted? <RiStarSFill/> : <RiStarLine/>}>
+                        Destacar
+                    </Button>
+                    <Button colorScheme='blue' aria-label="Editar" flex='1' leftIcon={<RiPencilLine />}>
+                        Editar
+                    </Button>
+                    <Button colorScheme='red' aria-label="Borrar" flex='1' leftIcon={<RiDeleteBinLine />}>
+                        Borrar
+                    </Button>
+                </CardFooter>
+            </Card>
+        </>
+    )
+}

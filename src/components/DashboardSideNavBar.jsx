@@ -31,6 +31,7 @@ export const DashboardSideNavBar = () => {
         <Link to="/dashboard/ventas" icon={RiCoinsLine}>Ventas</Link>
         <Link to="/settings" icon={RiSettingsLine}>Settings</Link>
         <Link to="/logout" icon={RiLogoutBoxLine}>Logout</Link>
+        <Link to="/dashboard/pruebas" icon={RiLogoutBoxLine}>pruebas</Link>
       </VStack>
     </Box>
   );
