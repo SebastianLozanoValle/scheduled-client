@@ -1,6 +1,5 @@
 import { Box, Heading, Text, Container, background } from "@chakra-ui/react"
 import vino from '../assets/imagenes/sirviendo.jpg'
-import barbero1 from '../assets/imagenes/barbero1.jpg'
 import { MdTouchApp } from "react-icons/md";
 import blancoynegro from'../assets/imagenes/blancoynegro.jpg'
 import { LuLassoSelect } from "react-icons/lu";
@@ -12,12 +11,13 @@ import mujer from '../assets/imagenes/mujer.jpeg'
 import mascotas from '../assets/imagenes/mascotas.jpeg'
 import peluquerias from '../assets/imagenes/peluquerias.jpg'
 import { useMediaQuery } from "@chakra-ui/react";
+import pintura from '../assets/imagenes/pintura.png'
 
 
 
 
 export const Inicio = () => {
-  const [isSmallerThan760] = useMediaQuery('(max-width: 720px)');
+  const [isSmallerThan760] = useMediaQuery('(max-width: 768px)');
 
   const [estilistasSeleccionados, setEstilistasSeleccionados] = useState([]);
 
@@ -69,7 +69,7 @@ export const Inicio = () => {
           
           
           <Select
-            background='white' width={isSmallerThan760 ? '80%' : '330px'}
+            background='white' width={isSmallerThan760 ? '90%' : '330px'}
             height={isSmallerThan760 ? '80px' : '70px'}
             placeholder=' Servicio'
             fontSize='16px'
@@ -83,7 +83,7 @@ export const Inicio = () => {
             <option value='servicio3'>Servicio 3</option>
           </Select>
   
-          <Select background='white' width={isSmallerThan760 ? '80%' : '330px'}
+          <Select background='white' width={isSmallerThan760 ? '90%' : '330px'}
            height={isSmallerThan760 ? '80px' : '70px'}
            marginTop={isSmallerThan760 ? '10px' : '0px'} 
            placeholder='Ingrese Mundo'
@@ -97,7 +97,7 @@ export const Inicio = () => {
           </Select>
   
           <Input
-           background='white' width={isSmallerThan760 ? '80%' : '330px'}
+           background='white' width={isSmallerThan760 ? '90%' : '330px'}
            height={isSmallerThan760 ? '80px' : '70px'}
            marginTop={isSmallerThan760 ? '10px' : '0px'} 
            fontSize='12px'
@@ -115,6 +115,7 @@ export const Inicio = () => {
            marginTop={isSmallerThan760 ? '10px' : '0px'} 
            width={isSmallerThan760 ? '160px' : '150px'}
            height={isSmallerThan760 ? '60px' : '70px'}
+           marginLeft={isSmallerThan760 ? '0px' : '8px'} 
            
          
           
@@ -148,7 +149,7 @@ export const Inicio = () => {
 
     return(
       <>
-        <Box width='100wh'>
+        <Box>
             <Box bg='#161c26'   backgroundPosition='center' height='800px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover' >
               <Box   display='flex' paddingTop='40px' gap={isSmallerThan760 ? '20px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '0px'}  justifyContent='center' alignItems='center'>
               <Box width='' ><a href='Mundohombres'><Heading  fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='-moz-initial' textAlign='center'  >Mundo hombres</Heading></a></Box>
@@ -175,8 +176,8 @@ export const Inicio = () => {
            <Container margin='100px 0px ' display='flex'  gap= {isSmallerThan760 ? '10px' : '60px'}  justifyContent='center' maxW='100%'>
               <Box  bg={`url(${hombre})`}
               backgroundPosition='center'
-              width={isSmallerThan760 ? '530px' : '300px'}
-              height={isSmallerThan760 ? '250px' : '300px'}
+              width={isSmallerThan760 ? '530px' : '400px'}
+              height={isSmallerThan760 ? '250px' : '400px'}
               backgroundSize='cover' 
               display='flex'
               justifyContent='center'
@@ -187,8 +188,8 @@ export const Inicio = () => {
               </Box>
 
               <Box  bg={`url(${mujer})`}
-              width={isSmallerThan760 ? '530px' : '300px'}
-              height={isSmallerThan760 ? '250px' : '300px'}
+              width={isSmallerThan760 ? '530px' : '400px'}
+              height={isSmallerThan760 ? '250px' : '400px'}
               backgroundSize='cover' 
               display='flex'
               justifyContent='center'
@@ -200,8 +201,8 @@ export const Inicio = () => {
 
              <Box  bg={`url(${mascotas})`}
              backgroundPosition='center'
-             width={isSmallerThan760 ? '530px' : '300px'}
-             height={isSmallerThan760 ? '250px' : '300px'}
+             width={isSmallerThan760 ? '530px' : '400px'}
+             height={isSmallerThan760 ? '250px' : '400px'}
               backgroundSize='cover' 
               display='flex'
               justifyContent='center'
@@ -212,15 +213,15 @@ export const Inicio = () => {
              </Box>
            </Container>
 
-           <Container bg={`url(${barbero1})`}  height='200px'  backgroundSize='cover' display='flex' justifyContent='center' alignItems='center'
+           <Container bg={`url(${peluquerias})`}  height='500px'  backgroundSize='cover' display='flex' justifyContent='center' alignItems='center' backgroundAttachment='fixed'
             fontSize='20px' backgroundPosition='center' position='relative' maxWidth='100%'>
-            <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.4)'></Box>
-            <Text color='white' position='relative' fontSize='25px' width='300px' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
+            <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.6)'></Box>
+            <Text  color='white' position='relative' fontSize={isSmallerThan760 ? '25px' : '60px'} width='100%' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
            </Container>
 
            {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
            <Box  height='500px'marginTop='50px' >
-            <Heading color='#B69132' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
+            <Heading color='#fc3c3c' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
            {/* Sección de estilistas seleccionados */}
@@ -232,32 +233,32 @@ export const Inicio = () => {
              </Box>
 
 
-           <Box bg={`url(${blancoynegro})`}  height='100%'  width='auto' marginTop='80px'>
-              <Box height='100px'>
-              <Heading  marginTop='40px' color='black' textAlign='center' fontSize={isSmallerThan760 ? '20px' : '30px'} >COMO FUNCIONA QURUX</Heading><Text color='black' textAlign='center' >Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
+           <Box bg='#161c26'  height='100%'  width='auto'> 
+              <Box height='100px' paddingBottom='300px'>
+              <Heading paddingTop= {isSmallerThan760 ? '90px' : '80px'}color='white' textAlign='center' fontSize={isSmallerThan760 ? '30px' : '60px'} >COMO FUNCIONA QURUX</Heading><Text color='white' textAlign='center' fontSize={isSmallerThan760 ? '20px' : '20px'}>Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
               </Box>
              <Container
               display='flex'
               alignItems='center'
-              height="auto"
+              height="100vh"
               left="25%"
               maxW='auto'
-              marginTop='40px'
               justifyContent='center'>
+              
                 <iframe
-                width="700px"
-                height='300px'
+                width={isSmallerThan760 ? '90%' : '90%'}
+                height='600px'
                 src="https://www.youtube.com/embed/dsLjyLn859g?si=yPE3byugBzpWs2dO"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 ></iframe>
               </Container>
-              <Box display={isSmallerThan760 ? 'column-revers' : 'flex'} justifyContent='center' gap={isSmallerThan760 ? '30px' : '90px'}  margin= {isSmallerThan760 ? '50px 19px' : '10px'}height='500px' alignItems='center'>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto'  marginTop={isSmallerThan760 ? '20px' : '25px'}><MdTouchApp fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></MdTouchApp><Heading marginTop='20px'fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='white'>Elige el mundo del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'}  textAlign='center' color='white' marginTop={isSmallerThan760 ? '0px' : '20px'} >Mascotas,Mujeres,Hombres</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'} ><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='white' >Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='white'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '35px'}><FaMapMarkerAlt  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></FaMapMarkerAlt ><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='white' >Escoge la ubicacion del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='white'  marginTop={isSmallerThan760 ? '0px' : '20px'}>si es adomicilio tu especilista debera ser del mismo distrito</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='white'>Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='white'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
+              <Box  bg='white' width='100%' display={isSmallerThan760 ? 'column-revers' : 'flex'} justifyContent='center' gap={isSmallerThan760 ? '30px' : '90px'}  height='600px' alignItems='center' paddingTop='100px'>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto'  marginTop={isSmallerThan760 ? '20px' : '25px'}><MdTouchApp fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></MdTouchApp><Heading marginTop='20px'fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='black'>Elige el mundo del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'}  textAlign='center' color='black' marginTop={isSmallerThan760 ? '0px' : '20px'} >Mascotas,Mujeres,Hombres</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'} ><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='black' >Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='black'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '35px'}><FaMapMarkerAlt  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></FaMapMarkerAlt ><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='black' >Escoge la ubicacion del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='black'  marginTop={isSmallerThan760 ? '0px' : '20px'}>si es adomicilio tu especilista debera ser del mismo distrito</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='black'>Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='black'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
               </Box> 
            </Box>
          
