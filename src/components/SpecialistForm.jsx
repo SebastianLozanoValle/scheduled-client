@@ -6,63 +6,19 @@ import { Dialog } from '@headlessui/react';
 import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { useToast } from "@chakra-ui/react";
+import { GET_SPECIALISTS } from '../pages/dashboard/Especialistas';
 
 const CREATE_SPECIALIST = gql`
 mutation($input: SpecialistInput!) {createSpecialist(input: $input) {
-    id
     username
-    age
-    avatar
-    active
-    city
-    street
-    role
-    highlighted
-    specialtys
-    weeklySchedule {
-      Monday {
-        start
-        end
-      }
-      Tuesday {
-        start
-        end
-      }
-      Wednesday {
-        start
-        end
-      }
-      Thursday {
-        start
-        end
-      }
-      Friday {
-        start
-        end
-      }
-      Saturday {
-        start
-        end
-      }
-      Sunday {
-        start
-        end
-      }
-    }
-    appointments {
-      id
-      clientId
-      status
-      startTime
-      estimatedEndTime
-    }
 }}
 `;
 
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
-    const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST);
+    const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST,
+        {refetchQueries: [{ query: GET_SPECIALISTS }]});
     const toast = useToast();
     const { register, handleSubmit, control, formState: { errors } } = useForm();
     const [specialtys, setSpecialtys] = useState([]);
@@ -82,8 +38,6 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
         data.active = true
         data.age = parseInt(data.age);
         data.specialtys = specialtys;
-
-        console.log(data);
 
         try {
           const { data: response } = await createSpecialist({ variables: { input: data } });

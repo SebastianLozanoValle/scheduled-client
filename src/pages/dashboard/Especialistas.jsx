@@ -10,7 +10,7 @@ import { CustomCard } from "../../components/CustomCard";
 import { SpecialistForm } from "../../components/SpecialistForm";
 import '../.././index.css';
 
-const GET_SPECIALISTS = gql`
+export const GET_SPECIALISTS = gql`
     query {
         findSpecialists {
             id
