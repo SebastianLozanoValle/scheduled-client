@@ -101,17 +101,17 @@ export const Footer = () => {
                         </div>
                     </div>
                     {/* parte de abajo */}
-                    <div className='min-w-full bg-gray-900 text-gray-500 px-10'>
-                        <div className='max-w-7xl flex flex-col sm:flex-row py-4 mx-auto justify-between items-center'>
+                    <div className='min-w-full bg-gray-900 text-gray-500 px-10' >
+                        <div   className='max-w-7xl flex flex-col sm:flex-row py-4 mx-auto justify-between items-center'>
                             <div className='text-center'>
                                 <div>
                                     Copyright  <strong><span>Netword.solutions</span></strong>. All Rights Reserved
                                 </div>
                             </div>
                         </div>
-                        <div class=" text-right text xl mb-2">
-                            <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaFacebookF className='w-full h-full' /></a>
-                            <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaInstagram className='w-full h-full' /></a>
+                        <div className=" text-right text xl mb-2" >
+                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaFacebookF className='w-full h-full' /></a>
+                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaInstagram className='w-full h-full' /></a>
                             {/* <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a>
                         <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a> */}
                         </div>

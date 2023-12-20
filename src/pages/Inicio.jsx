@@ -115,6 +115,7 @@ export const Inicio = () => {
            marginTop={isSmallerThan760 ? '10px' : '0px'} 
            width={isSmallerThan760 ? '160px' : '150px'}
            height={isSmallerThan760 ? '60px' : '70px'}
+           marginLeft={isSmallerThan760 ? '0px' : '8px'} 
            
          
           
@@ -148,7 +149,7 @@ export const Inicio = () => {
 
     return(
       <>
-        <Box width='100wh'>
+        <Box width='100wh' >
             <Box bg='#161c26'   backgroundPosition='center' height='800px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover' >
               <Box   display='flex' paddingTop='40px' gap={isSmallerThan760 ? '20px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '0px'}  justifyContent='center' alignItems='center'>
               <Box width='' ><a href='Mundohombres'><Heading  fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='-moz-initial' textAlign='center'  >Mundo hombres</Heading></a></Box>
@@ -175,8 +176,8 @@ export const Inicio = () => {
            <Container margin='100px 0px ' display='flex'  gap= {isSmallerThan760 ? '10px' : '60px'}  justifyContent='center' maxW='100%'>
               <Box  bg={`url(${hombre})`}
               backgroundPosition='center'
-              width={isSmallerThan760 ? '530px' : '300px'}
-              height={isSmallerThan760 ? '250px' : '300px'}
+              width={isSmallerThan760 ? '530px' : '400px'}
+              height={isSmallerThan760 ? '250px' : '400px'}
               backgroundSize='cover' 
               display='flex'
               justifyContent='center'
@@ -187,8 +188,8 @@ export const Inicio = () => {
               </Box>
 
               <Box  bg={`url(${mujer})`}
-              width={isSmallerThan760 ? '530px' : '300px'}
-              height={isSmallerThan760 ? '250px' : '300px'}
+              width={isSmallerThan760 ? '530px' : '400px'}
+              height={isSmallerThan760 ? '250px' : '400px'}
               backgroundSize='cover' 
               display='flex'
               justifyContent='center'
@@ -200,8 +201,8 @@ export const Inicio = () => {
 
              <Box  bg={`url(${mascotas})`}
              backgroundPosition='center'
-             width={isSmallerThan760 ? '530px' : '300px'}
-             height={isSmallerThan760 ? '250px' : '300px'}
+             width={isSmallerThan760 ? '530px' : '400px'}
+             height={isSmallerThan760 ? '250px' : '400px'}
               backgroundSize='cover' 
               display='flex'
               justifyContent='center'
