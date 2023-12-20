@@ -7,19 +7,24 @@ import 'react-datepicker/dist/react-datepicker.css';
 import styled from 'styled-components';
 import maquillaje from '../assets/imagenes/maquillaje.png'
 import { useMediaQuery } from "@chakra-ui/react";
+import peluqueriamujer from '../assets/imagenes/peluqueriamujer.jpeg'
+import maquillandomujer from '../assets/imagenes/maquillandomujer.jpeg'
+import spamujer from '../assets/imagenes/spamujer.jpeg'
+
 
  
+
 
 const StyledDatePicker = styled(DatePicker)`
   background: white;
   width: auto;
   height: 40px
-  /* Otros estilos personalizados */
+  
 `;
 
 export const Mundomujeres = () => {
-  const [isSmallerThan760] = useMediaQuery('(max-width: 720px)');
 
+  const [isSmallerThan760] = useMediaQuery('(max-width: 768px)');
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (date) => {
@@ -73,14 +78,15 @@ export const Mundomujeres = () => {
     return (
       <Box  display='flex' justifyContent='center' marginTop='60px'>
         
-        <Box width='800px' display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' gap='20px' padding={isSmallerThan760 ? '30px' : '0px'}>
+        <Box width='800px'   justifyContent='center' gap='20px' padding='10px'>
           
           
           <Select
             background='white' width='auto'
-            border='1px solid black'
-            marginBottom={isSmallerThan760 ? '15px' : '0px'}
+            height={isSmallerThan760 ? '50px' : '70px'}
             placeholder='Selecciona Servicio'
+            border='1px solid black'
+            marginBottom={isSmallerThan760 ? '10px' : '30px'} 
             value={searchParams.servicio}
             onChange={(e) => handleInputChange('servicio', e.target.value)}
           >
@@ -92,9 +98,10 @@ export const Mundomujeres = () => {
           </Select>
   
           <Select background='white' width='auto'
+           border='1px solid black'
+           height={isSmallerThan760 ? '50px' : '70px'}
+           marginBottom={isSmallerThan760 ? '10px' : '30px'}
             placeholder='Tipodeservicio'
-            border='1px solid black'
-            marginBottom={isSmallerThan760 ? '15px' : '0px'}
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
 
@@ -105,11 +112,11 @@ export const Mundomujeres = () => {
   
           
 
-
+           
           <StyledDatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
-        placeholderText="Selecciona una fecha"
+         selected={selectedDate}
+         onChange={handleDateChange}
+         placeholderText="Selecciona una fecha"
          />
 
            
@@ -117,11 +124,12 @@ export const Mundomujeres = () => {
            <a href='ListaE'><Button
            display='flex'
            justifyContent='center'
-           width={isSmallerThan760 ? '80%' : '0px'}
-           marginLeft={isSmallerThan760 ? '10%' : '0px'}
-           bg={isSmallerThan760 ? 'gold' : 'white'}
-           marginTop={isSmallerThan760 ? '8px' : '0px'}
-        
+           bg={isSmallerThan760 ? '#fc3c3c' : '#fc3c3c'} 
+           width={isSmallerThan760 ? '30%' : '300px'}
+           marginTop={isSmallerThan760 ? '20px' : '30px'}
+           border='1px solid black'
+
+           
            /*mirar onClick={handleSearchClick}*/
            >
            Buscar 
@@ -156,28 +164,43 @@ export const Mundomujeres = () => {
 
      <>
        <Box>
-          <Box bg={`url(${maquillaje})`}   backgroundPosition='center'  position='relative' height='400px' justifyContent='center' width='auto' backgroundRepeat='no-repeat' backgroundSize='cover'>
-            <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.7)'></Box>
-            <Box  position='relative' display='flex' paddingTop='40px' gap={isSmallerThan760 ? '3px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '60px'} color='#B69132'>
-              <Box width='150px'><a href='Mundohombres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width:'150px'}} >Mundo hombres</Heading></a></Box>
-              <Box width='140px'><a href='Mundomujeres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '150px' }} >Mundo mujeres</Heading></a></Box>
-              <Box width='150px'><a href='Mundomascotas'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : '#B69132'} fontFamily='wraper' textAlign='center' _hover={{ background: 'red',  borderRadius: '8px', width: '150px' }}>Mundo mascotas</Heading></a></Box>
-              </Box>
+          <Box bg={`url(${maquillaje})`}   backgroundPosition='center'  position='relative' height='500px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'>
+          <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.7)'></Box>
+            
 
-              <Box display='flex' justifyContent='center' alignItems='end' height='300px'>
+              <Box display='flex' justifyContent='center' alignItems='center' height='300px'>
                 <Box position='relative'>
-                  <Heading textAlign='center' color='white'><b>Mundo mujeres</b></Heading>
-                  <a href='/'><Text position='relative' textAlign='center' fontSize='15px' color='white'>inicio</Text></a>
+                  <Heading textAlign='center' color='white' fontSize={isSmallerThan760 ? '50px' : '60px'} ><b>Mundo mujeres</b></Heading>
+                  <a href='/'><Text position='relative' textAlign='center' fontSize={isSmallerThan760 ? '40px' : '40px'} color='#fc3c3c' fontFamily='Tangerine, cursive'>inicio</Text></a>
                </Box>
               </Box>
 
+              <Box height='100px' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? 'none' : ''} >
+                <YourComponent /> {/* Renderiza el componente YourComponent */}
+             </Box>
           </Box>
-          <Box height='200px'>
-          <YourComponent /> {/* Renderiza el componente YourComponent */}
+          
+          <Box height='100px' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? '' : 'none'} >
+                <YourComponent /> {/* Renderiza el componente YourComponent */}
+             </Box>
+          
+            <Box width='100wh' display='flex'  flexWrap='wrap' gap='30px' justifyContent='center' marginTop={isSmallerThan760 ? '400px' : '400px'} >
+              <Box bg={`url(${spamujer})`} backgroundSize='cover'  borderRadius='20px'  backgroundPosition='center'  width={isSmallerThan760 ? '500px' : '500px'} height={isSmallerThan760 ? '300px' : '400px'} ></Box>
+              <Box bg={`url(${maquillandomujer})`} backgroundSize='cover' borderRadius='20px'  backgroundPosition='center'  width={isSmallerThan760 ? '500px' : '300px'} height={isSmallerThan760 ? '300px' : '400px'} ></Box>
+              <Box bg={`url(${peluqueriamujer})`} backgroundSize='cover' borderRadius='20px'  backgroundPosition='center'  width={isSmallerThan760 ? '500px' : '400px'} height={isSmallerThan760 ? '300px' : '400px'} ></Box>
+            </Box>
+          
+          <Box>
+            <Box marginTop={isSmallerThan760 ? '90px' : '100px'}>
+              <Heading fontFamily="Tangerine, cursive"  textAlign='center'><b>Our Inspiration, Your Experience Matters</b></Heading>
+              <Text fontFamily="Tangerine, cursive"  textAlign='center' margin='0px 30px 30px 'fontSize={isSmallerThan760 ? '30px' : '30px'}>Los clientes son el corazón de cualquier empresa, su apoyo constante impulsa el crecimiento y la prosperidad.
+                 Su retroalimentación valiosa guía nuestras decisiones y nos motiva a ofrecer productos y servicios excepcionales. 
+                 En la relación cliente-empresa, la satisfacción del cliente es la clave de nuestro éxito compartido.</Text>
+            </Box>
           </Box>
 
           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-          <Box  height='500px'marginTop={isSmallerThan760 ? '90px' : '50px'} >
+          <Box height='500px'marginTop='100px' >
             <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
