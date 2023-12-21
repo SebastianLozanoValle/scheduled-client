@@ -55,7 +55,7 @@ export const Footer = () => {
 
                                         <ul>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <a href="#" className='hover:text-white'>Restaurant</a>
+                                                <a href="Guiaespecialista" className='hover:text-white'>Guia especilista</a>
                                             </li>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
                                                 <a href="#" className='hover:text-white'>Culture</a>
@@ -76,7 +76,7 @@ export const Footer = () => {
                                     </ul>
                                 </div>
                                 <div className='mb-5'>
-                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Newsletter</h4>
+                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Guia especilsita</h4>
                                     <p className='text-gray-500'>88 Broklyn Golden Street, New York. USA</p>
                                     <p className='text-gray-500'>needhelp@ziston.com</p><br />
 
