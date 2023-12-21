@@ -6,6 +6,7 @@ import {ListaE} from '../pages/ListaE'
 import {Mundomujeres} from '../pages/Mundomujeres'
 import { Mundomascotas } from "../pages/Mundomascotas"
 import { Login } from "../pages/login/Login"
+import {Guiaespecialista} from '../pages/Guiaespecialista'
 
 
 
@@ -18,6 +19,7 @@ export const QuruxRoutes = () =>{
             <Route path="/Mundomujeres" element={<><Mundomujeres/></>} />
             <Route path="/Mundomascotas" element={<><Mundomascotas/></>} />
             <Route path="/dashboard/*" element={<><DashboardRoutes/></>} />
+            <Route path="/Guiaespecialista" element={<><Guiaespecialista/></>} />
             <Route path="/ListaE" element={<><ListaE/></>} />
             <Route path="/login" element={<><Login/></>} />
 

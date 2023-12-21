@@ -11,6 +11,7 @@ import mascarillahombre from '../assets/imagenes/mascarillahombre.jpeg'
 import peluqueriahombre from '../assets/imagenes/peluqueriahombre.jpeg'
 
 
+
 const StyledDatePicker = styled(DatePicker)`
   background: white;
   width: auto;
