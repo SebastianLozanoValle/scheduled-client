@@ -12,6 +12,7 @@ import mascotas from '../assets/imagenes/mascotas.jpeg'
 import peluquerias from '../assets/imagenes/peluquerias.jpg'
 import { useMediaQuery } from "@chakra-ui/react";
 import pintura from '../assets/imagenes/pintura.png'
+import { Destacados } from "../components/Destacados";
 
 
 
@@ -225,11 +226,9 @@ export const Inicio = () => {
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
            {/* Sección de estilistas seleccionados */}
-            {estilistasSeleccionados.length > 0 && (
-             <Box> 
-            <EstilistasSeleccionados estilistas={estilistasSeleccionados} />
-            </Box>
-             )}
+              <Box> 
+                <Destacados/>
+              </Box>
              </Box>
 
 
