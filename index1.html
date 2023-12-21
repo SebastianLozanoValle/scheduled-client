@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+
+    <h1>This is a Tilopay Heading</h1>
+    <p>This is a paragraph.</p>
+
+    <div class="payFormTilopay">
+        <label>Payment Method</label>
+        <select name="tlpy_payment_method" id="tlpy_payment_method">
+            <option value="">Select payment method</option>
+        </select>
+        <br /><br />
+
+        <label>Cards</label>
+        <select name="tlpy_saved_cards" id="tlpy_saved_cards">
+            <option value="">Select card</option>
+        </select>
+        <br /><br />
+
+        <label>Card number</label>
+        <input type="text" id="tlpy_cc_number" name="tlpy_cc_number" value="">
+        <br /><br />
+
+        <label>Card expire</label>
+        <input type="text" id="tlpy_cc_expiration_date" name="tlpy_cc_expiration_date" value="">
+        <br /><br />
+
+        <label>Cvv number</label>
+        <input type="text" id="tlpy_cvv" name="tlpy_cvv" value="">
+        <br /><br />
+
+        <input type="button" onclick="pay();" value="Pay">
+        <input type="button" onclick="updateOptions();" value="Reload">
+        <input type="button" onclick="getType();" value="Get Type">
+        <input type="button" onclick="getSinpeMovil();" value="Get Sinpe Data">
+        <input type="button" onclick="getCipherData();" value="Get Cipher Data">
+    </div>
+
+    <div id="responseTilopay"></div>
+
+    <!-- First option, as usual -->
+    <script src="https://app.tilopay.com/sdk/v2/sdk_tpay.min.js"></script>
+    <!-- Second option, recommend if you want avoid cache or are integrate angular or similar framework-->
+    <!-- <script>
+        var tlpy_SDK_script = document.createElement('script');
+        tlpy_SDK_script.src = "https://app.tilopay.com/sdk/v2/sdk_tpay.min.js?v=" + Date.now();
+        document.body.appendChild(tlpy_SDK_script);
+    </script> -->
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", async function () {
+            var initialize = await Tilopay.Init({
+                token: "634bc4e3ccd88ea0e187e5c61285cd2dbc9d8b0d3e0c07a3...",
+                currency: "USD",
+                language: "es",
+                amount: 1,
+                billToFirstName: "Jose",
+                billToLastName: "Lopez",
+                billToAddress: "San Jose",
+                billToAddress2: "",
+                billToCity: "",
+                billToState: "",
+                billToZipPostCode: "",
+                billToCountry: "CR",
+                billToTelephone: "",
+                billToEmail: "sac+new-sdk@tilo.co",
+                orderNumber: "sdk-" + Date.now(),
+                capture: 1,
+                redirect: "https://tilopay.test/response",
+                subscription: 0,
+                hashVersion: "V2",
+                returnData: "W2N1c3RvbV9wYXJhbWV0ZXJfYSA9PiAidmFsb3IgZGUgYSIsY3VzdG9tX3BhcmFtZXRlcl9iID0+ICJ2YWxvciBkZSBiIl0=" // base 64 array [custom_parameter_a => "valor de a",custom_parameter_b => "valor de b"]
+            });
+
+            await chargeMethods(initialize.methods);
+            await chargeCards(initialize.cards);
+        });
+
+        async function getType() {
+            console.log(await Tilopay.getCardType());
+        }
+
+        async function updateOptions() {
+            var update = await Tilopay.updateOptions({
+                typeDni: 1,
+                dni: "07-0777-0777",
+                billToFirstName: "Jose",
+                billToLastName: "Lopez",
+                billToAddress: "San Jose",
+                billToAddress2: "",
+                billToCity: "",
+                billToState: "",
+                billToZipPostCode: "",
+                billToCountry: "CR",
+                billToTelephone: "",
+                billToEmail: "dcordero@tilo.co",
+                orderNumber: "1",
+                capture: 1,
+                redirect: "https://tilopay.test/response",
+                subscription: 0
+            });
+        }
+
+        async function chargeMethods(methods) {
+            methods.forEach(function (method) {
+                var option = document.createElement("option");
+                option.value = method.id;
+                option.text = method.name;
+                document.getElementById("tlpy_payment_method").appendChild(option);
+            });
+        }
+
+        async function chargeCards(cards) {
+            cards.forEach(function (card) {
+                var option = document.createElement("option");
+                option.value = card.id;
+                option.text = card.name;
+                document.getElementById("cards").appendChild(option);
+            });
+        }
+
+        async function getSinpeMovil() {
+            var params = await Tilopay.getSinpeMovil();
+            console.log(params);
+        }
+
+        // Use async / await
+        async function pay() {
+            var payment = await Tilopay.startPayment();
+            console.log(payment);
+        }
+
+        async function getCipherData() {
+            var cipher = await Tilopay.getCipherData();
+            console.log(cipher);
+        }
+    </script>
+
+</body>
+
+</html>

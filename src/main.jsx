@@ -8,7 +8,7 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/c
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: 'http://localhost:3000/graphql',
+    uri: 'https://sever-qurux-production.up.railway.app/graphql',
   }),
 })
 
