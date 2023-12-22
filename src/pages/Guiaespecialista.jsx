@@ -9,26 +9,26 @@ return(
 
     <>
      <Box width='100%' backgroundSize='cover' position='relative'>
-         < Box display={isSmallerThan760 ? 'none' : 'flex'} gap='90px' flexWrap='wrap' margin='100px 80px 80px 80px '>
-               <Box bg='#161c26' height='800px' backgroundSize='cover'  width='800px' position='relative' borderRadius='30px' boxShadow="0 10px 15px rgba(0, 0, 0, 1)"  >
+         < Box display={isSmallerThan760 ? 'none' : 'flex'} gap='90px' width='100%'>
+               <Box bg='#161c26' height='800px' backgroundSize='cover'  width='800px' position='relative' borderRadius='0px 30px 30px 0px'   >
                  <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '90px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} >
                  Guia para 
                  </Text>
-                 <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '100px'} paddingLeft={isSmallerThan760 ? '0px' : '80px'} textAlign='center'>
+                 <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '100px'} paddingLeft={isSmallerThan760 ? '0px' : '80px'} >
                  Especialistas
                  </Text>
                  <Box position='relative'> 
-                 <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' marginTop='80px'>
+                 <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' marginTop='10vh' marginRight='40vw' textAlign='justify'> 
                         Le damos la bienvenida al sistema Qurux, una herramienta que facilitará su trabajo de manera eficiente.
                         Para comprender mejor nuestro modo de trabajo, le invitamos a descargar el siguiente documento
                  </Text>
                  </Box>
-                  <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='90px'>
-                        <a href="../public/GUIA.pdf" download="GUIA.pdf"><Button  borderRadius='80px'><CiSaveDown1  fontSize='30px'/></Button></a>
+                  <Box width='100%'  display='flex' justifyContent='left' paddingRight='10px' marginTop='70px'marginLeft='10px' >
+                        <a href="../public/GUIA.pdf" download="GUIA.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>
                  </Box>
                </Box>
-                <Box  position='absolute' display='flex' alignItems='center' justifyContent='center' width='100%' height='800px' paddingLeft='450px'>
-                   <Box  width='100%' height='100%' borderRadius='20px 0px 20px 0px' bg={`url(${medusa})`} backgroundSize='cover' backgroundPosition='center'></Box>
+                <Box  position='absolute' display='flex'  justifyContent='center' width='100%' height='100%' paddingLeft='390px' marginLeft='10px' overflow='hidden' >
+                 <img src={medusa} ></img>
               </Box>
          </Box>
 
