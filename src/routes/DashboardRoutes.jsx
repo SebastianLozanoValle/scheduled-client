@@ -37,6 +37,7 @@ export const DashboardRoutes = () => {
             <Routes>
                 <Route path="/" element={<General isMobile={isMobile} />} />
                 <Route path="especialistas" element={<Especialistas/>} />
+                {/* <Route path="clientes" element={<Clientes/>} /> */}
                 <Route path="pruebas" element={<Pruebas/>} />
                 {/* Ruta comodín para cualquier ruta no coincidente */}
                 <Route path="*" element={<Navigate to="/404" />} />
