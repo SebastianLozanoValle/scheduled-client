@@ -8,9 +8,9 @@ export const Guiaespecialista = () => {
 return(
 
     <>
-     <Box width='100%' backgroundSize='cover' position='relative'>
-         < Box display={isSmallerThan760 ? 'none' : 'flex'} gap='90px' width='100%'>
-               <Box bg='#161c26' height='800px' backgroundSize='cover'  width='800px' position='relative' borderRadius='0px 30px 30px 0px'   >
+     <Box >
+         < Box display={isSmallerThan760 ? 'none' : 'flex'}  width='100%' justifyContent='center' overflow='hidden'>
+               <Box bg='#161c26' height='800px' backgroundSize='cover'  width='500px'  borderRadius='0px 30px 30px 0px'>
                  <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '90px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} >
                  Guia para 
                  </Text>
@@ -18,31 +18,35 @@ return(
                  Especialistas
                  </Text>
                  <Box position='relative'> 
-                 <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' marginTop='10vh' marginRight='40vw' textAlign='justify'> 
+                 <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' margi8Top='10vh'  textAlign='justify'> 
                         Le damos la bienvenida al sistema Qurux, una herramienta que facilitará su trabajo de manera eficiente.
                         Para comprender mejor nuestro modo de trabajo, le invitamos a descargar el siguiente documento
                  </Text>
                  </Box>
-                  <Box width='100%'  display='flex' justifyContent='left' paddingRight='10px' marginTop='70px'marginLeft='10px' >
+                  <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
                         <a href="../public/GUIA.pdf" download="GUIA.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>
                  </Box>
+                 
                </Box>
-                <Box  position='absolute' display='flex'  justifyContent='center' width='100%' height='100%' paddingLeft='390px' marginLeft='10px' overflow='hidden' >
-                 <img src={medusa} ></img>
-              </Box>
+               <Box  bg={`url(${medusa})`} backgroundSize='cover' display='flex' width='500px' backgroundPosition='center'  overflow='hidden'></Box>
          </Box>
 
          
 
          
-         < Box display={isSmallerThan760 ? 'flex' : 'none'} gap='90px'>
+         < Box display={isSmallerThan760 ? 'flex' : 'none'} bg='#161c26' height='100%' width='100%'   justifyContent='center'> 
                
-               <Box bg='#161c26' height='100vh'  width='100%'>
+               <Box  height='100%'  width='100%' padding='60px' >
                  
-                 <Text paddingTop='90px' color='white' fontSize={isSmallerThan760 ? '40px' : '60px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} textAlign='center'>
+                 <Heading  color='white' fontSize={isSmallerThan760 ? '30px' : '60px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} textAlign='center'>
                  Guia para  Especialistas
-                 </Text>
-
+                 </Heading>
+                 <Text color='white' margin='60px 30px 30px ' textAlign='center'> Le damos la bienvenida al sistema Qurux, una herramienta que facilitará su trabajo de manera eficiente.
+                        Para comprender mejor nuestro modo de trabajo, le invitamos a descargar el siguiente documento
+                 </Text> 
+                 <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
+                        <a href="../public/GUIA.pdf" download="GUIA.pdf"><Button bg='#fc3c3c'><CiSaveDown1  fontSize='30px'/></Button></a>
+                 </Box>
               </Box>
                
          </Box>
