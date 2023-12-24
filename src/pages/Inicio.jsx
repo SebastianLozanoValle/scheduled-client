@@ -13,6 +13,7 @@ import peluquerias from '../assets/imagenes/peluquerias.jpg'
 import { useMediaQuery } from "@chakra-ui/react";
 import pintura from '../assets/imagenes/pintura.png'
 import { Destacados } from "../components/Destacados";
+import { Tabs } from "../components/Tabs";
 
 
 
@@ -123,8 +124,7 @@ export const Inicio = () => {
            >
            <b>Searh</b>
            </Button></a>
-        </Box>
-  
+        </Box>  
         
         
   
@@ -166,6 +166,9 @@ export const Inicio = () => {
               <YourComponent /> {/* Renderiza el componente YourComponent */}
               
              </Box>
+             <div className="container w-4/5">
+              <Tabs />
+             </div>
 
 
            <Box marginTop='100px'>
