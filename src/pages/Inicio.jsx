@@ -221,15 +221,13 @@ export const Inicio = () => {
            </Container>
 
            {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-          <Box  height='500px'marginTop='50px' >
+          <Box marginTop='50px' >
             <Heading color='#fc3c3c' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
           {/* Sección de estilistas seleccionados */}
-            <Box> 
-              <Destacados/>
-            </Box>
           </Box>
+          <Destacados />
 
 
            <Box bg='#161c26'  height='100%'  width='auto'> 

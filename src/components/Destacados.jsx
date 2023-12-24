@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { TarjetaSpecialista } from "./TarjetaSpecialista";
 
 export const GET_SPECIALISTS = gql`
     query {
@@ -59,17 +60,27 @@ export const Destacados = () => {
 
     const { loading, error, data } = useQuery(GET_SPECIALISTS);
 
-    const especialistas = data?.findSpecialists.filter(especialista => especialista.highlighted) || [];
+    const inicial = data?.findSpecialists.filter(especialista => especialista.highlighted) || [];
+    const especialistas = [...inicial, ...inicial]
 
     return (
         <div>
-            {especialistas?.map((especialista) => {
-                return (
-                    <>
-                        <h1>{especialista.username}</h1>
-                    </>
-                )
-            })}
+            {especialistas?
+                    <div className="container my-5 w-full">
+                        <div className="overflow-hidden w-full">
+                            <div className="flex whitespace-nowrap animate-scroll">
+                                {
+                                    especialistas?.map((especialista, index) => {
+                                        return (
+                                            <TarjetaSpecialista key={`${especialista.id}${index}`} especialista={especialista}/>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                : <></>
+            }
         </div>
     )
 }
