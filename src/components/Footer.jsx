@@ -90,7 +90,7 @@ export const Footer = () => {
                                         />
                                         <div>
                                             <button
-                                                className="bg-red-700 hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16"
+                                                className="bg-[#d3983f] hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16"
                                             >
                                                 SUBSCRIBE
                                             </button>
@@ -110,8 +110,8 @@ export const Footer = () => {
                             </div>
                         </div>
                         <div className=" text-right text-xl">
-                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaFacebookF className='w-full h-full' /></a>
-                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaInstagram className='w-full h-full' /></a>
+                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1"><FaFacebookF className='w-full h-full' /></a>
+                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1"><FaInstagram className='w-full h-full' /></a>
                             {/* <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a>
                         <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a> */}
                         </div>

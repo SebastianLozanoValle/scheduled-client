@@ -31,9 +31,9 @@ export const NavBar = () => {
                 <Box display={{ base: 'none', md: 'block' }}>
                 <Flex>
                     <CustomLink to="/" px={8} my='auto' color="white">Inicio</CustomLink>
-                    <CustomLink to="mundohombres" px={8} my='auto' color="white">Hombres</CustomLink>
-                    <CustomLink to="mundomujeres" px={8} my='auto' color="white">Mujeres</CustomLink>
-                    <CustomLink to="mundomascotas" px={8} my='auto' color="white">Mascotas</CustomLink>
+                    <CustomLink to="/mundohombres" px={8} my='auto' color="white">Hombres</CustomLink>
+                    <CustomLink to="/mundomujeres" px={8} my='auto' color="white">Mujeres</CustomLink>
+                    <CustomLink to="/mundomascotas" px={8} my='auto' color="white">Mascotas</CustomLink>
                     <Menu>
                     <MenuButton
                       // px={6}

@@ -57,14 +57,14 @@ export const Tabs = () => {
   }, [activeTab]);
 
   return (
-    <div className="flex w-full rounded-xl bg-[#caa776] relative top-[-40px] shadow-xl">
+    <div className="flex w-full rounded-xl bg-[#d3983f] relative top-[-40px] shadow-xl">
       <button className='p-4 text-6xl text-white' onClick={() => scrollTabs('left')}><RiArrowLeftCircleLine /></button>
       <div className="flex overflow-x-auto" ref={tabsBox}>
         {tabs.map((tab, index) => (
           <div 
             key={tab} 
             ref={tabsRefs[index]}
-            className={`p-4 ${activeTab === tab ? 'bg-[#caa776] text-white' : 'bg-gray-200 text-black'}`}
+            className={`m-[auto] p-4 ${activeTab === tab ? 'bg-[#d3983f] text-white' : 'bg-gray-200 text-black'}`}
             onClick={() => setActiveTab(tab)}
           >
             {tab}
