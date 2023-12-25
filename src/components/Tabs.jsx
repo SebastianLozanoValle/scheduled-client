@@ -64,7 +64,7 @@ export const Tabs = () => {
           <div 
             key={tab} 
             ref={tabsRefs[index]}
-            className={`m-[auto] p-4 ${activeTab === tab ? 'bg-[#d3983f] text-white' : 'bg-gray-200 text-black'}`}
+            className={`m-[auto] p-4 ${activeTab === tab ? 'bg-gray-200 text-black rounded-3xl' : 'bg-[#d3983f] text-white'}`}
             onClick={() => setActiveTab(tab)}
           >
             {tab}
