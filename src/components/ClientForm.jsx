@@ -61,26 +61,26 @@ export const ClientForm = ({ isModalOpen, setIsModalOpen }) => {
             <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4 bg-white rounded shadow-md text-black">
               {/* Required fields */}
               <div className='flex gap-4'>
-                <InputField name="username" placeholder="Username" register={register} required={true} errors={errors} />
-                <InputField name="password" placeholder="Password" register={register} required={true} errors={errors} type="password" />
+                <InputField label='' name="username" placeholder="Username" register={register} required={true} errors={errors} />
+                <InputField label='' name="password" placeholder="Password" register={register} required={true} errors={errors} type="password" />
               </div>
 
               <div className="flex gap-4">
-                <InputField name="age" placeholder="Age" register={register} required={true} errors={errors} type="number" />
-                <InputField name="gender" placeholder="Gender" register={register} required={true} errors={errors} />
+                <InputField label='' name="age" placeholder="Age" register={register} required={true} errors={errors} type="number" />
+                <InputField label='' name="gender" placeholder="Gender" register={register} required={true} errors={errors} />
               </div>
 
               <div className="flex w-full gap-4">
-                <InputField name="phone" placeholder="Phone" register={register} required={true} errors={errors} />
+                <InputField label='' name="phone" placeholder="Phone" register={register} required={true} errors={errors} />
               </div>
 
               <div className="flex w-full gap-4">
-                <InputField name="email" placeholder="Email" register={register} required={true} errors={errors} />
+                <InputField label='' name="email" placeholder="Email" register={register} required={true} errors={errors} />
               </div>
 
               <div className="flex gap-4">
-                <InputField name="city" placeholder="City" register={register} required={true} errors={errors} />
-                <InputField name="street" placeholder="Street" register={register} required={true} errors={errors} />
+                <InputField label='' name="city" placeholder="City" register={register} required={true} errors={errors} />
+                <InputField label='' name="street" placeholder="Street" register={register} required={true} errors={errors} />
               </div>
 
               <input type="submit" value="Crear" className="w-full mt-4 p-2 text-white bg-blue-500 rounded shadow-sm hover:bg-blue-700" />

@@ -16,9 +16,9 @@ export const QuruxRoutes = () =>{
     return (
         <Routes>
             <Route path="/" element={<><Inicio/></>} />
-            <Route path="/Mundohombres" element={<><Mundohombres/></>} />
-            <Route path="/Mundomujeres" element={<><Mundomujeres/></>} />
-            <Route path="/Mundomascotas" element={<><Mundomascotas/></>} />
+            <Route path="/mundohombres" element={<><Mundohombres/></>} />
+            <Route path="/mundomujeres" element={<><Mundomujeres/></>} />
+            <Route path="/mundomascotas" element={<><Mundomascotas/></>} />
             <Route path="/dashboard/*" element={<><DashboardRoutes/></>} />
             <Route path="/Guiaespecialista" element={<><Guiaespecialista/></>} />
             <Route path="/ListaE" element={<><ListaE/></>} />

@@ -14,6 +14,7 @@ import { useMediaQuery } from "@chakra-ui/react";
 import pintura from '../assets/imagenes/pintura.png'
 import { Destacados } from "../components/Destacados";
 import { Tabs } from "../components/Tabs";
+import { Link } from "react-router-dom";
 
 
 
@@ -77,6 +78,7 @@ export const Inicio = () => {
             fontSize='16px'
             value={searchParams.servicio}
             onChange={(e) => handleInputChange('servicio', e.target.value)}
+            borderEndRadius={0}
           >
              {/* Opciones para Servicio 1 */}
             {/* Puedes agregar opciones dinámicamente según tus necesidades */}
@@ -92,6 +94,7 @@ export const Inicio = () => {
            fontSize='12px'
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
+            borderRadius={0}
 
           ><option value='Mundohombres'>Mundohombres</option>
           <option value='Mundomujeres'>Mundomuejres</option>
@@ -106,12 +109,13 @@ export const Inicio = () => {
             placeholder='Ingrese Distrito'
             value={searchParams.distrito}
             onChange={(e) => handleInputChange('distrito', e.target.value)}
+            borderStartRadius={0}
           />
 
-           <a href='especilistas'><Button
+           <Link to='especilistas'><Button
            display='flex'
            justifyContent='center'
-           bg='#fc3c3c'
+           bg='#caa776'
            color='white'
            fontSize='20px'
            marginTop={isSmallerThan760 ? '10px' : '0px'} 
@@ -123,7 +127,7 @@ export const Inicio = () => {
           
            >
            <b>Searh</b>
-           </Button></a>
+           </Button></Link>
         </Box>  
         
         
@@ -151,18 +155,9 @@ export const Inicio = () => {
     return(
       <>
         <Box>
-            <Box bg='#161c26'   backgroundPosition='center' height='800px' justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover' >
-              <Box   display='flex' paddingTop='40px' gap={isSmallerThan760 ? '20px' : '30px'}  paddingLeft={isSmallerThan760 ? '2px' : '0px'}  justifyContent='center' alignItems='center'>
-              <Box width='' ><a href='Mundohombres'><Heading  fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='-moz-initial' textAlign='center'  >Mundo hombres</Heading></a></Box>
-              <Box width='auto'><a href='Mundomujeres'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='wraper' textAlign='center'  >Mundo mujeres</Heading></a></Box>
-              <Box width='auto'><a href='Mundomascotas'><Heading fontSize={isSmallerThan760 ? '12px' : 'xl'} color={isSmallerThan760 ? 'white' : 'white'} fontFamily='wraper' textAlign='center' >Mundo mascotas</Heading></a></Box>
-              </Box>
-
-              {/*buscador de servicios y estilistas en inicio*/}
-              <Box width='100%' marginTop={isSmallerThan760 ? '90px' : '190px'}  marginBottom={isSmallerThan760 ? '10px' : '0px'} >
-               <Heading textAlign='center' fontSize={isSmallerThan760 ? '30px' : '50px'}color='#fc3c3c' fontFamily="Tangerine, cursive">El mundo de la belleza digital</Heading> 
+            <Box bg='#161c26'   backgroundPosition='center' py={28} justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover' >
+               <Heading textAlign='center' fontSize={isSmallerThan760 ? '30px' : '50px'}color='#caa776' fontFamily="Tangerine, cursive">El mundo de la belleza digital</Heading> 
                <Heading textAlign='center'fontSize={isSmallerThan760 ? '40px' : '70px'} color='white' ><b>BIENVENIDO A QURUX</b></Heading>
-              </Box>
               <YourComponent /> {/* Renderiza el componente YourComponent */}
               
              </Box>
@@ -172,7 +167,7 @@ export const Inicio = () => {
 
 
            <Box marginTop='100px'>
-             <Heading color='#fc3c3c' fontSize='18px'  textAlign='center'>AROUND THE WORD</Heading>
+             <Heading color='#caa776' fontSize='18px'  textAlign='center'>AROUND THE WORD</Heading>
              <Heading fontSize='40px' textAlign='center'><b>Mundos</b></Heading>
              <Text textAlign='center' fontSize='12px'><b>Loren ipsum dolor sit amet, cibo mundi ea duo, vim exerci phaedrum</b></Text>
            </Box>
@@ -187,7 +182,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='0px 20px 0px 20px'>
-              <a href='Mundohombres'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box></a>
+              <Link to='mundohombres'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box></Link>
 
               </Box>
 
@@ -199,7 +194,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='20px 0px 20px 0px'>
-              <a href='Mundomujeres'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box></a>
+              <Link to='mundomujeres'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box></Link>
 
              </Box>
 
@@ -212,7 +207,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='20px 0px 20px 0px'>
-              <a href='Mundomascotas'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='13px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box></a>
+              <Link to='mundomascotas'><Box color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='13px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box></Link>
 
              </Box>
            </Container>
@@ -225,7 +220,7 @@ export const Inicio = () => {
 
            {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
           <Box marginTop='50px' >
-            <Heading color='#fc3c3c' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
+            <Heading color='#caa776' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
           {/* Sección de estilistas seleccionados */}

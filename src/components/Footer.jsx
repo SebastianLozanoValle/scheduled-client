@@ -4,7 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 export const Footer = () => {
@@ -12,71 +12,71 @@ export const Footer = () => {
     const isDashboardRoute = location.pathname.split('/')[1] === 'dashboard';
 
     return (
-        <Box ml={{ base: '0', md: isDashboardRoute ? '265px' : '0' }} w={{ base: '100vw', md: isDashboardRoute ? 'calc(100vw - 265px)' : '100vw' }} mb={{ base: '64px', md: '0' }}>
+        <Box ml={{ base: '0', md: isDashboardRoute ? '265px' : '0' }} w={{ base: '100vw', md: isDashboardRoute ? 'calc(100vw - 265px)' : '100vw' }} mb={{ base: isDashboardRoute ? '64px' : '0', md: '0' }}>
             <div>
                 <footer>
                     <div className='p-10 bg-gray-800 text-gray-200'>
                         <div className='max-w-7xl mx-auto'>
                             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
                                 <div className='mb-5'>
-                                    <h4 className='text-2xl pb-4'>LOGO</h4>
+                                    <h4 className='text-2xl pb-4'>Qurux</h4>
                                     <p className='text-gray-500'>
                                         Lorem ipsum dolor sit amet <br />consectetur adipisicing eli <br /><br />
                                         <strong>telefono:</strong>+57565434 <br />
                                     </p>
                                 </div>
                                 <div className='mb-5'>
-                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Explore</h4>
+                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Explorar</h4>
                                     <ul className='text-gray-500'>
 
                                         <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                            <i></i><a href="#" className='hover:text-white'>About Us</a>
+                                            <i></i><Link to="#" className='hover:text-white'>Sobre Nosotros</Link>
                                         </li>
                                         <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                            <i></i><a href="#" className='hover:text-white'>My Account</a>
+                                            <i></i><Link to="#" className='hover:text-white'>Mi Cuenta</Link>
+                                        </li>
+                                        {/* <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><Link to="#" className='hover:text-white'>My Listings</Link>
+                                        </li> */}
+                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><Link to="#" className='hover:text-white'>Pricing</Link>
                                         </li>
                                         <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                            <i></i><a href="#" className='hover:text-white'>My Listings</a>
+                                            <i></i><Link to="/dashboard" className='hover:text-white'>Dashboard</Link>
                                         </li>
-                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                            <i></i><a href="#" className='hover:text-white'>Pricing Packages</a>
-                                        </li>
-                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                            <i></i><a href="#" className='hover:text-white'>User Dashboard</a>
-                                        </li>
-                                        <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                            <i></i><a href="#" className='hover:text-white'>Bookmarks</a>
-                                        </li>
+                                        {/* <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            <i></i><Link to="#" className='hover:text-white'>Bookmarks</Link>
+                                        </li> */}
                                     </ul>
                                 </div>
                                 <div className='mb-5'>
-                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Categories</h4>
+                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Documentos</h4>
                                     <ul className='text-gray-500'>
 
                                         <ul>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <a href="Guiaespecialista" className='hover:text-white'>Guia especilista</a>
+                                                <Link to="Guiaespecialista" className='hover:text-white'>Guia especilista</Link>
                                             </li>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <a href="#" className='hover:text-white'>Culture</a>
+                                                <Link to="#" className='hover:text-white'>Politica</Link>
+                                            </li>
+                                            {/* <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <Link to="#" className='hover:text-white'>Shopping</Link>
                                             </li>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <a href="#" className='hover:text-white'>Shopping</a>
+                                                <Link to="#" className='hover:text-white'>Beauty</Link>
                                             </li>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <a href="#" className='hover:text-white'>Beauty</a>
+                                                <Link to="#" className='hover:text-white'>Hotels</Link>
                                             </li>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <a href="#" className='hover:text-white'>Hotels</a>
-                                            </li>
-                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <a href="#" className='hover:text-white'>Hospitals</a>
-                                            </li>
+                                                <Link to="#" className='hover:text-white'>Hospitals</Link>
+                                            </li> */}
                                         </ul>
                                     </ul>
                                 </div>
                                 <div className='mb-5'>
-                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Guia especilsita</h4>
+                                    <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Boletín Informativo</h4>
                                     <p className='text-gray-500'>88 Broklyn Golden Street, New York. USA</p>
                                     <p className='text-gray-500'>needhelp@ziston.com</p><br />
 
@@ -109,7 +109,7 @@ export const Footer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className=" text-right text xl mb-2">
+                        <div className=" text-right text-xl">
                             <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaFacebookF className='w-full h-full' /></a>
                             <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><FaInstagram className='w-full h-full' /></a>
                             {/* <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a>

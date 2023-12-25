@@ -18,7 +18,7 @@ return(
                  Especialistas
                  </Text>
                  <Box position='relative'> 
-                 <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' margi8Top='10vh'  textAlign='justify'> 
+                 <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' m={8} Top='10vh'  textAlign='justify'> 
                         Le damos la bienvenida al sistema Qurux, una herramienta que facilitará su trabajo de manera eficiente.
                         Para comprender mejor nuestro modo de trabajo, le invitamos a descargar el siguiente documento
                  </Text>

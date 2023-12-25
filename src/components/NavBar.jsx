@@ -31,6 +31,9 @@ export const NavBar = () => {
                 <Box display={{ base: 'none', md: 'block' }}>
                 <Flex>
                     <CustomLink to="/" px={8} my='auto' color="white">Inicio</CustomLink>
+                    <CustomLink to="mundohombres" px={8} my='auto' color="white">Hombres</CustomLink>
+                    <CustomLink to="mundomujeres" px={8} my='auto' color="white">Mujeres</CustomLink>
+                    <CustomLink to="mundomascotas" px={8} my='auto' color="white">Mascotas</CustomLink>
                     <Menu>
                     <MenuButton
                       // px={6}
@@ -58,9 +61,9 @@ export const NavBar = () => {
                   <ModalBody>
                       <VStack align="start" spacing={4}>
                       <CustomLink to="/" onClick={onClose}>Inicio</CustomLink>
-                      <CustomLink to="/Mundohombres" onClick={onClose}>Mundohombres</CustomLink>
-                      <CustomLink to="/Mundomujeres" onClick={onClose}>Mundomujeres</CustomLink>
-                      <CustomLink to="/Mundomascotas" onClick={onClose}>Mundomascotas</CustomLink>
+                      <CustomLink to="/mundohombres" onClick={onClose}>Mundo Hombres</CustomLink>
+                      <CustomLink to="/mundomujeres" onClick={onClose}>Mundo Mujeres</CustomLink>
+                      <CustomLink to="/mundomascotas" onClick={onClose}>Mundo Mascotas</CustomLink>
                       <CustomLink to="/dashboard" onClick={onClose}>Dashboard</CustomLink>
                       </VStack>
                   </ModalBody>

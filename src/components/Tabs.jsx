@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { RiArrowLeftCircleLine, RiArrowRightCircleLine } from "react-icons/ri";
 
 export const Tabs = () => {
-  const tabs = ['Coding', 'JavaScript', 'Podcasts', 'Databases', 'Web Development', 'Unboxing', 'History', 'Programming', 'Gadgets', 'Algorithms', 'Comedy', 'Gaming', 'Share Market', 'Smartphones', 'Data Structure'];
+  const tabs = ['Peluqueria', 'Barberia', 'Manicura', 'Pedicura', 'Spa', 'PetCare', 'Depilacion', 'Opcion1', 'Opcion2', 'Opcion3', 'Opcion4', 'Opcion5', 'Opcion6', 'Opcion7', 'Opcion8'];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const tabsBox = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -57,21 +57,21 @@ export const Tabs = () => {
   }, [activeTab]);
 
   return (
-    <div className="flex w-full rounded-xl bg-slate-900 relative top-[-40px]">
-      <button className='p-4 text-3xl text-white' onClick={() => scrollTabs('left')}><RiArrowLeftCircleLine /></button>
+    <div className="flex w-full rounded-xl bg-[#caa776] relative top-[-40px] shadow-xl">
+      <button className='p-4 text-6xl text-white' onClick={() => scrollTabs('left')}><RiArrowLeftCircleLine /></button>
       <div className="flex overflow-x-auto" ref={tabsBox}>
         {tabs.map((tab, index) => (
           <div 
             key={tab} 
             ref={tabsRefs[index]}
-            className={`p-4 ${activeTab === tab ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+            className={`p-4 ${activeTab === tab ? 'bg-[#caa776] text-white' : 'bg-gray-200 text-black'}`}
             onClick={() => setActiveTab(tab)}
           >
             {tab}
           </div>
         ))}
       </div>
-      <button className='p-4 text-3xl text-white' onClick={() => scrollTabs('right')}><RiArrowRightCircleLine /></button>
+      <button className='p-4 text-6xl text-white' onClick={() => scrollTabs('right')}><RiArrowRightCircleLine /></button>
     </div>
   );
 }

@@ -41,6 +41,7 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
         data.active = true
         data.age = parseInt(data.age);
         data.specialtys = specialtys;
+        console.log(data);
 
         try {
           const { data: response } = await createSpecialist({ variables: { input: data } });
@@ -86,31 +87,31 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
                         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4 bg-white rounded shadow-md text-black">
                         {/* Required fields */}
                             <div className='flex gap-4'>
-                                <InputField name="username" placeholder="Username" register={register} required={true} errors={errors} />
-                                <InputField name="password" placeholder="Password" register={register} required={true} errors={errors} type="password" />
+                                <InputField label='Nombre' name="username" placeholder="Username" register={register} required={true} errors={errors} />
+                                <InputField label='Contraseña' name="password" placeholder="Password" register={register} required={true} errors={errors} type="password" />
                             </div>
                             
                             <div className="flex gap-4">
-                                <InputField name="age" placeholder="Age" register={register} required={true} errors={errors} type="number" />
-                                <InputField name="gender" placeholder="Gender" register={register} required={true} errors={errors} />
+                                <InputField label='Edad' name="age" placeholder="Age" register={register} required={true} errors={errors} type="number" />
+                                <InputField label='Sexo' name="gender" placeholder="Gender" register={register} required={true} errors={errors} />
                             </div>
                             
                             <div className="flex w-full gap-4">
-                                <InputField name="phone" placeholder="Phone" register={register} required={true} errors={errors} />
+                                <InputField label='Celular' name="phone" placeholder="Phone" register={register} required={true} errors={errors} />
                             </div>
                             
                             <div className="flex w-full gap-4">
-                                <InputField name="email" placeholder="Email" register={register} required={true} errors={errors} />
+                                <InputField label='Correo' name="email" placeholder="Email" register={register} required={true} errors={errors} />
                             </div>
                             
                             <div className="flex gap-4">
-                                <InputField name="city" placeholder="City" register={register} required={true} errors={errors} />
-                                <InputField name="street" placeholder="Street" register={register} required={true} errors={errors} />
+                                <InputField label='Ciudad' name="city" placeholder="City" register={register} required={true} errors={errors} />
+                                <InputField label='Calle' name="street" placeholder="Street" register={register} required={true} errors={errors} />
                             </div>
     
                             <div className="flex gap-4">
-                                <SelectField name="world" options={["", "Hombre", "Mujer", "Mascota"]} register={register} required={true} errors={errors} />
-                                <SelectField name="paymentOption" options={["", "weekly", "biweekly", "monthly"]} register={register} required={true} errors={errors} />
+                                <SelectField label='Mundo' name="world" options={["", "Hombre", "Mujer", "Mascota"]} register={register} required={true} errors={errors} />
+                                <SelectField label='Pago' name="paymentOption" options={["", "weekly", "biweekly", "monthly"]} register={register} required={true} errors={errors} />
                             </div>
                             
                             {/* Weekly Schedule fields */}
@@ -133,13 +134,16 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
                                 <CustomAccordionItem title="Servicios que Ofrece" children={
                                     <div>
                                         {specialtyOptions.map((specialty, index) => (
-                                            <CheckboxField key={index} name={specialty} register={register} onChange={handleSpecialtyChange} />
+                                            <label key={index} className='p-4'>
+                                                <input className="mr-2" type="checkbox" value={specialty} onChange={handleSpecialtyChange} />
+                                                {specialty}
+                                            </label>
                                         ))}
                                     </div>
                                 }/>
                             </Accordion>
                             
-                            <CheckboxField name="highlighted" register={register} />
+                            <CheckboxField label='' name="highlighted" register={register} />
                             
                             <input type="submit" value="Crear" className="w-full mt-4 p-2 text-white bg-blue-500 rounded shadow-sm hover:bg-blue-700" />
                         </form>
