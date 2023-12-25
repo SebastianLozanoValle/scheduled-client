@@ -1,5 +1,6 @@
 import { useState } from "react";
 import fondo from '../../assets/imagenes/fondo.jpg'
+import { Link } from "react-router-dom";
 
 export const Login =()=> {
 
@@ -16,7 +17,7 @@ export const Login =()=> {
 
     return(
         <div>
-            <div className="p-10 bg-gray-200 h-[calc(100vh-40px)] flex items-center justify-center">
+            <div className="p-10 bg-gray-200 h-[calc(100vh)] flex items-center justify-center">
                 <div className="bg-white shadow-lg overflow-hidden rounded-xl w-[50%] h-[32em] z-[2]">
                 <div className="flex space-between items-start h-full">
                     {/* imagen  */}
@@ -27,7 +28,7 @@ export const Login =()=> {
                 
                     <div className="lg:w-[50%] xs:w-full sm:w-full px-8 py-10">
                     <div>
-                        <b className="text-2xl text-gray-800">Qurux</b>
+                        <Link to='/' className="text-3xl text-[#caa776] font-bold">Qurux</Link>
                         <p className="text-[12px] text-gray-600">
                         Suministre los datos requeridos para iniciar sesión.
                         </p>
