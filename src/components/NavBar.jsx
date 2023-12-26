@@ -22,7 +22,7 @@ export const NavBar = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box bg="#242424" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' className='z-10'>
+        <Box bg="black" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' className='z-10'>
             <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
                 <Text fontSize="xl" color="brand.primary">Qurux</Text>
                 <Box display={{ base: 'block', md: 'none' }} onClick={onOpen} color='brand.primary' fontSize='2xl'>
