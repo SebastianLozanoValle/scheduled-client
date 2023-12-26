@@ -16,12 +16,14 @@ import { Destacados } from "../components/Destacados";
 import { Tabs } from "../components/Tabs";
 import { Link } from "react-router-dom";
 import { cities } from "../data/cities";
+import { Buscador } from "../components/Buscador";
 
 
 
 
 
 export const Inicio = () => {
+  console.log('se esta renderizando inicio')
 
   const inputRef = useRef();
 
@@ -90,85 +92,7 @@ export const Inicio = () => {
     return (
       <Box  display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' marginTop={isSmallerThan760 ? '60px' : '60px'} paddingLeft={isSmallerThan760 ? '60px' : '0px'} >
         
-        <Box width='100%' display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center'>
-          
-          
-          <Select
-            background='white' width={isSmallerThan760 ? '90%' : '330px'}
-            height={isSmallerThan760 ? '80px' : '70px'}
-            placeholder=' Servicio'
-            fontSize='16px'
-            value={searchParams.servicio}
-            onChange={(e) => handleInputChange('servicio', e.target.value)}
-            borderEndRadius={0}
-          >
-             {/* Opciones para Servicio 1 */}
-            {/* Puedes agregar opciones dinámicamente según tus necesidades */}
-            <option value='servicio1'>Servicio 1</option>
-            <option value='servicio2'>Servicio 2</option>KK
-            <option value='servicio3'>Servicio 3</option>
-          </Select>
-  
-          <Select background='white' width={isSmallerThan760 ? '90%' : '330px'}
-           height={isSmallerThan760 ? '80px' : '70px'}
-           marginTop={isSmallerThan760 ? '10px' : '0px'} 
-           placeholder='Ingrese Mundo'
-           fontSize='12px'
-            value={searchParams.mundo}
-            onChange={(e) => handleInputChange('mundo', e.target.value)}
-            borderRadius={0}
-
-          ><option value='Mundohombres'>Mundohombres</option>
-          <option value='Mundomujeres'>Mundomuejres</option>
-          <option value='Mundomascotas'>Mundomascotas</option>
-          </Select>
-  
-          <div className="relative">
-            <input
-              ref={inputRef}
-              type="text"
-              value={inputValue}
-              onChange={handleInputChanges}
-              placeholder="Ingrese Distrito"
-              className={`bg-white w-full ${isSmallerThan760 ? 'h-20' : 'h-full'} px-3 py-2 text-sm placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none`}
-            />
-            {autocompleteOptions.length > 0 && (
-              <div className="absolute z-10 mt-2 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto">
-                {autocompleteOptions.map(option => (
-                  <div
-                    key={option}
-                    onClick={() => {
-                      setInputValue(option);
-                      setAutocompleteOptions([]);
-                      handleInputChange('distrito', option); // Actualiza el valor de 'distrito' en 'searchParams'
-                      setTimeout(() => inputRef.current.focus(), 0); // Establece el foco en el input después de la re-renderización
-                    }}
-                    className="cursor-pointer hover:bg-gray-200 p-2"
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-           <Link to='especilistas'><Button
-           display='flex'
-           justifyContent='center'
-           bg='#d3983f'
-           color='white'
-           fontSize='20px'
-           marginTop={isSmallerThan760 ? '10px' : '0px'} 
-           width={isSmallerThan760 ? '160px' : '150px'}
-           height={isSmallerThan760 ? '60px' : '70px'}
-           marginLeft={isSmallerThan760 ? '0px' : '8px'} 
-           
-         
-          
-           >
-           <b>Searh</b>
-           </Button></Link>
-        </Box>  
+        <Buscador />
         
         
   
@@ -223,7 +147,7 @@ export const Inicio = () => {
                 justifyContent='center'
                 alignItems='end'
                 borderRadius='0px 20px 0px 20px'>
-                <Box bg='white' px={10} pt={4} borderTopRadius={8} color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box>
+                <Box bg='white' px={10} pt={4} borderTopRadius={8} color='#161c26' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box>
 
                 </Box>
               </Link>
@@ -238,7 +162,7 @@ export const Inicio = () => {
                 justifyContent='center'
                 alignItems='end'
                 borderRadius='20px 0px 20px 0px'>
-                <Box bg='white' px={10} pt={4} borderTopRadius={8} color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box>
+                <Box bg='white' px={10} pt={4} borderTopRadius={8} color='#161c26' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box>
 
                 </Box>
               </Link>
@@ -253,7 +177,7 @@ export const Inicio = () => {
               justifyContent='center'
               alignItems='end'
               borderRadius='20px 0px 20px 0px'>
-              <Box bg='white' px={10} pt={4} borderTopRadius={8} color='black' paddingBottom='20px'><Heading color='#D4AF37' fontSize='13px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box>
+              <Box bg='white' px={10} pt={4} borderTopRadius={8} color='#161c26' paddingBottom='20px'><Heading color='#D4AF37' fontSize='13px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box>
 
               </Box>
              </Link>
@@ -297,10 +221,10 @@ export const Inicio = () => {
                 ></iframe>
               </Container>
               <Box  bg='white' width='100%' display={isSmallerThan760 ? 'column-revers' : 'flex'} justifyContent='center' gap={isSmallerThan760 ? '30px' : '90px'}  height='600px' alignItems='center' paddingTop={{base: '100px', md: '0'}}>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><MdTouchApp fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></MdTouchApp><Heading marginTop='20px'fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='black'>Elige el mundo del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'}  textAlign='center' color='black' marginTop={isSmallerThan760 ? '0px' : '20px'} >Mascotas,Mujeres,Hombres</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='black' >Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='black'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '35px'}><FaMapMarkerAlt  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></FaMapMarkerAlt ><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='black' >Escoge la ubicacion del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='black'  marginTop={isSmallerThan760 ? '0px' : '20px'}>si es adomicilio tu especilista debera ser del mismo distrito</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : 'black'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='black'>Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='black'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><MdTouchApp fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></MdTouchApp><Heading marginTop='20px'fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='#161c26'>Elige el mundo del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'}  textAlign='center' color='#161c26' marginTop={isSmallerThan760 ? '0px' : '20px'} >Mascotas,Mujeres,Hombres</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='#161c26' >Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='#161c26'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '35px'}><FaMapMarkerAlt  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></FaMapMarkerAlt ><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='#161c26' >Escoge la ubicacion del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='#161c26'  marginTop={isSmallerThan760 ? '0px' : '20px'}>si es adomicilio tu especilista debera ser del mismo distrito</Text></Box>
+              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='#161c26'>Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='#161c26'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
               </Box> 
            </Box>
          

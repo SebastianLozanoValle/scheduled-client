@@ -41,7 +41,7 @@ const reseñas = [
 
 export const General = ({ isMobile }) => {
     return (
-        <Box p={6} bg='black' w='100vw' color='white' mx='auto'>
+        <Box p={6} bg='white' w='100vw' color='black' mx='auto'>
             {isMobile ? <h1>General Mobile</h1> : <GeneralDesktop reseñas={reseñas} />}
         </Box>
     )

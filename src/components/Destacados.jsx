@@ -1,13 +1,16 @@
 import { useQuery } from "@apollo/client";
 import { TarjetaSpecialista } from "./TarjetaSpecialista";
-import { useState, useEffect, useRef, createRef } from 'react';
+import { useState, useEffect, useRef, createRef, useMemo } from 'react';
 import { RiArrowLeftCircleLine, RiArrowRightCircleLine } from "react-icons/ri";
 import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 
 export const Destacados = () => {
     const { loading, error, data } = useQuery(GET_SPECIALISTS);
 
-    const especialistas = data?.findSpecialists || [];
+    const especialistas = useMemo(() => {
+        return data?.findSpecialists.filter(especialista => especialista.highlighted) || [];
+    }, [data]);
+    // console.log(especialistas);
     const [activeSpecialist, setActiveSpecialist] = useState(especialistas[0]);
     const specialistsBox = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
@@ -81,7 +84,7 @@ export const Destacados = () => {
                     <div 
                         key={especialista.id} 
                         ref={specialistsRefs[index]}
-                        className={`p-4 ${activeSpecialist === especialista ? 'bg-[#caa776] text-[#caa776]' : 'bg-gray-200 text-black'}`}
+                        className={`p-4 ${activeSpecialist === especialista ? 'bg-[#d3983f] text-[#d3983f]' : 'bg-gray-200 text-black'}`}
                         onClick={() => setActiveSpecialist(especialista)}
                     >
                         <TarjetaSpecialista especialista={especialista} />
