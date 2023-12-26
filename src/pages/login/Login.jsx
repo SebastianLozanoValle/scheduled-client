@@ -16,19 +16,22 @@ export const Login =()=> {
     const copyrightText = `Copyright . ${currentYear}`;
 
     return(
-        <div>
-            <div className="p-10 bg-gray-200 h-[calc(100vh)] flex items-center justify-center">
-                <div className="bg-white shadow-lg overflow-hidden rounded-xl w-[50%] h-[32em] z-[2]">
-                <div className="flex space-between items-start h-full">
+        <div >
+            {/* codigo login*/}
+            
+            <div className="p-10 bg-gray-200 h-[100vh] flex items-center justify-center">
+            
+            {/* contenedor de los inputs */}
+                <div className="bg-white shadow-lg overflow-hidden rounded-xl w-full sm:w-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[50%] h-auto sm:h-auto md:h-auto lg:h-auto xl:h-auto 2xl:h-auto mx-auto">
+                <div className="flex space-between items-start">
                     {/* imagen  */}
-                    <div className="image-container lg:w-[50%] xs:hidden relative h-full w-full">
-                        <img className="absolute top-0 left-0 h-full w-full object-cover" src={fondo} alt="" />
+                    <div className="image-container lg:w-[50%] xs:hidden" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }}>
                     </div>
                 
                 
                     <div className="lg:w-[50%] xs:w-full sm:w-full px-8 py-10">
                     <div>
-                        <Link to='/' className="text-3xl text-[#caa776] font-bold">Qurux</Link>
+                        <b className="text-2xl text-gray-800">Qurux</b>
                         <p className="text-[12px] text-gray-600">
                         Suministre los datos requeridos para iniciar sesión.
                         </p>

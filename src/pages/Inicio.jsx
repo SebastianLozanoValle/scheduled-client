@@ -15,6 +15,8 @@ import pintura from '../assets/imagenes/pintura.png'
 import { Destacados } from "../components/Destacados";
 import { Tabs } from "../components/Tabs";
 import { Link } from "react-router-dom";
+import { cities } from "../data/cities";
+
 
 
 
