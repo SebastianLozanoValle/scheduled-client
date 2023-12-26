@@ -16,10 +16,19 @@ import spamujer from '../assets/imagenes/spamujer.jpeg'
 
 
 const StyledDatePicker = styled(DatePicker)`
-  background: white;
-  width: auto;
-  height: 40px
-  
+background: white;
+width: auto;
+height: 70px;
+border: 1px solid black; /* Agrega el borde sólido negro */
+display: flex; /* Asegúrate de que el contenido se alinee correctamente */
+align-items: center; /* Centra verticalmente el contenido */
+padding: 0 10px; /* Añade un espacio interno para el contenido */
+border-radius: 0px 10px 10px 0px;
+
+@media (max-width: 768px) {
+  width:555px; 
+  height: 50px;
+  border-radius:20px
 `;
 
 export const Mundomujeres = () => {
@@ -76,17 +85,19 @@ export const Mundomujeres = () => {
       setPeluquerosResult(results);
     };
     return (
-      <Box  display='flex' justifyContent='center' marginTop='60px'>
+      <Box  display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' marginTop={isSmallerThan760 ? '10px' : '60px'} >
         
-        <Box width='800px'   justifyContent='center' gap='20px' padding='10px'>
+        <Box width= {isSmallerThan760 ? '100%' : '90%'}  display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center'  padding='10px'boxShadow='2px 20px 20px rgba(0, 0, 0, 0.9)' marginTop= {isSmallerThan760 ? '30px' : '90px'}>
           
           
           <Select
-            background='white' width='auto'
+            background='white' width='100%'
             height={isSmallerThan760 ? '50px' : '70px'}
             placeholder='Selecciona Servicio'
             border='1px solid black'
-            marginBottom={isSmallerThan760 ? '10px' : '30px'} 
+            borderRadius={isSmallerThan760 ? '20px' : '10px 0px 0px 10px'}
+            marginBottom={isSmallerThan760 ? '20px' : '0px'}
+           
             value={searchParams.servicio}
             onChange={(e) => handleInputChange('servicio', e.target.value)}
           >
@@ -97,26 +108,41 @@ export const Mundomujeres = () => {
             <option value='servicio3'>manicure</option>
           </Select>
   
-          <Select background='white' width='auto'
+          <Select background='white' width='100%'
            border='1px solid black'
            height={isSmallerThan760 ? '50px' : '70px'}
-           marginBottom={isSmallerThan760 ? '10px' : '30px'}
+           marginBottom={isSmallerThan760 ? '20px' : '30px'}
             placeholder='Tipodeservicio'
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
-
+            borderRadius={isSmallerThan760 ? '20px' : '0px 0px 0px 0px'}
           ><option value='Tipodeservicio'>dimicilio</option>
           <option value='Tipodeservicio'>tienda</option>
   
           </Select>
   
           
-
+          <Select background='white' width='100%'
+           border='1px solid black'
+           height={isSmallerThan760 ? '50px' : '70px'}
+           marginBottom={isSmallerThan760 ? '10px' : '30px'}
+            placeholder='Distrito'
+            value={searchParams.mundo}
+            onChange={(e) => handleInputChange('mundo', e.target.value)}
+            borderRadius={isSmallerThan760 ? '20px' : '0px 0px 0px 0px'}
+          ><option value='Tipodeservicio'>dimicilio</option>
+          <option value='Tipodeservicio'>tienda</option>
+  
+          </Select>
            
           <StyledDatePicker
          selected={selectedDate}
          onChange={handleDateChange}
          placeholderText="Selecciona una fecha"
+         display='flex'
+         alignItems='center'
+
+        
          />
 
            
@@ -124,10 +150,12 @@ export const Mundomujeres = () => {
            <a href='ListaE'><Button
            display='flex'
            justifyContent='center'
-           bg={isSmallerThan760 ? '#fc3c3c' : '#fc3c3c'} 
-           width={isSmallerThan760 ? '30%' : '300px'}
-           marginTop={isSmallerThan760 ? '20px' : '30px'}
+           bg= '#d3983f' 
+           width={isSmallerThan760 ? '30%' : '200px'}
+           height={isSmallerThan760 ? '40px' : '70px'}
+           marginTop={isSmallerThan760 ? '20px' : '0px'}
            border='1px solid black'
+           marginLeft={isSmallerThan760 ? '0px' : '10px'}
 
            
            /*mirar onClick={handleSearchClick}*/
@@ -171,7 +199,7 @@ export const Mundomujeres = () => {
               <Box display='flex' justifyContent='center' alignItems='center' height='300px'>
                 <Box position='relative'>
                   <Heading textAlign='center' color='white' fontSize={isSmallerThan760 ? '50px' : '60px'} ><b>Mundo mujeres</b></Heading>
-                  <a href='/'><Text position='relative' textAlign='center' fontSize={isSmallerThan760 ? '40px' : '40px'} color='#fc3c3c' fontFamily='Tangerine, cursive'>inicio</Text></a>
+                  <a href='/'><Text position='relative' textAlign='center' fontSize={isSmallerThan760 ? '40px' : '40px'} color='#caa776' fontFamily='Tangerine, cursive'>inicio</Text></a>
                </Box>
               </Box>
 
