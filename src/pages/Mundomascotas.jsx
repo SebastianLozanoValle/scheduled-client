@@ -10,6 +10,7 @@ import peluqueriamujer from '../assets/imagenes/peluqueriamujer.jpeg'
 import maquillandomujer from '../assets/imagenes/maquillandomujer.jpeg'
 import spamujer from '../assets/imagenes/spamujer.jpeg'
 import { BusquedaMundos } from "../components/BusquedaMundos";
+import { Destacados } from "../components/Destacados";
 
 
  
@@ -101,6 +102,7 @@ export const Mundomascotas = () => {
             <EstilistasSeleccionados estilistas={estilistasSeleccionados} />
             </Box>
              )}
+             <Destacados />
              </Box>
        </Box>
      </>

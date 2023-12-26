@@ -31,7 +31,7 @@ export const Login =()=> {
                 
                     <div className="lg:w-[50%] xs:w-full sm:w-full px-8 py-10">
                     <div>
-                        <b className="text-2xl text-gray-800">Qurux</b>
+                        <Link to='/' className="text-2xl text-[#caa776]">Qurux</Link>
                         <p className="text-[12px] text-gray-600">
                         Suministre los datos requeridos para iniciar sesión.
                         </p>

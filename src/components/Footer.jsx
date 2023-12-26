@@ -33,7 +33,7 @@ export const Footer = () => {
                                             <i></i><Link to="#" className='hover:text-white'>Sobre Nosotros</Link>
                                         </li>
                                         <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                            <i></i><Link to="#" className='hover:text-white'>Mi Cuenta</Link>
+                                            <i></i><Link to="/login" className='hover:text-white'>Mi Cuenta</Link>
                                         </li>
                                         {/* <li className='pb-4 hover:scale-110 transition-transform duration-300'>
                                             <i></i><Link to="#" className='hover:text-white'>My Listings</Link>

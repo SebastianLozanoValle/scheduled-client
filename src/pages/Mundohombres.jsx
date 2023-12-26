@@ -14,6 +14,7 @@ import hombremascarilla from '../assets/imagenes/hombremascarilla.jpg'
 import haircut from '../assets/imagenes/haircut.jpg'
 import { Buscador } from "../components/Buscador";
 import { BusquedaMundos } from "../components/BusquedaMundos";
+import { Destacados } from "../components/Destacados";
 
 
 
@@ -100,7 +101,7 @@ export const Mundohombres = () => {
           </Box>
 
           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-          <Box height='500px'marginTop='100px' >
+          <Box height='500px'marginTop='100px' mb={20} >
             <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
@@ -110,6 +111,7 @@ export const Mundohombres = () => {
             <EstilistasSeleccionados estilistas={estilistasSeleccionados} />
             </Box>
              )}
+             <Destacados />
              </Box>
        </Box>
      </>

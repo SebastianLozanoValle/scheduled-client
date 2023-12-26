@@ -11,6 +11,7 @@ import peluqueriamujer from '../assets/imagenes/peluqueriamujer.jpeg'
 import maquillandomujer from '../assets/imagenes/maquillandomujer.jpeg'
 import spamujer from '../assets/imagenes/spamujer.jpeg'
 import { BusquedaMundos } from "../components/BusquedaMundos";
+import { Destacados } from "../components/Destacados";
 
 
  
@@ -97,7 +98,7 @@ export const Mundomujeres = () => {
           </Box>
 
           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-          <Box height='500px'marginTop='100px' >
+          <Box height='500px'marginTop='100px' mb={20} >
             <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
             <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
             <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
@@ -107,6 +108,7 @@ export const Mundomujeres = () => {
             <EstilistasSeleccionados estilistas={estilistasSeleccionados} />
             </Box>
              )}
+             <Destacados />
              </Box>
        </Box>
      </>
