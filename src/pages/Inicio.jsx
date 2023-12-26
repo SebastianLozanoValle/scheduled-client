@@ -4,7 +4,7 @@ import { MdTouchApp } from "react-icons/md";
 import blancoynegro from'../assets/imagenes/blancoynegro.jpg'
 import { LuLassoSelect } from "react-icons/lu";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Input, Select, Button } from '@chakra-ui/react';
 import hombre from '../assets/imagenes/hombres.jpg'
 import mujer from '../assets/imagenes/mujeres.jpg'
@@ -22,9 +22,28 @@ import { cities } from "../data/cities";
 
 
 export const Inicio = () => {
+
+  const inputRef = useRef();
+
+  function handleInputChanges(e) {
+    setInputValue(e.target.value);
+
+    if (e.target.value.length >= 3) {
+      setAutocompleteOptions(
+        cities.filter(city =>
+          city.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+      );
+    } else {
+      setAutocompleteOptions([]);
+    }
+  }
+
   const [isSmallerThan760] = useMediaQuery('(max-width: 768px)');
 
   const [estilistasSeleccionados, setEstilistasSeleccionados] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [autocompleteOptions, setAutocompleteOptions] = useState([]);
 
   // Función para agregar estilista seleccionado por el administrador
   const handleEstilistaSeleccionado = (estilista) => {
@@ -67,6 +86,7 @@ export const Inicio = () => {
       // Actualiza el estado con los resultados de la búsqueda
       setPeluquerosResult(results);
     };
+
     return (
       <Box  display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center' marginTop={isSmallerThan760 ? '60px' : '60px'} paddingLeft={isSmallerThan760 ? '60px' : '0px'} >
         
@@ -103,16 +123,34 @@ export const Inicio = () => {
           <option value='Mundomascotas'>Mundomascotas</option>
           </Select>
   
-          <Input
-           background='white' width={isSmallerThan760 ? '90%' : '330px'}
-           height={isSmallerThan760 ? '80px' : '70px'}
-           marginTop={isSmallerThan760 ? '10px' : '0px'} 
-           fontSize='12px'
-            placeholder='Ingrese Distrito'
-            value={searchParams.distrito}
-            onChange={(e) => handleInputChange('distrito', e.target.value)}
-            borderStartRadius={0}
-          />
+          <div className="relative">
+            <input
+              ref={inputRef}
+              type="text"
+              value={inputValue}
+              onChange={handleInputChanges}
+              placeholder="Ingrese Distrito"
+              className={`bg-white w-full ${isSmallerThan760 ? 'h-20' : 'h-full'} px-3 py-2 text-sm placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none`}
+            />
+            {autocompleteOptions.length > 0 && (
+              <div className="absolute z-10 mt-2 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto">
+                {autocompleteOptions.map(option => (
+                  <div
+                    key={option}
+                    onClick={() => {
+                      setInputValue(option);
+                      setAutocompleteOptions([]);
+                      handleInputChange('distrito', option); // Actualiza el valor de 'distrito' en 'searchParams'
+                      setTimeout(() => inputRef.current.focus(), 0); // Establece el foco en el input después de la re-renderización
+                    }}
+                    className="cursor-pointer hover:bg-gray-200 p-2"
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
            <Link to='especilistas'><Button
            display='flex'
