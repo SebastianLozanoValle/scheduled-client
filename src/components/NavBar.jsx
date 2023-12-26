@@ -37,7 +37,7 @@ export const NavBar = () => {
                     <Menu>
                     <MenuButton
                       // px={6}
-                      bg={'#242424'}
+                      bg={'#d3983f'}
                       color={'white'}
                       _active={{ bg: '#212024',
                       color: '#caa776' }}

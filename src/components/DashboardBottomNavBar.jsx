@@ -14,7 +14,7 @@ const DashboardBottomNavBar = () => {
             right={0}
             justifyContent="space-around"
             alignItems="center"
-            bg="gray.200"
+            bg="#0b0e13"
             p={2}
         >
             <Link to="/dashboard">
