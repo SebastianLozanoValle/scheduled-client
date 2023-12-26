@@ -65,7 +65,7 @@ export const Tabs = () => {
             <div 
               key={tab} 
               ref={tabsRefs[index]}
-              className={`m-[auto] p-4 ${activeTab === tab ? 'bg-gray-200 text-black rounded-3xl' : 'bg-[#d3983f] text-white'}`}
+              className={`m-[auto] p-4 transition-all duration-500 ${activeTab === tab ? 'bg-gray-200 text-black rounded-3xl' : 'bg-[#d3983f] text-white'} hover:bg-gray-200 hover:text-black hover:rounded-3xl`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
@@ -75,7 +75,7 @@ export const Tabs = () => {
         <button className='p-4 text-6xl text-white' onClick={() => scrollTabs('right')}><RiArrowRightCircleLine /></button>
       </div>
       <div className="flex justify-center">
-        <button className='hover:text-[#d3983f] transition-all'>Explorar Servico</button>
+        <button className=' rounded-full py-2 px-4 bg-[#d3983f] text-white hover:bg-white hover:border hover:border-[#d3983f] hover:text-[#d3983f] transition-all duration-500'>Explorar Servico</button>
       </div>
     </>
   );

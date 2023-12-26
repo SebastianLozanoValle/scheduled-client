@@ -139,14 +139,20 @@ export const Inicio = () => {
            <Container margin='100px 0px ' display='flex'  gap= {isSmallerThan760 ? '10px' : '60px'}  justifyContent='center' maxW='100%'>
               <Link to='/mundohombres'>
                 <Box  bg={`url(${hombre})`}
-                backgroundPosition='center'
-                width={isSmallerThan760 ? '530px' : '400px'}
-                height={isSmallerThan760 ? '250px' : '400px'}
-                backgroundSize='cover' 
-                display='flex'
-                justifyContent='center'
-                alignItems='end'
-                borderRadius='0px 20px 0px 20px'>
+              backgroundPosition='center'
+              width={isSmallerThan760 ? '530px' : '400px'}
+              height={isSmallerThan760 ? '250px' : '400px'}
+              backgroundSize='cover' 
+              display='flex'
+              justifyContent='center'
+              alignItems='end'
+              borderRadius='80px 0px 80px 0px'
+              transition= 'all 0.5s ease 0s'
+              _hover={{
+                transform: 'scale(1.1)',
+                borderRadius:'0px 80px 0px 80px'
+              }}
+                >
                 <Box bg='white' px={10} pt={4} borderTopRadius={8} color='#161c26' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>HOMBRES</b></Box>
 
                 </Box>
@@ -154,14 +160,20 @@ export const Inicio = () => {
 
               <Link to='/mundomujeres'>
                 <Box  bg={`url(${mujer})`}
-                backgroundPosition='center'
-                width={isSmallerThan760 ? '530px' : '400px'}
-                height={isSmallerThan760 ? '250px' : '400px'}
-                backgroundSize='cover' 
-                display='flex'
-                justifyContent='center'
-                alignItems='end'
-                borderRadius='20px 0px 20px 0px'>
+              backgroundPosition='center'
+              width={isSmallerThan760 ? '530px' : '400px'}
+              height={isSmallerThan760 ? '250px' : '400px'}
+              backgroundSize='cover' 
+              display='flex'
+              justifyContent='center'
+              alignItems='end'
+              borderRadius='80px 0px 80px 0px'
+              transition= 'all 0.5s ease 0s'
+              _hover={{
+                transform: 'scale(1.1)',
+                borderRadius:'0px 80px 0px 80px'
+              }}
+                >
                 <Box bg='white' px={10} pt={4} borderTopRadius={8} color='#161c26' paddingBottom='20px'><Heading color='#D4AF37' fontSize='9px' textAlign='center'><b>MUNDO</b></Heading><b>MUJERES</b></Box>
 
                 </Box>
@@ -176,7 +188,13 @@ export const Inicio = () => {
               display='flex'
               justifyContent='center'
               alignItems='end'
-              borderRadius='20px 0px 20px 0px'>
+              borderRadius='80px 0px 80px 0px'
+              transition= 'all 0.5s ease 0s'
+              _hover={{
+                transform: 'scale(1.1)',
+                borderRadius:'0px 80px 0px 80px'
+              }}
+              >
               <Box bg='white' px={10} pt={4} borderTopRadius={8} color='#161c26' paddingBottom='20px'><Heading color='#D4AF37' fontSize='13px' textAlign='center'><b>MUNDO</b></Heading><b>MASCOTAS</b></Box>
 
               </Box>
