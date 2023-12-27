@@ -10,7 +10,7 @@ return(
     <>
      <Box >
          < Box display={isSmallerThan760 ? 'none' : 'flex'}  width='100%' justifyContent='center' overflow='hidden'>
-               <Box bg='#161c26' height='800px' backgroundSize='cover'  width='500px'  borderRadius='0px 30px 30px 0px'>
+               <Box bg='#161c26' height='800px' backgroundSize='cover'  width='50%'  borderRadius='30px 30px 30px 30px' margin='20px 0px 20px 10px' >
                  <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '90px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} >
                  Guia para 
                  </Text>

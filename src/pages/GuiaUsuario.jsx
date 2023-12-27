@@ -14,19 +14,19 @@ return(
                  <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '90px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} >
                  Guia del
                  </Text>
-                 <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '100px'} paddingLeft={isSmallerThan760 ? '0px' : '200px'} >
+                 <Text fontFamily="Tangerine, cursive" color='white' fontSize={isSmallerThan760 ? '40px' : '100px'} paddingLeft={isSmallerThan760 ? '0px' : '160px'} >
                  Usuario
                  </Text>
-                 <Box position='relative'> 
-                 <Text fontSize='22px'  color='white' m={8} Top='10vh'  textAlign='justify'> 
+                 <Box position='relative' display='flex' alignItems='center'> 
+                 <Text fontSize='20px'  color='white' m={8} Top='10vh'  textAlign='justify'> 
                      Bienvenido a Qurux, donde tu experiencia digital es nuestra prioridad. 
                      Esta guía del usuario está diseñada para proporcionarte una visión 
                      integral sobre cómo aprovechar al máximo nuestra plataforma y garantizar 
                      que disfrutes de todas las funciones y servicios que ofrecemos. ¡Comencemos!
                  </Text>
                  </Box>
-                  <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
-                        <a href="../public/GuiaUsuario.pdf" download="GuiaUsuario.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>
+                  <Box  overflow='hidden' width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
+                        <a href="../public/GUIAUSUARIO.pdf" download="GUIAUSUARIO.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>
                  </Box>
                  
                </Box>
@@ -41,13 +41,15 @@ return(
                <Box  height='100%'  width='100%' padding='60px' >
                  
                  <Heading  color='white' fontSize={isSmallerThan760 ? '30px' : '60px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} textAlign='center'>
-                 Terminos y condiciones
+                 Guia del usuario 
                  </Heading>
-                 <Text color='white' margin='60px 30px 30px ' textAlign='center'> Los términos y condiciones de una empresa, como los establecidos por Qurux, desempeñan un papel fundamental en la relación entre la empresa y sus usuarios. 
-                      Estos documentos son esenciales para garantizar una interacción clara, justa y segura.
+                 <Text color='white' margin='60px 30px 30px ' textAlign='center'> Bienvenido a Qurux, donde tu experiencia digital es nuestra prioridad. 
+                     Esta guía del usuario está diseñada para proporcionarte una visión 
+                     integral sobre cómo aprovechar al máximo nuestra plataforma y garantizar 
+                     que disfrutes de todas las funciones y servicios que ofrecemos. ¡Comencemos!
                  </Text> 
                  <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
-                        <a href="../public/Terminos.pdf" download="Terminos.pdf"><Button bg='#fc3c3c'><CiSaveDown1  fontSize='30px'/></Button></a>
+                        <a href="../public/GUIAUSUARIO.pdf" download="GUIAUSUARIO.pdf"><Button bg='#fc3c3c'><CiSaveDown1  fontSize='30px'/></Button></a>
                  </Box>
               </Box>
                

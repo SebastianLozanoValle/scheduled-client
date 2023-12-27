@@ -60,16 +60,16 @@ export const Footer = () => {
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
                                                 <Link to="Guiaespecialista" className='hover:text-white'>Guia especilista</Link>
                                             </li>
-                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <Link to="Terminos" className='hover:text-white'>Terminos y condiciones</Link>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300 w-60' >
+                                                <Link to="Terminos" className='hover:text-white'>Terminos y condiciones usuarios</Link>
                                             </li>
                                              <li className='pb-4 hover:scale-110 transition-transform duration-300'>
                                                 <Link to="GuiaUsuario" className='hover:text-white'>Guia de usuario</Link>
                                             </li>
-                                           {/*<li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <Link to="#" className='hover:text-white'>Beauty</Link>
+                                           <li className='pb-4 hover:scale-110 transition-transform duration-300 w-60 '>
+                                                <Link to="TCEspecialistas" className='hover:text-white'>Terminos y condiciones especilistas</Link>
                                             </li>
-                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            {/*<li className='pb-4 hover:scale-110 transition-transform duration-300'>
                                                 <Link to="#" className='hover:text-white'>Hotels</Link>
                                             </li>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>

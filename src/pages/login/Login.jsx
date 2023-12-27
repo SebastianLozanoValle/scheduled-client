@@ -29,7 +29,7 @@ export const Login =()=> {
                     <div className="flex space-between items-start">
                     
                       <Box display='flex' paddingTop='100px'>
-                        <img src={logo}width='350px' ></img>
+                        <img src={logo}width='330px' ></img>
                       </Box>
                 
                 
