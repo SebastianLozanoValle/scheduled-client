@@ -70,7 +70,7 @@ export const Mundohombres = () => {
             
 
               <Box display='flex' justifyContent='center' alignItems='center' height='300px'>
-                <Box position='relative'>
+                <Box position='relative'marginTop='150px' >
                   <Heading textAlign='center' color='white' fontSize={isSmallerThan760 ? '50px' : '60px'} ><b>Mundo hombres</b></Heading>
                   <a href='/'><Text position='relative' textAlign='center' fontSize={isSmallerThan760 ? '40px' : '40px'} color='#caa776' fontFamily='Tangerine, cursive'>inicio</Text></a>
                </Box>
