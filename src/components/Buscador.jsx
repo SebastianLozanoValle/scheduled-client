@@ -12,11 +12,11 @@ export const Buscador = () => {
     background: white;
     width: auto;
     height: 70px;
-    // border: 1px solid black; /* Agrega el borde sólido negro */
+    border: 1px solid black; /* Agrega el borde sólido negro */
     display: flex; /* Asegúrate de que el contenido se alinee correctamente */
     align-items: center; /* Centra verticalmente el contenido */
     padding: 0 10px; /* Añade un espacio interno para el contenido */
-    // border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 10px 10px 0px;
 
     @media (max-width: 768px) {
     width:555px; 
@@ -72,7 +72,7 @@ export const Buscador = () => {
         fontSize='16px'
         value={searchParams.servicio}
         onChange={(e) => handleInputChange('servicio', e.target.value)}
-        borderEndRadius={0}
+        borderRadius={isSmallerThan760 ? '10px' : '0px'} 
       >
         {
             tabs?.map((tab, index) => (
@@ -88,10 +88,10 @@ export const Buscador = () => {
             height={isSmallerThan760 ? '80px' : '70px'}
             marginTop={isSmallerThan760 ? '10px' : '0px'} 
             placeholder='Ingrese Mundo'
-            fontSize='12px'
+            fontSize='16px'
             value={searchParams.mundo}
             onChange={(e) => handleInputChange('mundo', e.target.value)}
-            borderRadius={0}
+            borderRadius={isSmallerThan760 ? '10px' : '0px'} 
         >
             <option value='Mundohombres'>Mundohombres</option>
             <option value='Mundomujeres'>Mundomujeres</option>
@@ -116,7 +116,7 @@ export const Buscador = () => {
           value={inputValue}
           onChange={handleInputChanges}
           placeholder="Ingrese Distrito"
-          className={`bg-white w-full ${isSmallerThan760 ? 'h-20' : 'h-full'} px-3 py-2 text-sm placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none`}
+          className={`bg-white  ${isSmallerThan760 ? 'h-20' : 'h-full'}   px-3 py-2 text-sm placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none`}
         />
         {autocompleteOptions.length > 0 && (
           <div className="absolute z-10 mt-2 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto">

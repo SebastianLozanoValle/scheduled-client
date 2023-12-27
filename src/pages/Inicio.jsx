@@ -17,6 +17,7 @@ import { Tabs } from "../components/Tabs";
 import { Link } from "react-router-dom";
 import { cities } from "../data/cities";
 import { Buscador } from "../components/Buscador";
+import flecha from '../assets/imagenes/flecha.png'
 
 
 
@@ -119,15 +120,16 @@ export const Inicio = () => {
     return(
       <>
         <Box>
-            <Box bg='#161c26'   backgroundPosition='center' py={28} justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover' >
-               <Heading textAlign='center' fontSize={isSmallerThan760 ? '30px' : '50px'}color='#caa776' fontFamily="Tangerine, cursive">El mundo de la belleza digital</Heading> 
-               <Heading textAlign='center'fontSize={isSmallerThan760 ? '40px' : '70px'} color='white' ><b>BIENVENIDO A QURUX</b></Heading>
+            <Box bg='#161c26'   backgroundPosition='center' py={28} justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover'  height={isSmallerThan760 ? '100%' : '700px'}>
+               <Heading textAlign='center' fontSize={isSmallerThan760 ? '20px' : '70px'}color='#caa776' fontFamily="Sacramento, cursive">El mundo de la belleza digital</Heading> 
+               <Heading textAlign='center'fontSize={isSmallerThan760 ? '40px' : '90px'}  fontWeight='bold'  textTransform='uppercase' color='white' ><b>BIENVENIDO A QURUX</b></Heading>
               <YourComponent /> {/* Renderiza el componente YourComponent */}
-              
+              <Box display='flex' justifyContent='center' alignItems='center' flexWrap='wrap' marginTop={isSmallerThan760 ? '40px' : '60px'}>
+                <img src={flecha}></img>
+              <Text width={isSmallerThan760 ? 'auto' : 'auto'} fontSize={isSmallerThan760 ? '40px' : '40px'} marginTop={isSmallerThan760 ? '0px' : '90px'} color='white' textAlign='center'fontFamily='Sacramento, cursive'  >Aqui  es donde la belleza y tu hacen match</Text>
+              </Box>
              </Box>
-             <div className="container w-4/5">
-              <Tabs />
-             </div>
+             
 
 
            <Box marginTop='100px'>
@@ -204,7 +206,7 @@ export const Inicio = () => {
            <Container bg={`url(${peluquerias})`}  height='500px'  backgroundSize='cover' display='flex' justifyContent='center' alignItems='center' backgroundAttachment='fixed'
             fontSize='20px' backgroundPosition='center' position='relative' maxWidth='100%'>
             <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.6)'></Box>
-            <Text  color='white' position='relative' fontSize={isSmallerThan760 ? '25px' : '60px'} width='100%' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
+            <Text  color='white' position='relative' fontSize={isSmallerThan760 ? '25px' : '60px'} width='70%' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
            </Container>
 
            {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
@@ -217,33 +219,41 @@ export const Inicio = () => {
           <Destacados />
 
 
-           <Box bg='#161c26'  height='100%'  width='auto'> 
-              <Box height='100px' paddingBottom='300px'>
-              <Heading paddingTop= {isSmallerThan760 ? '90px' : '80px'}color='white' textAlign='center' fontSize={isSmallerThan760 ? '30px' : '60px'} >COMO FUNCIONA QURUX</Heading><Text color='white' textAlign='center' fontSize={isSmallerThan760 ? '20px' : '20px'}>Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
+           <Box height='100%'  width='auto'> 
+            <Box bg='#161c26'  height='750px'>
+              <Box height='100px' paddingBottom='200px'>
+              <Heading paddingTop= {isSmallerThan760 ? '90px' : '80px'}color='white' textAlign='center' fontSize={isSmallerThan760 ? '30px' : '40px'} >COMO FUNCIONA QURUX</Heading><Text color='white' textAlign='center' fontSize={isSmallerThan760 ? '20px' : '20px'}>Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
               </Box>
+              
              <Container
               display='flex'
               alignItems='center'
               height="100vh"
               left="25%"
               maxW='auto'
-              justifyContent='center'>
+              justifyContent='center'
+              marginTop={isSmallerThan760 ? '0px' : '100px'}
+              background={`radial-gradient(circle at 5% 5%, red 80px, transparent 3px), radial-gradient(circle at 15% 15%, red 40px, transparent 3px), #161c26`}
+              >
               
                 <iframe
-                width={isSmallerThan760 ? '90%' : '90%'}
-                height='600px'
+                width={isSmallerThan760 ? '90%' : '70%'}
+                height={isSmallerThan760 ? '400px' : '600px'} 
                 src="https://www.youtube.com/embed/dsLjyLn859g?si=yPE3byugBzpWs2dO"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 ></iframe>
               </Container>
-              <Box  bg='white' width='100%' display={isSmallerThan760 ? 'column-revers' : 'flex'} justifyContent='center' gap={isSmallerThan760 ? '30px' : '90px'}  height='600px' alignItems='center' paddingTop={{base: '100px', md: '0'}}>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><MdTouchApp fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></MdTouchApp><Heading marginTop='20px'fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='#161c26'>Elige el mundo del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'}  textAlign='center' color='#161c26' marginTop={isSmallerThan760 ? '0px' : '20px'} >Mascotas,Mujeres,Hombres</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='#161c26' >Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='#161c26'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '35px'}><FaMapMarkerAlt  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></FaMapMarkerAlt ><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center'color='#161c26' >Escoge la ubicacion del servicio</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='#161c26'  marginTop={isSmallerThan760 ? '0px' : '20px'}>si es adomicilio tu especilista debera ser del mismo distrito</Text></Box>
-              <Box display='flex' flexDirection='column' alignItems='center' width='auto'  height='auto' marginTop={isSmallerThan760 ? '20px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '30px' : '40px'} color={isSmallerThan760 ? '#B69132' : '#161c26'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '10px' : '14px'} textAlign='center' color='#161c26'>Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '9px' : '10px'} textAlign='center' color='#161c26'  marginTop={isSmallerThan760 ? '0px' : '20px'}>Puedes escoger mas de uno</Text></Box>
+              </Box>
+
+              <Box  width='100%' display={isSmallerThan760 ? 'column-revers' : 'flex'} justifyContent='center' gap={isSmallerThan760 ? '30px' : '30px'}  height='900px' alignItems='center' paddingTop={{base: '200px', md: '0'}}  background={`radial-gradient(circle at 95% 5%, red 80px, transparent 3px), radial-gradient(circle at 85% 15%, red 40px, transparent 3px), white`}>
+              <Box  _hover={{transform: 'scale(1.1)',}} justifyContent='center' display='flex' flexDirection='column' alignItems='center' width='100%'  height={isSmallerThan760 ? 'auto' : '400px'} marginTop={isSmallerThan760 ? '20px' : '25px'}><MdTouchApp fontSize={isSmallerThan760 ? '40px' : '70px'} color={isSmallerThan760 ? '#B69132' : '#caa776'}></MdTouchApp><Heading marginTop='20px'fontSize={isSmallerThan760 ? '12px' : '14px'} textAlign='center' color='#161c26'>Elige la categoria del servicio</Heading><Text fontSize={isSmallerThan760 ? '10px' : '12px'}  textAlign='center' color='#161c26' paddingTop={isSmallerThan760 ? '0px' : '30px'} >Mascotas<br/>Mujeres<br/>Hombres<br/></Text></Box>
+              <Box _hover={{transform: 'scale(1.1)',}} display='flex' justifyContent='center'flexDirection='column' alignItems='center' width='100%'  height={isSmallerThan760 ? 'auto' : '400px'} marginTop={isSmallerThan760 ? '50px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '40px' : '70px'} color={isSmallerThan760 ? '#B69132' : '#caa776'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '12px' : '14px'} textAlign='center'color='#161c26'   >Selecciona los servicios deseados</Heading><Text fontSize={isSmallerThan760 ? '10px' : '12px'} textAlign='center' color='#161c26'  paddingTop={isSmallerThan760 ? '0px' : '40px'}>Escoge la ubicacion del servicio<br/>Puedes escoger mas de uno </Text></Box>
+              <Box _hover={{transform: 'scale(1.1)',}}display='flex' justifyContent='center' flexDirection='column' alignItems='center' width='100%'  height={isSmallerThan760 ? 'auto' : '400px'} marginTop={isSmallerThan760 ? '50px' : '35px'}><FaMapMarkerAlt  fontSize={isSmallerThan760 ? '40px' : '70px'} color={isSmallerThan760 ? '#B69132' : '#caa776'}></FaMapMarkerAlt ><Heading marginTop='20px' fontSize={isSmallerThan760 ? '12px' : '14px'} textAlign='center'color='#161c26' >Escoge la ubicacion del servicio</Heading><Text fontSize={isSmallerThan760 ? '10px' : '12px'} textAlign='center' color='#161c26'  paddingTop={isSmallerThan760 ? '0px' : '45px'}>Local o domicilio tu especilista debera ser del mismo distrito</Text></Box>
+              <Box _hover={{transform: 'scale(1.1)',}}display='flex'justifyContent='center' flexDirection='column' alignItems='center' width='100%'  height={isSmallerThan760 ? 'auto' : '400px'} marginTop={isSmallerThan760 ? '50px' : '25px'}><LuLassoSelect  fontSize={isSmallerThan760 ? '40px' : '70px'} color={isSmallerThan760 ? '#B69132' : '#caa776'}></LuLassoSelect><Heading marginTop='20px' fontSize={isSmallerThan760 ? '12px' : '14px'} textAlign='center' color='#161c26'>Selecciona la fecha y la hora deseada</Heading><Text fontSize={isSmallerThan760 ? '10px' : '12px'} textAlign='center' color='#161c26'  paddingTop={isSmallerThan760 ? '0px' : '40px'}>para disfrutar del servicio y realiza el pago correspondiente</Text></Box>
               </Box> 
+
            </Box>
          
            
