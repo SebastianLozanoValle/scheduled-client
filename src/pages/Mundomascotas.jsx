@@ -16,21 +16,7 @@ import { Destacados } from "../components/Destacados";
  
 
 
-const StyledDatePicker = styled(DatePicker)`
-background: white;
-width: auto;
-height: 70px;
-border: 1px solid black; /* Agrega el borde sólido negro */
-display: flex; /* Asegúrate de que el contenido se alinee correctamente */
-align-items: center; /* Centra verticalmente el contenido */
-padding: 0 10px; /* Añade un espacio interno para el contenido */
-border-radius: 0px 10px 10px 0px;
 
-@media (max-width: 768px) {
-  width:555px; 
-  height: 50px;
-  border-radius:20px
-`;
 
 export const Mundomascotas = () => {
 
