@@ -10,6 +10,8 @@ import { GET_SPECIALISTS } from '../pages/dashboard/Especialistas';
 import { InputField } from './InputField';
 import { SelectField } from './SelectField';
 import { CheckboxField } from './CheckboxField';
+import { cities } from '../data/cities';
+import { AutocompleteInputField } from './AutocompleteInputField';
 
 const CREATE_SPECIALIST = gql`
 mutation($input: SpecialistInput!) {createSpecialist(input: $input) {
@@ -23,7 +25,7 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
     const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST,
         {refetchQueries: [{ query: GET_SPECIALISTS }]});
     const toast = useToast();
-    const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const { register, handleSubmit, control, formState: { errors }, setValue} = useForm();
     const [specialtys, setSpecialtys] = useState([]);
     const fieldArrayOperations = daysOfWeek.reduce((acc, day) => {
         acc[day] = useFieldArray({
@@ -105,13 +107,17 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
                             </div>
                             
                             <div className="flex gap-4">
-                                <InputField label='Ciudad' name="city" placeholder="City" register={register} required={true} errors={errors} />
+                                <AutocompleteInputField label='Distrito' name="distrito" options={cities} register={register} setValue={setValue} required={true} errors={errors} />
                                 <InputField label='Calle' name="street" placeholder="Street" register={register} required={true} errors={errors} />
                             </div>
     
                             <div className="flex gap-4">
-                                <SelectField label='Mundo' name="world" options={["", "Hombre", "Mujer", "Mascota"]} register={register} required={true} errors={errors} />
-                                <SelectField label='Pago' name="paymentOption" options={["", "weekly", "biweekly", "monthly"]} register={register} required={true} errors={errors} />
+                                <SelectField label='Tipo de servicio' name="serviceType" options={["Mixto", "Domicilio", "Casa"]} register={register} required={true} errors={errors} />
+                                <SelectField label='Pago' name="paymentOption" options={["weekly", "biweekly", "monthly"]} register={register} required={true} errors={errors} />
+                            </div>
+
+                            <div className="flex gap-4">
+                                <SelectField label='Mundo' name="world" options={["Hombre", "Mujer", "Mascota"]} register={register} required={true} errors={errors} />
                             </div>
                             
                             {/* Weekly Schedule fields */}

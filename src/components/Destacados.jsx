@@ -4,11 +4,24 @@ import { useState, useEffect, useRef, createRef, useMemo } from 'react';
 import { RiArrowLeftCircleLine, RiArrowRightCircleLine } from "react-icons/ri";
 import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 
-export const Destacados = () => {
+export const Destacados = ({ mundo = '', ciudad = '', servicios = [], tipoServicio = '', destacados = true }) => {
     const { loading, error, data } = useQuery(GET_SPECIALISTS);
 
     const especialistas = useMemo(() => {
-        return data?.findSpecialists.filter(especialista => especialista.highlighted) || [];
+        if (destacados === true) {
+            return data?.findSpecialists.filter(especialista => especialista.highlighted) || [];
+        }
+
+        if (mundo !== '' && ciudad !== '' && tipoServicio !== '') {
+            const filtrado = data?.findSpecialists.filter(especialista => especialista.world === mundo && especialista.city === ciudad && especialista.serviceType) || [];
+            if (servicios.length > 0) {
+                return filtrado.filter(especialista => especialista.specialtys.some(servicio => servicios.includes(servicio)));
+            } else {
+                return filtrado
+            }
+        }
+
+
     }, [data]);
     // console.log(especialistas);
     const [activeSpecialist, setActiveSpecialist] = useState(especialistas[0]);
