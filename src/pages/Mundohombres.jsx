@@ -70,7 +70,7 @@ export const Mundohombres = () => {
             
 
               <Box display='flex' justifyContent='center' alignItems='center' height='300px'>
-                <Box position='relative'>
+                <Box position='relative'marginTop='150px' >
                   <Heading textAlign='center' color='white' fontSize={isSmallerThan760 ? '50px' : '60px'} ><b>Mundo hombres</b></Heading>
                   <a href='/'><Text position='relative' textAlign='center' fontSize={isSmallerThan760 ? '40px' : '40px'} color='#caa776' fontFamily='Tangerine, cursive'>inicio</Text></a>
                </Box>
@@ -81,24 +81,11 @@ export const Mundohombres = () => {
              </Box>
           </Box>
           
-          <Box height='100px' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? '' : 'none'} >
+          <Box height='100vh' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? '' : 'none'} >
                 <BusquedaMundos /> {/* Renderiza el componente YourComponent */}
              </Box>
           
-            <Box width='100wh' display='flex'  flexWrap='wrap' gap='30px' justifyContent='center' marginTop={isSmallerThan760 ? '400px' : '150'} >
-              <Box bg={`url(${corte})`} backgroundSize='cover'  borderRadius='20px'  backgroundPosition='center'  width={isSmallerThan760 ? '500px' : '500px'} height={isSmallerThan760 ? '300px' : '400px'} ></Box>
-              <Box bg={`url(${hombremascarilla})`} backgroundSize='cover' borderRadius='20px'  backgroundPosition='center'  width={isSmallerThan760 ? '500px' : '300px'} height={isSmallerThan760 ? '300px' : '400px'} ></Box>
-              <Box bg={`url(${haircut})`} backgroundSize='cover' borderRadius='20px'  backgroundPosition='center'  width={isSmallerThan760 ? '500px' : '400px'} height={isSmallerThan760 ? '300px' : '400px'} ></Box>
-            </Box>
-          
-          <Box>
-            <Box marginTop={isSmallerThan760 ? '90px' : '100px'}>
-              <Heading fontFamily="Tangerine, cursive"  textAlign='center'><b>Our Inspiration, Your Experience Matters</b></Heading>
-              <Text fontFamily="Tangerine, cursive"  textAlign='center' margin='0px 30px 30px 'fontSize={isSmallerThan760 ? '30px' : '30px'}>Los clientes son el corazón de cualquier empresa, su apoyo constante impulsa el crecimiento y la prosperidad.
-                 Su retroalimentación valiosa guía nuestras decisiones y nos motiva a ofrecer productos y servicios excepcionales. 
-                 En la relación cliente-empresa, la satisfacción del cliente es la clave de nuestro éxito compartido.</Text>
-            </Box>
-          </Box>
+            
 
           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
           <Box height='500px'marginTop='100px' mb={20} >

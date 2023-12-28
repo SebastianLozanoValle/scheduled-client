@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { forwardRef } from 'react';
+import logo from '../assets/imagenes/logo.png'
 
 const CustomLink = forwardRef((props, ref) => {
   const location = useLocation();
@@ -22,9 +23,9 @@ export const NavBar = () => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box bg="#0b0e13" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' className='z-10'>
+        <Box bg="#161c26" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' className='z-10'>
             <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
-                <Text fontSize="xl" color="brand.primary">Qurux</Text>
+                <Text fontSize="xl" color="brand.primary"><img src={logo} width='80px'></img></Text>
                 <Box display={{ base: 'block', md: 'none' }} onClick={onOpen} color='brand.primary' fontSize='2xl'>
                     <RxHamburgerMenu />
                 </Box>

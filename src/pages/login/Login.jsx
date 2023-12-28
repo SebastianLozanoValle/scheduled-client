@@ -1,6 +1,9 @@
 import { useState } from "react";
 import fondo from '../../assets/imagenes/fondo.jpg'
 import { Link } from "react-router-dom";
+import logo from '../../assets/imagenes/logo.png'
+import { Box } from "@chakra-ui/react"
+
 
 export const Login =()=> {
 
@@ -21,15 +24,16 @@ export const Login =()=> {
             
             <div className="p-10 bg-gray-200 h-[100vh] flex items-center justify-center">
             
-            {/* contenedor de los inputs */}
+           
                 <div className="bg-white shadow-lg overflow-hidden rounded-xl w-full sm:w-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[50%] h-auto sm:h-auto md:h-auto lg:h-auto xl:h-auto 2xl:h-auto mx-auto">
-                <div className="flex space-between items-start">
-                    {/* imagen  */}
-                    <div className="image-container lg:w-[50%] xs:hidden" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover' }}>
-                    </div>
+                    <div className="flex space-between items-start">
+                    
+                      <Box display='flex' paddingTop='100px'>
+                        <img src={logo}width='330px' ></img>
+                      </Box>
                 
                 
-                    <div className="lg:w-[50%] xs:w-full sm:w-full px-8 py-10">
+                     <div className="lg:w-[50%] xs:w-full sm:w-full px-8 py-10">
                     <div>
                         <Link to='/' className="text-2xl text-[#caa776]">Qurux</Link>
                         <p className="text-[12px] text-gray-600">
@@ -53,6 +57,7 @@ export const Login =()=> {
                         />
                         </div>
                     </div>
+
                     <br />
                     <div className="mb-1">
                         <div className="flex flex-col">
@@ -97,7 +102,7 @@ export const Login =()=> {
                         <b>¿Olvidaste tu contraseña?</b>
                         </a>
                     </div>
-                    </div>
+                 </div>
                 </div>
                 </div>
             </div>

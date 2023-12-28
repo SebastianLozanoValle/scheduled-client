@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Center, Container, Flex, Img } from "@chakra-ui/react";
+import { Box, Center, Container, Flex, Img, Text} from "@chakra-ui/react";
 import { FaFacebookF } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/imagenes/logo.png'
 
 
 export const Footer = () => {
@@ -17,15 +18,17 @@ export const Footer = () => {
                 <footer>
                     <div className='p-10 bg-gray-800 text-gray-200'>
                         <div className='max-w-7xl mx-auto'>
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1'>
                                 <div className='mb-5'>
-                                    <h4 className='text-2xl pb-4'>Qurux</h4>
-                                    <p className='text-gray-500'>
+                                    <Box justifyContent='center' alignItems='center' display='flex'>
+                                     <img src={logo} width='200px'></img>
+                                    </Box>
+                                    <p className='text-gray-500  text-center mt-3' >
                                         Lorem ipsum dolor sit amet <br />consectetur adipisicing eli <br /><br />
-                                        <strong>telefono:</strong>+57565434 <br />
+                                        
                                     </p>
                                 </div>
-                                <div className='mb-5'>
+                                <div className='mb-5 ml-6  mt-5  justify-center ' >
                                     <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Explorar</h4>
                                     <ul className='text-gray-500'>
 
@@ -49,7 +52,7 @@ export const Footer = () => {
                                         </li> */}
                                     </ul>
                                 </div>
-                                <div className='mb-5'>
+                                <div className='mb-5 mt-5' >
                                     <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Documentos</h4>
                                     <ul className='text-gray-500'>
 
@@ -57,16 +60,16 @@ export const Footer = () => {
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
                                                 <Link to="Guiaespecialista" className='hover:text-white'>Guia especilista</Link>
                                             </li>
-                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <Link to="#" className='hover:text-white'>Politica</Link>
+                                            <li className='pb-4 hover:scale-110 transition-transform duration-300 w-60' >
+                                                <Link to="Terminos" className='hover:text-white'>Terminos y condiciones usuarios</Link>
                                             </li>
-                                            {/* <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <Link to="#" className='hover:text-white'>Shopping</Link>
+                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                                <Link to="GuiaUsuario" className='hover:text-white'>Guia de usuario</Link>
                                             </li>
-                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
-                                                <Link to="#" className='hover:text-white'>Beauty</Link>
+                                           <li className='pb-4 hover:scale-110 transition-transform duration-300 w-60 '>
+                                                <Link to="TCEspecialistas" className='hover:text-white'>Terminos y condiciones especilistas</Link>
                                             </li>
-                                            <li className='pb-4 hover:scale-110 transition-transform duration-300'>
+                                            {/*<li className='pb-4 hover:scale-110 transition-transform duration-300'>
                                                 <Link to="#" className='hover:text-white'>Hotels</Link>
                                             </li>
                                             <li className='pb-4 hover:scale-110 transition-transform duration-300'>
@@ -77,26 +80,45 @@ export const Footer = () => {
                                 </div>
                                 <div className='mb-5'>
                                     <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Boletín Informativo</h4>
-                                    <p className='text-gray-500'>88 Broklyn Golden Street, New York. USA</p>
-                                    <p className='text-gray-500'>needhelp@ziston.com</p><br />
-
                                     <form className="flex flex-col items-center rounded-md p-4">
-                                        <input
-                                            type="email"
-                                            name=""
-                                            id=""
-                                            placeholder='Enter email address'
-                                            className="mb-2 p-2 border border-gray-300 w-80 transition-background duration-300 ease-in-out hover:bg-gray-200 h-16 rounded-md"
-                                        />
                                         <div>
-                                            <button
-                                                className="bg-[#d3983f] hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16"
-                                            >
-                                                SUBSCRIBE
-                                            </button>
+                                            <a href="mailto:info@qurux.net">
+                                               
+                                             <Box className="bg-[#d3983f] hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16 text-center flex items-center justify-center">
+                                                Info
+                                             </Box>
+
+                                            </a>
                                         </div>
                                     </form>
+
+                                    <form className="flex flex-col items-center rounded-md p-4">
+                                        
+                                        <div>
+                                            <a href="mailto:info@qurux.net">
+                                               
+                                             <Box className="bg-[#d3983f] hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16 text-center flex items-center justify-center">
+                                                 Si no eres cliente contactanos
+                                             </Box>
+
+                                            </a>
+                                        </div>
+                                    </form>
+
+                                    <form className="flex flex-col items-center rounded-md p-4">
+                                        <div>
+                                            <a href="mailto:especialistas@qurux.net">
+                                               
+                                             <Box className="bg-[#d3983f] hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16 text-center flex items-center justify-center">
+                                                 Trabaja como especilista
+                                             </Box>
+
+                                            </a>
+                                        </div>
+                                    </form>
+                                    
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -110,8 +132,8 @@ export const Footer = () => {
                             </div>
                         </div>
                         <div className=" text-right text-xl">
-                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1"><FaFacebookF className='w-full h-full' /></a>
-                            <a href="#" className="h-10 w-10 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1"><FaInstagram className='w-full h-full' /></a>
+                            <a href="https://www.facebook.com/profile.php?id=100078239791278&mibextid=ZbWKwL" className="h-8 w-8 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1" target='_blank'><FaFacebookF className='w-full h-full' /></a>
+                            <a href="https://www.instagram.com/qurux.cr?igsh=dWJwNzFpbGVjbXQ5" className="h-8 w-8 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1" target='_blank' ><FaInstagram className='w-full h-full' /></a>
                             {/* <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a>
                         <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a> */}
                         </div>
