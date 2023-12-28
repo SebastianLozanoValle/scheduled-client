@@ -58,21 +58,21 @@ export const Tabs = () => {
 
   return (
     <>
-      <div className="flex w-full rounded-xl bg-[#d3983f] relative top-[-40px] shadow-xl">
-        <button className='p-4 text-6xl text-white' onClick={() => scrollTabs('left')}><RiArrowLeftCircleLine /></button>
+      <div className="flex w-full rounded-xl bg-white relative top-[-40px] shadow-xl">
+        <button className='p-4 text-6xl text-[#d3983f]' onClick={() => scrollTabs('left')}><RiArrowLeftCircleLine /></button>
         <div className="flex overflow-x-auto" ref={tabsBox}>
           {tabs.map((tab, index) => (
             <div 
               key={tab} 
               ref={tabsRefs[index]}
-              className={`m-[auto] p-4 transition-all duration-500 ${activeTab === tab ? 'bg-gray-200 text-black rounded-3xl' : 'bg-[#d3983f] text-white'} hover:bg-gray-200 hover:text-black hover:rounded-3xl`}
+              className={`m-[auto] p-4 transition-all duration-500 ${activeTab === tab ? 'bg-[#d3983f] text-white rounded-3xl' : 'bg-white text-[#d3983f]'} hover:bg-[#d3983f] hover:text-white hover:rounded-3xl`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
             </div>
           ))}
         </div>
-        <button className='p-4 text-6xl text-white' onClick={() => scrollTabs('right')}><RiArrowRightCircleLine /></button>
+        <button className='p-4 text-6xl text-[#d3983f]' onClick={() => scrollTabs('right')}><RiArrowRightCircleLine /></button>
       </div>
       <div className="flex justify-center">
         <button className=' rounded-full py-2 px-4 bg-[#d3983f] text-white hover:bg-white hover:border hover:border-[#d3983f] hover:text-[#d3983f] transition-all duration-500'>Explorar Servico</button>

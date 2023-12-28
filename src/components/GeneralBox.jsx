@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 export const GeneralBox = ({ w, h, flex, children }) => {
     return (
-        <Box w={w} h={h} flex={flex} color='#161c26' bg='rgba(22,28,38, 0.5)'
+        <Box w={w} h={h} flex={flex} color='#161c26' bg='rgba(255,255,255, 0.5)'
             p={4}
             borderRadius={8}
             borderLeft='solid 1 px rgba(22,28,38, 0.5)'
