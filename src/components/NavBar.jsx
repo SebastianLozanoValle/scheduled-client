@@ -1,7 +1,7 @@
 import { Box, Flex, Button, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, VStack, useDisclosure } from '@chakra-ui/react';
 import { RiUser3Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Link as ChakraLink } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { forwardRef } from 'react';
@@ -25,7 +25,7 @@ export const NavBar = () => {
     return (
         <Box bg="#161c26" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' className='z-10'>
             <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
-                <Text fontSize="xl" color="brand.primary"><img src={logo} width='80px'></img></Text>
+                <Link className='bg-white rounded-full h-4/5 w-auto' to='/'><img src={logo} className='h-full w-auto'/></Link>
                 <Box display={{ base: 'block', md: 'none' }} onClick={onOpen} color='brand.primary' fontSize='2xl'>
                     <RxHamburgerMenu />
                 </Box>

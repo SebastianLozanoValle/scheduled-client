@@ -6,7 +6,7 @@ import { tabs } from '../data/tabs';
 import styled from 'styled-components';
 import ReactDatePicker from 'react-datepicker';
 
-export const Buscador = () => {
+export const Buscador = ({ onSearch }) => {
     const isHome = window.location.pathname === '/';
     const StyledDatePicker = styled(ReactDatePicker)`
     background: white;
@@ -35,9 +35,11 @@ export const Buscador = () => {
   const [inputValue, setInputValue] = useState('');
   const [autocompleteOptions, setAutocompleteOptions] = useState([]);
   const [searchParams, setSearchParams] = useState({
-    servicio: '',
+    servicios: '',
     mundo: '',
     distrito: '',
+    tipoServicio: '',
+    fecha: '',
   });
 
   function handleInputChanges(e) {
@@ -70,8 +72,8 @@ export const Buscador = () => {
         height={isSmallerThan760 ? '80px' : '70px'}
         placeholder=' Servicio'
         fontSize='16px'
-        value={searchParams.servicio}
-        onChange={(e) => handleInputChange('servicio', e.target.value)}
+        value={searchParams.servicios}
+        onChange={(e) => handleInputChange('servicios', e.target.value)}
         borderRadius={isSmallerThan760 ? '10px' : '10px 0px 0px 10px'} 
       >
         {
@@ -89,6 +91,8 @@ export const Buscador = () => {
         fontSize='16px'
         borderRadius={isSmallerThan760 ? '10px' : '0px'} 
         marginTop={isSmallerThan760 ? '10px' : '0px'} 
+        value={searchParams.tipoServicio}
+        onChange={(e) => handleInputChange('tipoServicio', e.target.value)}
       >
         <option value='Mixto'>Mixto</option>
         <option value='Domicilio'>Domicilio</option>
@@ -109,30 +113,29 @@ export const Buscador = () => {
             onChange={(e) => handleInputChange('mundo', e.target.value)}
             borderRadius={isSmallerThan760 ? '10px' : '0px'} 
         >
-            <option value='Mundohombres'>Mundohombres</option>
-            <option value='Mundomujeres'>Mundomujeres</option>
-            <option value='Mundomascotas'>Mundomascotas</option>
+            <option value='Hobres'>Mundohombres</option>
+            <option value='Mujeres'>Mundomujeres</option>
+            <option value='Mascotas'>Mundomascotas</option>
         </Select> :
         <StyledDatePicker
-            selected={selectedDate}
-            onChange={handleDateChange}
-            placeholderText="Selecciona una fecha"
-            display='flex'
-            alignItems='center'
-
-        
-         />
+          selected={selectedDate}
+          onChange={(date) => handleInputChange('fecha', date.toISOString().slice(0, 10))}
+          placeholderText="Selecciona una fecha"
+          display='flex'
+          alignItems='center'
+          value={searchParams.fecha}
+        />
       }
       
 
-      <div className="relative shadow-[20px]">
+      <div className="relative shadow-[20px] w-full md:w-auto">
         <input
           ref={inputRef}
           type="text"
           value={inputValue}
           onChange={handleInputChanges}
           placeholder="Ingrese Distrito"
-          className={`bg-white  ${isSmallerThan760 ? 'h-20' : 'h-full'}  ${isSmallerThan760 ? 'mt-2' : 'mt-0'} px-3 py-2 text-sm placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none`}
+          className={`w-full md:w-auto bg-white  ${isSmallerThan760 ? 'h-20' : 'h-full'}  ${isSmallerThan760 ? 'mt-2' : 'mt-0'} px-3 py-2 text-sm placeholder-gray-500 text-gray-900 rounded-r-md focus:outline-none`}
         />
         {autocompleteOptions.length > 0 && (
           <div className="absolute z-10 mt-2 w-full bg-white rounded-md shadow-lg max-h-60 overflow-auto">
@@ -154,7 +157,6 @@ export const Buscador = () => {
         )}
       </div>
 
-      <Link to='especialistas'>
         <Button
           display='flex'
           justifyContent='center'
@@ -165,10 +167,10 @@ export const Buscador = () => {
           width={isSmallerThan760 ? '30%' : '150px'}
           height={isSmallerThan760 ? '60px' : '70px'}
           marginLeft={isSmallerThan760 ? '0px' : '8px'} 
+          onClick={() => onSearch(searchParams)}
         >
           <b>Search</b>
         </Button>
-      </Link>
     </Box>  
   );
 };

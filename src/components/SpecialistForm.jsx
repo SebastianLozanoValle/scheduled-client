@@ -107,7 +107,7 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
                             </div>
                             
                             <div className="flex gap-4">
-                                <AutocompleteInputField label='Distrito' name="distrito" options={cities} register={register} setValue={setValue} required={true} errors={errors} />
+                                <AutocompleteInputField label='Distrito' name="city" options={cities} register={register} setValue={setValue} required={true} errors={errors} />
                                 <InputField label='Calle' name="street" placeholder="Street" register={register} required={true} errors={errors} />
                             </div>
     

@@ -91,20 +91,20 @@ export const Destacados = ({ mundo = '', ciudad = '', servicios = [], tipoServic
 
     return especialistas.length > 0 ? (
         <div className="flex rounded-xl bg-transparent my-8">
-            <button className='p-4 text-6xl text-slate-700 bg-transparent' onClick={() => scrollSpecialists('left')}><RiArrowLeftCircleLine /></button>
+            <button className='p-2 text-xl text-slate-700 bg-transparent' onClick={() => scrollSpecialists('left')}><RiArrowLeftCircleLine /></button>
             <div className="flex overflow-x-auto" ref={specialistsBox}>
                 {especialistas.map((especialista, index) => (
                     <div 
                         key={especialista.id} 
                         ref={specialistsRefs[index]}
-                        className={`p-4 transition-all duration-500 ${activeSpecialist === especialista ? 'bg-[#d3983f] text-[#d3983f] rounded-3xl scale-100' : 'bg-white text-black border rounded-3xl scale-75'}`}
+                        className={`p-4 w-auto transition-all duration-500 ${activeSpecialist === especialista ? 'bg-[#d3983f] text-[#d3983f] rounded-3xl scale-100' : 'bg-white text-black border rounded-3xl scale-75'}`}
                         onClick={() => setActiveSpecialist(especialista)}
                     >
                         <TarjetaSpecialista especialista={especialista} />
                     </div>
                 ))}
             </div>
-            <button className='p-4 text-6xl text-slate-700 bg-transparent' onClick={() => scrollSpecialists('right')}><RiArrowRightCircleLine /></button>
+            <button className='p-2 text-xl text-slate-700 bg-transparent' onClick={() => scrollSpecialists('right')}><RiArrowRightCircleLine /></button>
         </div>
     ) : <>cargando...</>;
 }
