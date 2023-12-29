@@ -136,8 +136,25 @@ export const Inicio = () => {
              </Box>
              
 
+          {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
+          <Box marginTop='50px' >
+            <Heading color='#caa776' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
+            <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
+            <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
+          {/* Sección de estilistas seleccionados */}
+          </Box>
+          <Destacados />
 
-           <Box marginTop='100px'>
+          
+
+           <Container bg={`url(${peluquerias})`}  height='500px'  backgroundSize='cover' display='flex' justifyContent='center' alignItems='center' backgroundAttachment='fixed'
+            fontSize='20px' backgroundPosition='center' position='relative' maxWidth='100%'>
+            <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.6)'></Box>
+            <Text  color='white' position='relative' fontSize={isSmallerThan760 ? '25px' : '60px'} width='70%' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
+           </Container>
+
+           
+          <Box marginTop='100px'>
              <Heading color='#caa776' fontSize='18px'  textAlign='center'>AROUND THE WORD</Heading>
              <Heading fontSize='40px' textAlign='center'><b>Mundos</b></Heading>
              <Text textAlign='center' fontSize='12px'><b>Loren ipsum dolor sit amet, cibo mundi ea duo, vim exerci phaedrum</b></Text>
@@ -207,22 +224,6 @@ export const Inicio = () => {
               </Box>
              </Link>
            </Container>
-
-           <Container bg={`url(${peluquerias})`}  height='500px'  backgroundSize='cover' display='flex' justifyContent='center' alignItems='center' backgroundAttachment='fixed'
-            fontSize='20px' backgroundPosition='center' position='relative' maxWidth='100%'>
-            <Box position='absolute' top='0' right='0' bottom='0' left='0' bg='rgba(0, 0, 0, 0.6)'></Box>
-            <Text  color='white' position='relative' fontSize={isSmallerThan760 ? '25px' : '60px'} width='70%' textAlign='center'>Explorar, comparar, reservar y pagar en linea.</Text>
-           </Container>
-
-           {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-          <Box marginTop='50px' >
-            <Heading color='#caa776' fontSize='22px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
-            <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
-            <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
-          {/* Sección de estilistas seleccionados */}
-          </Box>
-          <Destacados />
-
 
            <Box height='100%'  width='auto'> 
             <Box bg='#161c26'  height='750px'>

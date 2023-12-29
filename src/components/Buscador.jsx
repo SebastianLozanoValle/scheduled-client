@@ -90,8 +90,9 @@ export const Buscador = () => {
         borderRadius={isSmallerThan760 ? '10px' : '0px'} 
         marginTop={isSmallerThan760 ? '10px' : '0px'} 
       >
-        <option value='Mundohombres'>DOMICILIO</option>
-        <option value='Mundohombres'>CASA</option>
+        <option value='Mixto'>Mixto</option>
+        <option value='Domicilio'>Domicilio</option>
+        <option value='Casa'>Casa</option>
       </Select>
 
 
