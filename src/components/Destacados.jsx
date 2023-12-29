@@ -5,6 +5,7 @@ import { RiArrowLeftCircleLine, RiArrowRightCircleLine } from "react-icons/ri";
 import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 
 export const Destacados = () => {
+
     const { loading, error, data } = useQuery(GET_SPECIALISTS);
 
     const especialistas = useMemo(() => {

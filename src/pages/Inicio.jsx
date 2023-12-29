@@ -24,6 +24,11 @@ import flecha from '../assets/imagenes/flecha.png'
 
 
 export const Inicio = () => {
+    
+  setTimeout(() => {
+      window.scrollTo(0, 0);
+  }, 1000);
+
   console.log('se esta renderizando inicio')
 
   const inputRef = useRef();

@@ -34,6 +34,10 @@ border-radius: 0px 10px 10px 0px;
 `;
 
 export const Mundomujeres = () => {
+    
+  setTimeout(() => {
+      window.scrollTo(0, 0);
+  }, 5);
 
   const [isSmallerThan760] = useMediaQuery('(max-width: 768px)');
   const [selectedDate, setSelectedDate] = useState(null);
