@@ -5,6 +5,7 @@ import { CustomAccordionItem } from "./CustomAccordionItem";
 import { gql, useMutation } from "@apollo/client";
 import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 import { DeleteConfirmationDialog } from './DeleteConfirmationDialog';
+import { EditSpecialistForm } from './EditSpecialistForm';
 
 const DELETE_SPECIALIST = gql`
     mutation deleteSpecialist($id: ID!) {
@@ -45,6 +46,21 @@ export const CustomCard = ({ especialista }) => {
 
     const handleOpen = () => setIsOpen(true);
     const handleClose = () => setIsOpen(false);
+    const [isFormOpen, setIsFormOpen] = useState(false);
+
+    const handleOpenForm = () => {
+        console.log('Opening form...');
+        setIsFormOpen(true);
+        console.log('isFormOpen:', isFormOpen);
+    };
+
+    const handleCloseForm = () => {
+        console.log('Closing form...');
+        setIsFormOpen(false);
+        console.log('isFormOpen:', isFormOpen);
+    };
+
+    console.log('Rendering CustomCard. isFormOpen:', isFormOpen);
 
     return (
         <>
@@ -69,7 +85,7 @@ export const CustomCard = ({ especialista }) => {
                     <Accordion allowToggle>
                         <CustomAccordionItem title="Información Personal">
                             <Text>Edad: {especialista.age}</Text>
-                            {/* <Text>Sexo: {especialista.sexo}</Text> */}
+                            <Text>Sexo: {especialista.gender}</Text>
                             <Text>Ciudad: {especialista.city}</Text>
                             <Text>Calle: {especialista.street}</Text>
                         </CustomAccordionItem>
@@ -137,7 +153,9 @@ export const CustomCard = ({ especialista }) => {
                     >
                         Destacar
                     </Button>
-                    <Button colorScheme='blue' aria-label="Editar" flex='1' leftIcon={<RiPencilLine />}>
+                    <Button colorScheme='blue' aria-label="Editar" flex='1' leftIcon={<RiPencilLine />}
+                        onClick={handleOpenForm}
+                    >
                         Editar
                     </Button>
                     <Button colorScheme='red' aria-label="Borrar" flex='1' leftIcon={<RiDeleteBinLine />}
@@ -148,6 +166,7 @@ export const CustomCard = ({ especialista }) => {
                 </CardFooter>
             </Card>
             <DeleteConfirmationDialog isOpen={isOpen} onClose={handleClose} especialista={especialista} deleteSpecialist={deleteSpecialist} />
+            {isFormOpen && <EditSpecialistForm isFormOpen={isFormOpen} specialist={especialista} onClose={handleCloseForm} />}
         </>
     )
 }

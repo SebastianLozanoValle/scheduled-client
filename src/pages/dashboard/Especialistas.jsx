@@ -17,12 +17,14 @@ export const GET_SPECIALISTS = gql`
             username
             age
             avatar
+            gender
             active
             city
             street
             role
             highlighted
             specialtys
+            serviceType
             weeklySchedule {
                 Monday {
                     start
@@ -61,13 +63,14 @@ export const GET_SPECIALISTS = gql`
                 estimatedEndTime
             }
         }
-
     }
 `
 
 export const Especialistas = ({ isMobile }) => {
 
     const { loading, error, data } = useQuery(GET_SPECIALISTS);
+
+    if (error) console.log(error);
 
     const especialistas = data?.findSpecialists || [];
 
@@ -80,15 +83,9 @@ export const Especialistas = ({ isMobile }) => {
 
     return (
         <Box p={6} bg="white" w="100vw" color="black" mx="auto">
-            {/* {isMobile ? (
-                <EspecialistasMobile especialistas={especialistas} />
-            ) : (
-                <EspecialistasDesktop especialistas={especialistas} />
-            )} */}
             <Box ml={{base:'' ,md: '265px' }} color='black' minH="calc(100vh - 108px)" pb={{base:'64px' ,md: '0' }}>
                 <Flex gap={2}>
                     <Input
-                        // color='white'
                         placeholder="Buscar especialista" 
                         value={search} 
                         onChange={(e) => setSearch(e.target.value)} 

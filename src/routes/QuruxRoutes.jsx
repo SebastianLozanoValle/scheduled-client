@@ -11,6 +11,7 @@ import {Terminos} from '../pages/Terminos'
 import Pasarela from "../pages/pasarela/Pasarela"
 import {GuiaUsuario} from '../pages/GuiaUsuario'
 import {TCEspecialistas} from '../pages/TCEspecialistas'
+import { AgendarEspecialista } from "../pages/AgendarEspecialista"
 
 
 
@@ -30,6 +31,7 @@ export const QuruxRoutes = () =>{
             <Route path="/ListaE" element={<><ListaE/></>} />
             <Route path="/login" element={<><Login/></>} />
             <Route path="/pasarela" element={<><Pasarela/></>} />
+            <Route path="/agendar-especialista/:id" element={<AgendarEspecialista />} />
 
            
 
