@@ -32,10 +32,11 @@ export const AutocompleteInputField = ({ label, name, options, register, setValu
       {label}*
       <div className="relative">
         <input
-          {...register(name, { required })}
+          name={name}
           ref={inputRef}
           value={inputValue}
           onChange={handleInputChange}
+          onBlur={() => setValue(name, inputValue, { shouldValidate: true })}
           className="w-full p-2 border rounded shadow-sm"
           placeholder={label}
         />

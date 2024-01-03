@@ -1,3 +1,4 @@
+import { Link, Navigate } from 'react-router-dom'
 import imagenGenerica from '../assets/imagenes/peluqueria.jpg'
 
 export const TarjetaSpecialista = ({ especialista }) => {
@@ -21,7 +22,7 @@ export const TarjetaSpecialista = ({ especialista }) => {
                     <div className="sm:flex gap-4 w-full justify-between">
                         <p className='text-sm text-slate-800 font-semibold py-2'>{especialista.username}</p>
                         <p className='text-sm text-gray-500 font-normal py-2'>{especialista.date? especialista.date : "19-04-2023"}</p>
-                        <button className='text-sm text-[#161c26] font-bold px-4 py-2 bg-white rounded-lg hover:bg-[#161c26] hover:text-[#d3983f] transition-all duration-500'>Agendar </button>
+                        <Link to={`/agendar-especialista/${especialista.id}`}><button className='text-sm text-[#161c26] font-bold px-4 py-2 bg-white rounded-lg hover:bg-[#161c26] hover:text-[#d3983f] transition-all duration-500'>Agendar </button></Link>
                     </div>
                 </div>
             </div>
