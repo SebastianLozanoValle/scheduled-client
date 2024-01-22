@@ -1,7 +1,7 @@
 import { CustomAccordionItem } from './CustomAccordionItem';
 import { Accordion, Box, Text, VStack } from '@chakra-ui/react';
 import { Dialog } from '@headlessui/react';
-import { gql } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { GET_SPECIALISTS } from '../pages/dashboard/Especialistas';
 import { InputField } from './InputField';
 import { CheckboxField } from './CheckboxField';
@@ -60,6 +60,10 @@ export const EditSpecialistForm = ({ specialist, onClose, isFormOpen }) => {
         data.role = "specialist";
         data.active = true;
         data.specialtys = specialtys;
+
+        // Remove __typename from weeklySchedule
+        delete data.weeklySchedule.__typename;
+
         const updatedSpecialist = {
             username: data.username,
             gender: data.gender,
@@ -104,11 +108,11 @@ export const EditSpecialistForm = ({ specialist, onClose, isFormOpen }) => {
     console.log('Rendering EditSpecialistForm. isModalOpen:', isModalOpen);
 
     const handleSpecialtyChange = (event) => {
-      if (event.target.checked) {
-        setSpecialtys([...specialtys, event.target.value]);
-      } else {
-        setSpecialtys(specialtys.filter(specialty => specialty !== event.target.value));
-      }
+        if (event.target.checked) {
+            setSpecialtys([...specialtys, event.target.value]);
+        } else {
+            setSpecialtys(specialtys.filter(specialty => specialty !== event.target.value));
+        }
     };
 
     return (
@@ -125,34 +129,34 @@ export const EditSpecialistForm = ({ specialist, onClose, isFormOpen }) => {
                 <div className="max-w-md mx-auto ">
                     <div className="rounded space-y-4 p-6 shadow-xl bg-white">
                         <Dialog.Title className="text-lg font-medium text-gray-900">Specialist Form</Dialog.Title>
-    
+
                         <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4 bg-white rounded shadow-md text-black">
                             {/* Required fields */}
                             <div className='flex gap-4'>
                                 <InputField label='Nombre' name="username" placeholder="Username" register={register} required={false} errors={errors} />
                                 {/* <InputField label='Contraseña' name="password" placeholder="Password" register={register} required={true} errors={errors} type="password" /> */}
                             </div>
-                            
+
                             <div className="flex gap-4">
                                 {/* <InputField label='Edad' name="age" placeholder="Age" register={register} required={false} errors={errors} type="number" /> */}
                                 <InputField label='Sexo' name="gender" placeholder="Gender" register={register} required={false} errors={errors} />
                             </div>
-                            
+
                             <div className="flex w-full gap-4">
                                 <AutocompleteInputField label='Distrito' name="city" options={cities} register={register} setValue={setValue} required={false} errors={errors} />
                                 {/* <InputField label='Distrito' name="city" placeholder="Distrito" register={register} required={false} errors={errors} /> */}
                                 <InputField label='Calle' name="street" placeholder="Street" register={register} required={false} errors={errors} />
                             </div>
-    
+
                             {/* Optional fields */}
                             <CheckboxField label='Destacado' name="highlighted" register={register} errors={errors} />
-    
+
                             <div className="flex flex-wrap gap-4">
                                 {specialtyOptions.map(specialty => (
                                     <CheckboxField key={specialty} label={specialty} name="specialtys" value={specialty} register={register} errors={errors} onChange={handleSpecialtyChange} />
                                 ))}
                             </div>
-    
+
                             <Accordion allowToggle>
                                 <CustomAccordionItem title="Horario de Atención" children={
                                     daysOfWeek.map((day, index) => (
@@ -168,9 +172,9 @@ export const EditSpecialistForm = ({ specialist, onClose, isFormOpen }) => {
                                             <button className='m-4 p-1 bg-green-600 rounded-md' type="button" onClick={() => fieldArrayOperations[day].append({ start: "", end: "" })}>Add Time Slot</button>
                                         </div>
                                     ))
-                                }/>
+                                } />
                             </Accordion>
-    
+
                             <button type="submit" className="mt-4 w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Save
                             </button>

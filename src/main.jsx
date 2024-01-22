@@ -9,6 +9,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
     uri: 'https://sever-qurux-production.up.railway.app/graphql',
+    // uri: 'http://localhost:33402/graphql',
   }),
 })
 
