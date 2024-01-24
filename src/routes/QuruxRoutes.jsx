@@ -16,30 +16,32 @@ import { AgendarEspecialista } from "../pages/AgendarEspecialista"
 
 
 
-export const QuruxRoutes = () =>{
-    return (
-        <Routes>
-            <Route path="/" element={<><Inicio/></>} />
-            <Route path="/mundohombres" element={<><Mundohombres/></>} />
-            <Route path="/mundomujeres" element={<><Mundomujeres/></>} />
-            <Route path="/mundomascotas" element={<><Mundomascotas/></>} />
-            <Route path="/dashboard/*" element={<><DashboardRoutes/></>} />
-            <Route path="/Guiaespecialista" element={<><Guiaespecialista/></>} />
-            <Route path="/GuiaUsuario" element={<><GuiaUsuario/></>} />
-            <Route path="/TCEspecialistas" element={<><TCEspecialistas/></>} />
-            <Route path="/Terminos" element={<><Terminos/></>} />
-            <Route path="/ListaE" element={<><ListaE/></>} />
-            <Route path="/login" element={<><Login/></>} />
-            <Route path="/pasarela" element={<><Pasarela/></>} />
-            <Route path="/agendar-especialista/:id" element={<AgendarEspecialista />} />
+// eslint-disable-next-line react/prop-types
+export const QuruxRoutes = ({ setToken }) => {
 
-           
+        return (
+                <Routes>
+                        <Route path="/" element={<><Inicio/></>} />
+                        <Route path="/mundohombres" element={<><Mundohombres/></>} />
+                        <Route path="/mundomujeres" element={<><Mundomujeres/></>} />
+                        <Route path="/mundomascotas" element={<><Mundomascotas/></>} />
+                        <Route path="/dashboard/*" element={<><DashboardRoutes/></>} />
+                        <Route path="/Guiaespecialista" element={<><Guiaespecialista/></>} />
+                        <Route path="/GuiaUsuario" element={<><GuiaUsuario/></>} />
+                        <Route path="/TCEspecialistas" element={<><TCEspecialistas/></>} />
+                        <Route path="/Terminos" element={<><Terminos/></>} />
+                        <Route path="/ListaE" element={<><ListaE/></>} />
+                        <Route path="/login" element={<><Login setToken ={setToken} /></>} />
+                        <Route path="/pasarela" element={<><Pasarela/></>} />
+                        <Route path="/agendar-especialista/:id" element={<AgendarEspecialista />} />
 
-            {/* Ruta comodín para cualquier ruta no coincidente */}
-            <Route path="/*" element={<Navigate to="/404" />} />
-            
-            {/* Página 404 */}
-            <Route path="/404" element={<>Página no encontrada (404)</>} />
-        </Routes>
-    )
+
+
+                    {/* Ruta comodín para cualquier ruta no coincidente */}
+                    <Route path="/*" element={<Navigate to="/404" />} />
+
+                    {/* Página 404 */}
+                    <Route path="/404" element={<>Página no encontrada (404)</>} />
+                </Routes>
+        )
 }

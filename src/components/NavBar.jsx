@@ -6,20 +6,31 @@ import { Link as ChakraLink } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { forwardRef } from 'react';
 import logo from '../assets/imagenes/logo.png'
+import {useApolloClient} from "@apollo/client";
 
+// eslint-disable-next-line react/display-name
 const CustomLink = forwardRef((props, ref) => {
   const location = useLocation();
   const isActive = location.pathname === props.to;
   return (
-    <ChakraLink ref={ref} as={NavLink} {...props} color={isActive ? '#caa776' : 'white'}>
+      // eslint-disable-next-line react/prop-types
+    <ChakraLink className={props.className} ref={ref} as={NavLink} {...props} color={isActive ? '#caa776' : 'white'}>
+        {/* eslint-disable-next-line react/prop-types */}
       {props.children}
     </ChakraLink>
   );
 });
 
-export const NavBar = () => {
+export const NavBar = ({ setToken }) => {
+    const client = useApolloClient();
 
-  const location = useLocation();
+    const logout = () => {
+        localStorage.removeItem('user-token');
+        client.resetStore();
+        setToken(null);
+    }
+
+    const location = useLocation();
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -30,46 +41,61 @@ export const NavBar = () => {
                     <RxHamburgerMenu />
                 </Box>
                 <Box display={{ base: 'none', md: 'block' }}>
-                <Flex>
-                    <CustomLink to="/" px={8} my='auto' color="white">Inicio</CustomLink>
-                    <CustomLink to="/mundohombres" px={8} my='auto' color="white">Hombres</CustomLink>
-                    <CustomLink to="/mundomujeres" px={8} my='auto' color="white">Mujeres</CustomLink>
-                    <CustomLink to="/mundomascotas" px={8} my='auto' color="white">Mascotas</CustomLink>
-                    <Menu>
-                    <MenuButton
-                      // px={6}
-                      bg={'#d3983f'}
-                      color={'white'}
-                      _active={{ bg: '#212024',
-                      color: '#caa776' }}
-                      as={Button} leftIcon={<RiUser3Line />}>
-                      Sebastian
-                    </MenuButton>
-                      <MenuList
-                        // bg={'teal.500'} borderRadius={6} p={6}
-                      >
-                        <MenuItem bg='#212024' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
-                        <MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
-                        <MenuItem bg='#212024' color={location.pathname === "/logout" ? '#caa776' : 'white'} as={CustomLink} to="/logout">Cerrar sesión</MenuItem>
-                      </MenuList>
-                    </Menu>
-                </Flex>
+                    <Flex>
+                        <CustomLink to="/" px={8} my='auto' color="white">Inicio</CustomLink>
+                        <CustomLink to="/mundohombres" px={8} my='auto' color="white">Hombres</CustomLink>
+                        <CustomLink to="/mundomujeres" px={8} my='auto' color="white">Mujeres</CustomLink>
+                        <CustomLink to="/mundomascotas" px={8} my='auto' color="white">Mascotas</CustomLink>
+                        {
+                            localStorage.getItem('user-token') !== null?
+                                <Menu>
+                                    <MenuButton
+                                        // px={6}
+                                        bg={'#d3983f'}
+                                        color={'white'}
+                                        mr={4}
+                                        _active={{ bg: '#212024',
+                                            color: '#caa776' }}
+                                        as={Button} leftIcon={<RiUser3Line />}>
+                                        Sebastian
+                                    </MenuButton>
+                                    <MenuList
+                                        pr={4}
+                                        // bg={'teal.500'} borderRadius={6} p={6}
+                                    >
+                                        <MenuItem bg='#212024' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
+                                        <MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
+                                        <MenuItem
+                                            as={Button}
+                                            className="mx-2 bg-gray-800 text-white hover:text-yellow-300"
+                                            onClick={() => {
+                                                logout();
+                                            }}
+                                        >
+                                            Cerrar sesión
+                                        </MenuItem>
+                                    </MenuList>
+                                </Menu>
+                                :
+                                <CustomLink to="/login" px={8} my='auto' color="white">Iniciar sesión</CustomLink>
+                        }
+                    </Flex>
                 </Box>
             </Flex>
             <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent mt={16} bg={'black'} p={8}>
-                  <ModalBody>
-                      <VStack align="start" spacing={4}>
-                      <CustomLink to="/" onClick={onClose}>Inicio</CustomLink>
-                      <CustomLink to="/mundohombres" onClick={onClose}>Mundo Hombres</CustomLink>
-                      <CustomLink to="/mundomujeres" onClick={onClose}>Mundo Mujeres</CustomLink>
-                      <CustomLink to="/mundomascotas" onClick={onClose}>Mundo Mascotas</CustomLink>
-                      <CustomLink to="/dashboard" onClick={onClose}>Dashboard</CustomLink>
-                      </VStack>
-                  </ModalBody>
-                </ModalContent>
+            <ModalOverlay />
+            <ModalContent mt={16} bg={'black'} p={8}>
+            <ModalBody>
+            <VStack align="start" spacing={4}>
+            <CustomLink to="/" onClick={onClose}>Inicio</CustomLink>
+            <CustomLink to="/mundohombres" onClick={onClose}>Mundo Hombres</CustomLink>
+            <CustomLink to="/mundomujeres" onClick={onClose}>Mundo Mujeres</CustomLink>
+            <CustomLink to="/mundomascotas" onClick={onClose}>Mundo Mascotas</CustomLink>
+            <CustomLink to="/dashboard" onClick={onClose}>Dashboard</CustomLink>
+            </VStack>
+            </ModalBody>
+            </ModalContent>
             </Modal>
         </Box>
-  );
+    );
 };
