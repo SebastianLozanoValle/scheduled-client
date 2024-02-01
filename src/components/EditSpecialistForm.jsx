@@ -62,7 +62,10 @@ export const EditSpecialistForm = ({ specialist, onClose, isFormOpen }) => {
         data.specialtys = specialtys;
 
         // Remove __typename from weeklySchedule
-        delete data.weeklySchedule.__typename;
+        // delete data.weeklySchedule.__typename;
+        // delete data.weeklySchedule.Monday[0].__typename;
+
+        console.log(data)
 
         const updatedSpecialist = {
             username: data.username,

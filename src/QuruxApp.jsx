@@ -6,6 +6,7 @@ import {Footer} from './components/Footer'
 import ScrollToTop from "./components/ScrollToTop";
 import { useLocation } from "react-router-dom";
 import {useState} from "react";
+import UserProvider from "./context/providers/UserProvider";
 
 
 
@@ -16,15 +17,15 @@ export const QuruxApp = () => {
     const [token, setToken] = useState(() => localStorage.getItem('user-token'));
 
     return (
-        <ChakraBaseProvider theme={theme}>
-            <ScrollToTop />
-            {!isLogin && <NavBar setToken={setToken} />}
-            <Box mt={!isLogin && '60px'}>
-                <QuruxRoutes setToken ={setToken} />
-            </Box>
-            {!isLogin && <Footer />}
-
-        </ChakraBaseProvider>
-
+        // <UserProvider>
+            <ChakraBaseProvider theme={theme}>
+                <ScrollToTop />
+                {!isLogin && <NavBar setToken={setToken} />}
+                <Box mt={!isLogin && '60px'}>
+                    <QuruxRoutes setToken ={setToken} />
+                </Box>
+                {!isLogin && <Footer />}
+            </ChakraBaseProvider>
+        // </UserProvider>
     );
 }

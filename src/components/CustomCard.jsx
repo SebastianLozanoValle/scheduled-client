@@ -29,7 +29,8 @@ const TOGGLE_SPECIALIST_HIGHLIGHT = gql`
 export const CustomCard = ({ especialista }) => {
     const [deleteSpecialist] = useMutation(DELETE_SPECIALIST,
         {refetchQueries: [{ query: GET_SPECIALISTS }]});
-    const [toggleSpecialistHighlight] = useMutation(TOGGLE_SPECIALIST_HIGHLIGHT);
+    const [toggleSpecialistHighlight] = useMutation(TOGGLE_SPECIALIST_HIGHLIGHT,
+        {refetchQueries: [{ query: GET_SPECIALISTS }]});
 
     const handleToggleHighlight = async () => {
         try {
