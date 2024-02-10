@@ -15,14 +15,15 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
+  connectToDevTools: true,
   cache: new InMemoryCache({
     addTypename: false, // Aquí es donde desactivas los __typename
   }),
   link: authLink.concat(new HttpLink({
     // uri: 'https://sever-qurux-production.up.railway.app/graphql',
-    // uri: 'http://localhost:33402/graphql',
-    uri: 'https://sever-qurux-k4t7fwcs5-sebastianlozanovalles-projects.vercel.app/graphql',
+    uri: 'http://localhost:33402/graphql',
+    // uri: 'https://sever-qurux.vercel.app/graphql',
   })),
 });
 

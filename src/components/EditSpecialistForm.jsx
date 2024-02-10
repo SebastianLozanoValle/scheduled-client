@@ -10,10 +10,12 @@ import { AutocompleteInputField } from './AutocompleteInputField';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useToast } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
+import { GET_SPECIALIST } from '../querys/querys';
 
 const UPDATE_SPECIALIST = gql`
 mutation($id: ID!, $input: UpdateSpecialistInput!) {
     updateSpecialist(id: $id, input: $input) {
+        id
         username
     }
 }
@@ -23,7 +25,12 @@ const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat
 
 export const EditSpecialistForm = ({ specialist, onClose, isFormOpen }) => {
     const [updateSpecialist, { data, loadaing, error }] = useMutation(UPDATE_SPECIALIST,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        {
+            refetchQueries: [
+                { query: GET_SPECIALISTS },
+                { query: GET_SPECIALIST },
+            ]
+        });
     const toast = useToast();
     const { register, handleSubmit, control, formState: { errors }, setValue } = useForm({
         defaultValues: {
