@@ -65,6 +65,9 @@ export const GET_CLIENT = gql`
 
 export const IS_SLOT_AVAILABLE = gql`
     mutation IsSlotAvailable($input: SlotInput!) {
-        isSlotAvailable(input: $input)
+        isSlotAvailable(input: $input){
+            isSlotAvailable
+            reason
+        }
     }
 `;
