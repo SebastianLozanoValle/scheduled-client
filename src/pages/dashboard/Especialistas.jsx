@@ -23,6 +23,7 @@ export const GET_SPECIALISTS = gql`
             street
             role
             highlighted
+            world
             specialtys
             serviceType
             weeklySchedule {

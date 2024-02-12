@@ -91,6 +91,7 @@ export const CustomCard = ({ especialista }) => {
                             <Text>Calle: {especialista.street}</Text>
                         </CustomAccordionItem>
                         <CustomAccordionItem title="Especialidades">
+                            <Text fontWeight={'bold'}>Mundo {especialista.world}</Text>
                             {especialista.specialtys.map((especialidad, index) => (
                                 <Text key={`${especialista.id}${index}`}>{especialidad}</Text>
                             ))}

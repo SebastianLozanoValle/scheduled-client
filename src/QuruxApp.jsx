@@ -6,7 +6,6 @@ import {Footer} from './components/Footer'
 import ScrollToTop from "./components/ScrollToTop";
 import { useLocation } from "react-router-dom";
 import {useState} from "react";
-import UserProvider from "./context/providers/UserProvider";
 
 
 

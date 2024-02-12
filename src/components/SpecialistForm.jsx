@@ -112,7 +112,7 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
                             </div>
     
                             <div className="flex gap-4">
-                                <SelectField label='Tipo de servicio' name="serviceType" options={["Mixto", "Domicilio", "Casa"]} register={register} required={true} errors={errors} />
+                                <SelectField label='Tipo de servicio' name="serviceType" options={["Mixto", "Domicilio", "Presencial"]} register={register} required={true} errors={errors} />
                                 <SelectField label='Pago' name="paymentOption" options={["weekly", "biweekly", "monthly"]} register={register} required={true} errors={errors} />
                             </div>
 

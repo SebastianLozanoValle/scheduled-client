@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { forwardRef } from 'react';
 import logo from '../assets/imagenes/logo.png'
 import { useApolloClient } from "@apollo/client";
+import { useUserStore } from '../store/userStore';
 
 // eslint-disable-next-line react/display-name
 const CustomLink = forwardRef((props, ref) => {
@@ -23,6 +24,9 @@ const CustomLink = forwardRef((props, ref) => {
 
 export const NavBar = ({ setToken }) => {
 
+    const { name, userRole, setUser } = useUserStore();
+    console.log(name, userRole);
+
     console.log(localStorage.getItem('user-token'))
 
     const client = useApolloClient();
@@ -31,6 +35,7 @@ export const NavBar = ({ setToken }) => {
         localStorage.removeItem('user-token');
         client.resetStore();
         setToken(null);
+        setUser('', '', ''); // reset Zustand store
     }
 
     const location = useLocation();
@@ -62,7 +67,7 @@ export const NavBar = ({ setToken }) => {
                                             color: '#caa776'
                                         }}
                                         as={Button} leftIcon={<RiUser3Line />}>
-                                        Sebastian
+                                        {name}
                                     </MenuButton>
                                     <MenuList
                                         pr={4}

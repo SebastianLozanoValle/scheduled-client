@@ -6,12 +6,14 @@ import {ListaE} from '../pages/ListaE'
 import {Mundomujeres} from '../pages/Mundomujeres'
 import { Mundomascotas } from "../pages/Mundomascotas"
 import { Login } from "../pages/login/Login"
+import { Auth } from "../pages/login/Auth"
 import {Guiaespecialista} from '../pages/Guiaespecialista'
 import {Terminos} from '../pages/Terminos'
 import Pasarela from "../pages/pasarela/Pasarela"
 import {GuiaUsuario} from '../pages/GuiaUsuario'
 import {TCEspecialistas} from '../pages/TCEspecialistas'
 import { AgendarEspecialista } from "../pages/AgendarEspecialista"
+import { Checkout } from "../pages/pasarela/Checkout"
 
 
 
@@ -32,8 +34,9 @@ export const QuruxRoutes = ({ setToken }) => {
                         <Route path="/Terminos" element={<><Terminos/></>} />
                         <Route path="/ListaE" element={<><ListaE/></>} />
                         <Route path="/login" element={<><Login setToken ={setToken} /></>} />
-                        <Route path="/pasarela" element={<><Pasarela/></>} />
+                        <Route path="/auth" element={<><Auth /></>} />
                         <Route path="/agendar-especialista/:id" element={<AgendarEspecialista />} />
+                        <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime" element={<Checkout />} />
 
 
 

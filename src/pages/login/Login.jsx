@@ -48,7 +48,7 @@ export const Login =({ setToken })=> {
     const copyrightText = `Copyright . ${currentYear}`;
 
     if (isLogged) {
-        return <Navigate to="/" />
+        return <Navigate to="/auth" />
     }
 
     return(

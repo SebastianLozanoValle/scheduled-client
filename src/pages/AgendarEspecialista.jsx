@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GET_SPECIALIST, IS_SLOT_AVAILABLE } from "../querys/querys";
 import { useMutation, useQuery } from "@apollo/client";
 import { Calendario } from "../components/Calendario";
 
 export const AgendarEspecialista = () => {
+    const navigate = useNavigate();
     const [prueba, setPrueba] = useState({
         date: "",
         specialistId: "",
         startTime: "",
-        estimatedEndTime: ""
+        estimatedEndTime: "",
+        serviceType: "Presencial"
     });
 
     const [isAvailable, setIsAvailable] = useState(false);
@@ -53,6 +55,14 @@ export const AgendarEspecialista = () => {
         const totalMinutes = newSelectedValues.reduce((acc, val) => acc + val, 0);
         setMinutosTotales(totalMinutes);
         console.log(totalMinutes);
+
+        if (name === 'serviceType') {
+            const serviceType = value;
+            setPrueba(prevState => ({
+                ...prevState,
+                serviceType
+            }));
+        }
         if (name === 'date') {
             const dateRelative = value;
             const dateData = dateRelative.split('T');
@@ -86,7 +96,8 @@ export const AgendarEspecialista = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        consultarDisponibilidad();
+        navigate(`/checkout/${id}/${prueba.date}/${100.0}/${0}/${["manicura","pedicura"]}/${prueba.startTime}/${prueba.estimatedEndTime}`);
+        // /checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime
     }
 
     const consultarDisponibilidad = () => {
@@ -126,6 +137,7 @@ export const AgendarEspecialista = () => {
                     </div>
                     <div>
                         <h4 className="inline">{especialista.city} {especialista.street}</h4>
+                        <h5 className="font-bold">Disponibilidad: {especialista.serviceType}</h5>
                     </div>
                 </div>
                 <img className="h-20 w-20 rounded-full object-cover shadow-2xl" src="https://www.movilzona.es/app/uploads-movilzona.es/2023/04/fto-perfil.jpg?x=480&y=375&quality=40" />
@@ -182,6 +194,11 @@ export const AgendarEspecialista = () => {
                                 <div className="flex flex-col gap-4">
                                     <label className="font-bold" htmlFor="fecha">Fecha</label>
                                     <input className="rounded shadow-2xl p-4" type="datetime-local" id="date" name="date" onChange={handleInputChange} />
+                                    <label className="font-bold" htmlFor="serviceType">Tipo de Servicio</label>
+                                    <select className="rounded shadow-2xl p-4" name="serviceType" id="serviceType" onChange={handleInputChange}>
+                                        <option value="Presencial">Presencial</option>
+                                        <option value="Domicilio">Domicilio</option>
+                                    </select>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-4">
