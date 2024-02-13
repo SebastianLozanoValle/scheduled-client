@@ -25,9 +25,6 @@ const CustomLink = forwardRef((props, ref) => {
 export const NavBar = ({ setToken }) => {
 
     const { name, userRole, setUser } = useUserStore();
-    console.log(name, userRole);
-
-    console.log(localStorage.getItem('user-token'))
 
     const client = useApolloClient();
 

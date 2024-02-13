@@ -17,7 +17,7 @@ export const TarjetaSpecialista = ({ especialista }) => {
                 <img className='object-cover w-12 h-12 rounded-full' src={especialista.avatar? especialista.avatar : imagenGenerica} alt="" />
                 <div className="sm:flex flex-col gap-2 w-full">
                     <h3 className='text-lg font-bold text-slate-700 leading-7 whitespace-normal py-2'>
-                        {especialista.username}
+                        {especialista.username}  {especialista.serviceType}
                     </h3>
                     <div className="sm:flex gap-4 w-full justify-between">
                         <p className='text-sm text-slate-800 font-semibold py-2'>{especialista.username}</p>

@@ -59,6 +59,7 @@ export const GET_SPECIALISTS = gql`
             appointments {
                 id
                 clientId
+                date
                 status
                 startTime
                 estimatedEndTime

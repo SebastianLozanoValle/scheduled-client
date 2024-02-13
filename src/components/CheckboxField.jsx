@@ -4,3 +4,4 @@ export const CheckboxField = ({ label, name, register }) => (
         {name}
     </label>
 );
+//

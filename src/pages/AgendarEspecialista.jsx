@@ -96,8 +96,8 @@ export const AgendarEspecialista = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate(`/checkout/${id}/${prueba.date}/${100.0}/${0}/${["manicura","pedicura"]}/${prueba.startTime}/${prueba.estimatedEndTime}`);
-        // /checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime
+        navigate(`/checkout/${id}/${prueba.date}/${100.0}/${0}/${["manicura","pedicura"]}/${prueba.startTime}/${prueba.estimatedEndTime}/${prueba.serviceType}/${especialista.username}`);
+        // /checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType
     }
 
     const consultarDisponibilidad = () => {

@@ -28,9 +28,9 @@ const TOGGLE_SPECIALIST_HIGHLIGHT = gql`
 
 export const CustomCard = ({ especialista }) => {
     const [deleteSpecialist] = useMutation(DELETE_SPECIALIST,
-        {refetchQueries: [{ query: GET_SPECIALISTS }]});
+        { refetchQueries: [{ query: GET_SPECIALISTS }] });
     const [toggleSpecialistHighlight] = useMutation(TOGGLE_SPECIALIST_HIGHLIGHT,
-        {refetchQueries: [{ query: GET_SPECIALISTS }]});
+        { refetchQueries: [{ query: GET_SPECIALISTS }] });
 
     const handleToggleHighlight = async () => {
         try {
@@ -68,18 +68,18 @@ export const CustomCard = ({ especialista }) => {
             <Card maxW='md' boxShadow='xl'>
                 <CardHeader>
                     <Flex spacing='4'>
-                    <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                        <Avatar bg='brand.primary' name='Sasuke Uchiha' src='https://bit.ly/broken-link' />
+                        <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+                            <Avatar bg='brand.primary' name='Sasuke Uchiha' src='https://bit.ly/broken-link' />
 
-                        <Box>
-                        <Heading size='sm'>{especialista.username}</Heading>
-                        <Text>{especialista.role}</Text>
-                        </Box>
-                    </Flex>
-                    <IconButton
-                        aria-label='See menu'
-                        icon={<RiMore2Line />}
-                    />
+                            <Box>
+                                <Heading size='sm'>{especialista.username}</Heading>
+                                <Text>{especialista.role}</Text>
+                            </Box>
+                        </Flex>
+                        <IconButton
+                            aria-label='See menu'
+                            icon={<RiMore2Line />}
+                        />
                     </Flex>
                 </CardHeader>
                 <CardBody>
@@ -104,7 +104,7 @@ export const CustomCard = ({ especialista }) => {
                                         return null;  // No renderizar nada si dia es '__typename'
                                     }
                                     return (
-                                        especialista.weeklySchedule[dia].length ?(
+                                        especialista.weeklySchedule[dia].length ? (
                                             <Box key={indexDia}>
                                                 <Text fontWeight="bold">{dia}</Text>
                                                 {especialista.weeklySchedule[dia].map((hora, indexHora) => (
@@ -124,14 +124,18 @@ export const CustomCard = ({ especialista }) => {
                         <CustomAccordionItem title="Citas">
                             {especialista.appointments.length > 0 ? (
                                 <VStack align="start" spacing={2} mb={4}>
-                                    {especialista.appointments.map((appointment, indexCita) => (
-                                        <VStack align="start" spacing={2} mb={4} borderTop='1px' borderBottom='1px' key={appointment.id}>
-                                            <Text fontWeight="bold">id: {appointment.id}</Text>
-                                            <Text>{appointment.startTime} - {appointment.estimatedEndTime}</Text>
-                                            <Text fontWeight="bold">Status: {appointment.status}</Text>
-
-                                        </VStack>
-                                    ))}
+                                    {especialista.appointments.map((appointment, indexCita) => {
+                                        const date = new Date(Number(appointment.date));
+                                        const formattedDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+                                        return (
+                                            <VStack align="start" spacing={2} mb={4} borderTop='1px' borderBottom='1px' key={appointment.id}>
+                                                <Text fontWeight="bold">id: {appointment.id}</Text>
+                                                <Text>Fecha: {formattedDate}</Text>
+                                                <Text>{appointment.startTime} - {appointment.estimatedEndTime}</Text>
+                                                <Text fontWeight="bold">Status: {appointment.status}</Text>
+                                            </VStack>
+                                        )
+                                    })}
                                 </VStack>
                             ) : (
                                 <Text>El especialista {especialista.nombre} no tiene citas agendadas aún.</Text>
@@ -144,13 +148,13 @@ export const CustomCard = ({ especialista }) => {
                     justify='space-between'
                     flexWrap='wrap'
                     sx={{
-                    '& > button': {
-                        minW: '136px',
-                    },
+                        '& > button': {
+                            minW: '136px',
+                        },
                     }}
                     gap={2}
                 >
-                    <Button colorScheme='orange' color='white' aria-label="Destacar" flex='1' leftIcon={especialista.highlighted? <RiStarSFill/> : <RiStarLine/>}
+                    <Button colorScheme='orange' color='white' aria-label="Destacar" flex='1' leftIcon={especialista.highlighted ? <RiStarSFill /> : <RiStarLine />}
                         onClick={handleToggleHighlight}
                     >
                         Destacar

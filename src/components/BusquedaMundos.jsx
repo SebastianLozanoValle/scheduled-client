@@ -1,11 +1,7 @@
 import { Box, Heading, useMediaQuery } from "@chakra-ui/react";
 import { Buscador } from "./Buscador";
 
-export const BusquedaMundos = () => {
-
-  const handleSearchData = (searchData) => {
-    console.log(searchData);
-  };
+export const BusquedaMundos = ({ onSearch }) => {
 
   const [isSmallerThan760] = useMediaQuery('(max-width: 768px)');
 
@@ -15,7 +11,7 @@ export const BusquedaMundos = () => {
         <Box h='auto' width= {isSmallerThan760 ? '100%' : '90%'}  display={isSmallerThan760 ? 'column' : 'flex'} justifyContent='center'  padding='10px'boxShadow='2px 20px 20px rgba(0, 0, 0, 0.9)' marginTop= {isSmallerThan760 ? '30px' : '90px'}>
           
           
-          <Buscador onSearch={handleSearchData} />
+          <Buscador onSearch={ onSearch } />
            {/* mirar onClick={handleSearchClick} */}
          </Box>
   
