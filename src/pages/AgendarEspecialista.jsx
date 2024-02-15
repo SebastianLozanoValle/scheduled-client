@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { GET_SPECIALIST, IS_SLOT_AVAILABLE } from "../querys/querys";
 import { useMutation, useQuery } from "@apollo/client";
 import { Calendario } from "../components/Calendario";
+import { useUserStore } from "../store/userStore";
+import { CalendarioEventos } from "../components/CalendarioEventos";
 
 export const AgendarEspecialista = () => {
+
+    const { userRole } = useUserStore();
+
+    const isClient = userRole === 'client';
+
     const navigate = useNavigate();
     const [prueba, setPrueba] = useState({
         date: "",
@@ -41,6 +48,9 @@ export const AgendarEspecialista = () => {
     if (error) return <p className="h-screen">{error.message}</p>;
 
     const especialista = data.getSpecialist;
+
+    console.log('aqui en el',especialista);
+    console.log('aqui en el',especialista.appointments);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -96,24 +106,28 @@ export const AgendarEspecialista = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate(`/checkout/${id}/${prueba.date}/${100.0}/${0}/${["manicura","pedicura"]}/${prueba.startTime}/${prueba.estimatedEndTime}/${prueba.serviceType}/${especialista.username}`);
+        navigate(`/checkout/${id}/${prueba.date}/${100.0}/${0}/${["manicura", "pedicura"]}/${prueba.startTime}/${prueba.estimatedEndTime}/${prueba.serviceType}/${especialista.username}`);
         // /checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType
     }
 
     const consultarDisponibilidad = () => {
         console.log('verificando disponibilidad');
         console.log(prueba);
-        setPrueba(prevState => ({
-            ...prevState,
-            specialistId: id
-        }));
-        available({ variables: { input: prueba } })
-            .then(response => {
-                setIsAvailable(response.data.isSlotAvailable.isSlotAvailable);
-                setMensajeError(response.data.isSlotAvailable.reason ? 'No hay disponibilidad en el horario seleccionado' : '')
-                console.log(response.data.isSlotAvailable);
-                console.log(respuesta);
-            });
+        if (isClient) {
+            setPrueba(prevState => ({
+                ...prevState,
+                specialistId: id
+            }));
+            available({ variables: { input: prueba } })
+                .then(response => {
+                    setIsAvailable(response.data.isSlotAvailable.isSlotAvailable);
+                    setMensajeError(response.data.isSlotAvailable.reason ? 'No hay disponibilidad en el horario seleccionado' : '')
+                    console.log(response.data.isSlotAvailable);
+                    console.log(respuesta);
+                });
+        } else {
+            setMensajeError('Debe ser un cliente registrado para agendar una cita')
+        }
     }
 
     const cambiarConsulta = () => {
@@ -166,7 +180,7 @@ export const AgendarEspecialista = () => {
                     </ul>
                 </div>
                 <div className="w-full md:w-6/12">
-                    <Calendario />
+                    <CalendarioEventos appointments={especialista.appointments} />
                     <div className="bg-white mx-auto w-4/5 p-4 rounded-xl shadow-2xl">
                         <form onSubmit={handleSubmit}>
                             <label className="font-bold">Servicios</label>
@@ -202,14 +216,14 @@ export const AgendarEspecialista = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col gap-4">
-                            {isAvailable && <p className="text-green-500">ha seleccionado el día {formatDate()} con hora de {prueba.startTime}-{prueba.estimatedEndTime} Aprox.</p>}
+                                {isAvailable && <p className="text-green-500">ha seleccionado el día {formatDate()} con hora de {prueba.startTime}-{prueba.estimatedEndTime} Aprox.</p>}
                                 {
                                     !isAvailable ?
                                         <button type="button" onClick={consultarDisponibilidad} className="mt-4 bg-green-500 text-white rounded-2xl p-2">Consultar disponibilidad</button>
                                         :
                                         <button type="button" onClick={cambiarConsulta} className="mt-4 bg-green-500 text-white rounded-2xl p-2">Cambiar cobsulta</button>
                                 }
-                                {respuesta.loading ? <p className="text-green-500">Consultando disponibilidad...</p> : mensajeError && <p className="text-red-500">{mensajeError}.</p>}
+                                {respuesta.loading ? <p className="text-green-500">Consultando disponibilidad...</p> : mensajeError == 'Debe ser un cliente registrado para agendar una cita' ? <> <p className="text-red-500">{mensajeError}.</p> <div className="inline-block"><Link className="text-blue-500 px-8 py-2 border border-blue-500 rounded" to="/login">Registrate Ahora!</Link></div> </> : mensajeError && <p className="text-red-500">{mensajeError}.</p>}
                                 {isAvailable && <button type="submit" className="bg-green-500 text-white rounded-2xl p-2">Agendar</button>}
                             </div>
                         </form>

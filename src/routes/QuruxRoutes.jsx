@@ -13,12 +13,23 @@ import { GuiaUsuario } from '../pages/GuiaUsuario'
 import { TCEspecialistas } from '../pages/TCEspecialistas'
 import { AgendarEspecialista } from "../pages/AgendarEspecialista"
 import { Checkout } from "../pages/pasarela/Checkout"
+import { useUserStore } from "../store/userStore"
 
 
 
 
 // eslint-disable-next-line react/prop-types
 export const QuruxRoutes = ({ setToken }) => {
+        const { userRole } = useUserStore();
+
+        const loged = userRole || userRole !== '';
+        const admin = userRole === 'admin';
+        const specialist = userRole === 'specialist';
+        const client = userRole === 'client';
+
+        console.log('userRole:', userRole);
+        console.log('loged:', loged);
+        console.log(client)
 
         return (
                 <Routes>
@@ -35,7 +46,7 @@ export const QuruxRoutes = ({ setToken }) => {
                         <Route path="/login" element={<Login setToken={setToken} />} />
                         <Route path="/auth" element={<Auth />} />
                         <Route path="/agendar-especialista/:id" element={<AgendarEspecialista />} />
-                        <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={<Checkout />} />
+                        <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={client?<Checkout />:<Navigate to={'/'} />} />
 
 
 

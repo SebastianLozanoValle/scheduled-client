@@ -101,3 +101,7 @@ html {
 *{
   font-family: 'Poppins', sans-serif;
 }
+
+.rbc-event {
+  background-color: #d3983f !important;
+}

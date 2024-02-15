@@ -65,6 +65,10 @@ export const Checkout = () => {
         }
     });
 
+
+    console.log('userId:', userId);
+    console.log('specialistId:', specialistId);
+
     useEffect(() => {
         if (mutationResponse) {
             const invoice = {
@@ -81,7 +85,8 @@ export const Checkout = () => {
                 "appointmentId": mutationResponse?.scheduleAppointment.id,
                 "date": date,
                 "specialistId": specialistId,
-                "userId": userId,
+                "clientId": userId,
+                "status": "Sin Cobrar",
             };
 
             console.log('mutationResponse:', mutationResponse.scheduleAppointment.id);

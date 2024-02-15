@@ -5,7 +5,7 @@ import 'dayjs/locale/es';  // Importa el idioma español de dayjs
 
 dayjs.locale('es');
 
-export const Calendario = ({ especialistas = [] }) => {
+export const Calendario = ({ eventos }) => {
     const localizer = dayjsLocalizer(dayjs);
 
     const events = [

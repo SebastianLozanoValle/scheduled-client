@@ -5,7 +5,7 @@ import { RiArrowLeftCircleLine, RiArrowRightCircleLine } from "react-icons/ri";
 import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 import es from "dayjs/locale/es";
 
-export const Destacados = ({ paramsToSearch = { mundo: '', distrito: '', servicios: [], tipoServicio: '', fecha: '' }, destacados = true }) => {
+export const Destacados = ({ paramsToSearch, destacados = true }) => {
     const { loading, error, data } = useQuery(GET_SPECIALISTS);
 
     console.log('parametros en destacados', paramsToSearch, 'destacados', destacados);
@@ -22,7 +22,7 @@ export const Destacados = ({ paramsToSearch = { mundo: '', distrito: '', servici
         if (paramsToSearch != {}) {
             if (destacados !== true) {
                 filtrado = data?.findSpecialists || [];
-                if (paramsToSearch.mundo != '') {
+                if (paramsToSearch.mundo ? paramsToSearch.mundo != '' : false) {
                     filtrado = filtrado.filter(especialista => especialista.world === paramsToSearch.mundo) || [];
                 }
                 if (paramsToSearch.distrito != '') {
@@ -44,7 +44,7 @@ export const Destacados = ({ paramsToSearch = { mundo: '', distrito: '', servici
                 }
             } else if (destacados === true) {
                 filtrado = data?.findSpecialists.filter(especialista => especialista.highlighted) || [];
-                if (paramsToSearch.mundo != '') {
+                if (paramsToSearch && paramsToSearch.mundo != '') {
                     filtrado = filtrado.filter(especialista => especialista.world === paramsToSearch.mundo) || [];
                 }
             }
@@ -53,7 +53,7 @@ export const Destacados = ({ paramsToSearch = { mundo: '', distrito: '', servici
         return filtrado;
 
 
-    }, [data, paramsToSearch, destacados]);
+    }, [data, destacados, paramsToSearch]);
     const [activeSpecialist, setActiveSpecialist] = useState(especialistas[0]);
     const specialistsBox = useRef(null);
     const [isDragging, setIsDragging] = useState(false);

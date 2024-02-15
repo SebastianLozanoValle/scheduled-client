@@ -1,6 +1,3 @@
-// import { Box } from "@chakra-ui/react";
-// import { EspecialistasDesktop } from "./desktop/EspecialistasDesktop";
-// import { EspecialistasMobile } from "./mobile/EspecialistasMobile";
 import { Box, Input, Text, IconButton, Flex, Center } from "@chakra-ui/react"
 import { useState } from 'react';
 import { Especialista } from "../../components/Especialista";

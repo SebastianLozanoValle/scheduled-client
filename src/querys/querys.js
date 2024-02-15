@@ -47,10 +47,18 @@ export const GET_SPECIALIST = gql`
             }
             appointments {
                 id
-                clientId
-                status
+                date
                 startTime
                 estimatedEndTime
+                clientId
+                specialistId
+                subject
+                detail
+                value
+                status
+                serviceType
+                clientUsername
+                specialistUsername
             }
         }
     }
@@ -147,6 +155,86 @@ export const CREATE_INVOICE = gql`
     mutation($invoice: InvoiceInput!) {
         createInvoice(invoice: $invoice) {
             link
+        }
+    }
+`;
+
+export const GET_CLIENTS = gql`
+    query {
+        getClients {
+                id
+                username
+                avatar
+                age
+                gender
+                phone
+                email
+                city
+                street
+                role
+                active
+                appointments{
+                    date
+                    startTime
+                    estimatedEndTime
+                    status
+                    detail
+                    id
+                    serviceType
+                    value
+                }
+                favorites
+        }
+    }
+`;
+
+export const GET_APPOINTMENTS = gql`
+    query{
+        getAppointments {
+            id
+            date
+            startTime
+            estimatedEndTime
+            clientId
+            specialistId
+            subject
+            detail
+            value
+            status
+            serviceType
+            clientUsername
+            specialistUsername
+        }
+    }
+`;
+
+export const GET_INVOICES = gql`
+    query{
+        getInvoices {
+                id
+                merchant
+                email
+                country
+                order
+                money
+                amount
+                description
+                language
+                expiration
+                iva
+                user_name
+                specialistId {
+                id
+                username
+                }
+                clientId {
+                id
+                username
+                }
+                date
+                status
+                checksum
+                link 
         }
     }
 `;

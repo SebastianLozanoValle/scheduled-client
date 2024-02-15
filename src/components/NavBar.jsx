@@ -25,6 +25,7 @@ const CustomLink = forwardRef((props, ref) => {
 export const NavBar = ({ setToken }) => {
 
     const { name, userRole, setUser } = useUserStore();
+    const diferentThatClient = userRole !== 'client';
 
     const client = useApolloClient();
 
@@ -70,8 +71,8 @@ export const NavBar = ({ setToken }) => {
                                         pr={4}
                                     // bg={'teal.500'} borderRadius={6} p={6}
                                     >
-                                        <MenuItem bg='#212024' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/perfil">Perfil</MenuItem>
-                                        <MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>
+                                        <MenuItem bg='#212024' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard/perfil">Perfil</MenuItem>
+                                        {diferentThatClient&&<MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>}
                                         <MenuItem
                                             as={Button}
                                             className="mx-2 bg-gray-800 text-white hover:text-yellow-300"
