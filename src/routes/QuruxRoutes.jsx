@@ -14,6 +14,8 @@ import { TCEspecialistas } from '../pages/TCEspecialistas'
 import { AgendarEspecialista } from "../pages/AgendarEspecialista"
 import { Checkout } from "../pages/pasarela/Checkout"
 import { useUserStore } from "../store/userStore"
+import { ClientRegisterForm } from "../pages/login/ClienteRegisterForm"
+import { SpecialistsRegisterForm } from "../pages/login/SpecialistsRegisterForm"
 
 
 
@@ -44,6 +46,8 @@ export const QuruxRoutes = ({ setToken }) => {
                         <Route path="/Terminos" element={<Terminos />} />
                         <Route path="/ListaE" element={<ListaE />} />
                         <Route path="/login" element={<Login setToken={setToken} />} />
+                        <Route path="/signup" element={<ClientRegisterForm />} />
+                        <Route path="/signup-especialistas" element={<SpecialistsRegisterForm />} />
                         <Route path="/auth" element={<Auth />} />
                         <Route path="/agendar-especialista/:id" element={<AgendarEspecialista />} />
                         <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={client?<Checkout />:<Navigate to={'/'} />} />

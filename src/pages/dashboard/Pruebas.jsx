@@ -2,6 +2,7 @@ import { Calendar, dayjsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import dayjs from "dayjs";
 import 'dayjs/locale/es';  // Importa el idioma español de dayjs
+import { ClientRegisterForm } from "../login/ClienteRegisterForm";
 
 dayjs.locale('es');  // Configura dayjs para usar el idioma español
 
@@ -37,6 +38,9 @@ export const Pruebas = () => {
                     <h1 className="bg-red-500 inline text-stone-100">
                         pruebasssss
                     </h1>
+                </div>
+                <div>
+                    <ClientRegisterForm />
                 </div>
             </div>
             <div className="m-4 flex justify-center h-screen">

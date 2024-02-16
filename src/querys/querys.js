@@ -238,3 +238,11 @@ export const GET_INVOICES = gql`
         }
     }
 `;
+
+export const CREATE_CLIENT = gql`
+    mutation($input: ClientInput!) {
+        createClient(input: $input) {
+            id
+        }
+    }
+`;

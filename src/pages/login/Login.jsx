@@ -86,7 +86,7 @@ export const Login =({ setToken })=> {
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
                                     name="username"
-                                    placeholder="ejemplo@gmail.com"
+                                    placeholder="nombre de usuario"
                                     className="p-3 rounded-lg border border-gray-300 w-full"
                                 />
                                 </div>
@@ -130,12 +130,12 @@ export const Login =({ setToken })=> {
                             <div className="text-center mb-3">
                                 <span className="text-[12px] text-gray-600">
                                 Si desea registrarse entre{' '}
-                                <a
-                                    href="#"
+                                <Link
+                                    to={'/signup'}
                                     className="text-[12px] text-blue-500 hover:text-blue-700 font-bold"
                                 >
                                     aquí
-                                </a>
+                                </Link>
                                 </span>
                             </div>
                             <div className="text-center">
