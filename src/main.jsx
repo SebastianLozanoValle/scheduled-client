@@ -7,11 +7,15 @@ import { setContext } from '@apollo/client/link/context';
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('user-token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `bearer ${token}` : '',
-    }
+  if (!token) {
+    return { headers };
+  } else {
+    return {
+      headers: {
+        ...headers,
+        Authorization: `bearer ${token}`,
+      }
+    };
   }
 });
 
@@ -21,9 +25,11 @@ export const client = new ApolloClient({
     addTypename: false, // Aquí es donde desactivas los __typename
   }),
   link: authLink.concat(new HttpLink({
-    // uri: 'https://sever-qurux-production.up.railway.app/graphql',
-    uri: 'http://localhost:33402/graphql',
+    // uri: 'https://vercel.com/sebastianlozanovalles-projects/sever-qurux/92cNGjvNjabrYTeSfXtXWsvpnLru/graphql',
+    // uri: 'http://localhost:33402/graphql',
     // uri: 'https://sever-qurux.vercel.app/graphql',
+    uri: 'https://sever-qurux.onrender.com/graphql',
+    // uri: 'http://api.qurux.net/graphql',
   })),
 });
 
