@@ -19,7 +19,7 @@ export const ServiciosMujeres = [
     "Pies",
     "Cejas",
     "Pestañas",
-    "Spa",
+    "Spa(Hombre)",
     "Lavado de cabello corto",
     "Lavado de cabello mediano",
     "Lavado de cabello largo"
@@ -51,14 +51,14 @@ export const ServiciosHombres = [
     'Lavado de cabello mediano',
     'Lavado de cabello largo',
     'Depilaciones',
-    'Spa',
+    'Spa(Mujer)',
 ]
 
 export const ServiciosMascotas = [
     'Grooming para mascotas pequeñas', 
     'Grooming para mascotas medianas',
     'Grooming para mascotas grandes',
-    'Spa',
+    'Spa(Mascota)',
     'Limpiezas',
     'Keratinas para mascotas pequeñas',
     'Keratinas para mascotas medianas',

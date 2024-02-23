@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import InputDropZone from '../../components/InputDropZone';
 import { StepOne } from './steps/StepOne';
+import { ServiciosHombres, ServiciosMascotas, ServiciosMujeres } from '../../data/services';
+import { v4 as uuidv4 } from 'uuid';
 
 export const SpecialistsRegisterForm = () => {
     const navigate = useNavigate();
@@ -17,9 +19,7 @@ export const SpecialistsRegisterForm = () => {
     const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm();
     const [step, setStep] = useState(1); // Nuevo estado para el paso actual
     const [services, setServices] = useState([]);
-    const servicesHombre = ["Servicio 1", "Servicio 2", "Servicio 3"];
-    const servicesMujeres = ["Servicio 4", "Servicio 5", "Servicio 6"];
-    const servicesMascotas = ["Servicio 7", "Servicio 8", "Servicio 9"];
+    const [selectedServices, setSelectedServices] = useState([]);
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const fieldArrayOperations = daysOfWeek.reduce((acc, day) => {
         acc[day] = useFieldArray({
@@ -29,19 +29,74 @@ export const SpecialistsRegisterForm = () => {
         return acc;
     }, {});
 
+    const [selectedWorlds, setSelectedWorlds] = useState({
+        Hombre: false,
+        Mujer: false,
+        Mascota: false
+    });
+
+    const worlds = ["Hombre", "Mujer", "Mascota"];
+
+    // Función para manejar el cambio de los checkboxes de especialidad
+    const handleServiceChange = (event) => {
+        const { value, checked } = event.target;
+
+        // Actualiza el estado de las especialidades seleccionadas
+        if (checked) {
+            setSelectedServices(prevServices => [...prevServices, value]);
+        } else {
+            setSelectedServices(prevServices => prevServices.filter(service => service !== value));
+        }
+    };
+
+    // ...
+
+    // Añade el manejador de cambio a los checkboxes de especialidad
+    {
+        services.map(service => (
+            <div key={service + uuidv4()}>
+                <input type="checkbox" value={service} {...register("services")} onChange={handleServiceChange} />
+                <label htmlFor={service}>{service}</label>
+            </div>
+        ))
+    }
+
+    // Función para manejar el cambio de los checkboxes
     const handleWorldChange = (event) => {
-        switch (event.target.value) {
-            case "hombre":
-                setServices(servicesHombre);
-                break;
-            case "mujer":
-                setServices(servicesMujeres);
-                break;
-            case "mascota":
-                setServices(servicesMascotas);
-                break;
-            default:
-                setServices([]);
+        const { name, checked } = event.target;
+
+        // Actualiza el estado de los checkboxes seleccionados
+        setSelectedWorlds(prevState => ({ ...prevState, [name]: checked }));
+
+        // Muestra los servicios correspondientes
+        if (checked) {
+            switch (name) {
+                case "Hombre":
+                    setServices(prevServices => [...prevServices, ...ServiciosHombres]);
+                    break;
+                case "Mujer":
+                    setServices(prevServices => [...prevServices, ...ServiciosMujeres]);
+                    break;
+                case "Mascota":
+                    setServices(prevServices => [...prevServices, ...ServiciosMascotas]);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (name) {
+                case "Hombre":
+                    setServices(prevServices => prevServices.filter(service => !ServiciosHombres.includes(service)));
+                    break;
+                case "Mujer":
+                    setServices(prevServices => prevServices.filter(service => !ServiciosMujeres.includes(service)));
+                    break;
+                case "Mascota":
+                    setServices(prevServices => prevServices.filter(service => !ServiciosMascotas.includes(service)));
+                    break;
+                default:
+                    break;
+            }
         }
     };
 
@@ -85,9 +140,9 @@ export const SpecialistsRegisterForm = () => {
 
     return (
         <div className="p-10 min-h-[100vh] flex items-center justify-center">
-            <div className="bg-white shadow-lg overflow-hidden rounded-xl w-full sm:w-full md:w-[70%] lg:w-[60%] xl:w-[60%] 2xl:w-[60%] h-auto sm:h-[80vh] mx-auto">
+            <div className="bg-white shadow-lg overflow-hidden rounded-xl w-full sm:w-full md:w-[70%] lg:w-[60%] xl:w-[60%] 2xl:w-[60%] h-auto mx-auto">
                 <div className="flex flex-col sm:flex-row sm:gap-4 items-center h-full">
-                    <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[50%] xs:w-full sm:w-full px-8 py-10 flex flex-col gap-4">
+                    <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[50%] xs:w-full sm:w-full px-8 py-10 flex flex-col gap-4 h-full justify-between">
                         {/* ... */}
 
                         <div>
@@ -125,24 +180,32 @@ export const SpecialistsRegisterForm = () => {
                                 </div>
                             )}
                             {step === 3 && (
-                                <>
+                                <div className='flex flex-col gap-4'>
                                     <label htmlFor="world" className="font-light">Mundo</label>
-                                    <select {...register("world")} className="p-2 border rounded" onChange={handleWorldChange}>
-                                        <option value="">Select...</option>
-                                        <option value="hombre">Hombre</option>
-                                        <option value="mujer">Mujer</option>
-                                        <option value="mascota">Mascota</option>
-                                    </select>
-                                    <fieldset>
-                                        <legend>Servicios</legend>
-                                        {services.map(service => (
-                                            <div key={service}>
-                                                <input type="checkbox" value={service} {...register("services")} />
-                                                <label htmlFor={service}>{service}</label>
-                                            </div>
+                                    <div className='flex gap-4'>
+                                        {worlds.map(world => (
+                                            <label className='flex gap-2' htmlFor={world} key={world}>
+                                                <input id={world} type="checkbox" name={world} checked={selectedWorlds[world]} onChange={handleWorldChange} />{world}
+                                            </label>
                                         ))}
-                                    </fieldset>
-                                </>
+                                    </div>
+                                    <div className='flex flex-wrap'>
+                                        <fieldset className='overflow-y-scroll h-[200px]'>
+                                            <legend>Servicios</legend>
+                                            {services.map(service => (
+                                                <div key={service + uuidv4()}>
+                                                    <input type="checkbox" value={service} {...register("services")} onChange={handleServiceChange} />
+                                                    <label htmlFor={service}>{service}</label>
+                                                </div>
+                                            ))}
+                                        </fieldset>
+                                        <div>
+                                            {selectedServices.map(service => (
+                                                <p key={service + uuidv4()}>{service}</p>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             )}
                             {step === 4 && (
 
@@ -175,7 +238,7 @@ export const SpecialistsRegisterForm = () => {
                                     key={stepNumber}
                                     className='hidden sm:block'
                                 >
-                                    <button className={`w-8 h-8 rounded-full flex items-center justify-center ${stepNumber === step ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500'}`} onClick={() => setStep(stepNumber)}>{stepNumber}</button>
+                                    <button type='button' className={`w-8 h-8 rounded-full flex items-center justify-center ${stepNumber === step ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500'}`} onClick={() => setStep(stepNumber)}>{stepNumber}</button>
                                 </div>
                             ))}
                             <button type="button" onClick={nextStep}>Next</button>
