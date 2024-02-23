@@ -13,7 +13,7 @@ const UPDATE_FILE = gql`
     }
 `;
 
-const TestDropZone = ({ fileName = "prueba", maxFiles = 1, tipo = 'picture' }) => {
+const InputDropZone = ({ fileName = "prueba", maxFiles = 1, tipo = 'picture', recomendedSize = '' }) => {
 
     const { userId } = useUserStore()
 
@@ -74,35 +74,52 @@ const TestDropZone = ({ fileName = "prueba", maxFiles = 1, tipo = 'picture' }) =
         maxFiles
     });
 
-    const thumbs = files.map(file => (
-        <div className='h-20 w-20' key={file.name}>
+    const thumbs = files.map((file, index) => (
+        <div className='h-20 w-20 relative' key={file.name}>
             <div>
                 <img src={file.preview} alt="preview" />
             </div>
+            <button 
+                className="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center"
+                onClick={() => {
+                    const newFiles = [...files];
+                    newFiles.splice(index, 1);
+                    setFiles(newFiles);
+                }}
+            >
+                x
+            </button>
         </div>
     ));
 
     return (
         <div>
-            <div {...getRootProps()}>
+            <div className='p-4'>
+                <label className='text-[#caa776] font-semibold text-xl'>{fileName} {recomendedSize}</label>
+            </div>
+            <div className={`border flex items-center justify-center rounded-xl h-40 transition-all ${isDragActive? 'bg-[#caa776] border-black text-white shadow-2xl':''}`} {...getRootProps()}>
                 <input {...getInputProps()} />
                 {
                     isDragActive ?
-                        <p>Drop the files here ...</p> :
-                        <p>Drag 'n' drop some files here, or click to select files</p>
+                        <p className='text-[#ccc] font-light text-sm'>Suelte el archivo aqui ...</p> :
+                        <div className='flex flex-col'>
+                            <p className='text-[#ccc] font-light text-sm'>Arrastre y suelte su archivo aqui,</p>
+                            <p className='text-[#ccc] font-light text-sm'>o de click en seleccionar archivo</p>
+                        </div>
+                        
                 }
             </div>
-            <aside>
-                <h4>Files</h4>
+            <aside className='p-4 flex flex-col gap-4'>
+                <h4 className='text-[#caa776] font-semibold'>Files</h4>
                 <ul>{thumbs}</ul>
             </aside>
-            <button onClick={uploadFiles}>Upload Files</button>
-            <p>imagen previamente subida</p>
+            <button className='px-8 py-2 bg-primary hover:bg-[#caa776] rounded-md text-white' onClick={uploadFiles} disabled={files.length === 0}>Subir Archivos</button>
+            {/* <p>imagen previamente subida</p>
             <div className="w-14 h-14 overflow-hidden rounded-full">
                 <img className="w-full h-full object-cover" src={"http://localhost:33402/files/" + img} />
-            </div>
+            </div> */}
         </div>
     );
 };
 
-export default TestDropZone;
+export default InputDropZone;

@@ -26,9 +26,9 @@ export const client = new ApolloClient({
   }),
   link: authLink.concat(new HttpLink({
     // uri: 'https://vercel.com/sebastianlozanovalles-projects/sever-qurux/92cNGjvNjabrYTeSfXtXWsvpnLru/graphql',
-    // uri: 'http://localhost:33402/graphql',
+    uri: 'http://localhost:33402/graphql',
     // uri: 'https://sever-qurux.vercel.app/graphql',
-    uri: 'https://sever-qurux.onrender.com/graphql',
+    // uri: 'https://sever-qurux.onrender.com/graphql',
     // uri: 'http://api.qurux.net/graphql',
   })),
 });

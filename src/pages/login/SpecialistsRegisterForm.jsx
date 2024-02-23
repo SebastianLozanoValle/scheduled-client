@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { CREATE_CLIENT } from '../../querys/querys';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+import InputDropZone from '../../components/InputDropZone';
+import { StepOne } from './steps/StepOne';
 
 export const SpecialistsRegisterForm = () => {
     const navigate = useNavigate();
@@ -69,7 +71,7 @@ export const SpecialistsRegisterForm = () => {
 
     // Función para avanzar al siguiente paso
     const nextStep = () => {
-        if (step < 4) {
+        if (step < 5) {
             setStep(prevStep => prevStep + 1);
         }
     };
@@ -84,8 +86,8 @@ export const SpecialistsRegisterForm = () => {
     return (
         <div className="p-10 min-h-[100vh] flex items-center justify-center">
             <div className="bg-white shadow-lg overflow-hidden rounded-xl w-full sm:w-full md:w-[70%] lg:w-[60%] xl:w-[60%] 2xl:w-[60%] h-auto sm:h-[80vh] mx-auto">
-                <div className="flex sm:gap-4 items-center h-full">
-                    <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[50%] xs:w-full sm:w-full px-8 py-10 flex flex-col gap-4 d-flex flex-column h-full justify-between">
+                <div className="flex flex-col sm:flex-row sm:gap-4 items-center h-full">
+                    <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[50%] xs:w-full sm:w-full px-8 py-10 flex flex-col gap-4">
                         {/* ... */}
 
                         <div>
@@ -101,7 +103,8 @@ export const SpecialistsRegisterForm = () => {
                         <div>
                             {step === 1 && (
                                 <>
-                                    <InputFormField register={register} label="Username" id="username" placeholder="Username" required={true} errors={errors} />
+                                    <StepOne cities={cities} errors={errors} register={register} setValue={setValue} />
+                                    {/* <InputFormField register={register} label="Username" id="username" placeholder="Username" required={true} errors={errors} />
                                     <div className='flex flex-wrap justify-between'>
                                         <InputFormField register={register} label="Password" id="password" placeholder="Password" type="password" required={true} errors={errors} />
                                         <InputFormField register={register} label="ConfirmPassword" id="confirmpassword" placeholder="ConfirmPassword" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
@@ -132,7 +135,7 @@ export const SpecialistsRegisterForm = () => {
                                         <option value="other">Other</option>
                                     </select>
 
-                                    <input {...register("role")} type="hidden" />
+                                    <input {...register("role")} type="hidden" /> */}
                                 </>
                             )}
                             {step === 2 && (
@@ -180,6 +183,10 @@ export const SpecialistsRegisterForm = () => {
                                 </>
                             )}
                             {step === 4 && (
+
+                                <InputDropZone fileName='Profile picture' tipo='profilePic' recomendedSize='400x400' />
+                            )}
+                            {step === 5 && (
                                 <div className='h-full overflow-y-scroll'>
                                     <label htmlFor="weeklySchedule" className="font-light">Horario semanal</label>
                                     {daysOfWeek.map(day => (
@@ -201,12 +208,12 @@ export const SpecialistsRegisterForm = () => {
                         {/* ... */}
                         <div className="flex justify-center space-x-4 mb-4"> {/* Contenedor para el control del stepper */}
                             <button type="button" onClick={prevStep}>Back</button>
-                            {[1, 2, 3, 4].map((stepNumber) => (
+                            {[1, 2, 3, 4, 5].map((stepNumber) => (
                                 <div
                                     key={stepNumber}
-                                    className={`w-8 h-8 rounded-full flex items-center justify-center ${stepNumber === step ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+                                    className='hidden sm:block'
                                 >
-                                    {stepNumber}
+                                    <button className={`w-8 h-8 rounded-full flex items-center justify-center ${stepNumber === step ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500'}`} onClick={() => setStep(stepNumber)}>{stepNumber}</button>
                                 </div>
                             ))}
                             <button type="button" onClick={nextStep}>Next</button>

@@ -17,13 +17,13 @@ export const ClientRegisterForm = () => {
     const onSubmit = async (data) => {
         try {
             const { confirmpassword, age, ...formData } = data;
-    
+
             // Convierte age a un número
             const ageAsNumber = parseInt(age, 10);
-    
+
             const response = await createClient({ variables: { input: { ...formData, age: ageAsNumber } } });
             console.log(response);
-    
+
             if (response.data.createClient.id) {
                 navigate('/login');
             }
@@ -87,7 +87,7 @@ export const ClientRegisterForm = () => {
                         <input type="submit" className="p-2 bg-blue-500 text-white rounded cursor-pointer" />
                         {error && <p className="text-red-500">{error.message}</p>}
                         <div className="text-center mb-3">
-                                <span className="text-[12px] text-gray-600">
+                            <span className="text-[12px] text-gray-600">
                                 Si desea registrarse como especialista entre{' '}
                                 <Link
                                     to={'/signup-especialistas'}
@@ -95,8 +95,8 @@ export const ClientRegisterForm = () => {
                                 >
                                     aquí
                                 </Link>
-                                </span>
-                            </div>
+                            </span>
+                        </div>
                     </form>
                     <div className="flex items-center justify-center h-full w-0 xl:w-1/2">
                         {/* Aquí puedes poner tu imagen */}

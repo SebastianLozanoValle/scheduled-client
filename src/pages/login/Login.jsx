@@ -62,7 +62,7 @@ export const Login =({ setToken })=> {
                     <div className="flex space-between items-start">
 
                         <Box display='flex' paddingTop='100px'>
-                            <img src={logo}width='330px' ></img>
+                            <img className="w-0 sm:w-[330px]" src={logo} ></img>
                         </Box>
 
 
