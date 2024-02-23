@@ -23,7 +23,7 @@ export const Destacados = ({ paramsToSearch, destacados = true }) => {
             if (destacados !== true) {
                 filtrado = data?.findSpecialists || [];
                 if (paramsToSearch.mundo ? paramsToSearch.mundo != '' : false) {
-                    filtrado = filtrado.filter(especialista => especialista.world === paramsToSearch.mundo) || [];
+                    filtrado = filtrado.filter(especialista => especialista.world.includes(paramsToSearch.mundo)) || [];
                 }
                 if (paramsToSearch.distrito != '') {
                     filtrado = filtrado.filter(especialista => especialista.city === paramsToSearch.distrito) || [];

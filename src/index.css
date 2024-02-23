@@ -105,3 +105,23 @@ html {
 .rbc-event {
   background-color: #d3983f !important;
 }
+
+/* Esto cambiará el aspecto de las barras de desplazamiento para todos los elementos en tu página. */
+::-webkit-scrollbar {
+  width: 10px; /* Ancho de la barra de desplazamiento vertical */
+  height: 10px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo de la barra de desplazamiento */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d3983f; /* Color de la barra de desplazamiento */
+  border-radius: 10px; /* Redondea las esquinas de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #caa776; /* Color de la barra de desplazamiento al pasar el ratón */
+}
