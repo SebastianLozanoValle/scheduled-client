@@ -18,12 +18,14 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { cities } from "../data/cities";
 import { Buscador } from "../components/Buscador";
 import flecha from '../assets/imagenes/flecha.png'
-
+import { ServiciosMujeres, ServiciosHombres, ServiciosMascotas } from "../data/services";
 
 
 
 
 export const Inicio = () => {
+
+  const tabs = [...new Set([...ServiciosHombres, ...ServiciosMascotas, ...ServiciosMujeres])]
 
   const navigate = useNavigate();
 
@@ -57,7 +59,7 @@ export const Inicio = () => {
           <Heading textAlign='center' fontSize={isSmallerThan760 ? '20px' : '70px'} color='#caa776' fontFamily="Sacramento, cursive">El mundo de la belleza digital</Heading>
           <Heading textAlign='center' fontSize={isSmallerThan760 ? '40px' : '90px'} fontWeight='bold' textTransform='uppercase' color='white'><b>BIENVENIDO A QURUX</b></Heading>
           <div className="flex items-center justify-center">
-            <Buscador onSearch={handleSearch} />
+            <Buscador onSearch={handleSearch} tabs={tabs} />
           </div>
           <Box display='flex' justifyContent='center' alignItems='center' flexWrap='wrap'>
             <img src={flecha}></img>

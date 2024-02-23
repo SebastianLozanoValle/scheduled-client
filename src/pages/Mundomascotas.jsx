@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { BusquedaMundos } from "../components/BusquedaMundos";
 import { Destacados } from "../components/Destacados";
 import { useLocation } from "react-router-dom";
+import { ServiciosMascotas } from "../data/services";
 
 export const Mundomascotas = () => {
 
@@ -12,8 +13,9 @@ export const Mundomascotas = () => {
   const location = useLocation();
   useEffect(() => {
     if (location.state?.searchParams) {
-      const searchParams = location.state?.searchParams
+      const searchParams = location.state?.searchParams;
       setParamsToSearch(searchParams);
+      console.log('paramsToSearch', searchParams);
     }
   }, [location.state]);
 
@@ -22,6 +24,12 @@ export const Mundomascotas = () => {
   }, 5);
 
   const [isSmallerThan760] = useMediaQuery('(max-width: 768px)');
+
+  const handleSearch = (searchParams) => {
+    console.log('searchParams', searchParams);
+    searchParams.mundo = 'Mascota';
+    setParamsToSearch(searchParams);
+  }
 
   return (
 
@@ -39,28 +47,34 @@ export const Mundomascotas = () => {
           </Box>
 
           <Box height='100px' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? 'none' : ''} >
-            <BusquedaMundos /> {/* Renderiza el componente YourComponent */}
+            <BusquedaMundos onSearch={handleSearch} tabs={ServiciosMascotas} /> {/* Renderiza el componente YourComponent */}
           </Box>
         </Box>
 
         <Box height='100px' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? '' : 'none'} >
-          <BusquedaMundos /> {/* Renderiza el componente YourComponent */}
+          <BusquedaMundos onSearch={handleSearch} tabs={ServiciosMascotas} /> {/* Renderiza el componente YourComponent */}
         </Box>
 
 
 
         {/*seccion para los especilistas destacados fata añadir el codigo para llamarlos */}
-        <Box height='500px' marginTop='100px' my={60} >
+        {
+          paramsToSearch != {} && (
+            <Box height='auto' marginTop='100px' mt={60} position={'relative'} >
+              <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Resultados de</Heading>
+              <Text fontSize='22px' textAlign='center'><b>Tu Busqueda Personalizada</b></Text>
+              <Text fontSize='10px' textAlign='center'><b>Fueron:</b></Text>
+              <Box>
+                <Destacados paramsToSearch={paramsToSearch} destacados={false} />
+              </Box>
+            </Box>
+          )
+        }
+        <Box height='auto' marginTop='100px' mt={paramsToSearch != {} ? 0 : 60} mb={30} position={'relative'} >
           <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
           <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
           <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
-          {/* Sección de estilistas seleccionados */}
-          {paramsToSearch != {} && (
-            <Box>
-              <Destacados paramsToSearch={paramsToSearch} destacados={false} />
-            </Box>
-          )}
-          <Destacados paramsToSearch={{mundo:'Mascota'}} />
+          <Destacados paramsToSearch={{ mundo: 'Hombre' }} />
         </Box>
       </Box>
     </>

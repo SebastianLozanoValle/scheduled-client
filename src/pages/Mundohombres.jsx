@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { BusquedaMundos } from "../components/BusquedaMundos";
 import { Destacados } from "../components/Destacados";
 import { Link, useLocation } from "react-router-dom";
+import { ServiciosHombres } from "../data/services";
 
 export const Mundohombres = () => {
 
@@ -48,12 +49,12 @@ export const Mundohombres = () => {
           </Box>
 
           <Box height='100px' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? 'none' : ''} >
-            <BusquedaMundos onSearch={ handleSearch } /> {/* Renderiza el componente YourComponent */}
+            <BusquedaMundos onSearch={ handleSearch } tabs={ServiciosHombres} /> {/* Renderiza el componente YourComponent */}
           </Box>
         </Box>
 
         <Box height='100vh' padding={isSmallerThan760 ? '30px' : '0px'} display={isSmallerThan760 ? '' : 'none'} >
-          <BusquedaMundos onSearch={ handleSearch } /> {/* Renderiza el componente YourComponent */}
+          <BusquedaMundos onSearch={ handleSearch } tabs={ServiciosHombres} /> {/* Renderiza el componente YourComponent */}
         </Box>
 
 

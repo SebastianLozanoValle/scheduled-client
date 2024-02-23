@@ -104,61 +104,23 @@ export const SpecialistsRegisterForm = () => {
                             {step === 1 && (
                                 <>
                                     <StepOne cities={cities} errors={errors} register={register} setValue={setValue} />
-                                    {/* <InputFormField register={register} label="Username" id="username" placeholder="Username" required={true} errors={errors} />
-                                    <div className='flex flex-wrap justify-between'>
-                                        <InputFormField register={register} label="Password" id="password" placeholder="Password" type="password" required={true} errors={errors} />
-                                        <InputFormField register={register} label="ConfirmPassword" id="confirmpassword" placeholder="ConfirmPassword" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
-                                    </div>
-                                    <div className='flex flex-wrap justify-between'>
-                                        <InputFormField register={register} label="Email" id="email" placeholder="Email" type='email' required={true} errors={errors} />
-                                        <InputFormField register={register} label="Phone" id="phone" placeholder="Phone" type='number' errors={errors} />
-                                    </div>
-                                    <div className='flex flex-wrap justify-between'>
-                                        <InputFormField register={register} label="Age" id="age" placeholder="Age" type="number" errors={errors} />
-                                        <InputFormField register={register} label="Street" id="street" placeholder="Street" errors={errors} />
-                                    </div>
-                                    <AutocompleteInputField
-                                        label='Distrito'
-                                        name="city"
-                                        register={register}
-                                        setValue={setValue}
-                                        required={true}
-                                        errors={errors}
-                                        options={cities}
-                                        className="p-2 border rounded"
-                                    />
-
-                                    <select {...register("gender")} className="p-2 border rounded">
-                                        <option value="">Select...</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-
-                                    <input {...register("role")} type="hidden" /> */}
                                 </>
                             )}
                             {step === 2 && (
                                 <div className='flex flex-col gap-4'>
                                     <label htmlFor="serviceType" className="font-light">Tipo de servicio</label>
                                     <select {...register("serviceType")} className="p-2 border rounded">
-                                        <option value="">Select...</option>
-                                        <option value="service1">Domicilio</option>
-                                        <option value="service2">Presencial</option>
-                                        <option value="service3">Mixto</option>
+                                        <option value="Domicilio">Domicilio</option>
+                                        <option value="Local">Local</option>
+                                        <option value="Mixto">Mixto</option>
                                     </select>
                                     <p className='text-[#ccc] font-extralight text-sm'>
                                         Como especialista de Qurux puedes ofrecer tus servicios en tu local o asistir al domicilio de tus clientes si lo prefieres y ellos tambien.
                                     </p>
-                                    <label htmlFor="paymentOption" className="font-light">Tipo de servicio</label>
-                                    <select {...register("paymentOption")} className="p-2 border rounded">
-                                        <option value="">Select...</option>
-                                        <option value="service1">Pago presencial</option>
-                                        <option value="service2">Pago quincenal</option>
-                                        <option value="service3">Pago mensual</option>
-                                    </select>
+                                    <label htmlFor="accountNumber" className="font-light">Cuenta para Pagos y/o Depositos</label>
+                                    <InputFormField register={register} label="Numero de Cuenta" id="accountNumber" placeholder="Numero de Cuenta" type='number' errors={errors} />
                                     <p className='text-[#ccc] font-extralight text-sm'>
-                                        Tu dinero esta seguro con nosotros, elije la fecha en que quieres que sea girado a tu cuenta adscrita.
+                                        Tu dinero esta seguro con nosotros, ingresa el numero de cuenta al cual se depositara semanalmente la suma generada en sus servicios.
                                     </p>
                                 </div>
                             )}

@@ -2,12 +2,13 @@ import { useState, useRef } from 'react';
 import { Box, Select, Button, useMediaQuery } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { cities } from '../data/cities';
-import { tabs } from '../data/tabs';
+// import { tabs } from '../data/tabs';
 import styled from 'styled-components';
 import ReactDatePicker from 'react-datepicker';
 import { CheckboxField } from './CheckboxField';
 
-export const Buscador = ({ onSearch }) => {
+export const Buscador = ({ onSearch, tabs }) => {
+
   const isHome = window.location.pathname === '/';
   const StyledDatePicker = styled(ReactDatePicker)`
     background: white;
@@ -188,8 +189,8 @@ export const Buscador = ({ onSearch }) => {
           <b>Search</b>
         </Button>
       </Box>
-      <div className='w-11/12 flex sm:w-4/5 flex-wrap mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm'>
-        {tabs.map((tab, index) => (
+      <div className='w-11/12 flex sm:w-4/5 flex-wrap mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm h-24 overflow-y-scroll'>
+        {tabs?.map((tab, index) => (
           <label key={index} className='p-4 flex text-[#d3983f]'>
             <input className="mr-2" type="checkbox" value={tab} onChange={handleSpecialtyChange} />
             {tab}

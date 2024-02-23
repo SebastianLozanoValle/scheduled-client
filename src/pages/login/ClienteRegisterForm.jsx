@@ -51,18 +51,18 @@ export const ClientRegisterForm = () => {
                                 Suministre los datos requeridos para registrarse.
                             </p>
                         </div>
-                        <InputFormField register={register} label="Username" id="username" placeholder="Username" required={true} errors={errors} />
+                        <InputFormField register={register} label="Usuario" id="username" placeholder="Usuario" required={true} errors={errors} />
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField register={register} label="Password" id="password" placeholder="Password" type="password" required={true} errors={errors} />
-                            <InputFormField register={register} label="ConfirmPassword" id="confirmpassword" placeholder="ConfirmPassword" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
+                            <InputFormField register={register} label="Contraseña" id="password" placeholder="Contraseña" type="password" required={true} errors={errors} />
+                            <InputFormField register={register} label="Confirme Contraseña" id="confirmpassword" placeholder="Confirme Contraseña" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
                         </div>
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField register={register} label="Email" id="email" placeholder="Email" type='email' required={true} errors={errors} />
-                            <InputFormField register={register} label="Phone" id="phone" placeholder="Phone" type='number' errors={errors} />
+                            <InputFormField register={register} label="Correo" id="email" placeholder="Correo" type='email' required={true} errors={errors} />
+                            <InputFormField register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
                         </div>
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField register={register} label="Age" id="age" placeholder="Age" type="number" errors={errors} />
-                            <InputFormField register={register} label="Street" id="street" placeholder="Street" errors={errors} />
+                            <InputFormField register={register} label="Edad" id="age" placeholder="Edad" type="number" errors={errors} />
+                            <InputFormField register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
                         </div>
                         <AutocompleteInputField
                             label='Distrito'
@@ -75,6 +75,7 @@ export const ClientRegisterForm = () => {
                             className="p-2 border rounded"
                         />
 
+                        <label htmlFor='gender'>Genero</label>
                         <select {...register("gender")} className="p-2 border rounded">
                             <option value="">Select...</option>
                             <option value="male">Male</option>

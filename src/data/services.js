@@ -1,4 +1,4 @@
-export const SerciciosMujeres = [
+export const ServiciosMujeres = [
     "Corte de cabello (puntas)",
     "Corte de cabello (forma)",
     "Tintes y color para cabello corto",

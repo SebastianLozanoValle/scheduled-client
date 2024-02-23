@@ -29,7 +29,7 @@ export const AutocompleteInputField = ({ label, name, options, register, setValu
 
   return (
     <label className="text-left w-full">
-      {label}*
+      {label}
       <div className="relative">
         <input
           name={name}
