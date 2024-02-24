@@ -12,7 +12,7 @@ import {useState} from "react";
 export const QuruxApp = () => {
 
     const location = useLocation();
-    const isLogin = location.pathname.split('/')[1] === 'login' || location.pathname.split('/')[1] === 'signup';
+    const isLogin = location.pathname.split('/')[1] === 'login' || location.pathname.split('/')[1] === 'signup' || location.pathname.split('/')[1] === 'signup-especialistas';
     const [token, setToken] = useState(() => localStorage.getItem('user-token'));
 
     return (
