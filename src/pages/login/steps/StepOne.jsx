@@ -7,7 +7,7 @@ export const StepOne = ({ register, errors, cities, setValue }) => {
             <InputFormField register={register} label="Usuario" id="username" placeholder="Usuario" required={true} errors={errors} />
             <div className='flex flex-wrap justify-between'>
                 <InputFormField register={register} label="Contraseña" id="password" placeholder="Contraseña" type="password" required={true} errors={errors} />
-                <InputFormField register={register} label="ConfirmeContraseña" id="confirmpassword" placeholder="ConfirmeContraseña" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
+                <InputFormField register={register} label="ConfirmeContraseña" id="confirmpassword" placeholder="ConfirmeContraseña" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === contraseña || "The passwords do not match" }} />
             </div>
             <div className='flex flex-wrap justify-between'>
                 <InputFormField register={register} label="Correo" id="email" placeholder="Correo" type='email' required={true} errors={errors} />

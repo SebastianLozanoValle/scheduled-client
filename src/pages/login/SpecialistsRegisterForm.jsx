@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { AutocompleteInputField } from '../../components/AutocompleteInputField';
 import { cities } from '../../data/cities';
 import logo from '../../assets/imagenes/logo.png'
 import { InputFormField } from '../../components/InputFormField';
 import { Link } from 'react-router-dom';
-import { CREATE_CLIENT } from '../../querys/querys';
+import { CREATE_SPECIALIST } from '../../querys/querys';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import InputDropZone from '../../components/InputDropZone';
@@ -14,12 +13,14 @@ import { ServiciosHombres, ServiciosMascotas, ServiciosMujeres } from '../../dat
 import { v4 as uuidv4 } from 'uuid';
 
 export const SpecialistsRegisterForm = () => {
+    const inputDropZoneRef = useRef();
     const navigate = useNavigate();
-    const [createClient, { data, loading, error }] = useMutation(CREATE_CLIENT);
+    const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST);
     const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm();
     const [step, setStep] = useState(1); // Nuevo estado para el paso actual
     const [services, setServices] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
+    const [registerId, setRegisterId] = useState('1');
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const fieldArrayOperations = daysOfWeek.reduce((acc, day) => {
         acc[day] = useFieldArray({
@@ -28,6 +29,14 @@ export const SpecialistsRegisterForm = () => {
         });
         return acc;
     }, {});
+
+    useEffect(() => {
+        if (registerId !== '1') {
+            if (inputDropZoneRef.current) {
+                inputDropZoneRef.current.uploadFiles();
+            }
+        }
+    }, [registerId]);
 
     const [selectedWorlds, setSelectedWorlds] = useState({
         Hombre: false,
@@ -107,26 +116,49 @@ export const SpecialistsRegisterForm = () => {
             // Convierte age a un número
             const ageAsNumber = parseInt(age, 10);
 
-            const response = await createClient({ variables: { input: { ...formData, age: ageAsNumber } } });
-            console.log(response);
+            // Convierte el objeto worlds a un array de strings
+            const worldsAsArray = Object.keys(selectedWorlds).filter(selectedWorld => selectedWorlds[selectedWorld]);
 
-            if (response.data.createClient.id) {
-                navigate('/login');
+            delete formData.confirmpassword
+            delete formData.services
+            delete formData.worlds
+
+            const input = {
+                ...formData,
+                age: ageAsNumber,
+                specialtys: selectedServices,
+                world: worldsAsArray,
+                // weeklySchedule: fieldArrayOperations,
+                active: false,
+                highlighted: false
+            }
+
+            console.log(input);
+            const response = await createSpecialist({ variables: { input: input } });
+            console.log(response);
+            if (response.data.createSpecialist.id) {
+                // navigate('/login');
+                console.log(response.data.createSpecialist.id);
+                setRegisterId(response.data.createSpecialist.id)
+                // Inicia la subida de archivos
+                // if (inputDropZoneRef.current) {
+                //     inputDropZoneRef.current.uploadFiles();
+                // } else {
+                //     console.log('No se pudo iniciar la subida de archivos');
+                // }
             }
         } catch (error) {
             console.error(error);
         }
     };
 
-    const password = watch("password", "");
-
     useEffect(() => {
-        setValue("role", "client");
+        setValue("role", "specialist");
     }, [setValue]);
 
     // Función para avanzar al siguiente paso
     const nextStep = () => {
-        if (step < 5) {
+        if (step < 6) {
             setStep(prevStep => prevStep + 1);
         }
     };
@@ -157,9 +189,7 @@ export const SpecialistsRegisterForm = () => {
                         </div>
                         <div>
                             {step === 1 && (
-                                <>
-                                    <StepOne cities={cities} errors={errors} register={register} setValue={setValue} />
-                                </>
+                                <StepOne cities={cities} errors={errors} register={register} setValue={setValue} />
                             )}
                             {step === 2 && (
                                 <div className='flex flex-col gap-4'>
@@ -210,33 +240,40 @@ export const SpecialistsRegisterForm = () => {
                                 </div>
                             )}
                             {step === 4 && (
-
-                                <InputDropZone fileName='Profile picture' tipo='profilePic' recomendedSize='400x400' />
+                                <></>
                             )}
                             {step === 5 && (
                                 <div className='h-full overflow-y-scroll'>
                                     <label htmlFor="weeklySchedule" className="font-light">Horario semanal</label>
-                                    {daysOfWeek.map(day => (
-                                        <div key={day}>
-                                            <h3 className='p-2 font-bold m-auto bg-[#caa766] rounded-xl text-white'>{day}</h3>
+                                    {daysOfWeek.map((day, index) => (
+                                        <div key={index}>
+                                            <h3 className='p-4 font-bold m-auto bg-orange-400 rounded-xl'>{day}</h3>
                                             {fieldArrayOperations[day].fields.map((field, index) => (
-                                                <div key={field.id}>
-                                                    <input type='time' {...register(`weeklySchedule.${day}.${index}.start`)} placeholder="Start time" />
-                                                    <input type='time' {...register(`weeklySchedule.${day}.${index}.end`)} placeholder="End time" />
-                                                    <button type="button" onClick={() => fieldArrayOperations[day].remove(index)}>Remove</button>
+                                                <div key={field.id} className='m-4'>
+                                                    <input type='time' className='m-2' {...register(`weeklySchedule.${day}.${index}.start`)} placeholder="Start time" />
+                                                    <input type='time' className='m-2' {...register(`weeklySchedule.${day}.${index}.end`)} placeholder="End time" />
+                                                    <button className='rounded-md bg-red-600 p-1' type="button" onClick={() => fieldArrayOperations[day].remove(index)}>Remove</button>
                                                 </div>
                                             ))}
-                                            <button type="button" onClick={() => fieldArrayOperations[day].append({ start: "", end: "" })}>Add Time Slot</button>
+                                            <button className='m-4 p-1 bg-green-600 rounded-md' type="button" onClick={() => fieldArrayOperations[day].append({ start: "", end: "" })}>Add Time Slot</button>
                                         </div>
                                     ))}
                                 </div>
+                            )}
+                            {step === 6 && (
+                                <>
+                                    <InputDropZone fileName='ProfilePicture' tipo='profilePic' recomendedSize='400x400' userId={registerId} ref={inputDropZoneRef} />
+                                    <div className='flex w-full justify-center'>
+                                        <input type="submit" className="p-2 bg-blue-500 text-white rounded cursor-pointer" />
+                                    </div>
+                                </>
                             )}
                         </div>
                         {/* ... */}
                         <div>
                             <div className="flex justify-center space-x-4 mb-4"> {/* Contenedor para el control del stepper */}
                                 <button type="button" onClick={prevStep}>Back</button>
-                                {[1, 2, 3, 4, 5].map((stepNumber) => (
+                                {[1, 2, 3, 4, 5, 6].map((stepNumber) => (
                                     <div
                                         key={stepNumber}
                                         className='hidden sm:block'

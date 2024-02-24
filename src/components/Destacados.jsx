@@ -48,6 +48,7 @@ export const Destacados = ({ paramsToSearch, destacados = true }) => {
                     filtrado = filtrado.filter(especialista => especialista.world === paramsToSearch.mundo) || [];
                 }
             }
+            filtrado = filtrado.filter(especialista => especialista.active === true) || [];
         }
 
         return filtrado;

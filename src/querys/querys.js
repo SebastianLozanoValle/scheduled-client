@@ -246,3 +246,11 @@ export const CREATE_CLIENT = gql`
         }
     }
 `;
+
+export const CREATE_SPECIALIST = gql`
+    mutation($input: SpecialistInput!) {
+        createSpecialist(input: $input) {
+            id
+        }
+    }
+`;

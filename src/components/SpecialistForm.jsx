@@ -46,6 +46,7 @@ export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
         console.log(data);
 
         try {
+            console.log(data);
           const { data: response } = await createSpecialist({ variables: { input: data } });
         //   throw new Error(response);
           toast({

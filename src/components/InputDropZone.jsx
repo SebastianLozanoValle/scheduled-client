@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useMutation, gql } from '@apollo/client';
 import { useUserStore } from '../store/userStore';
@@ -13,9 +13,10 @@ const UPDATE_FILE = gql`
     }
 `;
 
-const InputDropZone = ({ fileName = "prueba", maxFiles = 1, tipo = 'picture', recomendedSize = '' }) => {
 
-    const { userId } = useUserStore()
+
+const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'picture', recomendedSize = '', userId }, ref) => {
+
 
     const [files, setFiles] = useState([]);
     const onDrop = useCallback((acceptedFiles) => {
@@ -37,6 +38,7 @@ const InputDropZone = ({ fileName = "prueba", maxFiles = 1, tipo = 'picture', re
     const [updateFile] = useMutation(UPDATE_FILE);
 
     const uploadFiles = () => {
+        console.log('subiendo archivos');
         files.forEach(file => {
             const formData = new FormData();
             formData.append('file', file);
@@ -68,6 +70,11 @@ const InputDropZone = ({ fileName = "prueba", maxFiles = 1, tipo = 'picture', re
                 });
         });
     };
+    
+
+    useImperativeHandle(ref, () => ({
+        uploadFiles
+    }));
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
@@ -113,13 +120,13 @@ const InputDropZone = ({ fileName = "prueba", maxFiles = 1, tipo = 'picture', re
                 <h4 className='text-[#caa776] font-semibold'>Files</h4>
                 <ul>{thumbs}</ul>
             </aside>
-            <button className='px-8 py-2 bg-primary hover:bg-[#caa776] rounded-md text-white' onClick={uploadFiles} disabled={files.length === 0}>Subir Archivos</button>
+            {/* <button className='px-8 py-2 bg-primary hover:bg-[#caa776] rounded-md text-white' onClick={uploadFiles} disabled={files.length === 0}>Subir Archivos</button> */}
             {/* <p>imagen previamente subida</p>
             <div className="w-14 h-14 overflow-hidden rounded-full">
                 <img className="w-full h-full object-cover" src={"http://localhost:33402/files/" + img} />
             </div> */}
         </div>
-    );
-};
+    )
+});
 
 export default InputDropZone;

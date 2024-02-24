@@ -44,6 +44,7 @@ export const DashboardSideNavBar = () => {
         {diferentThatClient&&<Link to="/dashboard" icon={RiDashboardLine}>Dashboard</Link>}
         {admin&&<>
         <Link to="/dashboard/especialistas" icon={GiHairStrands}>Especialistas</Link>
+        <Link to="/dashboard/especialistas-sin-aprobar" icon={GiHairStrands}>Especialistas Sin Aprobar</Link>
         <Link to="/dashboard/clientes" icon={RiFolderUserFill}>Clientes</Link>
         <Link to="/dashboard/destacados" icon={RiBardFill}>Destacados</Link>
         <Link to="/dashboard/ventas" icon={RiCoinsLine}>Ventas</Link>

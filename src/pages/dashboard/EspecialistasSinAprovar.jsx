@@ -72,7 +72,7 @@ export const GET_SPECIALISTS = gql`
     }
 `
 
-export const Especialistas = ({ isMobile }) => {
+export const EspecialistasSinAprovar = ({ isMobile }) => {
 
     const { loading, error, data } = useQuery(GET_SPECIALISTS);
 
@@ -82,7 +82,7 @@ export const Especialistas = ({ isMobile }) => {
 
     console.log(especialistas);
     
-    const especialistasAprobados = especialistas.filter(especialista => especialista.active === true);
+    const especialistasAprobados = especialistas.filter(especialista => especialista.active === false);
 
 
     const [search, setSearch] = useState('');

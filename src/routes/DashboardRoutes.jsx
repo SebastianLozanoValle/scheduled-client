@@ -10,6 +10,7 @@ import { Clientes } from "../pages/dashboard/Clientes";
 import { useUserStore } from "../store/userStore";
 import { Perfil } from "../pages/dashboard/desktop/Perfil";
 import { Agenda } from "../pages/dashboard/Agenda";
+import { EspecialistasSinAprovar } from "../pages/dashboard/EspecialistasSinAprovar";
 
 export const DashboardRoutes = () => {
     const location = useLocation();
@@ -48,6 +49,7 @@ export const DashboardRoutes = () => {
             <Routes>
                 <Route path="/" element={admin ? <General isMobile={isMobile} /> : <Navigate to="/dashboard/perfil" />} />
                 <Route path="especialistas" element={admin ? <Especialistas /> : <Navigate to="/dashboard/perfil" />} />
+                <Route path="especialistas-sin-aprobar" element={admin ? <EspecialistasSinAprovar /> : <Navigate to="/dashboard/perfil" />} />
                 <Route path="clientes" element={admin ? <Clientes /> : <Navigate to="/dashboard/perfil" />} />
                 <Route path="agenda" element={admin ? <Agenda /> : <Navigate to="/dashboard/perfil" />} />
                 <Route path="perfil" element={loged ? <Perfil /> : <Navigate to="/login" />} />

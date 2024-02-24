@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Accordion, Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, IconButton, Image, Text, VStack } from "@chakra-ui/react"
 import { RiMore2Line, RiStarLine, RiStarSFill, RiDiscussLine, RiShareForwardLine, RiPencilLine, RiDeleteBinLine } from "react-icons/ri";
+import { FaCheck, FaCheckDouble } from "react-icons/fa";
 import { CustomAccordionItem } from "./CustomAccordionItem";
 import { gql, useMutation } from "@apollo/client";
 import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 import { DeleteConfirmationDialog } from './DeleteConfirmationDialog';
 import { EditSpecialistForm } from './EditSpecialistForm';
+import { color } from 'framer-motion';
 
 const DELETE_SPECIALIST = gql`
     mutation deleteSpecialist($id: ID!) {
@@ -26,14 +28,28 @@ const TOGGLE_SPECIALIST_HIGHLIGHT = gql`
     }
 `;
 
+const TOGGLE_SPECIALIST_ACTIVE = gql`
+    mutation toggleSpecialistActive($id: ID!) {
+        toggleSpecialistActive(id: $id) {
+            id
+            username
+            highlighted
+            active
+        }
+    }
+`;
+
 export const CustomCard = ({ especialista }) => {
     const [deleteSpecialist] = useMutation(DELETE_SPECIALIST,
         { refetchQueries: [{ query: GET_SPECIALISTS }] });
     const [toggleSpecialistHighlight] = useMutation(TOGGLE_SPECIALIST_HIGHLIGHT,
         { refetchQueries: [{ query: GET_SPECIALISTS }] });
+    const [toggleSpecialistActive] = useMutation(TOGGLE_SPECIALIST_ACTIVE,
+        { refetchQueries: [{ query: GET_SPECIALISTS }] });
 
     const handleToggleHighlight = async () => {
         try {
+            console.log('Toggling highlight...');
             const { data } = await toggleSpecialistHighlight({
                 variables: {
                     id: especialista.id
@@ -42,6 +58,22 @@ export const CustomCard = ({ especialista }) => {
         } catch (error) {
             console.log(error);
         }
+        console.log('Toggled highlight');
+    };
+    const handleToggleActive = async () => {
+        try {
+            console.log('Toggling active...');
+            console.log('especialista:', especialista.active);
+            const { data } = await toggleSpecialistActive({
+                variables: {
+                    id: especialista.id
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        console.log('Toggled active');
+        console.log('especialista:', especialista.active);
     };
     const [isOpen, setIsOpen] = useState(false);
 
@@ -63,13 +95,21 @@ export const CustomCard = ({ especialista }) => {
 
     console.log('Rendering CustomCard. isFormOpen:', isFormOpen);
 
+    const profilePicture = especialista.files.find((file) => {
+        return file.tipo === 'profilePic';
+    });
+    const profilePictureUrl = "http://localhost:33402/files/" + profilePicture.filename;
+    console.log('profilePIcture:', profilePicture.filename);
+
+    console.log('especialista:', especialista.files.length)
+
     return (
         <>
             <Card maxW='md' boxShadow='xl'>
                 <CardHeader>
                     <Flex spacing='4'>
                         <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-                            <Avatar bg='brand.primary' name='Sasuke Uchiha' src='https://bit.ly/broken-link' />
+                            <Avatar bg='brand.primary' name='Sasuke Uchiha' src={profilePictureUrl} />
 
                             <Box>
                                 <Heading size='sm'>{especialista.username}</Heading>
@@ -141,6 +181,25 @@ export const CustomCard = ({ especialista }) => {
                                 <Text>El especialista {especialista.nombre} no tiene citas agendadas aún.</Text>
                             )}
                         </CustomAccordionItem>
+                        <CustomAccordionItem title="Archivos Adjuntos">
+                            {especialista.files ? (
+                                <VStack align="start" spacing={2} mb={4}>
+                                    {especialista.files.map((file, indexCita) => {
+                                        return (
+                                            <VStack align="start" spacing={2} mb={4} borderTop='1px' borderBottom='1px' key={file.id} className='overflow-x-scroll'>
+                                                <Text fontWeight="bold">Tipo: {file.tipo}</Text>
+                                                <Text fontWeight="bold">Nombre: {file.filename}</Text>
+                                                <Text color={'#d3983f'} _hover={{ color: "#caa776" }} fontWeight="bold"><a target='_blank' href={"http://localhost:33402/files/" + file.filename}>Link Revision</a></Text>
+                                                <Text fontWeight="bold">Vista previa:</Text>
+                                                <Image className='h-[400px] w-[400px] object-cover' src={"http://localhost:33402/files/" + file.filename} alt="preview" />
+                                            </VStack>
+                                        )
+                                    })}
+                                </VStack>
+                            ) : (
+                                <Text>El especialista {especialista.nombre} no tiene archivos adjuntos.</Text>
+                            )}
+                        </CustomAccordionItem>
                     </Accordion>
                 </CardBody>
 
@@ -168,6 +227,11 @@ export const CustomCard = ({ especialista }) => {
                         onClick={handleOpen}
                     >
                         Borrar
+                    </Button>
+                    <Button colorScheme={especialista.active ? 'red' : 'green'} aria-label="Borrar" flex='1' leftIcon={especialista.active ? <FaCheck /> : <FaCheckDouble />}
+                        onClick={handleToggleActive}
+                    >
+                        {especialista.active ? 'Desaprobar' : 'Aprobar'}
                     </Button>
                 </CardFooter>
             </Card>
