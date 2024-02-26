@@ -33,7 +33,9 @@ export const SpecialistsRegisterForm = () => {
     useEffect(() => {
         if (registerId !== '1') {
             if (inputDropZoneRef.current) {
-                inputDropZoneRef.current.uploadFiles();
+                if (inputDropZoneRef.current.uploadFiles()) {
+                    navigate('/login');
+                }
             }
         }
     }, [registerId]);
@@ -158,7 +160,7 @@ export const SpecialistsRegisterForm = () => {
 
     // Función para avanzar al siguiente paso
     const nextStep = () => {
-        if (step < 6) {
+        if (step < 5) {
             setStep(prevStep => prevStep + 1);
         }
     };
@@ -240,9 +242,6 @@ export const SpecialistsRegisterForm = () => {
                                 </div>
                             )}
                             {step === 4 && (
-                                <></>
-                            )}
-                            {step === 5 && (
                                 <div className='h-full overflow-y-scroll'>
                                     <label htmlFor="weeklySchedule" className="font-light">Horario semanal</label>
                                     {daysOfWeek.map((day, index) => (
@@ -260,7 +259,7 @@ export const SpecialistsRegisterForm = () => {
                                     ))}
                                 </div>
                             )}
-                            {step === 6 && (
+                            {step === 5 && (
                                 <>
                                     <InputDropZone fileName='ProfilePicture' tipo='profilePic' recomendedSize='400x400' userId={registerId} ref={inputDropZoneRef} />
                                     <div className='flex w-full justify-center'>
@@ -273,7 +272,7 @@ export const SpecialistsRegisterForm = () => {
                         <div>
                             <div className="flex justify-center space-x-4 mb-4"> {/* Contenedor para el control del stepper */}
                                 <button type="button" onClick={prevStep}>Back</button>
-                                {[1, 2, 3, 4, 5, 6].map((stepNumber) => (
+                                {[1, 2, 3, 4, 5].map((stepNumber) => (
                                     <div
                                         key={stepNumber}
                                         className='hidden sm:block'

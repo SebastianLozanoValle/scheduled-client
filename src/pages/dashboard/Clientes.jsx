@@ -3,6 +3,14 @@ import { GET_CLIENTS } from "../../querys/querys";
 import Table from "../../components/Table";
 import { useState } from 'react';
 import { Input } from "@chakra-ui/react";
+import ReactExport from 'react-data-export';
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+
+const today = new Date();
+
 
 export const Clientes = () => {
 
@@ -35,6 +43,16 @@ export const Clientes = () => {
                     <Table customers={filteredClientes} />
                     : <p>No se ha encontrado ninguna coincidencia con "{search}"</p>
             }
+            <div>
+                <ExcelFile>
+                    <ExcelSheet data={clientes} name="Clientes">
+                        <ExcelColumn label="Nombre" value="username" />
+                        <ExcelColumn label="Email" value="email" />
+                        <ExcelColumn label="Teléfono" value="phone" />
+                        <ExcelColumn label="Ciudad" value="city" />
+                    </ExcelSheet>
+                </ExcelFile>
+            </div>
         </div>
     )
 }

@@ -37,38 +37,41 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
 
     const [updateFile] = useMutation(UPDATE_FILE);
 
-    const uploadFiles = () => {
+    const uploadFiles = async () => {
         console.log('subiendo archivos');
-        files.forEach(file => {
+        for (const file of files) {
             const formData = new FormData();
             formData.append('file', file);
-
-            fetch('http://localhost:33402/upload', {
-                // fetch('http://api.qurux.net/upload', {
-                // fetch('https://sever-qurux.onrender.com/upload', {
-                // fetch('https://sever-qurux.vercel.app/upload', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('data', data);
-                    setImg(data.file.filename)
-                    setImgId(data.id)
-                    console.log(img);
-
-                    // Realizar la mutación
-                    updateFile({ variables: { input: { id: data.id, userId: userId, alias: fileName, tipo: tipo } } });
-                })
-                .catch(error => {
-                    console.error(error);
+    
+            try {
+                const response = await fetch('http://localhost:33402/upload', {
+                    method: 'POST',
+                    body: formData
                 });
-        });
+    
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+    
+                const data = await response.json();
+                console.log('data', data);
+                setImg(data.file.filename);
+                setImgId(data.id);
+                console.log(img);
+    
+                // Realizar la mutación
+                const updateResponse = await updateFile({ variables: { input: { id: data.id, userId: userId, alias: fileName, tipo: tipo } } });
+                if (updateResponse.data.setFileData.id) {
+                    console.log('archivo subido');
+                    return true
+                } else {
+                    console.log('archivo no subido');
+                    return false
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
     };
     
 

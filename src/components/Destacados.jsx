@@ -45,7 +45,7 @@ export const Destacados = ({ paramsToSearch, destacados = true }) => {
             } else if (destacados === true) {
                 filtrado = data?.findSpecialists.filter(especialista => especialista.highlighted) || [];
                 if (paramsToSearch && paramsToSearch.mundo != '') {
-                    filtrado = filtrado.filter(especialista => especialista.world === paramsToSearch.mundo) || [];
+                    filtrado = filtrado.filter(especialista => especialista.world.includes(paramsToSearch.mundo)) || [];
                 }
             }
             filtrado = filtrado.filter(especialista => especialista.active === true) || [];
