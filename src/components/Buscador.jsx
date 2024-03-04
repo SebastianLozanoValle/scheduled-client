@@ -72,12 +72,12 @@ export const Buscador = ({ onSearch, tabs }) => {
       setSearchParams((prevParams) => ({
         ...prevParams,
         servicios: [...prevParams.servicios, event.target.value],
-    }));
+      }));
     else
       setSearchParams((prevParams) => ({
         ...prevParams,
         servicios: prevParams.servicios.filter(item => item !== event.target.value),
-    }));
+      }));
   };
 
   return (
@@ -113,7 +113,7 @@ export const Buscador = ({ onSearch, tabs }) => {
         >
           <option value='Mixto'>Mixto</option>
           <option value='Domicilio'>Domicilio</option>
-          <option value='Presencial'>Presencial</option>
+          <option value='Presencial'>local</option>
         </Select>
 
 
@@ -189,7 +189,7 @@ export const Buscador = ({ onSearch, tabs }) => {
           <b>Search</b>
         </Button>
       </Box>
-      <div className='w-11/12 flex sm:w-4/5 flex-wrap mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm h-24 overflow-y-scroll'>
+      <div className='w-11/12 flex sm:w-4/5 flex-wrap mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm h-auto overflow-y-scroll'>
         {tabs?.map((tab, index) => (
           <label key={index} className='p-4 flex text-[#d3983f]'>
             <input className="mr-2" type="checkbox" value={tab} onChange={handleSpecialtyChange} />

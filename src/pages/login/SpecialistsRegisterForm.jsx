@@ -64,9 +64,10 @@ export const SpecialistsRegisterForm = () => {
 
     // Añade el manejador de cambio a los checkboxes de especialidad
     {
-        services.map(service => (
+        services.map((service, index) => (
             <div key={service + uuidv4()}>
-                <input type="checkbox" value={service} {...register("services")} onChange={handleServiceChange} />
+                {/* <input type="checkbox" value={service} {...register("services")} onChange={handleServiceChange} /> */}
+                <input type="checkbox" value={service} {...register(`specialtys[${index}].name`)} onChange={handleServiceChange} />
                 <label htmlFor={service}>{service}</label>
             </div>
         ))
@@ -116,7 +117,7 @@ export const SpecialistsRegisterForm = () => {
             const { confirmpassword, age, ...formData } = data;
 
             // Convierte age a un número
-            const ageAsNumber = parseInt(age, 10);
+            // const ageAsNumber = parseInt(age, 10);
 
             // Convierte el objeto worlds a un array de strings
             const worldsAsArray = Object.keys(selectedWorlds).filter(selectedWorld => selectedWorlds[selectedWorld]);
@@ -125,10 +126,19 @@ export const SpecialistsRegisterForm = () => {
             delete formData.services
             delete formData.worlds
 
+            // Mapea selectedServices a un nuevo array de objetos
+            const specialtysAsObjects = selectedServices.map((service, index) => ({
+                name: service,
+                description: data.specialtys[index].description,
+                price: parseFloat(data.specialtys[index].price),
+                time: data.specialtys[index].time
+            }));
+
             const input = {
                 ...formData,
-                age: ageAsNumber,
-                specialtys: selectedServices,
+                // age: ageAsNumber,
+                age: age,
+                specialtys: specialtysAsObjects,
                 world: worldsAsArray,
                 // weeklySchedule: fieldArrayOperations,
                 active: false,
@@ -221,8 +231,8 @@ export const SpecialistsRegisterForm = () => {
                                             </label>
                                         ))}
                                     </div>
-                                    <div className='flex flex-wrap'>
-                                        <fieldset className='overflow-y-scroll h-[200px] w-full sm:w-1/2'>
+                                    <div className='flex flex-col'>
+                                        <fieldset className='overflow-y-scroll h-[200px] w-full'>
                                             <legend className='text-primary font-semibold'>Servicios</legend>
                                             {services.map(service => (
                                                 <div key={service + uuidv4()}>
@@ -232,10 +242,23 @@ export const SpecialistsRegisterForm = () => {
                                                 </div>
                                             ))}
                                         </fieldset>
-                                        <div className='overflow-y-scroll h-[200px] w-full sm:w-1/2'>
+                                        <div className='overflow-y-scroll h-[200px] w-full'>
                                             <legend className='text-primary font-semibold'>Seleccionados</legend>
-                                            {selectedServices.map(service => (
-                                                <p key={service + uuidv4()}>{service}</p>
+                                            {selectedServices.map((service, index) => (
+                                                <div className='flex flex-col' key={service + uuidv4()}>
+                                                    <p>{service}</p>
+                                                    <label htmlFor={`${service}-description`}>Descripción:</label>
+                                                    <input id={`${service}-description`} type="text" {...register(`specialtys[${index}].description`)} />
+                                                    <label htmlFor={`${service}-price`}>Precio:</label>
+                                                    <input id={`${service}-price`} type="number" {...register(`specialtys[${index}].price`)} />
+                                                    <label htmlFor={`${service}-time`}>Duracion:</label>
+                                                    <select id={`${service}-time`} {...register(`specialtys[${index}].time`)}>
+                                                        <option value="00:30">30 minutos</option>
+                                                        <option value="01:00">1 hora</option>
+                                                        <option value="01:30">1 hora con 30 minutos</option>
+                                                        {/* Agrega más opciones según sea necesario */}
+                                                    </select>
+                                                </div>
                                             ))}
                                         </div>
                                     </div>

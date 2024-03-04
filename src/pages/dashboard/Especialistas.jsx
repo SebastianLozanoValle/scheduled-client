@@ -28,7 +28,11 @@ export const GET_SPECIALISTS = gql`
             role
             highlighted
             world
-            specialtys
+            specialtys {
+                name
+                price
+                time
+            }
             serviceType
             weeklySchedule {
                 Monday {
@@ -81,7 +85,7 @@ export const Especialistas = ({ isMobile }) => {
     const especialistas = data?.findSpecialists || [];
 
     console.log(especialistas);
-    
+
     const especialistasAprobados = especialistas.filter(especialista => especialista.active === true);
 
 

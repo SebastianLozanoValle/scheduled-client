@@ -3,18 +3,13 @@ import { GET_CLIENTS } from "../../querys/querys";
 import Table from "../../components/Table";
 import { useState } from 'react';
 import { Input } from "@chakra-ui/react";
-import ReactExport from 'react-data-export';
-
-const ExcelFile = ReactExport.ExcelFile;
-const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
-const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const today = new Date();
 
-
 export const Clientes = () => {
-
     const { loading, error, data } = useQuery(GET_CLIENTS);
+    console.log(today)
 
     if (error) console.log(error);
 
@@ -35,6 +30,13 @@ export const Clientes = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 mb={4}
             />
+            <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button px-8 py-2 rounded text-white bg-green-700 hover:bg-green-600 fixed bottom-20 right-5"
+                table="table-to-xls"
+                filename={`clientes-${today}`}
+                sheet="clientes"
+                buttonText={'Descargar Excel'}/>
             {search.length < 3 ?
                 // Renderizado normal
                 <Table customers={clientes} />
@@ -43,16 +45,6 @@ export const Clientes = () => {
                     <Table customers={filteredClientes} />
                     : <p>No se ha encontrado ninguna coincidencia con "{search}"</p>
             }
-            <div>
-                <ExcelFile>
-                    <ExcelSheet data={clientes} name="Clientes">
-                        <ExcelColumn label="Nombre" value="username" />
-                        <ExcelColumn label="Email" value="email" />
-                        <ExcelColumn label="Teléfono" value="phone" />
-                        <ExcelColumn label="Ciudad" value="city" />
-                    </ExcelSheet>
-                </ExcelFile>
-            </div>
         </div>
-    )
+    );
 }

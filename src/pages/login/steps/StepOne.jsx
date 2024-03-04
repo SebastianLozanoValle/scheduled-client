@@ -14,7 +14,7 @@ export const StepOne = ({ register, errors, cities, setValue }) => {
                 <InputFormField register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
             </div>
             <div className='flex flex-wrap justify-between'>
-                <InputFormField register={register} label="Edad" id="age" placeholder="Edad" type="number" errors={errors} />
+                <InputFormField register={register} label="Edad" id="age" placeholder="Edad" type="date" errors={errors} />
                 <InputFormField register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
             </div>
             <AutocompleteInputField

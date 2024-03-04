@@ -13,7 +13,11 @@ export const GET_SPECIALIST = gql`
             role
             world
             highlighted
-            specialtys
+            specialtys {
+                name
+                price
+                time
+            }
             serviceType
             weeklySchedule {
                 Monday {
@@ -76,7 +80,11 @@ export const FIND_SPECIALISTS = gql`
             world
             role
             highlighted
-            specialtys
+            specialtys {
+                name
+                price
+                time
+            }
             serviceType
             weeklySchedule {
                 Monday {

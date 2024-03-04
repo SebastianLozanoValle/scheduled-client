@@ -181,7 +181,7 @@ export const AgendarEspecialista = () => {
                 </div>
                 <div className="w-full md:w-6/12">
                     <CalendarioEventos appointments={especialista.appointments} />
-                    <div className="bg-white mx-auto w-4/5 p-4 rounded-xl shadow-2xl">
+                    {/* <div className="bg-white mx-auto w-4/5 p-4 rounded-xl shadow-2xl">
                         <form onSubmit={handleSubmit}>
                             <label className="font-bold">Servicios</label>
                             <div className={`${isAvailable && 'hidden'}`}>
@@ -227,7 +227,8 @@ export const AgendarEspecialista = () => {
                                 {isAvailable && <button type="submit" className="bg-green-500 text-white rounded-2xl p-2">Agendar</button>}
                             </div>
                         </form>
-                    </div>
+                    </div> */}
+                    
                 </div>
             </div>
         </div>

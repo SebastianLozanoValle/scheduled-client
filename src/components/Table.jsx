@@ -16,7 +16,7 @@ function Table({ customers }) {
             <div className="overflow-x-auto w-full">
                 <div className="py-2 min-w-full sm:px-6 lg:px-8">
                     <div className="shadow border-b border-gray-200 sm:rounded-lg w-full">
-                        <table className="min-w-full divide-y divide-gray-200">
+                        <table id="table-to-xls" className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-50">
                                 <tr>
                                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">

@@ -95,13 +95,13 @@ export const CustomCard = ({ especialista }) => {
 
     console.log('Rendering CustomCard. isFormOpen:', isFormOpen);
 
-    const profilePicture = especialista.files.find((file) => {
+    const profilePicture = especialista.files?.find((file) => {
         return file.tipo === 'profilePic';
     });
-    const profilePictureUrl = "http://localhost:33402/files/" + profilePicture.filename;
-    console.log('profilePIcture:', profilePicture.filename);
+    const profilePictureUrl = "http://localhost:33402/files/" + profilePicture?.filename;
+    console.log('profilePIcture:', profilePicture?.filename);
 
-    console.log('especialista:', especialista.files.length)
+    console.log('especialista:', especialista.files?.length)
 
     return (
         <>
@@ -133,7 +133,7 @@ export const CustomCard = ({ especialista }) => {
                         <CustomAccordionItem title="Especialidades">
                             <Text fontWeight={'bold'}>Mundo {especialista.world}</Text>
                             {especialista.specialtys.map((especialidad, index) => (
-                                <Text key={`${especialista.id}${index}`}>{especialidad}</Text>
+                                <Text key={`${especialista.id}${index}`}>{especialidad.name}</Text>
                             ))}
                         </CustomAccordionItem>
                         <CustomAccordionItem title="Horario de Atención">
