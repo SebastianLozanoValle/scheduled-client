@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const GET_SPECIALIST = gql`
     query GetSpecialist($id: ID!) {
         getSpecialist(id: $id) {
+            id
             username
             age
             avatar
@@ -15,6 +16,7 @@ export const GET_SPECIALIST = gql`
             highlighted
             specialtys {
                 name
+                description
                 price
                 time
             }
@@ -64,6 +66,13 @@ export const GET_SPECIALIST = gql`
                 clientUsername
                 specialistUsername
             }
+            notifications {
+                id
+                message
+                recipient
+                sender
+                tipo
+            }
         }
     }
 `;
@@ -80,8 +89,10 @@ export const FIND_SPECIALISTS = gql`
             world
             role
             highlighted
+            reject
             specialtys {
                 name
+                description
                 price
                 time
             }
@@ -123,15 +134,13 @@ export const FIND_SPECIALISTS = gql`
                 startTime
                 estimatedEndTime
             }
-        }
-    }
-`;
-
-export const GET_CLIENT = gql`
-    query GetClient($id: ID!) {
-        getClient(id: $id) {
-            username
-            email
+            notifications {
+                id
+                message
+                recipient
+                sender
+                tipo
+            }
         }
     }
 `;
@@ -170,28 +179,35 @@ export const CREATE_INVOICE = gql`
 export const GET_CLIENTS = gql`
     query {
         getClients {
+            id
+            username
+            avatar
+            age
+            gender
+            phone
+            email
+            city
+            street
+            role
+            active
+            appointments{
+                date
+                startTime
+                estimatedEndTime
+                status
+                detail
                 id
-                username
-                avatar
-                age
-                gender
-                phone
-                email
-                city
-                street
-                role
-                active
-                appointments{
-                    date
-                    startTime
-                    estimatedEndTime
-                    status
-                    detail
-                    id
-                    serviceType
-                    value
-                }
-                favorites
+                serviceType
+                value
+            }
+            favorites
+            notifications {
+                id
+                message
+                recipient
+                sender
+                tipo
+            }
         }
     }
 `;
@@ -260,5 +276,70 @@ export const CREATE_SPECIALIST = gql`
         createSpecialist(input: $input) {
             id
         }
+    }
+`;
+
+export const SEND_NOTIFICATION = gql`
+    mutation($input: NotificationInput!) {
+        sendNotification(input: $input) {
+            id
+            message
+            tipo
+            sender
+            recipient
+            date
+        }
+    }
+`;
+
+
+export const TOGGLE_REJECT = gql`
+    mutation toggleReject($id: ID!) {
+        toggleReject(id: $id) {
+            id
+            username
+            reject
+        }
+    }
+`;
+
+export const GET_USER = gql`
+    query GetUser($id: ID!) {
+        getUser(id: $id) {
+            id
+            username
+            city
+            email
+            phone
+            notifications {
+                id
+                message
+                recipient
+                sender
+                tipo
+            }
+        }
+    }
+`
+
+export const GET_CLIENT = gql`
+    query GetClient($id: ID!) {
+        getClient(id: $id) {
+            username
+            email
+            notifications {
+                id
+                message
+                recipient
+                sender
+                tipo
+            }
+        }
+    }
+`;
+
+export const TIME_TO_PAY = gql`
+    mutation($order: String!, $merchant: String!, $checksum: String!) {
+        timeToPay(order: $order, merchant: $merchant, checksum: $checksum)
     }
 `;

@@ -6,71 +6,7 @@ import { gql, useQuery } from "@apollo/client";
 import { CustomCard } from "../../components/CustomCard";
 import { SpecialistForm } from "../../components/SpecialistForm";
 import '../.././index.css';
-
-export const GET_SPECIALISTS = gql`
-    query {
-        findSpecialists {
-            id
-            username
-            age
-            avatar
-            gender
-            active
-            files{
-                id
-                alias
-                tipo
-                filename
-                path
-            }
-            city
-            street
-            role
-            highlighted
-            world
-            specialtys
-            serviceType
-            weeklySchedule {
-                Monday {
-                    start
-                    end
-                }
-                Tuesday {
-                    start
-                    end
-                }
-                Wednesday {
-                    start
-                    end
-                }
-                Thursday {
-                    start
-                    end
-                }
-                Friday {
-                    start
-                    end
-                }
-                Saturday {
-                    start
-                    end
-                }
-                Sunday {
-                    start
-                    end
-                }
-            }
-            appointments {
-                id
-                clientId
-                date
-                status
-                startTime
-                estimatedEndTime
-            }
-        }
-    }
-`
+import { GET_SPECIALISTS } from "./Especialistas";
 
 export const EspecialistasSinAprovar = ({ isMobile }) => {
 
@@ -83,6 +19,7 @@ export const EspecialistasSinAprovar = ({ isMobile }) => {
     console.log(especialistas);
     
     const especialistasAprobados = especialistas.filter(especialista => especialista.active === false);
+    const especialistasRechazados = especialistasAprobados.filter(especialista => especialista.reject === false);
 
 
     const [search, setSearch] = useState('');
@@ -108,12 +45,12 @@ export const EspecialistasSinAprovar = ({ isMobile }) => {
                 </Flex>
                 <SpecialistForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
                 {
-                    search.length < 3 ? especialistasAprobados.map((especialista) => (
+                    search.length < 3 ? especialistasRechazados.map((especialista) => (
                         // Renderizado normal
                         <Center key={especialista.id} mt={20}>
                             <CustomCard especialista={especialista} />
                         </Center>
-                    )) : filteredEspecialistas.length > 0 ? filteredEspecialistas.map((especialista) => (
+                    )) : especialistasRechazados.length > 0 ? filteredEspecialistas.map((especialista) => (
                         // Renderizado de búsqueda
                         <Center key={especialista.id} mt={20}>
                             <CustomCard especialista={especialista} />

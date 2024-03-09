@@ -45,13 +45,14 @@ export const DashboardSideNavBar = () => {
         {admin&&<>
         <Link to="/dashboard/especialistas" icon={GiHairStrands}>Especialistas</Link>
         <Link to="/dashboard/especialistas-sin-aprobar" icon={GiHairStrands}>Especialistas Sin Aprobar</Link>
+        <Link to="/dashboard/especialistas-rechazados" icon={GiHairStrands}>Especialistas Rechazados</Link>
         <Link to="/dashboard/clientes" icon={RiFolderUserFill}>Clientes</Link>
         <Link to="/dashboard/destacados" icon={RiBardFill}>Destacados</Link>
         <Link to="/dashboard/ventas" icon={RiCoinsLine}>Ventas</Link>
         </>}{
           diferentThatClient&&<Link to="/dashboard/agenda" icon={TfiAgenda}>Agenda</Link>
         }
-        {<Link to="/perfil" icon={RiUser3Line}>Perfil</Link>}
+        {<Link to="/dashboard/perfil" icon={RiUser3Line}>Perfil</Link>}
         {<Link icon={RiLogoutBoxLine} handler={logout}>Logout</Link>}
         {<Link to="/dashboard/pruebas" icon={RiLogoutBoxLine}>pruebas</Link>}
       </VStack>

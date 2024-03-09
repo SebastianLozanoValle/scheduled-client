@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Calendario } from "../components/Calendario";
 import { useUserStore } from "../store/userStore";
 import { CalendarioEventos } from "../components/CalendarioEventos";
+import { AgendaForm } from "../components/AgendaForm";
 
 export const AgendarEspecialista = () => {
 
@@ -142,6 +143,16 @@ export const AgendarEspecialista = () => {
         return `${day}-${monthName}-${year}`;
     };
 
+    let daysOfWeek = {
+        "Monday": "Lunes",
+        "Tuesday": "Martes",
+        "Wednesday": "Miércoles",
+        "Thursday": "Jueves",
+        "Friday": "Viernes",
+        "Saturday": "Sábado",
+        "Sunday": "Domingo"
+    };
+
     return (
         <div className="min-h-screen">
             <div className="flex justify-between items-center bg-[#161c26] p-4 rounded-3xl shadow-2xl mt-28 mx-20 text-white">
@@ -157,21 +168,21 @@ export const AgendarEspecialista = () => {
                 <img className="h-20 w-20 rounded-full object-cover shadow-2xl" src="https://www.movilzona.es/app/uploads-movilzona.es/2023/04/fto-perfil.jpg?x=480&y=375&quality=40" />
             </div>
 
-            <div className="md:flex md:flex-row flex-col-reverse mx-auto md:justify-around my-8">
-                <div className="p-20 w-full sm:w-auto">
+            <div className="md:flex md:flex-row flex-col-reverse mx-auto my-8">
+                <div className="p-20 lg:pr-0 w-full sm:w-auto">
                     <ul className="flex flex-col gap-8 w-auto mx-auto bg-[#161c26] text-white rounded-3xl p-8">
                         {Object.keys(especialista.weeklySchedule).map((dia, indexDia) => {
                             return (
                                 especialista.weeklySchedule[dia].length ? (
                                     <li className="flex flex-col bg-green-500 rounded-2xl p-2" key={indexDia}>
-                                        <p className="font-bold">{dia}</p>
+                                        <p className="font-bold">{daysOfWeek[dia]}</p>
                                         {especialista.weeklySchedule[dia].map((hora, indexHora) => (
                                             <p key={indexHora}>{hora.start}-{hora.end}</p>
                                         ))}
                                     </li>
                                 ) : (
                                     <li className="flex flex-col bg-red-500 rounded-2xl p-2" key={indexDia}>
-                                        <p className="font-bold">{dia}</p>
+                                        <p className="font-bold">{daysOfWeek[dia]}</p>
                                         <p>No disponible</p>
                                     </li>
                                 )
@@ -179,7 +190,7 @@ export const AgendarEspecialista = () => {
                         })}
                     </ul>
                 </div>
-                <div className="w-full md:w-6/12">
+                <div className="w-full my-auto">
                     <CalendarioEventos appointments={especialista.appointments} />
                     {/* <div className="bg-white mx-auto w-4/5 p-4 rounded-xl shadow-2xl">
                         <form onSubmit={handleSubmit}>
@@ -230,6 +241,9 @@ export const AgendarEspecialista = () => {
                     </div> */}
                     
                 </div>
+            </div>
+            <div className="mx-20">
+                <AgendaForm especialista={especialista} />
             </div>
         </div>
     );

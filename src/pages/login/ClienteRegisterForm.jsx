@@ -21,7 +21,7 @@ export const ClientRegisterForm = () => {
             // Convierte age a un número
             const ageAsNumber = parseInt(age, 10);
 
-            const response = await createClient({ variables: { input: { ...formData, age: ageAsNumber } } });
+            const response = await createClient({ variables: { input: { ...formData, age: age } } });
             console.log(response);
 
             if (response.data.createClient.id) {
@@ -61,7 +61,7 @@ export const ClientRegisterForm = () => {
                             <InputFormField register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
                         </div>
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField register={register} label="Edad" id="age" placeholder="Edad" type="number" errors={errors} />
+                            <InputFormField register={register} label="Edad" id="age" placeholder="Edad" type="date" errors={errors} />
                             <InputFormField register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
                         </div>
                         <AutocompleteInputField

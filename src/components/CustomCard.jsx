@@ -8,6 +8,8 @@ import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 import { DeleteConfirmationDialog } from './DeleteConfirmationDialog';
 import { EditSpecialistForm } from './EditSpecialistForm';
 import { color } from 'framer-motion';
+import { SendMessage } from './SendMessage';
+import { SEND_NOTIFICATION, TOGGLE_REJECT } from '../querys/querys';
 
 const DELETE_SPECIALIST = gql`
     mutation deleteSpecialist($id: ID!) {
@@ -42,9 +44,13 @@ const TOGGLE_SPECIALIST_ACTIVE = gql`
 export const CustomCard = ({ especialista }) => {
     const [deleteSpecialist] = useMutation(DELETE_SPECIALIST,
         { refetchQueries: [{ query: GET_SPECIALISTS }] });
+    const [sendNotification] = useMutation(SEND_NOTIFICATION,
+        { refetchQueries: [{ query: GET_SPECIALISTS }] });
     const [toggleSpecialistHighlight] = useMutation(TOGGLE_SPECIALIST_HIGHLIGHT,
         { refetchQueries: [{ query: GET_SPECIALISTS }] });
     const [toggleSpecialistActive] = useMutation(TOGGLE_SPECIALIST_ACTIVE,
+        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+    const [toggleReject] = useMutation(TOGGLE_REJECT,
         { refetchQueries: [{ query: GET_SPECIALISTS }] });
 
     const handleToggleHighlight = async () => {
@@ -58,12 +64,9 @@ export const CustomCard = ({ especialista }) => {
         } catch (error) {
             console.log(error);
         }
-        console.log('Toggled highlight');
     };
     const handleToggleActive = async () => {
         try {
-            console.log('Toggling active...');
-            console.log('especialista:', especialista.active);
             const { data } = await toggleSpecialistActive({
                 variables: {
                     id: especialista.id
@@ -72,13 +75,16 @@ export const CustomCard = ({ especialista }) => {
         } catch (error) {
             console.log(error);
         }
-        console.log('Toggled active');
-        console.log('especialista:', especialista.active);
     };
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpen = () => setIsOpen(true);
     const handleClose = () => setIsOpen(false);
+
+    const [isOpenReject, setIsOpenReject] = useState(false);
+
+    const handleOpenReject = () => setIsOpenReject(true);
+    const handleCloseReject = () => setIsOpenReject(false);
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     const handleOpenForm = () => {
@@ -233,8 +239,14 @@ export const CustomCard = ({ especialista }) => {
                     >
                         {especialista.active ? 'Desaprobar' : 'Aprobar'}
                     </Button>
+                    <Button colorScheme={especialista.reject ? 'green' : 'red'} aria-label="Borrar" flex='1' leftIcon={especialista.reject ? <FaCheckDouble /> : <FaCheck />}
+                        onClick={handleOpenReject}
+                    >
+                        {especialista.reject ? 'Aprobar' : 'Rechazar'}
+                    </Button>
                 </CardFooter>
-            </Card>
+            </Card >
+            <SendMessage recipient={especialista.id} isOpen={isOpenReject} onClose={handleCloseReject} sendNotification={sendNotification} tipo={especialista.reject ? 'Aprobar' : 'Rechazado'} toggleReject={toggleReject} />
             <DeleteConfirmationDialog isOpen={isOpen} onClose={handleClose} especialista={especialista} deleteSpecialist={deleteSpecialist} />
             {isFormOpen && <EditSpecialistForm isFormOpen={isFormOpen} specialist={especialista} onClose={handleCloseForm} />}
         </>
