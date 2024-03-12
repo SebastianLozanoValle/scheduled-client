@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { SHEDULE_APPOINTMENT, GET_CLIENT, CREATE_INVOICE } from "../../querys/querys";
+import { SHEDULE_APPOINTMENT, GET_CLIENT, CREATE_INVOICE, TIME_TO_PAY } from "../../querys/querys";
 import { useUserStore } from "../../store/userStore";
 import { useParams } from "react-router-dom";
 
@@ -14,6 +14,7 @@ export const Checkout = () => {
 
     const { email, username } = data?.getClient || {};
     const [link, setLink] = useState(null);
+    const [alreadyPayed, setAlreadyPayed] = useState(true);
 
     const { specialistId, date, value, iva, subject, startTime, estimatedEndTime, serviceType, specialistName } = useParams();
     // /checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType
@@ -58,10 +59,20 @@ export const Checkout = () => {
     console.log('date:', date);
     const [mes, dia, año] = date.split("-");
     const expiration = `${dia}/${mes}/${año}`
+    const [invoiceResponse, setInvoiceResponse] = useState(null);
 
     const [createInvoice] = useMutation(CREATE_INVOICE, {
         onError: (error) => {
             console.error('Error al verificar la disponibilidad:', error);
+        },
+        // onCompleted: (data) => {
+        //     setInvoiceResponse(data); // Almacenar la respuesta en el estado
+        // }
+    });
+
+    const [timeToPay] = useMutation(TIME_TO_PAY, {
+        onError: (error) => {
+            console.error('Error al ejecutar timeToPay:', error);
         }
     });
 
@@ -95,6 +106,7 @@ export const Checkout = () => {
             if (mutationResponse.scheduleAppointment.id) {
                 createInvoice({ variables: { invoice } }).then(({ data }) => {
                     setLink("https://" + data.createInvoice.link);
+                    setInvoiceResponse(data);
                     window.open("https://" + data.createInvoice.link);
                 }).catch(error => {
                     console.error('Error al verificar la disponibilidad:', error);
@@ -103,7 +115,45 @@ export const Checkout = () => {
         }
     }, [mutationResponse]);
 
+    useEffect(() => {
+        console.log('invoiceResponse:', invoiceResponse?.createInvoice);
+        if (invoiceResponse) {
+            const { order, merchant, checksum } = invoiceResponse.createInvoice; // Reemplaza esto con tu lógica para obtener las variables
+    
+            timeToPay({ variables: { order, merchant, checksum } }).then(({ data }) => {
+                setAlreadyPayed(data)
+            }).catch(error => {
+                console.error('Error al ejecutar timeToPay:', error);
+            });
+        }
+    }, [invoiceResponse]);
 
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            event.returnValue = '';
+        };
+    
+        window.addEventListener('beforeunload', handleBeforeUnload);
+    
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
+
+    // const [timer, setTimer] = useState(1 * 60); // Temporizador de 1 minuto
+
+    // useEffect(() => {
+    //     let interval = null;
+    //     if (alreadyPayed && timer > 0) {
+    //         interval = setInterval(() => {
+    //             setTimer(timer => timer - 1);
+    //         }, 1000);
+    //     } else if (!alreadyPayed || timer === 0) {
+    //         clearInterval(interval);
+    //     }
+    //     return () => clearInterval(interval);
+    // }, [alreadyPayed, timer]);
 
     return (
         link?

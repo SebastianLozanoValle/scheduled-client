@@ -189,7 +189,7 @@ export const Buscador = ({ onSearch, tabs }) => {
           <b>Search</b>
         </Button>
       </Box>
-      <div className='w-11/12 flex sm:w-4/5 flex-wrap mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm h-auto overflow-y-scroll'>
+      <div className='w-11/12 flex sm:w-4/5 flex-wrap mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm h-[100px] overflow-y-scroll'>
         {tabs?.map((tab, index) => (
           <label key={index} className='p-4 flex text-[#d3983f]'>
             <input className="mr-2" type="checkbox" value={tab} onChange={handleSpecialtyChange} />
@@ -199,4 +199,4 @@ export const Buscador = ({ onSearch, tabs }) => {
       </div>
     </div>
   );
-};
+}; 

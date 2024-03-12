@@ -15,7 +15,7 @@ export const Service = ({ servicio, register, onServiceCheck }) => {
 
     return (
         <label className={`flex flex-col w-full xl:w-1/4 relative p-10 gap-8 border-solid border-8 rounded-3xl ${isChecked ? 'border-primary' : ''} xl:hover:border-primary transition-all duration-500`} key={servicio.name}>
-            <input className="absolute bottom-1 right-1 sr-only" type="checkbox" {...register(`selectedServices.${servicio.name}`)}
+            <input className="absolute bottom-1 right-1 " type="checkbox" {...register(`selectedServices.${servicio.name}`)}
                 value={servicio.name}
                 onChange={handleCheck}
             />

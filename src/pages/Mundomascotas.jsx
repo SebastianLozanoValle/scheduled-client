@@ -74,7 +74,7 @@ export const Mundomascotas = () => {
           <Heading color='#D4AF37' fontSize='19px' fontFamily='wrap' textAlign='center'>Estos son nuestros</Heading>
           <Text fontSize='22px' textAlign='center'><b>Especilistas Destacados</b></Text>
           <Text fontSize='10px' textAlign='center'><b>los especilaistas destacados podras verlos aqui</b></Text>
-          <Destacados paramsToSearch={{ mundo: 'Hombre' }} />
+          <Destacados paramsToSearch={{ mundo: 'Mascota' }} />
         </Box>
       </Box>
     </>

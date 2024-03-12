@@ -172,6 +172,9 @@ export const CREATE_INVOICE = gql`
     mutation($invoice: InvoiceInput!) {
         createInvoice(invoice: $invoice) {
             link
+            order
+            merchant
+            checksum
         }
     }
 `;
