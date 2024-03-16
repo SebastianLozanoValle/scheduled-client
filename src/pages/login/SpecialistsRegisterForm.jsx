@@ -13,13 +13,16 @@ import { ServiciosHombres, ServiciosMascotas, ServiciosMujeres } from '../../dat
 import { v4 as uuidv4 } from 'uuid';
 
 export const SpecialistsRegisterForm = () => {
-    const inputDropZoneRef = useRef();
+    const inputDropZoneRef1 = useRef();
+    const inputDropZoneRef2 = useRef();
     const navigate = useNavigate();
     const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST);
     const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm();
     const [step, setStep] = useState(1); // Nuevo estado para el paso actual
     const [services, setServices] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
+    const [files, setFiles] = useState([]);
+    const [filesLocal, setFilesLocal] = useState([]);
     const [registerId, setRegisterId] = useState('1');
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const fieldArrayOperations = daysOfWeek.reduce((acc, day) => {
@@ -30,15 +33,26 @@ export const SpecialistsRegisterForm = () => {
         return acc;
     }, {});
 
+    // useEffect(() => {
+    //     inputDropZoneRefs.current = inputDropZoneRefs.current.slice(0, 2).map((_, i) => inputDropZoneRefs.current[i] || React.createRef());
+    // }, []);
+
+    // En useEffect, utiliza cada ref individualmente
     useEffect(() => {
+        console.log("llegue hasta el effect")
         if (registerId !== '1') {
-            if (inputDropZoneRef.current) {
-                if (inputDropZoneRef.current.uploadFiles()) {
-                    navigate('/login');
-                }
+            // Recorre las referencias y llama a uploadFiles() para cada una
+            if (inputDropZoneRef1.current) {
+                inputDropZoneRef1.current.uploadFiles();
             }
+            if (inputDropZoneRef2.current) {
+                inputDropZoneRef2.current.uploadFiles();
+            }
+            // Después de subir los archivos, navega a '/login'
+            // navigate('/login');
         }
     }, [registerId]);
+
 
     const [selectedWorlds, setSelectedWorlds] = useState({
         Hombre: false,
@@ -116,15 +130,12 @@ export const SpecialistsRegisterForm = () => {
         try {
             const { confirmpassword, age, ...formData } = data;
 
-            // Convierte age a un número
-            // const ageAsNumber = parseInt(age, 10);
-
             // Convierte el objeto worlds a un array de strings
             const worldsAsArray = Object.keys(selectedWorlds).filter(selectedWorld => selectedWorlds[selectedWorld]);
 
-            delete formData.confirmpassword
-            delete formData.services
-            delete formData.worlds
+            delete formData.confirmpassword;
+            delete formData.services;
+            delete formData.worlds;
 
             // Mapea selectedServices a un nuevo array de objetos
             const specialtysAsObjects = selectedServices.map((service, index) => ({
@@ -136,28 +147,22 @@ export const SpecialistsRegisterForm = () => {
 
             const input = {
                 ...formData,
-                // age: ageAsNumber,
-                age: age,
+                age,
                 specialtys: specialtysAsObjects,
                 world: worldsAsArray,
-                // weeklySchedule: fieldArrayOperations,
                 active: false,
                 highlighted: false
-            }
+            };
 
             console.log(input);
             const response = await createSpecialist({ variables: { input: input } });
             console.log(response);
             if (response.data.createSpecialist.id) {
+                // Actualiza registerId con el ID del especialista creado
+                setRegisterId(response.data.createSpecialist.id);
+
+                // Navega a '/login' después de que se hayan subido los archivos
                 // navigate('/login');
-                console.log(response.data.createSpecialist.id);
-                setRegisterId(response.data.createSpecialist.id)
-                // Inicia la subida de archivos
-                // if (inputDropZoneRef.current) {
-                //     inputDropZoneRef.current.uploadFiles();
-                // } else {
-                //     console.log('No se pudo iniciar la subida de archivos');
-                // }
             }
         } catch (error) {
             console.error(error);
@@ -284,7 +289,25 @@ export const SpecialistsRegisterForm = () => {
                             )}
                             {step === 5 && (
                                 <>
-                                    <InputDropZone fileName='ProfilePicture' tipo='profilePic' recomendedSize='400x400' userId={registerId} ref={inputDropZoneRef} />
+                                    <InputDropZone
+                                        fileName='ProfilePicture'
+                                        tipo='profilePic'
+                                        recomendedSize='400x400'
+                                        userId={registerId}
+                                        ref={inputDropZoneRef1}
+                                        files={files}
+                                        setFiles={setFiles}
+                                    />
+                                    <InputDropZone
+                                        fileName='LocalPicture'
+                                        tipo='local'
+                                        recomendedSize='400x400'
+                                        userId={registerId}
+                                        ref={inputDropZoneRef2}
+                                        files={filesLocal}
+                                        setFiles={setFilesLocal}
+                                        maxFiles={3}
+                                    />
                                     <div className='flex w-full justify-center'>
                                         <input type="submit" className="p-2 bg-blue-500 text-white rounded cursor-pointer" />
                                     </div>

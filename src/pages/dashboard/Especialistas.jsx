@@ -6,6 +6,7 @@ import { gql, useQuery } from "@apollo/client";
 import { CustomCard } from "../../components/CustomCard";
 import { SpecialistForm } from "../../components/SpecialistForm";
 import '../.././index.css';
+import { CardSpecialist } from "../../components/CardSpecialist";
 
 export const GET_SPECIALISTS = gql`
     query {
@@ -118,12 +119,12 @@ export const Especialistas = ({ isMobile }) => {
                     search.length < 3 ? especialistasRechazados.map((especialista) => (
                         // Renderizado normal
                         <Center key={especialista.id} mt={20}>
-                            <CustomCard especialista={especialista} />
+                            <CardSpecialist especialista={especialista} />
                         </Center>
                     )) : especialistasRechazados.length > 0 ? especialistasRechazados.map((especialista) => (
                         // Renderizado de búsqueda
                         <Center key={especialista.id} mt={20}>
-                            <CustomCard especialista={especialista} />
+                            <CardSpecialist especialista={especialista} />
                         </Center>
                     )) : <Text>No se ha encontrado ninguna coincidencia con "{search}"</Text>
                 }

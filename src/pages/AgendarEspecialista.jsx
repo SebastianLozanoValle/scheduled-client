@@ -168,8 +168,8 @@ export const AgendarEspecialista = () => {
                 <img className="h-20 w-20 rounded-full object-cover shadow-2xl" src="https://www.movilzona.es/app/uploads-movilzona.es/2023/04/fto-perfil.jpg?x=480&y=375&quality=40" />
             </div>
 
-            <div className="md:flex md:flex-row flex-col-reverse mx-auto my-8">
-                <div className="p-20 lg:pr-0 w-full sm:w-auto">
+            <div className="lg:flex lg:flex-row flex-col-reverse mx-auto my-8">
+                <div className="p-20 lg:pr-0 w-full lg:w-auto">
                     <ul className="flex flex-col gap-8 w-auto mx-auto bg-[#161c26] text-white rounded-3xl p-8">
                         {Object.keys(especialista.weeklySchedule).map((dia, indexDia) => {
                             return (
@@ -190,7 +190,7 @@ export const AgendarEspecialista = () => {
                         })}
                     </ul>
                 </div>
-                <div className="w-full my-auto">
+                <div className="w-4/5 m-auto">
                     <CalendarioEventos appointments={especialista.appointments} />
                     {/* <div className="bg-white mx-auto w-4/5 p-4 rounded-xl shadow-2xl">
                         <form onSubmit={handleSubmit}>

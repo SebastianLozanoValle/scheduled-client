@@ -9,6 +9,14 @@ export const GET_SPECIALIST = gql`
             avatar
             gender
             active
+            reject
+            files{
+                id
+                alias
+                tipo
+                filename
+                path
+            }
             city
             street
             role
@@ -72,6 +80,7 @@ export const GET_SPECIALIST = gql`
                 recipient
                 sender
                 tipo
+                date
             }
         }
     }
@@ -320,6 +329,7 @@ export const GET_USER = gql`
                 recipient
                 sender
                 tipo
+                date
             }
         }
     }
@@ -336,6 +346,7 @@ export const GET_CLIENT = gql`
                 recipient
                 sender
                 tipo
+                date
             }
         }
     }
@@ -346,3 +357,27 @@ export const TIME_TO_PAY = gql`
         timeToPay(order: $order, merchant: $merchant, checksum: $checksum)
     }
 `;
+
+export const SPECIALIST_COUNT = gql`
+    query {
+        specialistCount
+    }
+`
+
+export const CLIENT_COUNT = gql`
+    query {
+        clientCount
+    }
+`
+
+export const INVOICE_COUNT = gql`
+    query {
+        invoiceCount
+    }
+`
+
+export const APPOINTMENT_COUNT = gql`
+    query {
+        appointmentCount
+    }
+`

@@ -15,20 +15,30 @@ const UPDATE_FILE = gql`
 
 
 
-const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'picture', recomendedSize = '', userId }, ref) => {
+const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'picture', recomendedSize = '', userId, files, setFiles }, ref) => {
 
-
-    const [files, setFiles] = useState([]);
     const onDrop = useCallback((acceptedFiles) => {
-        setFiles(acceptedFiles.map((file, index) => {
-            let timestamp = Date.now();
-            let newFileName = `${fileName}${timestamp}.${file.name.split('.').pop()}`;
-            let newFile = new File([file], newFileName, { type: file.type });
-            return Object.assign(newFile, {
-                preview: URL.createObjectURL(newFile)
+        setFiles(prevFiles => {
+            let newFiles = [...prevFiles];
+            // Si el número total de archivos después de agregar los nuevos excede maxFiles
+            if (prevFiles.length + acceptedFiles.length > maxFiles) {
+                // Elimina los archivos más antiguos hasta que el número total sea igual a maxFiles
+                const numToRemove = prevFiles.length + acceptedFiles.length - maxFiles;
+                newFiles.splice(0, numToRemove);
+            }
+            // Agrega los nuevos archivos al final de la lista
+            acceptedFiles.forEach(file => {
+                let timestamp = Date.now();
+                let newFileName = maxFiles === 1 ? `${fileName}${timestamp}.${file.name.split('.').pop()}` : `${fileName}_${timestamp}.${file.name.split('.').pop()}`;
+                let newFile = new File([file], newFileName, { type: file.type });
+                newFile.preview = URL.createObjectURL(file);
+                newFiles.push(newFile);
             });
-        }));
-    }, [fileName]);
+            return newFiles;
+        });
+    }, [fileName, maxFiles]);
+    
+    
 
 
     const [img, setImg] = useState('prueba1708638964547.svg');
@@ -39,7 +49,10 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
 
     const uploadFiles = async () => {
         console.log('subiendo archivos');
+        console.log(files)
+        let archivosSubidos = 0
         for (const file of files) {
+            console.log('si los estoy subiendo')
             const formData = new FormData();
             formData.append('file', file);
     
@@ -63,15 +76,23 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
                 const updateResponse = await updateFile({ variables: { input: { id: data.id, userId: userId, alias: fileName, tipo: tipo } } });
                 if (updateResponse.data.setFileData.id) {
                     console.log('archivo subido');
-                    return true
+                    // return true
+                    archivosSubidos++
+
                 } else {
                     console.log('archivo no subido');
                     return false
                 }
             } catch (error) {
                 console.error(error);
+                return false
             }
         }
+        console.log("Archivos subidos", archivosSubidos === maxFiles)
+        console.log(archivosSubidos)
+        console.log(maxFiles)
+        return archivosSubidos === maxFiles
+
     };
     
 
@@ -116,18 +137,12 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
                             <p className='text-[#ccc] font-light text-sm'>Arrastre y suelte su archivo aqui,</p>
                             <p className='text-[#ccc] font-light text-sm'>o de click en seleccionar archivo</p>
                         </div>
-                        
                 }
             </div>
             <aside className='p-4 flex flex-col gap-4'>
                 <h4 className='text-[#caa776] font-semibold'>Files</h4>
-                <ul>{thumbs}</ul>
+                <div className='flex flex-wrap gap-4'>{thumbs}</div>
             </aside>
-            {/* <button className='px-8 py-2 bg-primary hover:bg-[#caa776] rounded-md text-white' onClick={uploadFiles} disabled={files.length === 0}>Subir Archivos</button> */}
-            {/* <p>imagen previamente subida</p>
-            <div className="w-14 h-14 overflow-hidden rounded-full">
-                <img className="w-full h-full object-cover" src={"http://localhost:33402/files/" + img} />
-            </div> */}
         </div>
     )
 });

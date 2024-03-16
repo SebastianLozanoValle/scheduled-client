@@ -171,7 +171,7 @@ export const AgendaForm = ({ especialista }) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 mb-20">
             <div className={`flex flex-col ${alreadyValidated ? "hidden" : ""}`}>
-                <label className="self-center font-extrabold text-3xl text-primary">Servicios que Ofrece</label>
+                <label className="self-center font-extrabold text-3xl text-primary">Escoge los servicios</label>
                 <div className="flex flex-wrap gap-8 mt-4 justify-evenly">
                     {
                         especialista.specialtys.map(servicio => (
@@ -182,8 +182,9 @@ export const AgendaForm = ({ especialista }) => {
             </div>
 
             <div className={`flex w-full justify-center items-center gap-8 transition-all ${alreadyValidated ? "flex-col" : "flex-wrap"}`}>
-                <div className={`flex flex-col ${!alreadyValidated && "gap-8"}`}>
-                    <div className={`flex flex-wrap gap-8 p-20 border-8 border-primary rounded-3xl ${alreadyValidated ? "hidden" : ""}`}>
+                <div className={`flex flex-col w-full ${!alreadyValidated && "gap-8"}`}>
+                    <h2 className="self-center font-extrabold text-3xl text-primary">Escoge una fecha y hora, luego verifica la disponibilidad</h2>
+                    <div className={`flex flex-wrap justify-between gap-8 p-4 lg:p-20 border-8 border-primary rounded-3xl ${alreadyValidated ? "hidden" : ""}`}>
                         <div>
                             <label className="font-bold" htmlFor="date">Fecha</label>
                             <div>
@@ -262,7 +263,7 @@ export const AgendaForm = ({ especialista }) => {
                         mensajeError != "" ? <span className="font-light text-red-500">{mensajeError}</span> : ""
                     }
                 </div>
-                <div className="flex flex-col w-full xl:w-1/3 p-10 border-8 border-primary rounded-3xl">
+                <div className="flex flex-col p-10 border-8 border-primary rounded-3xl">
                     <h3 className="self-center text-2xl font-bold p-10">
                         Detalle de la Cita
                     </h3>

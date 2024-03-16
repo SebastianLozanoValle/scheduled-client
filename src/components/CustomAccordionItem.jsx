@@ -1,13 +1,13 @@
 import { AccordionItem, AccordionButton, AccordionPanel, Box } from "@chakra-ui/react";
 
 export const CustomAccordionItem = ({ title, children }) => (
-    <AccordionItem>
+    <AccordionItem border={'none'} >
         <AccordionButton>
             <Box flex="1" textAlign="left" fontWeight='bold'>
                 {title}
             </Box>
         </AccordionButton>
-        <AccordionPanel pb={4}>
+        <AccordionPanel bg={'#ccc'} pb={4} borderBottomRadius={'2xl'}>
             {children}
         </AccordionPanel>
     </AccordionItem>

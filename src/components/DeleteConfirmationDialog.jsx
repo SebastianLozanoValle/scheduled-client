@@ -44,13 +44,12 @@ export const DeleteConfirmationDialog = ({ isOpen, onClose, especialista, delete
 
     return (
         <AlertDialog
-            ml='265px'
             isOpen={isOpen}
             leastDestructiveRef={cancelRef}
             onClose={onClose}
         >
             <AlertDialogOverlay>
-                <AlertDialogContent>
+                <AlertDialogContent mt='40vh'>
                     <AlertDialogHeader fontSize="lg" fontWeight="bold">
                         Delete Specialist
                     </AlertDialogHeader>
