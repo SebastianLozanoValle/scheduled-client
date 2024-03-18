@@ -3,6 +3,8 @@ import { useUserStore } from "../../store/userStore"
 import { GET_CLIENT, GET_SPECIALIST, GET_USER } from "../../querys/querys";
 import { useEffect, useState } from "react";
 import { ImCross } from "react-icons/im";
+import { Accordion } from "@chakra-ui/react";
+import { CustomAccordionItem } from "../../components/CustomAccordionItem";
 
 export const Perfil = () => {
     const { userId, name, userRole } = useUserStore()
@@ -106,6 +108,22 @@ export const Perfil = () => {
                 loadingClient && <p>Cargando...</p>
             }
             <div className="w-full flex flex-col gap-4 lg:w-1/2 p-4">
+                {
+                    userRole === "Specialist" &&
+                    <div className="rounded-2xl border">
+                        <Accordion allowToggle>
+                            <CustomAccordionItem title="Administrar imagenes">
+                                <Accordion allowToggle>
+                                    <CustomAccordionItem title="Añadir imagenes a servicios">
+                                        <form>
+                                            Selec
+                                        </form>
+                                    </CustomAccordionItem>
+                                </Accordion>
+                            </CustomAccordionItem>
+                        </Accordion>
+                    </div>
+                }
                 <div>
                     <h2 className="text-3xl font-extrabold text-primary">Datos Generales</h2>
                 </div>

@@ -1,14 +1,24 @@
 import { Fragment, useState } from 'react';
+import { ImCross } from "react-icons/im";
+import { DELETE_CLIENT, GET_CLIENTS } from '../querys/querys';
+import { useMutation } from '@apollo/client';
+import { DeleteConfirmationDialogClient } from './DeleteConfirmationDialogClient';
 
 function Table({ customers }) {
     const [openRow, setOpenRow] = useState(null);
+    const [deleteClient] = useMutation(DELETE_CLIENT, { refetchQueries: [{ query: GET_CLIENTS }] });
+    const [openDialogId, setOpenDialogId] = useState(null);
 
     const handleRowClick = (id) => {
-        if (openRow === id) {
-            setOpenRow(null);
-        } else {
-            setOpenRow(id);
-        }
+        setOpenRow(id === openRow ? null : id);
+    };
+
+    const handleOpenDialog = (id) => {
+        setOpenDialogId(id);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialogId(null);
     };
 
     return (
@@ -33,7 +43,7 @@ function Table({ customers }) {
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {customers.map((customer) => (
                                     <Fragment key={customer.id}>
-                                        <tr onClick={() => handleRowClick(customer.id)}>
+                                        <tr className={openRow === customer.id ? 'bg-gray-200' : ''} onClick={() => handleRowClick(customer.id)}>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm text-gray-900">{customer.username}</div>
                                             </td>
@@ -42,6 +52,12 @@ function Table({ customers }) {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {customer.phone}
+                                            </td>
+                                            <td className='px-6 py-4 whitespace-nowrap'>
+                                                <button onClick={() => handleOpenDialog(customer.id)} className='text-gray-600 text-2xl hover:text-red-600'>
+                                                    <ImCross />
+                                                </button>
+                                                <DeleteConfirmationDialogClient isOpen={openDialogId === customer.id} onClose={handleCloseDialog} cliente={customer} deleteClient={deleteClient} />
                                             </td>
                                         </tr>
                                         {openRow === customer.id && (

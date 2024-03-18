@@ -178,10 +178,29 @@ export const CardSpecialist = ({ especialista }) => {
                                 <h2 className='text-xl'>
                                     Imagen de perfil:
                                 </h2>
-                                <div className='p-4 w-full bg-[#f1f1f1] rounded-lg overflow-x-scroll'>
+                                <div className='p-4 w-full bg-[#f1f1f1] rounded-lg overflow-x-scroll flex flex-wrap'>
                                     {
                                         especialista.files.length > 0 ? especialista.files.map(file => {
                                             return file.filename.includes("Profile") && (
+                                                <a className='w-[65px] block' target='_blank' href={"http://localhost:33402/files/" + file.filename} key={file.id}>
+                                                    <img
+                                                        className='w-[65px] hover:scale-125'
+                                                        src={"http://localhost:33402/files/" + file.filename}
+                                                        alt={`Imagen de ${file.filename}`}
+                                                    />
+                                                </a>
+                                            )
+                                        }) :
+                                            <p>el usuario no tiene foto de perfil</p>
+                                    }
+                                </div>
+                                <h2 className='text-xl'>
+                                    Imagenes del local:
+                                </h2>
+                                <div className='p-4 w-full bg-[#f1f1f1] rounded-lg overflow-x-scroll flex flex-wrap'>
+                                    {
+                                        especialista.files.length > 0 ? especialista.files.map(file => {
+                                            return file.filename.includes("Local") && (
                                                 <a className='w-[65px] block' target='_blank' href={"http://localhost:33402/files/" + file.filename} key={file.id}>
                                                     <img
                                                         className='w-[65px] hover:scale-125'

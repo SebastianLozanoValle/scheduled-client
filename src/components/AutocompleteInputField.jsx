@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 
-export const AutocompleteInputField = ({ label, name, options, register, setValue, required, errors }) => {
-  const [inputValue, setInputValue] = useState('');
+export const AutocompleteInputField = ({ label, name, options, register, setValue, required, errors, inputValue, setInputValue }) => {
   const [autocompleteOptions, setAutocompleteOptions] = useState([]);
   const inputRef = useRef(null);
 

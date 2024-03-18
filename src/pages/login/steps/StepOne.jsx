@@ -1,7 +1,7 @@
 import { AutocompleteInputField } from "../../../components/AutocompleteInputField"
 import { InputFormField } from "../../../components/InputFormField"
 
-export const StepOne = ({ register, errors, cities, setValue }) => {
+export const StepOne = ({ register, errors, cities, setValue, cityValue, setCityValue }) => {
     return (
         <div className="xs:w-full sm:w-full py-10 flex flex-col gap-4">
             <InputFormField register={register} label="Usuario" id="username" placeholder="Usuario" required={true} errors={errors} />
@@ -26,6 +26,8 @@ export const StepOne = ({ register, errors, cities, setValue }) => {
                 errors={errors}
                 options={cities}
                 className="p-2 border rounded"
+                inputValue={cityValue}
+                setInputValue={setCityValue}
             />
 
             <label htmlFor='gender'>Genero</label>

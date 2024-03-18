@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AutocompleteInputField } from '../../components/AutocompleteInputField';
 import { cities } from '../../data/cities';
@@ -13,6 +13,7 @@ export const ClientRegisterForm = () => {
     const navigate = useNavigate();
     const [createClient, { data, loading, error }] = useMutation(CREATE_CLIENT);
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
+    const [cityValue, setCityValue] = useState('');
 
     const onSubmit = async (data) => {
         try {
@@ -73,6 +74,8 @@ export const ClientRegisterForm = () => {
                             errors={errors}
                             options={cities}
                             className="p-2 border rounded"
+                            inputValue={cityValue}
+                            setInputValue={setCityValue}
                         />
 
                         <label htmlFor='gender'>Genero</label>

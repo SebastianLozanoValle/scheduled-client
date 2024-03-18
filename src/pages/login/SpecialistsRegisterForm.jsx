@@ -15,6 +15,10 @@ import { v4 as uuidv4 } from 'uuid';
 export const SpecialistsRegisterForm = () => {
     const inputDropZoneRef1 = useRef();
     const inputDropZoneRef2 = useRef();
+    const inputDropZoneRef3 = useRef();
+    const inputDropZoneRef4 = useRef();
+    const inputDropZoneRef5 = useRef();
+
     const navigate = useNavigate();
     const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST);
     const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm();
@@ -22,7 +26,11 @@ export const SpecialistsRegisterForm = () => {
     const [services, setServices] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
     const [files, setFiles] = useState([]);
+    const [files3, setFiles3] = useState([]);
+    const [files4, setFiles4] = useState([]);
+    const [files5, setFiles5] = useState([]);
     const [filesLocal, setFilesLocal] = useState([]);
+    const [cityValue, setCityValue] = useState('');
     const [registerId, setRegisterId] = useState('1');
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const fieldArrayOperations = daysOfWeek.reduce((acc, day) => {
@@ -48,8 +56,17 @@ export const SpecialistsRegisterForm = () => {
             if (inputDropZoneRef2.current) {
                 inputDropZoneRef2.current.uploadFiles();
             }
+            if (inputDropZoneRef3.current) {
+                inputDropZoneRef3.current.uploadFiles();
+            }
+            if (inputDropZoneRef4.current) {
+                inputDropZoneRef4.current.uploadFiles();
+            }
+            if (inputDropZoneRef5.current) {
+                inputDropZoneRef5.current.uploadFiles();
+            }
             // Después de subir los archivos, navega a '/login'
-            // navigate('/login');
+            navigate('/login');
         }
     }, [registerId]);
 
@@ -206,7 +223,7 @@ export const SpecialistsRegisterForm = () => {
                         </div>
                         <div>
                             {step === 1 && (
-                                <StepOne cities={cities} errors={errors} register={register} setValue={setValue} />
+                                <StepOne cities={cities} errors={errors} register={register} setValue={setValue} cityValue={cityValue} setCityValue={setCityValue} />
                             )}
                             {step === 2 && (
                                 <div className='flex flex-col gap-4'>
@@ -247,17 +264,17 @@ export const SpecialistsRegisterForm = () => {
                                                 </div>
                                             ))}
                                         </fieldset>
+                                        <legend className='text-primary font-semibold'>Seleccionados</legend>
                                         <div className='overflow-y-scroll h-[200px] w-full'>
-                                            <legend className='text-primary font-semibold'>Seleccionados</legend>
                                             {selectedServices.map((service, index) => (
-                                                <div className='flex flex-col' key={service + uuidv4()}>
-                                                    <p>{service}</p>
-                                                    <label htmlFor={`${service}-description`}>Descripción:</label>
-                                                    <input id={`${service}-description`} type="text" {...register(`specialtys[${index}].description`)} />
-                                                    <label htmlFor={`${service}-price`}>Precio:</label>
-                                                    <input id={`${service}-price`} type="number" {...register(`specialtys[${index}].price`)} />
-                                                    <label htmlFor={`${service}-time`}>Duracion:</label>
-                                                    <select id={`${service}-time`} {...register(`specialtys[${index}].time`)}>
+                                                <div className='flex flex-col m-4 p-4 border rounded-lg' key={service + uuidv4()}>
+                                                    <p className='text-primary font-bold text-xl'>{service}</p>
+                                                    <label className='font-semibold' htmlFor={`${service}-description`}>Descripción:</label>
+                                                    <input className='border p-1 rounded-md' id={`${service}-description`} type="text" {...register(`specialtys[${index}].description`)} />
+                                                    <label className='font-semibold' htmlFor={`${service}-price`}>Precio:</label>
+                                                    <input className='border p-1 rounded-md' id={`${service}-price`} type="number" {...register(`specialtys[${index}].price`)} />
+                                                    <label className='font-semibold' htmlFor={`${service}-time`}>Duracion:</label>
+                                                    <select className='border p-1 rounded-md' id={`${service}-time`} {...register(`specialtys[${index}].time`)}>
                                                         <option value="00:30">30 minutos</option>
                                                         <option value="01:00">1 hora</option>
                                                         <option value="01:30">1 hora con 30 minutos</option>
@@ -270,19 +287,19 @@ export const SpecialistsRegisterForm = () => {
                                 </div>
                             )}
                             {step === 4 && (
-                                <div className='h-full overflow-y-scroll'>
+                                <div className='h-full overflow-y-scroll pr-4 text-white text-center'>
                                     <label htmlFor="weeklySchedule" className="font-light">Horario semanal</label>
                                     {daysOfWeek.map((day, index) => (
-                                        <div key={index}>
-                                            <h3 className='p-4 font-bold m-auto bg-orange-400 rounded-xl'>{day}</h3>
+                                        <div className='flex flex-col visible' key={index}>
+                                            <h3 className='px-4 font-bold m-auto bg-primary rounded-xl w-full py-2 text-black'>{day}</h3>
                                             {fieldArrayOperations[day].fields.map((field, index) => (
-                                                <div key={field.id} className='m-4'>
-                                                    <input type='time' className='m-2' {...register(`weeklySchedule.${day}.${index}.start`)} placeholder="Start time" />
-                                                    <input type='time' className='m-2' {...register(`weeklySchedule.${day}.${index}.end`)} placeholder="End time" />
-                                                    <button className='rounded-md bg-red-600 p-1' type="button" onClick={() => fieldArrayOperations[day].remove(index)}>Remove</button>
+                                                <div key={field.id} className='m-4 border flex flex-wrap items-center justify-center'>
+                                                    <input type='time' className='m-2 text-black' {...register(`weeklySchedule.${day}.${index}.start`)} placeholder="Start time" />
+                                                    <input type='time' className='m-2 text-black' {...register(`weeklySchedule.${day}.${index}.end`)} placeholder="End time" />
+                                                    <button className='transition-all duration-500 border border-red-600 hover:bg-white hover:text-red-600 rounded-md bg-red-600 p-1' type="button" onClick={() => fieldArrayOperations[day].remove(index)}>Remove</button>
                                                 </div>
                                             ))}
-                                            <button className='m-4 p-1 bg-green-600 rounded-md' type="button" onClick={() => fieldArrayOperations[day].append({ start: "", end: "" })}>Add Time Slot</button>
+                                            <button className='transition-all duration-500 border border-green-600 hover:bg-white hover:text-green-600 m-4 p-1 bg-green-600 rounded-md' type="button" onClick={() => fieldArrayOperations[day].append({ start: "", end: "" })}>Add Time Slot</button>
                                         </div>
                                     ))}
                                 </div>
@@ -307,6 +324,36 @@ export const SpecialistsRegisterForm = () => {
                                         files={filesLocal}
                                         setFiles={setFilesLocal}
                                         maxFiles={3}
+                                    />
+                                    <InputDropZone
+                                        fileName='DocumentsPicture'
+                                        tipo='local'
+                                        recomendedSize='hoja delincuencia'
+                                        userId={registerId}
+                                        ref={inputDropZoneRef3}
+                                        files={files3}
+                                        setFiles={setFiles3}
+                                        maxFiles={1}
+                                    />
+                                    <InputDropZone
+                                        fileName='DocumentsPicture'
+                                        tipo='local'
+                                        recomendedSize='Cedula Identidad (1 foto por lado)'
+                                        userId={registerId}
+                                        ref={inputDropZoneRef4}
+                                        files={files4}
+                                        setFiles={setFiles4}
+                                        maxFiles={2}
+                                    />
+                                    <InputDropZone
+                                        fileName='DocumentsPicture'
+                                        tipo='local'
+                                        recomendedSize='Titulos ó certificados'
+                                        userId={registerId}
+                                        ref={inputDropZoneRef5}
+                                        files={files5}
+                                        setFiles={setFiles5}
+                                        maxFiles={20}
                                     />
                                     <div className='flex w-full justify-center'>
                                         <input type="submit" className="p-2 bg-blue-500 text-white rounded cursor-pointer" />
