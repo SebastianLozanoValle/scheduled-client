@@ -17,6 +17,9 @@ const UPDATE_FILE = gql`
 
 const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'picture', recomendedSize = '', userId, files, setFiles }, ref) => {
 
+    console.log(fileName)
+    console.log(tipo)
+
     const onDrop = useCallback((acceptedFiles) => {
         setFiles(prevFiles => {
             let newFiles = [...prevFiles];

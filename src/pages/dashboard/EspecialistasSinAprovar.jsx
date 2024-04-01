@@ -6,12 +6,12 @@ import { gql, useQuery } from "@apollo/client";
 import { CustomCard } from "../../components/CustomCard";
 import { SpecialistForm } from "../../components/SpecialistForm";
 import '../.././index.css';
-import { GET_SPECIALISTS } from "./Especialistas";
 import { CardSpecialist } from "../../components/CardSpecialist";
+import { FIND_SPECIALISTS } from "../../querys/querys";
 
 export const EspecialistasSinAprovar = ({ isMobile }) => {
 
-    const { loading, error, data } = useQuery(GET_SPECIALISTS);
+    const { loading, error, data } = useQuery(FIND_SPECIALISTS);
 
     if (error) console.log(error);
 

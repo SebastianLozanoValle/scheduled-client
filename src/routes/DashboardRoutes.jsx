@@ -53,7 +53,7 @@ export const DashboardRoutes = () => {
                 <Route path="especialistas-sin-aprobar" element={admin ? <EspecialistasSinAprovar /> : <Navigate to="/dashboard/perfil" />} />
                 <Route path="especialistas-rechazados" element={admin ? <EspecialistasRechazados /> : <Navigate to="/dashboard/perfil" />} />
                 <Route path="clientes" element={admin ? <Clientes /> : <Navigate to="/dashboard/perfil" />} />
-                <Route path="agenda" element={admin ? <Agenda /> : <Navigate to="/dashboard/perfil" />} />
+                <Route path="agenda" element={<Agenda />} />
                 <Route path="perfil" element={loged ? <Perfil /> : <Navigate to="/login" />} />
                 {/* <Route path="clientes" element={<Clientes/>} /> */}
                 <Route path="pruebas" element={<Pruebas />} />

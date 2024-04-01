@@ -4,12 +4,11 @@ import { RiMore2Line, RiStarLine, RiStarSFill, RiDiscussLine, RiShareForwardLine
 import { FaCheck, FaCheckDouble } from "react-icons/fa";
 import { CustomAccordionItem } from "./CustomAccordionItem";
 import { gql, useMutation } from "@apollo/client";
-import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 import { DeleteConfirmationDialog } from './DeleteConfirmationDialog';
 import { EditSpecialistForm } from './EditSpecialistForm';
 import { color } from 'framer-motion';
 import { SendMessage } from './SendMessage';
-import { SEND_NOTIFICATION, TOGGLE_REJECT } from '../querys/querys';
+import { FIND_SPECIALISTS, SEND_NOTIFICATION, TOGGLE_REJECT } from '../querys/querys';
 
 const DELETE_SPECIALIST = gql`
     mutation deleteSpecialist($id: ID!) {
@@ -43,15 +42,15 @@ const TOGGLE_SPECIALIST_ACTIVE = gql`
 
 export const CustomCard = ({ especialista }) => {
     const [deleteSpecialist] = useMutation(DELETE_SPECIALIST,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [sendNotification] = useMutation(SEND_NOTIFICATION,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [toggleSpecialistHighlight] = useMutation(TOGGLE_SPECIALIST_HIGHLIGHT,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [toggleSpecialistActive] = useMutation(TOGGLE_SPECIALIST_ACTIVE,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [toggleReject] = useMutation(TOGGLE_REJECT,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
 
     const handleToggleHighlight = async () => {
         try {

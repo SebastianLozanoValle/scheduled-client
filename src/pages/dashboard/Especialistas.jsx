@@ -7,81 +7,11 @@ import { CustomCard } from "../../components/CustomCard";
 import { SpecialistForm } from "../../components/SpecialistForm";
 import '../.././index.css';
 import { CardSpecialist } from "../../components/CardSpecialist";
-
-export const GET_SPECIALISTS = gql`
-    query {
-        findSpecialists {
-            id
-            username
-            age
-            avatar
-            gender
-            active
-            reject
-            files{
-                id
-                alias
-                tipo
-                filename
-                path
-            }
-            city
-            street
-            role
-            highlighted
-            world
-            specialtys {
-                name
-                description
-                price
-                time
-            }
-            serviceType
-            weeklySchedule {
-                Monday {
-                    start
-                    end
-                }
-                Tuesday {
-                    start
-                    end
-                }
-                Wednesday {
-                    start
-                    end
-                }
-                Thursday {
-                    start
-                    end
-                }
-                Friday {
-                    start
-                    end
-                }
-                Saturday {
-                    start
-                    end
-                }
-                Sunday {
-                    start
-                    end
-                }
-            }
-            appointments {
-                id
-                clientId
-                date
-                status
-                startTime
-                estimatedEndTime
-            }
-        }
-    }
-`
+import { FIND_SPECIALISTS } from "../../querys/querys";
 
 export const Especialistas = ({ isMobile }) => {
 
-    const { loading, error, data } = useQuery(GET_SPECIALISTS);
+    const { loading, error, data } = useQuery(FIND_SPECIALISTS);
 
     if (error) console.log(error);
 

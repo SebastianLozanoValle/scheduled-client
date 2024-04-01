@@ -204,6 +204,16 @@ export const SpecialistsRegisterForm = () => {
         }
     };
 
+    let daysOfWeekEs = {
+        "Monday": "Lunes",
+        "Tuesday": "Martes",
+        "Wednesday": "Miércoles",
+        "Thursday": "Jueves",
+        "Friday": "Viernes",
+        "Saturday": "Sábado",
+        "Sunday": "Domingo"
+    };
+
     return (
         <div className="p-10 min-h-[100vh] flex items-center justify-center">
             <div className="bg-white shadow-lg overflow-hidden rounded-xl w-full sm:w-full md:w-[70%] lg:w-[60%] xl:w-[60%] 2xl:w-[60%] min-h-[90vh] mx-auto">
@@ -245,7 +255,7 @@ export const SpecialistsRegisterForm = () => {
                             )}
                             {step === 3 && (
                                 <div className='flex flex-col gap-4'>
-                                    <label htmlFor="world" className="font-light">Mundo</label>
+                                    <label htmlFor="world" className="text-primary font-semibold">Mundos</label>
                                     <div className='flex gap-4'>
                                         {worlds.map(world => (
                                             <label className='flex gap-2' htmlFor={world} key={world}>
@@ -278,6 +288,9 @@ export const SpecialistsRegisterForm = () => {
                                                         <option value="00:30">30 minutos</option>
                                                         <option value="01:00">1 hora</option>
                                                         <option value="01:30">1 hora con 30 minutos</option>
+                                                        <option value="02:00">2 horas</option>
+                                                        <option value="02:30">2 hora con 30 minutos</option>
+                                                        <option value="03:00">3 horas</option>
                                                         {/* Agrega más opciones según sea necesario */}
                                                     </select>
                                                 </div>
@@ -291,15 +304,15 @@ export const SpecialistsRegisterForm = () => {
                                     <label htmlFor="weeklySchedule" className="font-light">Horario semanal</label>
                                     {daysOfWeek.map((day, index) => (
                                         <div className='flex flex-col visible' key={index}>
-                                            <h3 className='px-4 font-bold m-auto bg-primary rounded-xl w-full py-2 text-black'>{day}</h3>
+                                            <h3 className='px-4 font-bold m-auto bg-primary rounded-xl w-full py-2 text-black'>{daysOfWeekEs[day]}</h3>
                                             {fieldArrayOperations[day].fields.map((field, index) => (
                                                 <div key={field.id} className='m-4 border flex flex-wrap items-center justify-center'>
                                                     <input type='time' className='m-2 text-black' {...register(`weeklySchedule.${day}.${index}.start`)} placeholder="Start time" />
                                                     <input type='time' className='m-2 text-black' {...register(`weeklySchedule.${day}.${index}.end`)} placeholder="End time" />
-                                                    <button className='transition-all duration-500 border border-red-600 hover:bg-white hover:text-red-600 rounded-md bg-red-600 p-1' type="button" onClick={() => fieldArrayOperations[day].remove(index)}>Remove</button>
+                                                    <button className='transition-all duration-500 border border-red-600 hover:bg-white hover:text-red-600 rounded-md bg-red-600 p-1' type="button" onClick={() => fieldArrayOperations[day].remove(index)}>Eliminar</button>
                                                 </div>
                                             ))}
-                                            <button className='transition-all duration-500 border border-green-600 hover:bg-white hover:text-green-600 m-4 p-1 bg-green-600 rounded-md' type="button" onClick={() => fieldArrayOperations[day].append({ start: "", end: "" })}>Add Time Slot</button>
+                                            <button className='transition-all duration-500 border border-green-600 hover:bg-white hover:text-green-600 m-4 p-1 bg-green-600 rounded-md' type="button" onClick={() => fieldArrayOperations[day].append({ start: "", end: "" })}>Agregar</button>
                                         </div>
                                     ))}
                                 </div>

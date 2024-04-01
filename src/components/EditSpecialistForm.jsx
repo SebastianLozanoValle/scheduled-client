@@ -2,7 +2,6 @@ import { CustomAccordionItem } from './CustomAccordionItem';
 import { Accordion, Box, Text, VStack } from '@chakra-ui/react';
 import { Dialog } from '@headlessui/react';
 import { gql, useMutation } from '@apollo/client';
-import { GET_SPECIALISTS } from '../pages/dashboard/Especialistas';
 import { InputField } from './InputField';
 import { CheckboxField } from './CheckboxField';
 import { cities } from '../data/cities';
@@ -10,7 +9,7 @@ import { AutocompleteInputField } from './AutocompleteInputField';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useToast } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import { GET_SPECIALIST } from '../querys/querys';
+import { FIND_SPECIALISTS, GET_SPECIALIST } from '../querys/querys';
 
 const UPDATE_SPECIALIST = gql`
 mutation($id: ID!, $input: UpdateSpecialistInput!) {
@@ -27,7 +26,7 @@ export const EditSpecialistForm = ({ specialist, onClose, isFormOpen }) => {
     const [updateSpecialist, { data, loadaing, error }] = useMutation(UPDATE_SPECIALIST,
         {
             refetchQueries: [
-                { query: GET_SPECIALISTS },
+                { query: FIND_SPECIALISTS },
                 { query: GET_SPECIALIST },
             ]
         });

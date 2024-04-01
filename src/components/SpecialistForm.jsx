@@ -6,12 +6,12 @@ import { Dialog } from '@headlessui/react';
 import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { useToast } from "@chakra-ui/react";
-import { GET_SPECIALISTS } from '../pages/dashboard/Especialistas';
 import { InputField } from './InputField';
 import { SelectField } from './SelectField';
 import { CheckboxField } from './CheckboxField';
 import { cities } from '../data/cities';
 import { AutocompleteInputField } from './AutocompleteInputField';
+import { FIND_SPECIALISTS } from '../querys/querys';
 
 const CREATE_SPECIALIST = gql`
 mutation($input: SpecialistInput!) {createSpecialist(input: $input) {
@@ -23,7 +23,7 @@ const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat
 
 export const SpecialistForm = ({ isModalOpen, setIsModalOpen }) => {
     const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST,
-        {refetchQueries: [{ query: GET_SPECIALISTS }]});
+        {refetchQueries: [{ query: FIND_SPECIALISTS }]});
     const toast = useToast();
     const { register, handleSubmit, control, formState: { errors }, setValue} = useForm();
     const [specialtys, setSpecialtys] = useState([]);

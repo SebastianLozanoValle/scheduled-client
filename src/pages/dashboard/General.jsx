@@ -3,7 +3,8 @@ import { Box, Center, Flex, Heading, Text } from "@chakra-ui/react"
 import { GeneralBox } from "../../components/GeneralBox"
 import { GeneralReseña } from "../../components/GeneralReseña"
 import { useQuery } from "@apollo/client";
-import { APPOINTMENT_COUNT, CLIENT_COUNT, INVOICE_COUNT, SPECIALIST_COUNT } from "../../querys/querys";
+import { APPOINTMENT_COUNT, CLIENT_COUNT, GET_APPOINTMENTS, INVOICE_COUNT, SPECIALIST_COUNT } from "../../querys/querys";
+import { useEffect, useState } from "react";
 
 const reseñas = [
     {
@@ -48,16 +49,59 @@ export const General = ({ isMobile }) => {
     const { loading: loadingClientCount, error: errorClientCount, data: dataClientCount } = useQuery(CLIENT_COUNT);
     const { loading: loadingInvoiceCount, error: errorInvoiceCount, data: dataInvoiceCount } = useQuery(INVOICE_COUNT);
     const { loading: loadingAppointmentCount, error: errorAppointmentCount, data: dataAppointmentCount } = useQuery(APPOINTMENT_COUNT);
-  
+    const { loading: loadingAppointments, error: errorAppointments, data: dataAppointments } = useQuery(GET_APPOINTMENTS);
+
+    if (errorAppointments) console.log(errorAppointments);
+
+    const appointments = dataAppointments?.getAppointments || [];
+
+    function timestampAFechaHora(timestamp) {
+        // Crear un objeto Date con el timestamp
+        const fecha = new Date(parseInt(timestamp));
+
+        // Obtener los componentes de la fecha y hora
+        const año = fecha.getFullYear();
+        const mes = fecha.getMonth() + 1; // Los meses en JavaScript son 0-indexados
+        const dia = fecha.getDate();
+        const horas = fecha.getHours();
+        const minutos = fecha.getMinutes();
+        const segundos = fecha.getSeconds();
+
+        // Formatear la fecha y hora como un string
+        const fechaHoraFormateada = `${dia}/${mes}/${año} ${horas}:${minutos}:${segundos}`;
+
+        return fechaHoraFormateada;
+    }
+
+    const [today, setToday] = useState(new Date());
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setToday(new Date());
+        }, 60000); // Actualiza la fecha cada minuto
+        return () => clearInterval(interval);
+    }, []);
+
+    // Convierte la fecha de hoy a un formato comparable
+    const todayFormatted = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+
+    // Filtra las citas de hoy
+    const appointmentsToday = appointments.filter(appointment => {
+        const appointmentDate = timestampAFechaHora(appointment.date);
+        return appointmentDate.startsWith(todayFormatted); // Compara solo la parte de la fecha
+    });
+
+    const citasHoy = appointmentsToday.length > 0 ? appointmentsToday.length : 'No hay citas programadas para hoy'
+
     if (loadingSpecialistCount || loadingClientCount || loadingInvoiceCount || loadingAppointmentCount) return <p>Loading...</p>;
     if (errorSpecialistCount || errorClientCount || errorInvoiceCount || errorAppointmentCount) return <p>Error: {errorSpecialistCount ? errorSpecialistCount.message : errorClientCount ? errorClientCount.message : errorInvoiceCount ? errorInvoiceCount.message : errorAppointmentCount.message}</p>;
-  
+
     // Aquí puedes acceder a los datos devueltos por las consultas
     const specialistCount = dataSpecialistCount.specialistCount;
     const clientCount = dataClientCount.clientCount;
     const invoiceCount = dataInvoiceCount.invoiceCount;
     const appointmentCount = dataAppointmentCount.appointmentCount;
-    
+
     return (
         <Box p={12} bg='white' w='100vw' color='black' mx='auto' overflowX='hidden'>
             {/* {isMobile ? <h1>General Mobile</h1> : <GeneralDesktop reseñas={reseñas} />} */}
@@ -113,10 +157,14 @@ export const General = ({ isMobile }) => {
                                     <GeneralBox
                                         h={['215px', '215px']}
                                     >
-                                        <Heading as='h3' fontSize={['lg', 'lg', 'lg', 'xl']}>Citas:</Heading>
+                                        <Heading p={2} as='h3' fontSize={['lg', 'lg', 'lg', 'xl']}>Citas:</Heading>
                                         <Center>
-                                                <Heading>{appointmentCount}</Heading>
-                                            </Center>
+                                            <Heading>{appointmentCount}</Heading>
+                                        </Center>
+                                        <Heading p={2} as='h3' fontSize={['lg', 'lg', 'lg', 'xl']}>Citas Hoy:</Heading>
+                                        <Center>
+                                            <Heading>{citasHoy}</Heading>
+                                        </Center>
                                     </GeneralBox>
                                 </Box>
                             </Flex>

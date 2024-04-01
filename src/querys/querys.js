@@ -6,6 +6,8 @@ export const GET_SPECIALIST = gql`
             id
             username
             age
+            email
+            phone
             avatar
             gender
             active
@@ -27,8 +29,10 @@ export const GET_SPECIALIST = gql`
                 description
                 price
                 time
+                state
             }
             serviceType
+            accountNumber
             weeklySchedule {
                 Monday {
                     start
@@ -88,24 +92,36 @@ export const GET_SPECIALIST = gql`
 
 export const FIND_SPECIALISTS = gql`
         query {findSpecialists {
+            id
             username
             age
+            email
+            phone
             avatar
             gender
             active
+            reject
+            files{
+                id
+                alias
+                tipo
+                filename
+                path
+            }
             city
             street
-            world
             role
+            world
             highlighted
-            reject
             specialtys {
                 name
                 description
                 price
                 time
+                state
             }
             serviceType
+            accountNumber
             weeklySchedule {
                 Monday {
                     start
@@ -138,10 +154,18 @@ export const FIND_SPECIALISTS = gql`
             }
             appointments {
                 id
-                clientId
-                status
+                date
                 startTime
                 estimatedEndTime
+                clientId
+                specialistId
+                subject
+                detail
+                value
+                status
+                serviceType
+                clientUsername
+                specialistUsername
             }
             notifications {
                 id
@@ -149,6 +173,7 @@ export const FIND_SPECIALISTS = gql`
                 recipient
                 sender
                 tipo
+                date
             }
         }
     }
@@ -180,6 +205,7 @@ export const SHEDULE_APPOINTMENT = gql`
 export const CREATE_INVOICE = gql`
     mutation($invoice: InvoiceInput!) {
         createInvoice(invoice: $invoice) {
+            id
             link
             order
             merchant
@@ -315,6 +341,16 @@ export const TOGGLE_REJECT = gql`
     }
 `;
 
+export const MESSAGE_TO_TRASH = gql`
+    mutation messageToTrash($id: ID!) {
+        messageToTrash(id: $id) {
+            id
+            tipo
+            recipient
+        }
+    }
+`;
+
 export const GET_USER = gql`
     query GetUser($id: ID!) {
         getUser(id: $id) {
@@ -335,11 +371,40 @@ export const GET_USER = gql`
     }
 `
 
+export const GET_NOTIFICATIONS_BY_SENDER = gql`
+    query getNotificationsBySender($id: ID!) {
+        getNotificationsBySender(id: $id) {
+            id
+            message
+            recipient
+            sender
+            tipo
+            date
+        }
+    }
+`
+
+export const GET_NOTIFICATIONS_BY_RECIPIENT = gql`
+    query getNotificationsByRecipient($id: ID!) {
+        getNotificationsByRecipient(id: $id) {
+            id
+            message
+            recipient
+            sender
+            tipo
+            date
+        }
+    }
+`
+
 export const GET_CLIENT = gql`
     query GetClient($id: ID!) {
         getClient(id: $id) {
+            id
             username
+            city
             email
+            phone
             notifications {
                 id
                 message
@@ -353,8 +418,8 @@ export const GET_CLIENT = gql`
 `;
 
 export const TIME_TO_PAY = gql`
-    mutation($order: String!, $merchant: String!, $checksum: String!) {
-        timeToPay(order: $order, merchant: $merchant, checksum: $checksum)
+    mutation TimeToPay($id: ID, $order: String!, $merchant: String!) {
+        timeToPay(id: $id, order: $order, merchant: $merchant)
     }
 `;
 
@@ -385,6 +450,33 @@ export const APPOINTMENT_COUNT = gql`
 export const DELETE_CLIENT = gql`
     mutation deleteClient($id: ID!) {
         deleteClient(id: $id) {
+            id
+            username
+        }
+    }
+`;
+
+export const UPDATE_SPECIALIST = gql`
+    mutation UpdateSpecialist($id: ID!, $input: UpdateSpecialistInput!) {
+        updateSpecialist(id: $id, input: $input) {
+            id
+            username
+        }
+    }
+`;
+
+export const UPDATE_CLIENT = gql`
+    mutation($updateClientId: ID!, $input: UpdateClientInput!) {
+        updateClient(id: $updateClientId, input: $input) {
+            id
+            username
+        }
+    }
+`;
+
+export const DELETE_SERVICE = gql`
+    mutation DeleteService($id: ID!, $serviceName: String!) {
+        deleteService(id: $id, serviceName: $serviceName) {
             id
             username
         }

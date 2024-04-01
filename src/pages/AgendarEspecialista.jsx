@@ -191,7 +191,7 @@ export const AgendarEspecialista = () => {
                     </ul>
                 </div>
                 <div className="w-4/5 m-auto">
-                    <CalendarioEventos appointments={especialista.appointments} />
+                    <CalendarioEventos appointments={especialista.appointments} weeklySchedule={especialista.weeklySchedule} />
                     {/* <div className="bg-white mx-auto w-4/5 p-4 rounded-xl shadow-2xl">
                         <form onSubmit={handleSubmit}>
                             <label className="font-bold">Servicios</label>

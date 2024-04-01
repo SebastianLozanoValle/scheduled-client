@@ -1,19 +1,50 @@
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { useUserStore } from "../../store/userStore"
-import { GET_CLIENT, GET_SPECIALIST, GET_USER } from "../../querys/querys";
-import { useEffect, useState } from "react";
+import { GET_CLIENT, GET_NOTIFICATIONS_BY_RECIPIENT, GET_NOTIFICATIONS_BY_SENDER, GET_SPECIALIST, GET_USER } from "../../querys/querys";
+import { useEffect, useRef, useState } from "react";
 import { ImCross } from "react-icons/im";
-import { Accordion } from "@chakra-ui/react";
+import { Accordion, useToast } from "@chakra-ui/react";
 import { CustomAccordionItem } from "../../components/CustomAccordionItem";
+import { Notification } from "../../components/Notification";
+import { useForm } from "react-hook-form";
+import InputDropZone from "../../components/InputDropZone";
+import { v4 as uuid } from "uuid"
+import { UserForm } from "../../components/UserForm";
+import { EditarHorario } from "../../components/EditarHorario";
+import { AditionalDataForm } from "../../components/AditionalDataForm";
+import { EdicionMundosServicios } from "../../components/EdicionMundosServicios";
+import { FormularioServicios } from "../../components/FormularioServicios";
 
 export const Perfil = () => {
+    const inputDropZoneRef1 = useRef();
+    const toast = useToast();
+    const [files, setFiles] = useState([]);
     const { userId, name, userRole } = useUserStore()
+    const [servicio, setServicio] = useState("");
+
+    const { register, handleSubmit, formState: { errors }, getValues, watch } = useForm({
+        mode: "onChange"
+    });
+
+    const currentService = watch("service");
 
     const [getUser, { loading: loadingUser, data: dataUser }] = useLazyQuery(GET_USER);
     const [getSpecialist, { loading: loadingSpecialist, data: dataSpecialist }] = useLazyQuery(GET_SPECIALIST);
     const [getClient, { loading: loadingClient, data: dataClient }] = useLazyQuery(GET_CLIENT);
 
+
+    const { loading: loadingSender, error: errorSender, data: dataSender } = useQuery(GET_NOTIFICATIONS_BY_SENDER, {
+        variables: { id: userId },
+    });
+
+    const { loading: loadingRecipient, error: errorRecipient, data: dataRecipient } = useQuery(GET_NOTIFICATIONS_BY_RECIPIENT, {
+        variables: { id: userId },
+    });
+
     const [user, setUser] = useState({});
+    const [sended, setSended] = useState([]);
+    const [resived, setResived] = useState([]);
+    const [enviadosResividos, setEnviadosResividos] = useState(true)
 
     useEffect(() => {
         switch (userRole) {
@@ -46,6 +77,23 @@ export const Perfil = () => {
         console.log(dataUser, dataSpecialist, dataClient);
         console.log(user);
     }, [dataUser, dataSpecialist, dataClient]);
+
+    useEffect(() => {
+        if (dataSender?.getNotificationsBySender) {
+            setSended(dataSender.getNotificationsBySender)
+        }
+        if (dataRecipient?.getNotificationsByRecipient) {
+            setResived(dataRecipient.getNotificationsByRecipient)
+        }
+    }, [dataSender, dataRecipient])
+
+    useEffect(() => {
+
+        console.log(resived)
+
+        console.log(sended)
+    }, [sended, resived])
+
     console.log(user);
     // console.log(user.notifications[0].date)
     function timestampAFechaHora(timestamp) {
@@ -65,6 +113,66 @@ export const Perfil = () => {
 
         return fechaHoraFormateada;
     }
+
+    console.log(resived)
+    const notifications = resived.filter(notification => {
+        return notification.tipo !== "Papelera";
+    }) || [];
+    console.log("NOTIFICACIONES", notifications);
+
+    const papelera = resived.filter(notification => {
+        return notification.tipo === "Papelera";
+    }) || [];
+
+    const enviados = sended.filter(enviado => {
+        return enviado.tipo !== "Papelera"
+    })
+
+    const papeleraEnviados = sended.filter(enviado => {
+        return enviado.tipo === "Papelera"
+    })
+
+    const handleSetResividos = () => {
+        setEnviadosResividos(true)
+    }
+
+    const handleSetEnviados = () => {
+        setEnviadosResividos(false)
+    }
+
+    console.log(user.specialtys)
+
+    const onSubmit = () => {
+        if (currentService !== "Seleccione El Servicio") {
+            const Subido = inputDropZoneRef1.current.uploadFiles();
+            if (Subido) {
+                toast({
+                    title: "Success",
+                    description: `Archivo Subido`,
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                });
+                setFiles([])
+            } else {
+                toast({
+                    title: "Error",
+                    description: "Failed to Upload.",
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                });
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (currentService) {
+            setServicio(currentService)
+        }
+        setFiles([])
+    }, [currentService])
+
     return (
         <div className="flex flex-wrap w-full ml-0 mb-20 text-black min-h-[calc(100vh-108px)] pb-[64px] md:ml-[265px] md:pb-0 p-4 md:w-[calc(100vw-265px)]">
             <div className="w-full">
@@ -72,7 +180,7 @@ export const Perfil = () => {
                     <h2 className="text-5xl font-extrabold text-primary">Perfil</h2>
                     {
                         userRole === "specialist" ?
-                            <div className="flex flex-wrap justify-center items-center">
+                            <div className="flex flex-wrap gap-4 justify-center items-center">
                                 {
                                     user.files?.length > 0 && (
                                         <div className="w-28 h-28 overflow-hidden rounded-full hover:scale-125 transition-all duration-500">
@@ -86,16 +194,11 @@ export const Perfil = () => {
                                         </div>
                                     )
                                 }
-                                <h2 className="text-5xl font-extrabold text-secondary bg-[#cccc] p-4 rounded">¡Bienvenido {name}!</h2>
+                                <h2 className="text-5xl font-extrabold text-secondary bg-[#cccc] p-4 rounded">¡Bienvenido {user.username}!</h2>
                             </div>
                             :
-                            <h2 className="text-5xl font-extrabold text-secondary bg-[#cccc] p-4 rounded">¡Bienvenido {name}!</h2>
+                            <h2 className="text-5xl font-extrabold text-secondary bg-[#cccc] p-4 rounded">¡Bienvenido {user.username}!</h2>
                     }
-                </div>
-                <div className="p-4">
-                    <p>Id: {userId}</p>
-                    <p>Nombre: {name}</p>
-                    <p>Roll: {userRole}</p>
                 </div>
             </div>
             {
@@ -108,15 +211,94 @@ export const Perfil = () => {
                 loadingClient && <p>Cargando...</p>
             }
             <div className="w-full flex flex-col gap-4 lg:w-1/2 p-4">
+                <div>
+                    <h2 className="text-3xl font-extrabold text-primary">Datos Generales</h2>
+                    <div className="p-4">
+                        <p>Id: {userId}</p>
+                        <p>Nombre: {user.username}</p>
+                        <p>Roll: {userRole}</p>
+                    </div>
+                </div>
                 {
-                    userRole === "Specialist" &&
+                    (userRole === "specialist" || userRole === "client") && (
+                        <div>
+                            <h2 className="text-3xl font-extrabold text-primary">Editar Perfil</h2>
+                            {userRole === "specialist" && <h3 className="text-2xl">Datos Basicos:</h3>}
+                            <div className="w-4/5 mx-auto">
+                                <UserForm user={user} />
+                            </div>
+                            {userRole === "specialist" && user.weeklySchedule &&
+                                <div className="flex flex-col">
+                                    <h3 className="text-2xl">Editar Horario:</h3>
+                                    <div className="w-4/5 mx-auto h-[400px] overflow-y-scroll px-4 pt-4 m-10">
+                                        <EditarHorario specialist={user} />
+                                    </div>
+                                    <h3 className="text-2xl">Otros datos:</h3>
+                                    <div className="w-4/5 mx-auto">
+                                        <AditionalDataForm user={user} />
+                                    </div>
+                                    <h3 className="text-2xl">Editar Servicios:</h3>
+                                    <div className="w-4/5 mx-auto px-4 m-10 h-[400px] overflow-y-scroll">
+                                        <FormularioServicios user={user} />
+                                    </div>
+                                    <h3 className="text-2xl">Mundos y Añadir Servicios:</h3>
+                                    <div className="w-4/5 mx-auto px-4 pt-4 m-10">
+                                        <EdicionMundosServicios user={user} />
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    )
+                }
+                {
+                    userRole === "specialist" &&
                     <div className="rounded-2xl border">
                         <Accordion allowToggle>
                             <CustomAccordionItem title="Administrar imagenes">
                                 <Accordion allowToggle>
                                     <CustomAccordionItem title="Añadir imagenes a servicios">
-                                        <form>
-                                            Selec
+                                        <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-4 rounded-xl">
+                                            <div className="flex gap-4">
+                                                <label htmlFor="service">Servicio</label>
+                                                <select
+                                                    key={uuid()}
+                                                    className="rounded border"
+                                                    id="service"
+                                                    {...register("service", { required: "Este campo es requerido" })}
+                                                // defaultValue={user.specialtys}
+                                                >
+                                                    {
+                                                        user.specialtys?.map(service => {
+                                                            return (
+                                                                <option key={service.id + uuid()} value={service.name}>{service.name}</option>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+                                            </div>
+                                            {
+                                                currentService !== "" ?
+                                                    <>
+                                                        <InputDropZone
+                                                            fileName={servicio}
+                                                            tipo={servicio}
+                                                            recomendedSize='400x400'
+                                                            userId={userId}
+                                                            ref={inputDropZoneRef1}
+                                                            files={files}
+                                                            setFiles={setFiles}
+                                                        />
+                                                        {
+                                                            console.log(currentService)
+                                                        }
+                                                        <div className='flex w-full justify-center'>
+                                                            <input type="submit" value="Subir" className="py-2 px-12 bg-primary text-white rounded cursor-pointer" />
+                                                        </div>
+                                                    </>
+                                                    :
+                                                    <h3 className="p-4 text-primary">Seleccione un Servicio para poder subir archivos a este.</h3>
+                                            }
                                         </form>
                                     </CustomAccordionItem>
                                 </Accordion>
@@ -124,57 +306,89 @@ export const Perfil = () => {
                         </Accordion>
                     </div>
                 }
-                <div>
-                    <h2 className="text-3xl font-extrabold text-primary">Datos Generales</h2>
-                </div>
-                <div>
-                    <h2 className="text-3xl font-extrabold text-primary">Editar Perfil</h2>
-                </div>
             </div>
-
             <div className="w-full lg:w-1/2">
-                <div className="w-full">
-                    <div className="p-4 w-full">
-                        <h2 className="text-3xl font-extrabold text-primary">Notificaciones</h2>
-                    </div>
-                    <div className="flex flex-col gap-y-4 p-4 max-h-96 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
-                        {
-                            user.notifications?.length > 0 ? user.notifications.map(notification => {
-                                return (
-                                    <div className={` p-4 relative border rounded-r-3xl`} key={notification.id}>
-                                        <div className={`${notification.tipo == 'Aprobar' ? 'bg-green-500 border-green-500 border' : notification.tipo == 'Rechazado' ? 'bg-red-500 border-red-500 border' : 'bg-[#ccc] border-[#ccc] border'} absolute top-0 left-0 h-full w-3`}></div>
-                                        <p>Para: {notification.recipient}</p>
-                                        <p>Mensaje Adjunto: {notification.message}</p>
-                                        <p className="absolute bottom-0 right-3 font-extralight text-[#ccc]">{timestampAFechaHora(notification.date)}</p>
-                                        <button><ImCross className="absolute top-3 right-3 text-[#ccc] hover:text-red-500" /></button>
-                                    </div>
-                                )
-                            }) :
-                                <p>No tiene notificaciones.</p>
-                        }
-                    </div>
+                <div className="w-full flex relative rounded-full bg-[#f1f1f1] justify-around">
+                    <span className={`absolute w-1/2 bg-primary h-full left-0 z-0 transition-all duration-500 rounded-full ${enviadosResividos == false && "left-1/2"}`}></span>
+                    <button className="z-[1] w-1/2" onClick={handleSetResividos}>Resividos</button>
+                    <button className="z-[1] w-1/2" onClick={handleSetEnviados}>Enviados</button>
                 </div>
-                <div className="w-full">
-                    <div className="p-4 w-full">
-                        <h2 className="text-3xl font-extrabold text-primary">Papelera</h2>
-                    </div>
-                    <div className="flex flex-col gap-y-4 p-4 max-h-40 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
-                        {
-                            user.notifications?.length > 0 ? user.notifications.map(notification => {
-                                return (
-                                    <div className={` p-4 relative border rounded-r-3xl`} key={notification.id}>
-                                        <div className={`${notification.tipo == 'Aprobar' ? 'bg-green-500 border-green-500 border' : notification.tipo == 'Rechazado' ? 'bg-red-500 border-red-500 border' : 'bg-[#ccc] border-[#ccc] border'} absolute top-0 left-0 h-full w-3`}></div>
-                                        <p>Para: {notification.recipient}</p>
-                                        <p>Mensaje Adjunto: {notification.message}</p>
-                                        <p className="absolute bottom-0 right-3 font-extralight text-[#ccc]">{timestampAFechaHora(notification.date)}</p>
-                                        <button><ImCross className="absolute top-3 right-3 text-[#ccc] hover:text-red-500" /></button>
-                                    </div>
-                                )
-                            }) :
-                                <p>Su papelera esta vacia.</p>
-                        }
-                    </div>
-                </div>
+                {
+                    enviadosResividos ?
+                        <>
+                            <div className="w-full">
+                                <div className="p-4 w-full">
+                                    <h2 className="text-3xl font-extrabold text-primary">Notificaciones Resividas</h2>
+                                </div>
+                                <div className="flex flex-col gap-y-4 p-4 max-h-96 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
+                                    {
+                                        notifications?.length > 0 ? notifications.map(notification => {
+                                            return (
+                                                <div className={` p-4 relative border rounded-r-3xl`} key={notification.id}>
+                                                    <Notification notification={notification} id={userId} />
+                                                </div>
+                                            )
+                                        }) :
+                                            <p>No tiene notificaciones.</p>
+                                    }
+                                </div>
+                            </div>
+                            <div className="w-full">
+                                <div className="p-4 w-full">
+                                    <h2 className="text-3xl font-extrabold text-primary">Papelera Resividos</h2>
+                                </div>
+                                <div className="flex flex-col gap-y-4 p-4 max-h-40 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
+                                    {
+                                        papelera?.length > 0 ? papelera.map(notification => {
+                                            return (
+                                                <div className={` p-4 relative border rounded-r-3xl`} key={notification.id}>
+                                                    <Notification notification={notification} id={userId} />
+                                                </div>
+                                            )
+                                        }) :
+                                            <p>Su papelera esta vacia.</p>
+                                    }
+                                </div>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="w-full">
+                                <div className="p-4 w-full">
+                                    <h2 className="text-3xl font-extrabold text-primary">Notificaciones Enviadas</h2>
+                                </div>
+                                <div className="flex flex-col gap-y-4 p-4 max-h-96 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
+                                    {
+                                        enviados?.length > 0 ? enviados.map(notification => {
+                                            return (
+                                                <div className={` p-4 relative border rounded-r-3xl`} key={notification.id}>
+                                                    <Notification notification={notification} id={userId} />
+                                                </div>
+                                            )
+                                        }) :
+                                            <p>No tiene notificaciones enviadas.</p>
+                                    }
+                                </div>
+                            </div>
+                            <div className="w-full">
+                                <div className="p-4 w-full">
+                                    <h2 className="text-3xl font-extrabold text-primary">Papelera enviados</h2>
+                                </div>
+                                <div className="flex flex-col gap-y-4 p-4 max-h-40 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
+                                    {
+                                        papeleraEnviados?.length > 0 ? papeleraEnviados.map(notification => {
+                                            return (
+                                                <div className={` p-4 relative border rounded-r-3xl`} key={notification.id}>
+                                                    <Notification notification={notification} id={userId} />
+                                                </div>
+                                            )
+                                        }) :
+                                            <p>Su papelera esta vacia.</p>
+                                    }
+                                </div>
+                            </div>
+                        </>
+                }
             </div>
         </div>
     )

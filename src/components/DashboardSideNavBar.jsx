@@ -49,9 +49,8 @@ export const DashboardSideNavBar = () => {
         <Link to="/dashboard/clientes" icon={RiFolderUserFill}>Clientes</Link>
         {/* <Link to="/dashboard/destacados" icon={RiBardFill}>Destacados</Link> */}
         {/* <Link to="/dashboard/ventas" icon={RiCoinsLine}>Ventas</Link> */}
-        </>}{
-          diferentThatClient&&<Link to="/dashboard/agenda" icon={TfiAgenda}>Agenda</Link>
-        }
+        </>}
+        <Link to="/dashboard/agenda" icon={TfiAgenda}>Agenda</Link>
         {<Link to="/dashboard/perfil" icon={RiUser3Line}>Perfil</Link>}
         {<Link icon={RiLogoutBoxLine} handler={logout}>Logout</Link>}
         {<Link to="/dashboard/pruebas" icon={RiLogoutBoxLine}>pruebas</Link>}

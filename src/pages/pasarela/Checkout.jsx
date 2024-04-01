@@ -118,9 +118,17 @@ export const Checkout = () => {
     useEffect(() => {
         console.log('invoiceResponse:', invoiceResponse?.createInvoice);
         if (invoiceResponse) {
-            const { order, merchant, checksum } = invoiceResponse.createInvoice; // Reemplaza esto con tu lógica para obtener las variables
-    
-            timeToPay({ variables: { order, merchant, checksum } }).then(({ data }) => {
+            const { id, order, merchant } = invoiceResponse.createInvoice; // Reemplaza esto con tu lógica para obtener las variables
+
+            const input = {
+                id: id,
+                order: order,
+                merchant: merchant
+            }
+
+            console.log("imput", input)
+
+            timeToPay({ variables: { id, order, merchant } }).then(({ data }) => {
                 setAlreadyPayed(data)
             }).catch(error => {
                 console.error('Error al ejecutar timeToPay:', error);
@@ -133,9 +141,9 @@ export const Checkout = () => {
             event.preventDefault();
             event.returnValue = '';
         };
-    
+
         window.addEventListener('beforeunload', handleBeforeUnload);
-    
+
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
@@ -156,7 +164,7 @@ export const Checkout = () => {
     // }, [alreadyPayed, timer]);
 
     return (
-        link?
+        link ?
             <div className="flex flex-col items-center justify-center h-screen">
                 <a className="text-white bg-[#d3983f] rounded-xl px-10 py-4 text-5xl hover" target="_blank" href={link}>A Pagar</a>
             </div>

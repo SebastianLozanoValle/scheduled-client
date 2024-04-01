@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const InputFormField = ({ register, label, id, placeholder, type = "text", errors, validation }) => {
+export const InputFormField = ({ register, label, id, placeholder, type = "text", errors, validation, defaultValue = "" }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 
@@ -8,6 +8,12 @@ export const InputFormField = ({ register, label, id, placeholder, type = "text"
         setIsFocused(false);
         setIsFilled(e.target.value !== "");
     };
+
+    useEffect(() => {
+        if (defaultValue != "") {
+            setIsFilled(true);
+        }
+    }, [defaultValue])
 
     return (
         <div className="w-full sm:w-2/5 relative m-2">
@@ -25,6 +31,7 @@ export const InputFormField = ({ register, label, id, placeholder, type = "text"
                 className="p-2 border rounded w-full"
                 onFocus={() => setIsFocused(true)}
                 onBlur={handleBlur}
+                defaultValue={defaultValue}
             />
             {errors[id] && <p className="text-red-500">{errors[id].message}</p>}
         </div>

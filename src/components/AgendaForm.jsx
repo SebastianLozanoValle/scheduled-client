@@ -175,7 +175,7 @@ export const AgendaForm = ({ especialista }) => {
                 <div className="flex flex-wrap gap-8 mt-4 justify-evenly">
                     {
                         especialista.specialtys.map(servicio => (
-                            <Service key={servicio.name} servicio={servicio} register={register} onServiceCheck={handleServiceCheck} />
+                            servicio.state && <Service key={servicio.name} servicio={servicio} register={register} onServiceCheck={handleServiceCheck} />
                         ))
                     }
                 </div>

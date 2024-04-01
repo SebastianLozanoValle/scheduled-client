@@ -1,7 +1,7 @@
 import { Accordion, Box, Flex, Icon, IconButton, Text, VStack } from "@chakra-ui/react";
 import { RiDeleteBinLine, RiPencilLine, RiUserLine } from "react-icons/ri";
 import { CustomAccordionItem } from "./CustomAccordionItem";
-import { v4 as uuid } from 'uuid';
+
 
 export const Especialista = ({ especialista }) => {
     return (

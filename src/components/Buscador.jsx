@@ -173,30 +173,31 @@ export const Buscador = ({ onSearch, tabs }) => {
             </div>
           )}
         </div>
-
-        <Button
-          display='flex'
-          justifyContent='center'
-          bg='#d3983f'
-          color='white'
-          fontSize='20px'
-          marginTop={isSmallerThan760 ? '10px' : '0px'}
-          width={isSmallerThan760 ? '30%' : '150px'}
-          height={isSmallerThan760 ? '60px' : '70px'}
-          marginLeft={isSmallerThan760 ? '0px' : '8px'}
-          onClick={() => onSearch(searchParams)}
-        >
-          <b>Search</b>
-        </Button>
       </Box>
-      <div className='w-11/12 flex sm:w-4/5 flex-wrap mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm h-[100px] overflow-y-scroll'>
+      <div className='w-11/12 sm:w-4/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4  mx-auto bg-white rounded-xl justify-center text-xs sm:text-sm'>
         {tabs?.map((tab, index) => (
-          <label key={index} className='p-4 flex text-[#d3983f]'>
+          <label key={index} className='p-4 flex items-center'>
             <input className="mr-2" type="checkbox" value={tab} onChange={handleSpecialtyChange} />
             {tab}
           </label>
         ))}
       </div>
+
+      <Button
+        display='flex'
+        justifyContent='center'
+        bg='#d3983f'
+        color='white'
+        fontSize='20px'
+        marginTop={isSmallerThan760 ? '10px' : '0px'}
+        width={isSmallerThan760 ? '30%' : '150px'}
+        height={isSmallerThan760 ? '60px' : '70px'}
+        marginLeft={isSmallerThan760 ? '0px' : '8px'}
+        className = 'self-center'
+        onClick={() => onSearch(searchParams)}
+      >
+        <b>Search</b>
+      </Button>
     </div>
   );
 }; 

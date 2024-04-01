@@ -4,12 +4,12 @@ import { RiMore2Line, RiStarLine, RiStarSFill, RiDiscussLine, RiShareForwardLine
 import { FaCheck, FaCheckDouble } from "react-icons/fa";
 import { CustomAccordionItem } from "./CustomAccordionItem";
 import { gql, useMutation } from "@apollo/client";
-import { GET_SPECIALISTS } from "../pages/dashboard/Especialistas";
 import { DeleteConfirmationDialog } from './DeleteConfirmationDialog';
 import { EditSpecialistForm } from './EditSpecialistForm';
 import { color } from 'framer-motion';
 import { SendMessage } from './SendMessage';
-import { SEND_NOTIFICATION, TOGGLE_REJECT } from '../querys/querys';
+import { FIND_SPECIALISTS, SEND_NOTIFICATION, TOGGLE_REJECT } from '../querys/querys';
+import { v4 as uuid } from "uuid"
 
 const DELETE_SPECIALIST = gql`
     mutation deleteSpecialist($id: ID!) {
@@ -41,6 +41,15 @@ const TOGGLE_SPECIALIST_ACTIVE = gql`
     }
 `;
 
+const TOGGLE_SERVICE_ACTIVE = gql`
+    mutation ToggleServiceActive($id: ID!, $serviceName: String!) {
+        toggleServiceActive(id: $id, serviceName: $serviceName) {
+            id
+            # Otros campos que deseas devolver después de cambiar el estado del servicio
+        }
+    }
+`;
+
 let daysOfWeek = {
     "Monday": "Lunes",
     "Tuesday": "Martes",
@@ -53,15 +62,20 @@ let daysOfWeek = {
 
 export const CardSpecialist = ({ especialista }) => {
     const [deleteSpecialist] = useMutation(DELETE_SPECIALIST,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [sendNotification] = useMutation(SEND_NOTIFICATION,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [toggleSpecialistHighlight] = useMutation(TOGGLE_SPECIALIST_HIGHLIGHT,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [toggleSpecialistActive] = useMutation(TOGGLE_SPECIALIST_ACTIVE,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
     const [toggleReject] = useMutation(TOGGLE_REJECT,
-        { refetchQueries: [{ query: GET_SPECIALISTS }] });
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
+
+    const [toggleServiceActive, { loading, error, data }] = useMutation(TOGGLE_SERVICE_ACTIVE,
+        { refetchQueries: [{ query: FIND_SPECIALISTS }] });
+
+    console.log(especialista)
 
     const handleToggleHighlight = async () => {
         try {
@@ -119,44 +133,60 @@ export const CardSpecialist = ({ especialista }) => {
 
     console.log('especialista:', especialista.files?.length)
 
+    const handleToggleServiceActive = async (id, serviceName) => {
+        try {
+            const result = await toggleServiceActive({
+                variables: { id, serviceName }
+            });
+            // Aquí puedes manejar el resultado de la mutación si es necesario
+            console.log(result.data.toggleServiceActive);
+            console.log(additionalParam); // Puedes acceder a los parámetros adicionales aquí
+        } catch (error) {
+            // Aquí puedes manejar cualquier error que ocurra durante la mutación
+            console.error(error);
+        }
+    };
+
     return (
         <>
             <div className={`w-full rounded-3xl transition-all duration-500 ${especialista.highlighted ? 'bg-primary' : 'bg-secondary'}`}>
                 <Accordion allowToggle>
                     <CustomAccordionItem title={especialista.username} >
-                        <div className='flex flex-wrap w-full'>
-                            <div className='w-full sm:w-1/2'>
-                                <h2 className='text-xl'>
-                                    Personal:
-                                </h2>
-                                <div>
-                                    <div className='flex gap-1'>
-                                        <h3 className=''>Fecha Nacimiento:</h3>
-                                        <p> {especialista.age}</p>
-                                    </div>
-                                    <div className='flex gap-1'>
-                                        <h3 className=''>Sexo:</h3>
-                                        <p> {especialista.gender == "male" ? 'Hombre' : especialista.gender == "female" ? 'Mujer' : 'Otro'}</p>
+                        <div className='flex flex-wrap gap-4 w-full'>
+                            <div className='flex flex-wrap w-full'>
+                                <div className='w-full sm:w-1/2'>
+                                    <h2 className='text-xl font-extrabold my-4'>
+                                        Personal:
+                                    </h2>
+                                    <div>
+                                        <div className='flex gap-1'>
+                                            <h3 className=''>Fecha Nacimiento:</h3>
+                                            <p> {especialista.age}</p>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <h3 className=''>Sexo:</h3>
+                                            <p> {especialista.gender == "male" ? 'Hombre' : especialista.gender == "female" ? 'Mujer' : 'Otro'}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='w-full sm:w-1/2'>
-                                <h2 className='text-xl'>
-                                    Locacion:
-                                </h2>
-                                <div>
-                                    <div className='flex gap-1'>
-                                        <h3 className=''>Ciudad:</h3>
-                                        <p> {especialista.city}</p>
-                                    </div>
-                                    <div className='flex gap-1'>
-                                        <h3 className=''>Direccion:</h3>
-                                        <p> {especialista.street}</p>
+                                <div className='w-full sm:w-1/2'>
+                                    <h2 className='text-xl font-extrabold my-4'>
+                                        Locacion:
+                                    </h2>
+                                    <div>
+                                        <div className='flex gap-1'>
+                                            <h3 className=''>Ciudad:</h3>
+                                            <p> {especialista.city}</p>
+                                        </div>
+                                        <div className='flex gap-1'>
+                                            <h3 className=''>Direccion:</h3>
+                                            <p> {especialista.street}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div className='w-full'>
-                                <h2 className='text-xl'>
+                                <h2 className='text-xl font-extrabold my-4'>
                                     Galeria:
                                 </h2>
                                 <div className=' flex flex-wrap items-center p-4 w-full bg-[#f1f1f1] rounded-lg overflow-x-scroll'>
@@ -175,7 +205,7 @@ export const CardSpecialist = ({ especialista }) => {
                                             <p className='font-extralight'>El especialista no tiene imagenes ni documentos adjuntos</p>
                                     }
                                 </div>
-                                <h2 className='text-xl'>
+                                <h2 className='text-xl font-extrabold my-4'>
                                     Imagen de perfil:
                                 </h2>
                                 <div className='p-4 w-full bg-[#f1f1f1] rounded-lg overflow-x-scroll flex flex-wrap'>
@@ -194,7 +224,7 @@ export const CardSpecialist = ({ especialista }) => {
                                             <p>el usuario no tiene foto de perfil</p>
                                     }
                                 </div>
-                                <h2 className='text-xl'>
+                                <h2 className='text-xl font-extrabold my-4'>
                                     Imagenes del local:
                                 </h2>
                                 <div className='p-4 w-full bg-[#f1f1f1] rounded-lg overflow-x-scroll flex flex-wrap'>
@@ -210,10 +240,10 @@ export const CardSpecialist = ({ especialista }) => {
                                                 </a>
                                             )
                                         }) :
-                                            <p>el usuario no tiene foto de perfil</p>
+                                            <p className='text-black'>el usuario no tiene foto del local</p>
                                     }
                                 </div>
-                                <h2 className='text-xl'>
+                                <h2 className='text-xl font-extrabold my-4'>
                                     Horario de Atención:
                                 </h2>
                                 <div className="lg:pr-0 w-full lg:w-auto">
@@ -236,6 +266,64 @@ export const CardSpecialist = ({ especialista }) => {
                                             );
                                         })}
                                     </ul>
+                                </div>
+
+                                <div className='flex flex-wrap'>
+                                    <div className='w-full lg:w-1/2 flex flex-col justify-center'>
+                                        <h2 className='text-xl font-extrabold my-4'>
+                                            Mundos:
+                                        </h2>
+                                        <div>
+                                            {
+                                                especialista?.world?.length > 0 ? especialista.world.map(mundo => {
+                                                    return (
+                                                        <p key={uuid()}>Mundo {mundo}</p>
+                                                    )
+                                                }) : <p>Este especialista no ha seleccionado ningun mundo </p>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className='w-full lg:w-1/2 flex flex-col justify-center'>
+                                        <h2 className='text-xl font-extrabold my-4'>
+                                            Servicios:
+                                        </h2>
+                                        <div>
+                                            {
+                                                console.log(especialista)
+                                            }
+                                            {
+                                                especialista.specialtys.length > 0 ? especialista.specialtys.map(servicio => (
+                                                    <div key={uuid()}>
+                                                        <div className='flex gap-2 py-4 items-center'>
+                                                                <span className={`h-3 w-3 rounded-full ${servicio.state ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                                                            <p key={servicio.id}>{servicio.name}</p>
+                                                            <button onClick={() => handleToggleServiceActive(especialista.id, servicio.name)} className={`${servicio.state ? "bg-red-500 text-white hover:bg-white hover:text-red-500 border-red-500 px-2 transition-all duration-500" : "bg-green-500 text-white hover:bg-white hover:text-green-500 border-green-500 px-2 transition-all duration-500"} rounded`}>{servicio.state ? "Desaprobar" : "Aprobar"}</button>
+                                                        </div>
+                                                        <div className='p-4 w-full bg-[#f1f1f1] rounded-lg overflow-x-scroll flex flex-wrap'>
+                                                            {
+                                                                especialista.files.length > 0 ? especialista.files.map(file => {
+                                                                    return file.filename.includes(servicio.name) && (
+                                                                        <a className='w-[65px] block' target='_blank' href={"http://localhost:33402/files/" + file.filename} key={file.id}>
+                                                                            <img
+                                                                                className='w-[65px] hover:scale-125'
+                                                                                src={"http://localhost:33402/files/" + file.filename}
+                                                                                alt={`Imagen de ${file.filename}`}
+                                                                            />
+                                                                        </a>
+                                                                    )
+                                                                }) :
+                                                                    <p className='text-black'>el usuario no tiene foto del local</p>
+                                                            }
+                                                        </div>
+                                                    </div>
+
+                                                )) :
+                                                    <p>No tiene servicios registrados</p>
+                                            }
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

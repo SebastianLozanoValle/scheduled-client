@@ -103,7 +103,13 @@ html {
 }
 
 .rbc-event {
-  background-color: #d3983f !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+.rbc-event{
+  width: 100% !important;
+  left: 0 !important;
 }
 
 /* Esto cambiará el aspecto de las barras de desplazamiento para todos los elementos en tu página. */
