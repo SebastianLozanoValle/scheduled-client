@@ -49,7 +49,7 @@ export const QuruxRoutes = ({ setToken }) => {
                         <Route path="/signup" element={<ClientRegisterForm />} />
                         <Route path="/signup-especialistas" element={<SpecialistsRegisterForm />} />
                         <Route path="/auth" element={<Auth />} />
-                        <Route path="/agendar-especialista/:id" element={<AgendarEspecialista />} />
+                        <Route path="/agendar-especialista/:id/:paramsToSearch" element={<AgendarEspecialista />} />
                         <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={client?<Checkout />:<Navigate to={'/'} />} />
 
 

@@ -17,8 +17,8 @@ const UPDATE_FILE = gql`
 
 const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'picture', recomendedSize = '', userId, files, setFiles }, ref) => {
 
-    console.log(fileName)
-    console.log(tipo)
+    // console.log(fileName)
+    // console.log(tipo)
 
     const onDrop = useCallback((acceptedFiles) => {
         setFiles(prevFiles => {
@@ -51,16 +51,18 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
     const [updateFile] = useMutation(UPDATE_FILE);
 
     const uploadFiles = async () => {
-        console.log('subiendo archivos');
-        console.log(files)
+        // console.log('subiendo archivos');
+        // console.log(files)
         let archivosSubidos = 0
         for (const file of files) {
-            console.log('si los estoy subiendo')
+            // console.log('si los estoy subiendo')
             const formData = new FormData();
             formData.append('file', file);
     
             try {
-                const response = await fetch('http://localhost:33402/upload', {
+                const response = await
+                // fetch('http://localhost:33402/upload', {
+                fetch('https://sever-qurux.onrender.com/upload', {
                     method: 'POST',
                     body: formData
                 });
@@ -70,30 +72,30 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
                 }
     
                 const data = await response.json();
-                console.log('data', data);
+                // console.log('data', data);
                 setImg(data.file.filename);
                 setImgId(data.id);
-                console.log(img);
+                // console.log(img);
     
                 // Realizar la mutación
                 const updateResponse = await updateFile({ variables: { input: { id: data.id, userId: userId, alias: fileName, tipo: tipo } } });
                 if (updateResponse.data.setFileData.id) {
-                    console.log('archivo subido');
+                    // console.log('archivo subido');
                     // return true
                     archivosSubidos++
 
                 } else {
-                    console.log('archivo no subido');
+                    // console.log('archivo no subido');
                     return false
                 }
             } catch (error) {
-                console.error(error);
+                // console.error(error);
                 return false
             }
         }
-        console.log("Archivos subidos", archivosSubidos === maxFiles)
-        console.log(archivosSubidos)
-        console.log(maxFiles)
+        // console.log("Archivos subidos", archivosSubidos === maxFiles)
+        // console.log(archivosSubidos)
+        // console.log(maxFiles)
         return archivosSubidos === maxFiles
 
     };

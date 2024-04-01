@@ -39,7 +39,11 @@ export const AgendarEspecialista = () => {
         }
     });
 
-    const { id } = useParams();
+    const { id, paramsToSearch } = useParams();
+
+    console.log(paramsToSearch)
+    const servicesFilterArray = paramsToSearch.split(',')
+    console.log(servicesFilterArray)
 
     const { loading, error, data } = useQuery(GET_SPECIALIST, {
         variables: { id: id },
@@ -243,7 +247,7 @@ export const AgendarEspecialista = () => {
                 </div>
             </div>
             <div className="mx-20">
-                <AgendaForm especialista={especialista} />
+                <AgendaForm especialista={especialista} servicesFilterArray={servicesFilterArray} />
             </div>
         </div>
     );

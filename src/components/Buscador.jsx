@@ -113,7 +113,7 @@ export const Buscador = ({ onSearch, tabs }) => {
         >
           <option value='Mixto'>Mixto</option>
           <option value='Domicilio'>Domicilio</option>
-          <option value='Presencial'>local</option>
+          <option value='Local'>local</option>
         </Select>
 
 

@@ -482,3 +482,11 @@ export const DELETE_SERVICE = gql`
         }
     }
 `;
+
+export const CANCEL_APPOINTMENT = gql`
+    mutation($id: ID!){
+        cancelAppointment(id: $id) {
+            id
+        }
+    }
+`;

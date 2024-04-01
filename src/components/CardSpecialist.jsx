@@ -282,6 +282,14 @@ export const CardSpecialist = ({ especialista }) => {
                                                 }) : <p>Este especialista no ha seleccionado ningun mundo </p>
                                             }
                                         </div>
+                                        <h2 className='text-xl font-extrabold my-4'>
+                                            Tipo de Servicio:
+                                        </h2>
+                                        <div>
+                                            {
+                                                especialista?.serviceType
+                                            }
+                                        </div>
                                     </div>
 
                                     <div className='w-full lg:w-1/2 flex flex-col justify-center'>

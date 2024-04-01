@@ -83,12 +83,23 @@
 // };
 
 
-import { useQuery } from "@apollo/client";
-import { FIND_SPECIALISTS, GET_CLIENTS } from "../querys/querys";
+import { useMutation, useQuery } from "@apollo/client";
+import { CANCEL_APPOINTMENT, FIND_SPECIALISTS, GET_APPOINTMENTS, GET_CLIENTS, GET_INVOICES } from "../querys/querys";
 import { useEffect, useState } from "react";
 import { useUserStore } from "../store/userStore";
+import { DeleteConfirmationDialogAppointment } from "./DeleteConfirmationDialogAppointment";
 
 export const AdicionalAppointment = ({ appointment }) => {
+
+    console.log(appointment.id)
+
+    const [cancelAppointment] = useMutation(CANCEL_APPOINTMENT,
+        { refetchQueries: [{ query: GET_APPOINTMENTS }, { query: GET_INVOICES }, { query: GET_CLIENTS }, { query: FIND_SPECIALISTS }] });
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen = () => setIsOpen(true);
+    const handleClose = () => setIsOpen(false);
 
     const { name, userId, userRole, setUser } = useUserStore();
         const { clientsLoading, clientsError, data:dataClients } = useQuery(GET_CLIENTS);
@@ -127,6 +138,10 @@ export const AdicionalAppointment = ({ appointment }) => {
 
     console.log(appointment);
     console.log(appointment.serviceType);
+    
+    const handleDeleteAppointment = () => {
+        console.log('cancelando cita')
+    }
 
     return (
         <div className="flex flex-wrap gap-8">
@@ -168,8 +183,9 @@ export const AdicionalAppointment = ({ appointment }) => {
                 {
                     userRole === "specialist" && <button className="rounded-lg border hover:bg-white text-white hover:text-primary bg-primary border-primary transition-all duration-500 p-2">Marcar como finalizada</button>
                 }
-                <button className="rounded-lg border hover:bg-white text-white hover:text-red-500 bg-red-500 border-red-500 transition-all duration-500 p-2">cancelar cita</button>
+                <button onClick={handleOpen} className="rounded-lg border hover:bg-white text-white hover:text-red-500 bg-red-500 border-red-500 transition-all duration-500 p-2">cancelar cita</button>
             </div>
+            <DeleteConfirmationDialogAppointment isOpen={isOpen} onClose={handleClose} appointmentId={appointment.id} cancelAppointment={cancelAppointment} />
         </div>
     );
 };

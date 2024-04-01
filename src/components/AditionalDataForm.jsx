@@ -12,18 +12,18 @@ export const AditionalDataForm = ({ user }) => {
     const [updateSpecialist, { data, loading, error }] = useMutation(UPDATE_SPECIALIST,
         { refetchQueries: [{ query: GET_SPECIALIST, variables: { id: user.id } }] });
 
-    console.log(user);
+    // console.log(user);
     const { register, handleSubmit, setValue, getValues, watch, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
         const { ...formData } = data;
-        console.log(formData)
+        // console.log(formData)
         // const { ...formData } = data;
         // console.log(formData)
         const input = {
             ...formData,
         }
-        console.log(input);
+        // console.log(input);
 
         try {
             // const { age, ...formData } = data;
@@ -36,7 +36,7 @@ export const AditionalDataForm = ({ user }) => {
                     input: input,
                 },
             });
-            console.log(data);
+            // console.log(data);
 
             if (data.updateSpecialist.id) {
                 toast({
@@ -56,7 +56,7 @@ export const AditionalDataForm = ({ user }) => {
                 });
             }
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     };
 
@@ -74,7 +74,7 @@ export const AditionalDataForm = ({ user }) => {
         }
     }, [user])
 
-    console.log(getValues())
+    // console.log(getValues())
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full xs:w-full sm:w-full px-8 py-10 flex flex-col gap-4">

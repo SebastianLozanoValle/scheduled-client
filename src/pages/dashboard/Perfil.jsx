@@ -22,7 +22,7 @@ export const Perfil = () => {
     const { userId, name, userRole } = useUserStore()
     const [servicio, setServicio] = useState("");
 
-    const { register, handleSubmit, formState: { errors }, getValues, watch } = useForm({
+    const { register, handleSubmit, formState: { errors }, getValues, watch, setValue } = useForm({
         mode: "onChange"
     });
 
@@ -63,7 +63,7 @@ export const Perfil = () => {
             default:
                 break;
         }
-        console.log(user)
+        // console.log(user)
     }, [userRole]);
 
     useEffect(() => {
@@ -74,8 +74,8 @@ export const Perfil = () => {
         } else if (dataClient) {
             setUser(dataClient.getClient);
         }
-        console.log(dataUser, dataSpecialist, dataClient);
-        console.log(user);
+        // console.log(dataUser, dataSpecialist, dataClient);
+        // console.log(user);
     }, [dataUser, dataSpecialist, dataClient]);
 
     useEffect(() => {
@@ -87,14 +87,14 @@ export const Perfil = () => {
         }
     }, [dataSender, dataRecipient])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        console.log(resived)
+    //     console.log(resived)
 
-        console.log(sended)
-    }, [sended, resived])
+    //     console.log(sended)
+    // }, [sended, resived])
 
-    console.log(user);
+    // console.log(user);
     // console.log(user.notifications[0].date)
     function timestampAFechaHora(timestamp) {
         // Crear un objeto Date con el timestamp
@@ -114,11 +114,11 @@ export const Perfil = () => {
         return fechaHoraFormateada;
     }
 
-    console.log(resived)
+    // console.log(resived)
     const notifications = resived.filter(notification => {
         return notification.tipo !== "Papelera";
     }) || [];
-    console.log("NOTIFICACIONES", notifications);
+    // console.log("NOTIFICACIONES", notifications);
 
     const papelera = resived.filter(notification => {
         return notification.tipo === "Papelera";
@@ -140,7 +140,7 @@ export const Perfil = () => {
         setEnviadosResividos(false)
     }
 
-    console.log(user.specialtys)
+    // console.log(user.specialtys)
 
     const onSubmit = () => {
         if (currentService !== "Seleccione El Servicio") {
@@ -154,6 +154,35 @@ export const Perfil = () => {
                     isClosable: true,
                 });
                 setFiles([])
+                setValue("service" , 'Seleccione El Servicio')
+            } else {
+                toast({
+                    title: "Error",
+                    description: "Failed to Upload.",
+                    status: "error",
+                    duration: 3000,
+                    isClosable: true,
+                });
+            }
+        }
+    }
+
+    const onSubmitLocal = (e) => {
+        e.preventDefault();
+        console.log('entro al onsubmitlocal ejwahfuhauswfhuashuifduisdhfuihiuashudfhiuhsadufhuisdhuhuhsduifhuiseuifiuhihf')
+        if (files.length > 0 ) {
+            console.log('entro aca');
+            const Subido = inputDropZoneRef1.current.uploadFiles();
+            if (Subido) {
+                toast({
+                    title: "Success",
+                    description: `Archivo Subido`,
+                    status: "success",
+                    duration: 3000,
+                    isClosable: true,
+                });
+                setFiles([])
+                setValue("service" , 'Seleccione El Servicio')
             } else {
                 toast({
                     title: "Error",
@@ -299,6 +328,22 @@ export const Perfil = () => {
                                                     :
                                                     <h3 className="p-4 text-primary">Seleccione un Servicio para poder subir archivos a este.</h3>
                                             }
+                                        </form>
+                                    </CustomAccordionItem>
+                                    <CustomAccordionItem title="Añadir imagenes del Local">
+                                        <form onSubmit={onSubmitLocal} className="bg-white p-4 rounded-xl">
+                                            <InputDropZone
+                                                fileName={'Local'}
+                                                tipo={'Local'}
+                                                recomendedSize='400x400'
+                                                userId={userId}
+                                                ref={inputDropZoneRef1}
+                                                files={files}
+                                                setFiles={setFiles}
+                                            />
+                                            <div className='flex w-full justify-center'>
+                                                <input type="submit" value="Subir" className="py-2 px-12 bg-primary text-white rounded cursor-pointer" />
+                                            </div>
                                         </form>
                                     </CustomAccordionItem>
                                 </Accordion>

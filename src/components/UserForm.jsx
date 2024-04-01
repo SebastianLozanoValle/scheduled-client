@@ -11,7 +11,7 @@ import { useUserStore } from "../store/userStore";
 export const UserForm = ({ user }) => {
     const toast = useToast();
 
-    console.log(user);
+    // console.log(user);
     const { userId, userRole, setUser } = useUserStore();
 
 
@@ -24,12 +24,12 @@ export const UserForm = ({ user }) => {
 
     const onSubmit = async (data) => {
         const { ...formData } = data;
-        console.log(formData)
+        // console.log(formData)
         const input = {
             ...formData,
             city: cityValue,
         }
-        console.log(input);
+        // console.log(input);
 
         try {
             // const { age, ...formData } = data;
@@ -43,7 +43,7 @@ export const UserForm = ({ user }) => {
                         input: input,
                     },
                 });
-                console.log(data);
+                // console.log(data);
 
                 if (data.updateSpecialist.id) {
                     toast({
@@ -63,17 +63,17 @@ export const UserForm = ({ user }) => {
                     });
                 }
             } else if (userRole == 'client') {
-                console.log({
-                    id: user.id,
-                    Input: input
-                })
+                // console.log({
+                //     id: user.id,
+                //     Input: input
+                // })
                 const { data } = await updateClient({
                     variables: {
                         updateClientId: user.id,
                         input: input,
                     },
                 });
-                console.log(data);
+                // console.log(data);
 
                 if (data.updateClient.id) {
                     toast({
@@ -94,7 +94,7 @@ export const UserForm = ({ user }) => {
                 }
             }
         } catch (error) {
-            console.error(error);
+            // console.error(error);
         }
     };
 
@@ -126,7 +126,7 @@ export const UserForm = ({ user }) => {
         }
     }, [user])
 
-    console.log(getValues())
+    // console.log(getValues())
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-full xs:w-full sm:w-full px-8 py-10 flex flex-col gap-4">

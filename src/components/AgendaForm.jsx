@@ -5,12 +5,15 @@ import { IS_SLOT_AVAILABLE } from "../querys/querys";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/userStore";
+import { ServiciosHombres, ServiciosMascotas, ServiciosMujeres } from "../data/services";
 
-export const AgendaForm = ({ especialista }) => {
+export const AgendaForm = ({ especialista, servicesFilterArray }) => {
 
     const { userRole } = useUserStore();
 
     const isClient = userRole === 'client';
+
+    const tabs = [...new Set([...ServiciosHombres, ...ServiciosMascotas, ...ServiciosMujeres])]
 
     const navigate = useNavigate();
     const [alreadyValidated, setAlreadyValidated] = useState(false);
@@ -27,6 +30,18 @@ export const AgendaForm = ({ especialista }) => {
         estimatedEndTime: "",
         serviceType: "Local"
     });
+    const [filter, setFilter] = useState(
+        servicesFilterArray.filter(servicio =>
+            especialista.specialtys.some(especialidad =>
+                especialidad.name === servicio
+            )
+        )
+    );
+
+
+    console.log(servicesFilterArray)
+    console.log(especialista.specialtys)
+    console.log(filter)
 
     const { register, handleSubmit, formState: { errors }, getValues, watch } = useForm({
         mode: "onChange"
@@ -168,15 +183,41 @@ export const AgendaForm = ({ especialista }) => {
         // setAlreadyValidated(!alreadyValidated);
     }
 
+    const handleSpecialtyChange = (event) => {
+        if (event.target.checked)
+            setFilter([...filter, event.target.value]);
+        else
+            setFilter(filter.filter(item => item !== event.target.value));
+    };
+
+    useEffect(() => {
+        console.log(filter)
+    }, [filter])
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8 mb-20">
             <div className={`flex flex-col ${alreadyValidated ? "hidden" : ""}`}>
                 <label className="self-center font-extrabold text-3xl text-primary">Escoge los servicios</label>
+
+                <div className="w-11/12 sm:w-4/5 mx-auto my-10">
+                    <h3 className="text-primary">Filtro de Servicios Disponibles</h3>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 bg-[#e2e8f0] rounded-xl justify-center text-xs sm:text-sm'>
+                        {especialista.specialtys?.map((servicio, index) => (
+                            <label key={index} className='p-4 flex items-center'>
+                                <input className="mr-2" type="checkbox" checked={filter.includes(servicio.name)} value={servicio.name} onChange={handleSpecialtyChange} />
+                                {servicio.name}
+                            </label>
+                        ))}
+                    </div>
+                </div>
                 <div className="flex flex-wrap gap-8 mt-4 justify-evenly">
                     {
-                        especialista.specialtys.map(servicio => (
-                            servicio.state && <Service key={servicio.name} servicio={servicio} register={register} onServiceCheck={handleServiceCheck} />
-                        ))
+                        filter.length > 0 ? especialista.specialtys.map(servicio => (
+                            servicio.state && filter.includes(servicio.name) && <Service key={servicio.name} servicio={servicio} register={register} onServiceCheck={handleServiceCheck} />
+                        )) :
+                            especialista.specialtys.map(servicio => (
+                                servicio.state && <Service key={servicio.name} servicio={servicio} register={register} onServiceCheck={handleServiceCheck} />
+                            ))
                     }
                 </div>
             </div>

@@ -31,7 +31,7 @@ export const Destacados = ({ paramsToSearch, destacados = true }) => {
                     filtrado = filtrado.filter(especialista => especialista.city === paramsToSearch.distrito) || [];
                 }
                 if (paramsToSearch.servicios?.length > 0) {
-                    filtrado = filtrado.filter(especialista => especialista.specialtys.some(specialty => paramsToSearch.servicios.includes(specialty))) || [];
+                    filtrado = filtrado.filter(especialista => especialista.specialtys.some(specialty => paramsToSearch.servicios.includes(specialty.name))) || [];
                 }
                 if (paramsToSearch.tipoServicio != '') {
                     filtrado = filtrado.filter(especialista => (especialista.serviceType === paramsToSearch.tipoServicio) || paramsToSearch == "Mixto" || especialista.serviceType == "Mixto") || [];
@@ -132,6 +132,8 @@ export const Destacados = ({ paramsToSearch, destacados = true }) => {
             // console.log(especialistasSinServicios)
             setEspecialistasSinServciosActivos(especialistasSinServciosActivos + especialistasSinServicios);
         }
+
+        console.log(destacados, especialistas)
         // else {
         //     console.log('nunca ejecuta')
         // }
@@ -153,7 +155,7 @@ export const Destacados = ({ paramsToSearch, destacados = true }) => {
                             className={`p-4 w-auto transition-all duration-500 ${activeSpecialist === especialista ? 'bg-[#d3983f] text-[#d3983f] rounded-3xl scale-100' : 'bg-white text-black border rounded-3xl scale-75'}`}
                             onClick={() => setActiveSpecialist(especialista)}
                         >
-                            <TarjetaSpecialista especialista={especialista} />
+                            <TarjetaSpecialista especialista={especialista} paramsToSearch={paramsToSearch ? paramsToSearch.servicios: 'hu%fdas'} />
                         </div>
                     )
                 })}
