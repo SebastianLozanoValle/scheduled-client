@@ -129,13 +129,24 @@ export const Login =({ setToken })=> {
                             }
                             <div className="text-center mb-3">
                                 <span className="text-[12px] text-gray-600">
-                                Si desea registrarse entre{' '}
+                                Si desea registrarse como Especialista entre{' '}
                                 <Link
-                                    to={'/signup'}
+                                    to={'/signup-especialistas'}
                                     className="text-[12px] text-blue-500 hover:text-blue-700 font-bold"
                                 >
                                     aquí
                                 </Link>
+                                </span>
+                            </div>
+                            <div className="text-center mb-3">
+                                <span className="text-[12px] text-gray-600">
+                                    Si desea registrarse como Cliente entre{' '}
+                                    <Link
+                                        to={'/signup'}
+                                        className="text-[12px] text-blue-500 hover:text-blue-700 font-bold"
+                                    >
+                                        aquí
+                                    </Link>
                                 </span>
                             </div>
                             <div className="text-center">

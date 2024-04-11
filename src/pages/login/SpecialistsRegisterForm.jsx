@@ -164,6 +164,7 @@ export const SpecialistsRegisterForm = () => {
 
             const input = {
                 ...formData,
+                email: formData.email.toLowerCase(),
                 age,
                 specialtys: specialtysAsObjects,
                 world: worldsAsArray,
@@ -192,7 +193,7 @@ export const SpecialistsRegisterForm = () => {
 
     // Función para avanzar al siguiente paso
     const nextStep = () => {
-        if (step < 5) {
+        if (step < 4) {
             setStep(prevStep => prevStep + 1);
         }
     };
@@ -230,10 +231,22 @@ export const SpecialistsRegisterForm = () => {
                             <p className="text-[12px] text-gray-600">
                                 Sus datos seran verificados tras su registro para habilitar su perfil.
                             </p>
+                            
+                            <div className="mtAdjunte -3">
+                                <span className="text-[12px] text-gray-600">
+                                    Si desea registrarse como cliente entre{' '}
+                                    <Link
+                                        to={'/signup'}
+                                        className="text-[12px] text-blue-500 hover:text-blue-700 font-bold"
+                                    >
+                                        aquí
+                                    </Link>
+                                </span>
+                            </div>
                         </div>
                         <div>
                             {step === 1 && (
-                                <StepOne cities={cities} errors={errors} register={register} setValue={setValue} cityValue={cityValue} setCityValue={setCityValue} />
+                                <StepOne watch={watch} cities={cities} errors={errors} register={register} setValue={setValue} cityValue={cityValue} setCityValue={setCityValue} />
                             )}
                             {step === 2 && (
                                 <div className='flex flex-col gap-4'>
@@ -247,13 +260,13 @@ export const SpecialistsRegisterForm = () => {
                                         Como especialista de Qurux puedes ofrecer tus servicios en tu local o asistir al domicilio de tus clientes si lo prefieres y ellos tambien.
                                     </p>
                                     <label htmlFor="accountNumber" className="font-light">Cuenta para Pagos y/o Depositos</label>
-                                    <InputFormField register={register} label="Numero de Cuenta" id="accountNumber" placeholder="Numero de Cuenta" type='number' errors={errors} />
+                                    <InputFormField defaultValue={watch().accountNumber} register={register} label="Numero de Cuenta" id="accountNumber" placeholder="Numero de Cuenta" type='number' errors={errors} />
                                     <p className='text-[#ccc] font-extralight text-sm'>
                                         Tu dinero esta seguro con nosotros, ingresa el numero de cuenta al cual se depositara semanalmente la suma generada en sus servicios.
                                     </p>
                                 </div>
                             )}
-                            {step === 3 && (
+                            {/* {step === 3 && (
                                 <div className='flex flex-col gap-4'>
                                     <label htmlFor="world" className="text-primary font-semibold">Mundos</label>
                                     <div className='flex gap-4'>
@@ -291,15 +304,14 @@ export const SpecialistsRegisterForm = () => {
                                                         <option value="02:00">2 horas</option>
                                                         <option value="02:30">2 hora con 30 minutos</option>
                                                         <option value="03:00">3 horas</option>
-                                                        {/* Agrega más opciones según sea necesario */}
                                                     </select>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
-                            )}
-                            {step === 4 && (
+                            )} */}
+                            {step === 3 && (
                                 <div className='h-full overflow-y-scroll pr-4 text-white text-center'>
                                     <label htmlFor="weeklySchedule" className="font-light">Horario semanal</label>
                                     {daysOfWeek.map((day, index) => (
@@ -317,12 +329,12 @@ export const SpecialistsRegisterForm = () => {
                                     ))}
                                 </div>
                             )}
-                            {step === 5 && (
+                            {step === 4 && (
                                 <>
                                     <InputDropZone
                                         fileName='ProfilePicture'
                                         tipo='profilePic'
-                                        recomendedSize='400x400'
+                                        recomendedSize='Adjunte Foto de perfil (maximo 1)'
                                         userId={registerId}
                                         ref={inputDropZoneRef1}
                                         files={files}
@@ -331,7 +343,7 @@ export const SpecialistsRegisterForm = () => {
                                     <InputDropZone
                                         fileName='LocalPicture'
                                         tipo='local'
-                                        recomendedSize='400x400'
+                                        recomendedSize='Adjunte Fotos del local (maximo 3)'
                                         userId={registerId}
                                         ref={inputDropZoneRef2}
                                         files={filesLocal}
@@ -340,8 +352,8 @@ export const SpecialistsRegisterForm = () => {
                                     />
                                     <InputDropZone
                                         fileName='DocumentsPicture'
-                                        tipo='local'
-                                        recomendedSize='hoja delincuencia'
+                                        tipo='HojaDelincuencia'
+                                        recomendedSize='Adjunte Documento Hoja de Delincuencia'
                                         userId={registerId}
                                         ref={inputDropZoneRef3}
                                         files={files3}
@@ -350,8 +362,8 @@ export const SpecialistsRegisterForm = () => {
                                     />
                                     <InputDropZone
                                         fileName='DocumentsPicture'
-                                        tipo='local'
-                                        recomendedSize='Cedula Identidad (1 foto por lado)'
+                                        tipo='DocumentoIdentidad'
+                                        recomendedSize='Adjunte Una Foto del Documento de Identidad por Cada Lado'
                                         userId={registerId}
                                         ref={inputDropZoneRef4}
                                         files={files4}
@@ -360,8 +372,8 @@ export const SpecialistsRegisterForm = () => {
                                     />
                                     <InputDropZone
                                         fileName='DocumentsPicture'
-                                        tipo='local'
-                                        recomendedSize='Titulos ó certificados'
+                                        tipo='Titulo'
+                                        recomendedSize='Adjunte Titulos ó certificados'
                                         userId={registerId}
                                         ref={inputDropZoneRef5}
                                         files={files5}
@@ -378,7 +390,7 @@ export const SpecialistsRegisterForm = () => {
                         <div>
                             <div className="flex justify-center space-x-4 mb-4"> {/* Contenedor para el control del stepper */}
                                 <button type="button" onClick={prevStep}>Back</button>
-                                {[1, 2, 3, 4, 5].map((stepNumber) => (
+                                {[1, 2, 3, 4].map((stepNumber) => (
                                     <div
                                         key={stepNumber}
                                         className='hidden sm:block'
@@ -387,17 +399,6 @@ export const SpecialistsRegisterForm = () => {
                                     </div>
                                 ))}
                                 <button type="button" onClick={nextStep}>Next</button>
-                            </div>
-                            <div className="text-center mb-3">
-                                <span className="text-[12px] text-gray-600">
-                                    Si desea registrarse como cliente entre{' '}
-                                    <Link
-                                        to={'/signup'}
-                                        className="text-[12px] text-blue-500 hover:text-blue-700 font-bold"
-                                    >
-                                        aquí
-                                    </Link>
-                                </span>
                             </div>
                         </div>
                     </form>

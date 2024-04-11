@@ -14,6 +14,7 @@ import { EditarHorario } from "../../components/EditarHorario";
 import { AditionalDataForm } from "../../components/AditionalDataForm";
 import { EdicionMundosServicios } from "../../components/EdicionMundosServicios";
 import { FormularioServicios } from "../../components/FormularioServicios";
+import { RiArrowLeftCircleLine, RiArrowRightCircleLine } from "react-icons/ri";
 
 export const Perfil = () => {
     const inputDropZoneRef1 = useRef();
@@ -154,7 +155,7 @@ export const Perfil = () => {
                     isClosable: true,
                 });
                 setFiles([])
-                setValue("service" , 'Seleccione El Servicio')
+                setValue("service", 'Seleccione El Servicio')
             } else {
                 toast({
                     title: "Error",
@@ -170,7 +171,7 @@ export const Perfil = () => {
     const onSubmitLocal = (e) => {
         e.preventDefault();
         console.log('entro al onsubmitlocal ejwahfuhauswfhuashuifduisdhfuihiuashudfhiuhsadufhuisdhuhuhsduifhuiseuifiuhihf')
-        if (files.length > 0 ) {
+        if (files.length > 0) {
             console.log('entro aca');
             const Subido = inputDropZoneRef1.current.uploadFiles();
             if (Subido) {
@@ -182,7 +183,7 @@ export const Perfil = () => {
                     isClosable: true,
                 });
                 setFiles([])
-                setValue("service" , 'Seleccione El Servicio')
+                setValue("service", 'Seleccione El Servicio')
             } else {
                 toast({
                     title: "Error",
@@ -249,6 +250,53 @@ export const Perfil = () => {
                     </div>
                 </div>
                 {
+                    userRole === "specialist" &&
+                    <div className="flex flex-col gap-4">
+                        <h2 className="text-3xl font-extrabold text-primary">Ingresos</h2>
+                        <div className="flex flex-wrap gap-8 justify-center text-center">
+                            <div className="flex flex-col gap-2 justify-center items-center p-4 bg-primary rounded-lg shadow-md text-white hover:scale-110 transition-all duration-500 w-full md:w-[30%]">
+                                <h4>
+                                    Ingresos desde que empezo
+                                </h4>
+                                <p>
+                                    $0
+                                </p>
+                            </div>
+                            <div className="flex flex-col gap-2 justify-center items-center p-4 bg-primary rounded-lg shadow-md text-white hover:scale-110 transition-all duration-500 w-full md:w-[30%]">
+                                <h4>
+                                    Ingresos pendientes
+                                </h4>
+                                <p>
+                                    $0
+                                </p>
+                            </div>
+                            <div className="flex flex-col gap-2 justify-center items-center p-4 bg-primary rounded-lg shadow-md text-white hover:scale-110 transition-all duration-500 w-full md:w-[30%]">
+                                <h4>
+                                    Ingresos ultimo mes
+                                </h4>
+                                <p>
+                                    $0
+                                </p>
+                            </div>
+                        </div>
+                        <div className="p-2">
+                            <div className="flex flex-wrap gap-2 justify-between items-center p-4 bg-primary rounded-lg shadow-md text-white hover:scale-110 md:hover:scale-105 transition-all duration-500 w-full">
+                                <button className='p-2 text-6xl mx-auto text-white transition-all duration-500 hover:scale-110 hover:text-slate-700 bg-transparent' onClick={() => scrollSpecialists('left')}><RiArrowLeftCircleLine /></button>
+                                <div className="flex flex-col">
+                                    <h4>
+                                        Ingresos de enero(ejemplo)
+                                    </h4>
+                                    <p>
+                                        $0
+                                    </p>
+                                </div>
+                                <button className='p-2 text-6xl mx-auto text-white transition-all duration-500 hover:scale-110 hover:text-slate-700 bg-transparent' onClick={() => scrollSpecialists('right')}><RiArrowRightCircleLine /></button>
+                            </div>
+                        </div>
+                        <p className="text-[#ccc] text-center">Recuerde que todos los pagos se realizan semanalmente el dia (aun no esta definido el dia)</p>
+                    </div>
+                }
+                {
                     (userRole === "specialist" || userRole === "client") && (
                         <div>
                             <h2 className="text-3xl font-extrabold text-primary">Editar Perfil</h2>
@@ -312,7 +360,7 @@ export const Perfil = () => {
                                                         <InputDropZone
                                                             fileName={servicio}
                                                             tipo={servicio}
-                                                            recomendedSize='400x400'
+                                                            recomendedSize={'Adjunte una foto para el sericio ' + servicio}
                                                             userId={userId}
                                                             ref={inputDropZoneRef1}
                                                             files={files}
@@ -355,7 +403,7 @@ export const Perfil = () => {
             <div className="w-full lg:w-1/2">
                 <div className="w-full flex relative rounded-full bg-[#f1f1f1] justify-around">
                     <span className={`absolute w-1/2 bg-primary h-full left-0 z-0 transition-all duration-500 rounded-full ${enviadosResividos == false && "left-1/2"}`}></span>
-                    <button className="z-[1] w-1/2" onClick={handleSetResividos}>Resividos</button>
+                    <button className="z-[1] w-1/2" onClick={handleSetResividos}>Resibidos</button>
                     <button className="z-[1] w-1/2" onClick={handleSetEnviados}>Enviados</button>
                 </div>
                 {
@@ -363,7 +411,7 @@ export const Perfil = () => {
                         <>
                             <div className="w-full">
                                 <div className="p-4 w-full">
-                                    <h2 className="text-3xl font-extrabold text-primary">Notificaciones Resividas</h2>
+                                    <h2 className="text-3xl font-extrabold text-primary">Notificaciones Resibidas</h2>
                                 </div>
                                 <div className="flex flex-col gap-y-4 p-4 max-h-96 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
                                     {
@@ -380,7 +428,7 @@ export const Perfil = () => {
                             </div>
                             <div className="w-full">
                                 <div className="p-4 w-full">
-                                    <h2 className="text-3xl font-extrabold text-primary">Papelera Resividos</h2>
+                                    <h2 className="text-3xl font-extrabold text-primary">Papelera Resibidos</h2>
                                 </div>
                                 <div className="flex flex-col gap-y-4 p-4 max-h-40 overflow-y-scroll border-t-8 border-b-8 border-primary rounded">
                                     {

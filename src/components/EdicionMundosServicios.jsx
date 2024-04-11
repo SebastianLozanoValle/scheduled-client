@@ -193,8 +193,13 @@ export const EdicionMundosServicios = ({ user }) => {
         }
     };
 
+    console.log(user.world.lenght)
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+            {
+                user.world.length > 0 ? <></> : <p className="text-[#ccc]">Aun no ha ha seleccionado un mundo, por favor seleccione el mundo al que aplica y seleccione que servicios desea incluir a su perfil.</p>
+            }
             <label htmlFor="world" className="text-primary font-semibold">Mundos</label>
             <div className='flex gap-4'>
                 {worlds.map(world => (

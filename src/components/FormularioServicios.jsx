@@ -36,7 +36,7 @@ export const FormularioServicios = ({ user }) => {
                 price: parseInt(service.price) // Convertir el precio a entero
             }))
         };
-    
+
         try {
             const { data } = await updateSpecialist({
                 variables: {
@@ -44,7 +44,7 @@ export const FormularioServicios = ({ user }) => {
                     input: parsedData,
                 },
             });
-    
+
             if (data.updateSpecialist.id) {
                 toast({
                     title: "Success",
@@ -66,7 +66,7 @@ export const FormularioServicios = ({ user }) => {
             console.error(error);
         }
     };
-    
+
 
     const handleOpenDialog = (id) => {
         setOpenDialogId(id);
@@ -76,10 +76,12 @@ export const FormularioServicios = ({ user }) => {
         setOpenDialogId(null);
     };
 
+    console.log("user", user.specialtys);
+
     return (
         <form className="relative" onSubmit={handleSubmit(onSubmit)}>
             <h3 className="text-primary font-semibold">Servicios Actuales</h3>
-            {user.specialtys.map((service, index) => (
+            {user.specialtys.length > 0 ? user.specialtys.map((service, index) => (
                 <div className='flex flex-col m-4 p-4 border rounded-lg relative' key={service.name + uuidv4()}>
                     <p className='text-primary font-bold text-xl'>{service.name}</p>
                     <label className='font-semibold' htmlFor={`${service.name}-description`}>Descripción:</label>
@@ -106,10 +108,15 @@ export const FormularioServicios = ({ user }) => {
                         <DeleteConfirmationDialogService isOpen={openDialogId === service.name} onClose={handleCloseDialog} user={user} service={service} deleteService={deleteService} />
                     </div>
                 </div>
-            ))}
-            <div className="px-6 sticky bottom-0">
-                <input type="submit" value="Actualizar" className="p-2 bg-primary border border-white transition-all duration-500 hover:border-primary hover:bg-white hover hover:text-primary text-white rounded cursor-pointer w-full" />
-            </div>
+            )) :
+                <p className="text-[#ccc]">Aun no tiene servicios registrados, empiece ahora, registre el servicio y posteriormente adjunte imagenes relacionadas</p>
+            }
+            {
+                user.specialtys.lenght > 0 &&
+                <div className="px-6 sticky bottom-0">
+                    <input type="submit" value="Actualizar" className="p-2 bg-primary border border-white transition-all duration-500 hover:border-primary hover:bg-white hover hover:text-primary text-white rounded cursor-pointer w-full" />
+                </div>
+            }
         </form>
     )
 }

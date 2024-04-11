@@ -22,7 +22,7 @@ export const ClientRegisterForm = () => {
             // Convierte age a un número
             const ageAsNumber = parseInt(age, 10);
 
-            const response = await createClient({ variables: { input: { ...formData, age: age } } });
+            const response = await createClient({ variables: { input: { ...formData, email: formData.email.toLowerCase(), age: age } } });
             console.log(response);
 
             if (response.data.createClient.id) {
@@ -52,18 +52,27 @@ export const ClientRegisterForm = () => {
                                 Suministre los datos requeridos para registrarse.
                             </p>
                         </div>
-                        <InputFormField register={register} label="Usuario" id="username" placeholder="Usuario" required={true} errors={errors} />
+                        <div className=" mb-3">
+                            <span className="text-[12px] text-gray-600">
+                                Si desea registrarse como especialista entre{' '}
+                                <Link
+                                    to={'/signup-especialistas'}
+                                    className="text-[12px] text-blue-500 hover:text-blue-700 font-bold"
+                                >
+                                    aquí
+                                </Link>
+                            </span>
+                        </div>
+                        <InputFormField mitad={false} defaultValue={watch().username} register={register} label="Usuario" id="username" placeholder="Usuario" required={true} errors={errors} />
+                        <InputFormField mitad={false} defaultValue={watch().password} register={register} label="Contraseña" id="password" placeholder="Contraseña" type="password" required={true} errors={errors} />
+                        <InputFormField mitad={false} defaultValue={watch().confirmpassword} register={register} label="Confirme Contraseña" id="confirmpassword" placeholder="Confirme Contraseña" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField register={register} label="Contraseña" id="password" placeholder="Contraseña" type="password" required={true} errors={errors} />
-                            <InputFormField register={register} label="Confirme Contraseña" id="confirmpassword" placeholder="Confirme Contraseña" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
+                            <InputFormField defaultValue={watch().email} register={register} label="Correo" id="email" placeholder="Correo" type='email' required={true} errors={errors} />
+                            <InputFormField defaultValue={watch().phone} register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
                         </div>
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField register={register} label="Correo" id="email" placeholder="Correo" type='email' required={true} errors={errors} />
-                            <InputFormField register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
-                        </div>
-                        <div className='flex flex-wrap justify-between'>
-                            <InputFormField register={register} label="Edad" id="age" placeholder="Edad" type="date" errors={errors} />
-                            <InputFormField register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
+                            <InputFormField defaultValue={watch().age} register={register} label="Edad" id="age" placeholder="Edad" type="date" errors={errors} />
+                            <InputFormField defaultValue={watch().street} register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
                         </div>
                         <AutocompleteInputField
                             label='Distrito'
@@ -79,28 +88,18 @@ export const ClientRegisterForm = () => {
                         />
 
                         <label htmlFor='gender'>Genero</label>
-                        <select {...register("gender")} className="p-2 border rounded">
-                            <option value="">Select...</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
+                        <select {...register("gender", { validate: value => value !== "" || "Debe seleccionar una respuesta valida en este campo" })} className="p-2 border rounded">
+                            <option value="">Seleccione...</option>
+                            <option value="male">Mujer</option>
+                            <option value="female">Hombre</option>
+                            <option value="other">Otro</option>
                         </select>
+                        {errors["gender"] && <p className="text-red-500">{errors["gender"].message}</p>}
 
                         <input {...register("role")} type="hidden" />
 
                         <input type="submit" className="p-2 bg-blue-500 text-white rounded cursor-pointer" />
                         {error && <p className="text-red-500">{error.message}</p>}
-                        <div className="text-center mb-3">
-                            <span className="text-[12px] text-gray-600">
-                                Si desea registrarse como especialista entre{' '}
-                                <Link
-                                    to={'/signup-especialistas'}
-                                    className="text-[12px] text-blue-500 hover:text-blue-700 font-bold"
-                                >
-                                    aquí
-                                </Link>
-                            </span>
-                        </div>
                     </form>
                     <div className="flex items-center justify-center h-full w-0 xl:w-1/2">
                         {/* Aquí puedes poner tu imagen */}

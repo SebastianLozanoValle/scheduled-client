@@ -131,7 +131,7 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
     return (
         <div>
             <div className='p-4'>
-                <label className='text-[#caa776] font-semibold text-xl'>{fileName} {recomendedSize}</label>
+                <label className='text-[#caa776] font-semibold text-xl'>{recomendedSize}</label>
             </div>
             <div className={`border flex items-center justify-center rounded-xl h-40 transition-all ${isDragActive? 'bg-[#caa776] border-black text-white shadow-2xl':''}`} {...getRootProps()}>
                 <input {...getInputProps()} />
@@ -145,8 +145,8 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
                 }
             </div>
             <aside className='p-4 flex flex-col gap-4'>
-                <h4 className='text-[#caa776] font-semibold'>Files</h4>
-                <div className='flex flex-wrap gap-4'>{thumbs}</div>
+                <h4 className='text-[#caa776] font-semibold'>Archivos adjuntados:</h4>
+                <div className='flex flex-wrap gap-4 text-[#ccc]'>{thumbs.length > 0 ? thumbs : "aun no ha seleccionado archivos."}</div>
             </aside>
         </div>
     )

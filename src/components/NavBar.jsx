@@ -48,10 +48,15 @@ export const NavBar = ({ setToken }) => {
                 </Box>
                 <Box display={{ base: 'none', md: 'block' }}>
                     <Flex>
-                        <CustomLink to="/" px={8} my='auto' color="white">Inicio</CustomLink>
-                        <CustomLink to="/mundohombres" px={8} my='auto' color="white">Hombres</CustomLink>
-                        <CustomLink to="/mundomujeres" px={8} my='auto' color="white">Mujeres</CustomLink>
-                        <CustomLink to="/mundomascotas" px={8} my='auto' color="white">Mascotas</CustomLink>
+                        {
+                            userRole !== 'specialist' &&
+                            <>
+                                <CustomLink to="/" px={8} my='auto' color="white">Inicio</CustomLink>
+                                <CustomLink to="/mundohombres" px={8} my='auto' color="white">Hombres</CustomLink>
+                                <CustomLink to="/mundomujeres" px={8} my='auto' color="white">Mujeres</CustomLink>
+                                <CustomLink to="/mundomascotas" px={8} my='auto' color="white">Mascotas</CustomLink>
+                            </>
+                        }
                         {
                             localStorage.getItem('user-token') !== null ?
                                 <Menu>
@@ -72,7 +77,7 @@ export const NavBar = ({ setToken }) => {
                                     // bg={'teal.500'} borderRadius={6} p={6}
                                     >
                                         <MenuItem bg='#212024' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard/perfil">Perfil</MenuItem>
-                                        {diferentThatClient&&<MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>}
+                                        {userRole === 'admin' && <MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>}
                                         <MenuItem
                                             as={Button}
                                             className="mx-2 bg-gray-800 text-white hover:text-yellow-300"

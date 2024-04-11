@@ -35,21 +35,21 @@ export const QuruxRoutes = ({ setToken }) => {
 
         return (
                 <Routes>
-                        <Route path="/" element={<Inicio />} />
-                        <Route path="/mundohombres" element={<Mundohombres />} />
-                        <Route path="/mundomujeres" element={<Mundomujeres />} />
-                        <Route path="/mundomascotas" element={<Mundomascotas />} />
+                        <Route path="/" element={!specialist ? <Inicio /> : <Navigate to="/dashboard/perfil" />} />
+                        <Route path="/mundohombres" element={!specialist ? <Mundohombres /> : <Navigate to="/dashboard/perfil" />} />
+                        <Route path="/mundomujeres" element={!specialist ? <Mundomujeres /> : <Navigate to="/dashboard/perfil" />} />
+                        <Route path="/mundomascotas" element={!specialist ? <Mundomascotas /> : <Navigate to="/dashboard/perfil" />} />
                         <Route path="/dashboard/*" element={<DashboardRoutes />} />
                         <Route path="/Guiaespecialista" element={<Guiaespecialista />} />
                         <Route path="/GuiaUsuario" element={<GuiaUsuario />} />
                         <Route path="/TCEspecialistas" element={<TCEspecialistas />} />
                         <Route path="/Terminos" element={<Terminos />} />
-                        <Route path="/ListaE" element={<ListaE />} />
-                        <Route path="/login" element={<Login setToken={setToken} />} />
-                        <Route path="/signup" element={<ClientRegisterForm />} />
-                        <Route path="/signup-especialistas" element={<SpecialistsRegisterForm />} />
-                        <Route path="/auth" element={<Auth />} />
-                        <Route path="/agendar-especialista/:id/:paramsToSearch" element={<AgendarEspecialista />} />
+                        {/* <Route path="/ListaE" element={<ListaE />} /> */}
+                        <Route path="/login" element={!loged ? <Login setToken={setToken} /> : <Navigate to="/" />} />
+                        <Route path="/signup" element={!loged ? <ClientRegisterForm /> : <Navigate to="/" />} />
+                        <Route path="/signup-especialistas" element={!loged ? <SpecialistsRegisterForm /> : <Navigate to="/" />} />
+                        <Route path="/auth" element={!loged ? <Auth /> : <Navigate to="/" />} />
+                        <Route path="/agendar-especialista/:id/:paramsToSearch" element={client?<AgendarEspecialista />:<Navigate to={'/'} />} />
                         <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={client?<Checkout />:<Navigate to={'/'} />} />
 
 

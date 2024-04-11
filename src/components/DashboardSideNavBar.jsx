@@ -41,19 +41,20 @@ export const DashboardSideNavBar = () => {
   return (
     <Box position='fixed' left={0} w="265px" bg="#0b0e13" color='white' p="4" h="calc(100vh - 60px)" borderRight='solid 1px #ccc'>
       <VStack spacing="4" align="start" height='100%'>
-        {diferentThatClient&&<Link to="/dashboard" icon={RiDashboardLine}>Dashboard</Link>}
-        {admin&&<>
-        <Link to="/dashboard/especialistas" icon={GiHairStrands}>Especialistas</Link>
-        <Link to="/dashboard/especialistas-sin-aprobar" icon={GiHairStrands}>Especialistas Sin Aprobar</Link>
-        <Link to="/dashboard/especialistas-rechazados" icon={GiHairStrands}>Especialistas Rechazados</Link>
-        <Link to="/dashboard/clientes" icon={RiFolderUserFill}>Clientes</Link>
-        {/* <Link to="/dashboard/destacados" icon={RiBardFill}>Destacados</Link> */}
-        {/* <Link to="/dashboard/ventas" icon={RiCoinsLine}>Ventas</Link> */}
+        {/* {diferentThatClient &&} */}
+        {admin && <>
+          <Link to="/dashboard" icon={RiDashboardLine}>Dashboard</Link>
+          <Link to="/dashboard/especialistas" icon={GiHairStrands}>Especialistas</Link>
+          <Link to="/dashboard/especialistas-sin-aprobar" icon={GiHairStrands}>Especialistas Sin Aprobar</Link>
+          <Link to="/dashboard/especialistas-rechazados" icon={GiHairStrands}>Especialistas Rechazados</Link>
+          <Link to="/dashboard/clientes" icon={RiFolderUserFill}>Clientes</Link>
+          {/* <Link to="/dashboard/destacados" icon={RiBardFill}>Destacados</Link> */}
+          {/* <Link to="/dashboard/ventas" icon={RiCoinsLine}>Ventas</Link> */}
         </>}
         <Link to="/dashboard/agenda" icon={TfiAgenda}>Agenda</Link>
         {<Link to="/dashboard/perfil" icon={RiUser3Line}>Perfil</Link>}
         {<Link icon={RiLogoutBoxLine} handler={logout}>Logout</Link>}
-        {<Link to="/dashboard/pruebas" icon={RiLogoutBoxLine}>pruebas</Link>}
+        {/* {<Link to="/dashboard/pruebas" icon={RiLogoutBoxLine}>pruebas</Link>} */}
       </VStack>
     </Box>
   );

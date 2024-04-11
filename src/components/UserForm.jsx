@@ -27,6 +27,7 @@ export const UserForm = ({ user }) => {
         // console.log(formData)
         const input = {
             ...formData,
+            email: formData.email.toLowerCase(),
             city: cityValue,
         }
         // console.log(input);
