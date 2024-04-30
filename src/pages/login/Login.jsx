@@ -82,7 +82,7 @@ export const Login =({ setToken })=> {
                                     <i className=""></i> Correo
                                 </span>
                                 <input
-                                    type="text"
+                                    type="email"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
                                     name="username"
