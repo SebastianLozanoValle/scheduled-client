@@ -79,7 +79,7 @@ export const Login =({ setToken })=> {
                                 <div className="flex flex-col">
                                 <span className="font-bold mb-1 text-[12px]">
                                     {/* icono email */}
-                                    <i className=""></i> Usuario
+                                    <i className=""></i> Correo
                                 </span>
                                 <input
                                     type="text"
