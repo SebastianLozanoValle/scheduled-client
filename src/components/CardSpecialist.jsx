@@ -60,6 +60,12 @@ let daysOfWeek = {
     "Sunday": "Domingo"
 };
 
+// cambiar link en produccionnn importanteeeeeeeee
+
+const rutaApi = "https://sever-qurux.onrender.com/files/"
+
+//#################################################
+
 export const CardSpecialist = ({ especialista }) => {
     const [deleteSpecialist] = useMutation(DELETE_SPECIALIST,
         { refetchQueries: [{ query: FIND_SPECIALISTS }] });
@@ -193,10 +199,10 @@ export const CardSpecialist = ({ especialista }) => {
                                     {
                                         especialista.files.length > 0 ? especialista.files.map(file => {
                                             return (
-                                                <a className='w-[65px] block' target='_blank' href={"http://localhost:33402/files/" + file.filename} key={file.id}>
+                                                <a className='w-[65px] block' target='_blank' href={rutaApi + file.filename} key={file.id}>
                                                     <img
                                                         className='w-[65px] hover:scale-125'
-                                                        src={"http://localhost:33402/files/" + file.filename}
+                                                        src={rutaApi + file.filename}
                                                         alt={`Imagen de ${file.filename}`}
                                                     />
                                                 </a>
@@ -212,10 +218,10 @@ export const CardSpecialist = ({ especialista }) => {
                                     {
                                         especialista.files.length > 0 ? especialista.files.map(file => {
                                             return file.filename.includes("Profile") && (
-                                                <a className='w-[65px] block' target='_blank' href={"http://localhost:33402/files/" + file.filename} key={file.id}>
+                                                <a className='w-[65px] block' target='_blank' href={rutaApi + file.filename} key={file.id}>
                                                     <img
                                                         className='w-[65px] hover:scale-125'
-                                                        src={"http://localhost:33402/files/" + file.filename}
+                                                        src={rutaApi + file.filename}
                                                         alt={`Imagen de ${file.filename}`}
                                                     />
                                                 </a>
@@ -231,10 +237,10 @@ export const CardSpecialist = ({ especialista }) => {
                                     {
                                         especialista.files.length > 0 ? especialista.files.map(file => {
                                             return file.filename.includes("Local") && (
-                                                <a className='w-[65px] block' target='_blank' href={"http://localhost:33402/files/" + file.filename} key={file.id}>
+                                                <a className='w-[65px] block' target='_blank' href={rutaApi + file.filename} key={file.id}>
                                                     <img
                                                         className='w-[65px] hover:scale-125'
-                                                        src={"http://localhost:33402/files/" + file.filename}
+                                                        src={rutaApi + file.filename}
                                                         alt={`Imagen de ${file.filename}`}
                                                     />
                                                 </a>
@@ -312,10 +318,10 @@ export const CardSpecialist = ({ especialista }) => {
                                                             {
                                                                 especialista.files.length > 0 ? especialista.files.map(file => {
                                                                     return file.filename.includes(servicio.name) && (
-                                                                        <a className='w-[65px] block' target='_blank' href={"http://localhost:33402/files/" + file.filename} key={file.id}>
+                                                                        <a className='w-[65px] block' target='_blank' href={rutaApi + file.filename} key={file.id}>
                                                                             <img
                                                                                 className='w-[65px] hover:scale-125'
-                                                                                src={"http://localhost:33402/files/" + file.filename}
+                                                                                src={rutaApi + file.filename}
                                                                                 alt={`Imagen de ${file.filename}`}
                                                                             />
                                                                         </a>
