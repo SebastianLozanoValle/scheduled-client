@@ -77,7 +77,7 @@ export const NavBar = ({ setToken }) => {
                                     // bg={'teal.500'} borderRadius={6} p={6}
                                     >
                                         <MenuItem bg='#212024' color={location.pathname === "/perfil" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard/perfil">Perfil</MenuItem>
-                                        {userRole === 'admin' && <MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Dashboard</MenuItem>}
+                                        {userRole === 'admin' && <MenuItem bg='#212024' color={location.pathname === "/dashboard" ? '#caa776' : 'white'} as={CustomLink} to="/dashboard">Panel de Control</MenuItem>}
                                         <MenuItem
                                             as={Button}
                                             className="mx-2 bg-gray-800 text-white hover:text-yellow-300"
@@ -104,7 +104,7 @@ export const NavBar = ({ setToken }) => {
                             <CustomLink to="/mundohombres" onClick={onClose}>Mundo Hombres</CustomLink>
                             <CustomLink to="/mundomujeres" onClick={onClose}>Mundo Mujeres</CustomLink>
                             <CustomLink to="/mundomascotas" onClick={onClose}>Mundo Mascotas</CustomLink>
-                            <CustomLink to="/dashboard" onClick={onClose}>Dashboard</CustomLink>
+                            <CustomLink to="/dashboard" onClick={onClose}>Panel de Control</CustomLink>
                         </VStack>
                     </ModalBody>
                 </ModalContent>

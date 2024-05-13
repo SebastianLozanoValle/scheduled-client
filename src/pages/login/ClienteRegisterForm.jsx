@@ -63,16 +63,16 @@ export const ClientRegisterForm = () => {
                                 </Link>
                             </span>
                         </div>
-                        <InputFormField mitad={false} defaultValue={watch().username} register={register} label="Usuario" id="username" placeholder="Usuario" required={true} errors={errors} />
+                        <InputFormField mitad={false} defaultValue={watch().email} register={register} label="Correo" id="email" placeholder="Correo" type='email' required={true} errors={errors} />
                         <InputFormField mitad={false} defaultValue={watch().password} register={register} label="Contraseña" id="password" placeholder="Contraseña" type="password" required={true} errors={errors} />
                         <InputFormField mitad={false} defaultValue={watch().confirmpassword} register={register} label="Confirme Contraseña" id="confirmpassword" placeholder="Confirme Contraseña" type="password" required={true} errors={errors} validation={{ required: true, validate: value => value === password || "The passwords do not match" }} />
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField defaultValue={watch().email} register={register} label="Correo" id="email" placeholder="Correo" type='email' required={true} errors={errors} />
-                            <InputFormField defaultValue={watch().phone} register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
+                            <InputFormField mitad={false} defaultValue={watch().username} register={register} label="Nombre" id="username" placeholder="Nombre" required={true} errors={errors} />
+                            <InputFormField mitad={false} defaultValue={watch().phone} register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
                         </div>
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField defaultValue={watch().age} register={register} label="Edad" id="age" placeholder="Edad" type="date" errors={errors} />
-                            <InputFormField defaultValue={watch().street} register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
+                            <InputFormField mitad={false} defaultValue={watch().age} register={register} label="Edad" id="age" placeholder="Edad" type="date" errors={errors} />
+                            <InputFormField mitad={false} defaultValue={watch().street} register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
                         </div>
                         <AutocompleteInputField
                             label='Distrito'

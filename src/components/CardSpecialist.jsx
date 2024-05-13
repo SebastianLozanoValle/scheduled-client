@@ -62,7 +62,8 @@ let daysOfWeek = {
 
 // cambiar link en produccionnn importanteeeeeeeee
 
-const rutaApi = "https://sever-qurux.onrender.com/files/"
+// const rutaApi = "https://sever-qurux.onrender.com/files/"
+const rutaApi = "http://localhost:33402/files"
 
 //#################################################
 
@@ -165,6 +166,10 @@ export const CardSpecialist = ({ especialista }) => {
                                         Personal:
                                     </h2>
                                     <div>
+                                        <div className='flex gap-1'>
+                                            <h3 className=''>Correo:</h3>
+                                            <p> {especialista.email}</p>
+                                        </div>
                                         <div className='flex gap-1'>
                                             <h3 className=''>Fecha Nacimiento:</h3>
                                             <p> {especialista.age}</p>

@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/userStore";
 import { ServiciosHombres, ServiciosMascotas, ServiciosMujeres } from "../data/services";
+import { IoAlertCircleOutline } from "react-icons/io5";
 
 export const AgendaForm = ({ especialista, servicesFilterArray }) => {
 
@@ -301,7 +302,7 @@ export const AgendaForm = ({ especialista, servicesFilterArray }) => {
                             : <button className="px-10 bg-primary rounded-lg text-white hover:border-primary hover:text-black hover:bg-white border transition-all duration-500" type="button" onClick={validateForm} >Verificar Disponibilidad</button>
                     }
                     {
-                        mensajeError != "" ? <span className="font-light text-red-500">{mensajeError}</span> : ""
+                        mensajeError != "" ? <div className="p-4 text-white border-red-500 bg-red-400 rounded border flex gap-2 items-center"><IoAlertCircleOutline className="text-3xl" /><span className="font-light">{mensajeError}</span></div> : ""
                     }
                 </div>
                 <div className="flex flex-col p-10 border-8 border-primary rounded-3xl">

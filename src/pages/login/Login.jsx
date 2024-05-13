@@ -36,6 +36,7 @@ export const Login =({ setToken })=> {
             localStorage.setItem('user-token', token)
             console.log(localStorage.getItem('user-token')); // Add this line
             setIsLogged(true)
+            mensajeError = '';
         }
     }, [result.data]) // eslint-disable-line
   
@@ -86,7 +87,7 @@ export const Login =({ setToken })=> {
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
                                     name="username"
-                                    placeholder="nombre de usuario"
+                                    placeholder="Escriba su correo"
                                     className="p-3 rounded-lg border border-gray-300 w-full"
                                 />
                                 </div>
@@ -104,7 +105,7 @@ export const Login =({ setToken })=> {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         name="password"
-                                        placeholder="escriba su clave"
+                                        placeholder="Escriba su clave"
                                         className="p-3 rounded-lg border border-gray-300 w-full"
                                     />
                                 </div>

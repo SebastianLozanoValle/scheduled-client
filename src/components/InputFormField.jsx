@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const InputFormField = ({ register, label, id, placeholder, type = "text", errors, validation, defaultValue = "", mitad = true }) => {
+export const InputFormField = ({ register, label, id, placeholder, type = "text", errors, validation, defaultValue = "", mitad = true, required = true }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 
@@ -24,7 +24,10 @@ export const InputFormField = ({ register, label, id, placeholder, type = "text"
                 {label}
             </label>
             <input
-                {...register(id, validation)}
+                {...register(id, { ...validation, required:{
+                    value: required,
+                    message: `El campo ${label} es requerido`
+                }  })}
                 id={id}
                 placeholder={placeholder}
                 type={type}

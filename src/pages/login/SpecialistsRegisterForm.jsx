@@ -11,6 +11,7 @@ import InputDropZone from '../../components/InputDropZone';
 import { StepOne } from './steps/StepOne';
 import { ServiciosHombres, ServiciosMascotas, ServiciosMujeres } from '../../data/services';
 import { v4 as uuidv4 } from 'uuid';
+import { IoAlertCircleOutline } from "react-icons/io5";
 
 export const SpecialistsRegisterForm = () => {
     const inputDropZoneRef1 = useRef();
@@ -21,7 +22,8 @@ export const SpecialistsRegisterForm = () => {
 
     const navigate = useNavigate();
     const [createSpecialist, { data, loading, error }] = useMutation(CREATE_SPECIALIST);
-    const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, watch, control, formState: { errors }, trigger } = useForm();
+    const [errorMessage, setErrorMessage] = useState('');
     const [step, setStep] = useState(1); // Nuevo estado para el paso actual
     const [services, setServices] = useState([]);
     const [selectedServices, setSelectedServices] = useState([]);
@@ -175,6 +177,7 @@ export const SpecialistsRegisterForm = () => {
             console.log(input);
             const response = await createSpecialist({ variables: { input: input } });
             console.log(response);
+            setErrorMessage('')
             if (response.data.createSpecialist.id) {
                 // Actualiza registerId con el ID del especialista creado
                 setRegisterId(response.data.createSpecialist.id);
@@ -184,6 +187,7 @@ export const SpecialistsRegisterForm = () => {
             }
         } catch (error) {
             console.error(error);
+            setErrorMessage(error.message)
         }
     };
 
@@ -192,16 +196,51 @@ export const SpecialistsRegisterForm = () => {
     }, [setValue]);
 
     // Función para avanzar al siguiente paso
-    const nextStep = () => {
-        if (step < 4) {
-            setStep(prevStep => prevStep + 1);
+    const nextStep = async () => {
+        try {
+            // Disparar la validación de todos los campos del formulario
+            await trigger();
+
+            // Verificar si hay errores después de la validación
+            const formIsValid = Object.keys(errors).length === 0;
+
+            if (!formIsValid) {
+                throw new Error('El formulario contiene errores');
+            }
+
+            // Si no hay errores, continuar con las líneas de código posteriores
+            // ...
+            if (step < 4) {
+                setStep(prevStep => prevStep + 1);
+            }
+        } catch (error) {
+            console.error(error.message);
+            // Aquí puedes manejar el error según sea necesario
         }
     };
 
     // Función para retroceder al paso anterior
-    const prevStep = () => {
-        if (step > 1) {
-            setStep(prevStep => prevStep - 1);
+    const prevStep = async () => {
+        try {
+            // Disparar la validación de todos los campos del formulario
+            await trigger();
+
+            // Verificar si hay errores después de la validación
+            const formIsValid = Object.keys(errors).length === 0;
+
+            if (!formIsValid) {
+                throw new Error('El formulario contiene errores');
+            }
+
+            // Si no hay errores, continuar con las líneas de código posteriores
+            // ...
+
+            if (step > 1) {
+                setStep(prevStep => prevStep - 1);
+            }
+        } catch (error) {
+            console.error(error.message);
+            // Aquí puedes manejar el error según sea necesario
         }
     };
 
@@ -214,6 +253,9 @@ export const SpecialistsRegisterForm = () => {
         "Saturday": "Sábado",
         "Sunday": "Domingo"
     };
+
+    console.log('errores')
+    console.log(errors)
 
     return (
         <div className="p-10 min-h-[100vh] flex items-center justify-center">
@@ -231,7 +273,7 @@ export const SpecialistsRegisterForm = () => {
                             <p className="text-[12px] text-gray-600">
                                 Sus datos seran verificados tras su registro para habilitar su perfil.
                             </p>
-                            
+
                             <div className="mtAdjunte -3">
                                 <span className="text-[12px] text-gray-600">
                                     Si desea registrarse como cliente entre{' '}
@@ -380,8 +422,12 @@ export const SpecialistsRegisterForm = () => {
                                         setFiles={setFiles5}
                                         maxFiles={20}
                                     />
-                                    <div className='flex w-full justify-center'>
+
+                                    <div className='flex flex-col items-center w-full justify-center'>
                                         <input type="submit" className="p-2 bg-blue-500 text-white rounded cursor-pointer" />
+                                    {
+                                        errorMessage != '' && <div className='flex justify-center items-center w-full m-4 p-4 bg-red-400 text-white border border-red-500 rounded gap-2'><IoAlertCircleOutline className='text-3xl' /><p className='text-sm font-light'>{errorMessage}</p></div>
+                                    }
                                     </div>
                                 </>
                             )}
@@ -395,7 +441,11 @@ export const SpecialistsRegisterForm = () => {
                                         key={stepNumber}
                                         className='hidden sm:block'
                                     >
-                                        <button type='button' className={`w-8 h-8 rounded-full flex items-center justify-center ${stepNumber === step ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500'}`} onClick={() => setStep(stepNumber)}>{stepNumber}</button>
+                                        <p
+                                            // type='button'
+                                            className={` / cursor-default / w-8 h-8 rounded-full flex items-center justify-center ${stepNumber === step ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+                                        // onClick={() => setStep(stepNumber)}
+                                        >{stepNumber}</p>
                                     </div>
                                 ))}
                                 <button type="button" onClick={nextStep}>Next</button>
