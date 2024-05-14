@@ -61,8 +61,8 @@ const InputDropZone = forwardRef(({ fileName = "prueba", maxFiles = 1, tipo = 'p
     
             try {
                 const response = await
-                fetch('http://localhost:33402/upload', {
-                // fetch('https://sever-qurux.onrender.com/upload', {
+                // fetch('http://localhost:33402/upload', {
+                fetch('https://sever-qurux.onrender.com/upload', {
                     method: 'POST',
                     body: formData
                 });
