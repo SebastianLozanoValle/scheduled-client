@@ -71,7 +71,7 @@ export const ClientRegisterForm = () => {
                             <InputFormField mitad={false} defaultValue={watch().phone} register={register} label="Celular" id="phone" placeholder="Celular" type='number' errors={errors} />
                         </div>
                         <div className='flex flex-wrap justify-between'>
-                            <InputFormField mitad={false} defaultValue={watch().age} register={register} label="Edad" id="age" placeholder="Edad" type="date" errors={errors} />
+                            <InputFormField mitad={false} defaultValue={watch().age} register={register} label="Fecha Nacimiento" id="age" placeholder="Fecha Nacimiento" type="date" errors={errors} />
                             <InputFormField mitad={false} defaultValue={watch().street} register={register} label="Direccion" id="street" placeholder="Direccion" errors={errors} />
                         </div>
                         <AutocompleteInputField

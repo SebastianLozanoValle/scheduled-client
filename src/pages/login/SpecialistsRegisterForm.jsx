@@ -302,7 +302,7 @@ export const SpecialistsRegisterForm = () => {
                                         Como especialista de Qurux puedes ofrecer tus servicios en tu local o asistir al domicilio de tus clientes si lo prefieres y ellos tambien.
                                     </p>
                                     <label htmlFor="accountNumber" className="font-light">Cuenta para Pagos y/o Depositos</label>
-                                    <InputFormField defaultValue={watch().accountNumber} register={register} label="Numero de Cuenta" id="accountNumber" placeholder="Numero de Cuenta" type='number' errors={errors} />
+                                    <InputFormField mitad={false} defaultValue={watch().accountNumber} register={register} label="Numero de Cuenta" id="accountNumber" placeholder="Numero de Cuenta" type='number' errors={errors} />
                                     <p className='text-[#ccc] font-extralight text-sm'>
                                         Tu dinero esta seguro con nosotros, ingresa el numero de cuenta al cual se depositara semanalmente la suma generada en sus servicios.
                                     </p>
