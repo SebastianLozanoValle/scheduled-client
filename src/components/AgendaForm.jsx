@@ -168,13 +168,21 @@ export const AgendaForm = ({ especialista, servicesFilterArray }) => {
         console.log(especialista)
         if (isClient) {
             console.log(prueba);
-            available({ variables: { input: prueba } })
-                .then(response => {
-                    setAlreadyValidated(response.data.isSlotAvailable.isSlotAvailable);
-                    setMensajeError(response.data.isSlotAvailable.reason ? 'No hay disponibilidad en el horario seleccionado' : '')
-                    console.log(response.data.isSlotAvailable);
-                    console.log(respuesta);
-                });
+            if (selectedServices.length > 0) {
+                if (prueba.date != "") {
+                    available({ variables: { input: prueba } })
+                        .then(response => {
+                            setAlreadyValidated(response.data.isSlotAvailable.isSlotAvailable);
+                            setMensajeError(response.data.isSlotAvailable.reason ? 'No hay disponibilidad en el horario seleccionado' : '')
+                            console.log(response.data.isSlotAvailable);
+                            console.log(respuesta);
+                        });
+                } else {
+                    setMensajeError('Debe elegir una fecha para su cita')
+                }
+            } else {
+                setMensajeError('Debe elegir al menos un servicio')
+            }
         } else {
             setMensajeError('Debe ser un cliente registrado para agendar una cita')
         }
@@ -212,6 +220,7 @@ export const AgendaForm = ({ especialista, servicesFilterArray }) => {
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-8 mt-4 justify-evenly">
+                    escoge un servicio
                     {
                         filter.length > 0 ? especialista.specialtys.map(servicio => (
                             servicio.state && filter.includes(servicio.name) && <Service key={servicio.name} servicio={servicio} register={register} onServiceCheck={handleServiceCheck} />
@@ -290,9 +299,34 @@ export const AgendaForm = ({ especialista, servicesFilterArray }) => {
                                     {...register("serviceType", { required: "Este campo es requerido" })}
                                     defaultValue="Local"
                                 >
-                                    <option value="Local">Local</option>
-                                    <option value="Domicilio">Domicilio</option>
+                                    {especialista.serviceType == 'Mixto' ?
+                                        <>
+                                            <option value="Local">Local</option>
+                                            <option value="Domicilio">Domicilio</option>
+                                        </> :
+                                        especialista.serviceType == 'Local' ?
+                                            <option value="Local">Local</option>
+                                            :
+                                            <option value="Domicilio">Domicilio</option>
+                                    }
                                 </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label className="font-bold" htmlFor="location">Ubicacion del servicio a domicilio</label>
+                            <div>
+                                <input
+                                    {...register('location', {
+                                        required: {
+                                            value: true,
+                                            message: `El campo Ubicacion es requerido`
+                                        }
+                                    })}
+                                    id={'location'}
+                                    placeholder={'calle x con avenida y'}
+                                    type={'text'}
+                                    className="p-2 border rounded w-full"
+                                />
                             </div>
                         </div>
                     </div>

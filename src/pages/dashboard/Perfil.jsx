@@ -244,7 +244,7 @@ export const Perfil = () => {
                 <div>
                     <h2 className="text-3xl font-extrabold text-primary">Datos Generales</h2>
                     <div className="p-4">
-                        <p>Id: {userId}</p>
+                        <p>Correo: {user.email}</p>
                         <p>Nombre: {user.username}</p>
                         <p>Roll: {userRole}</p>
                     </div>
@@ -318,7 +318,7 @@ export const Perfil = () => {
                                     <div className="w-4/5 mx-auto px-4 m-10 h-[400px] overflow-y-scroll">
                                         <FormularioServicios user={user} />
                                     </div>
-                                    <h3 className="text-2xl">Mundos y Añadir Servicios:</h3>
+                                    <h3 className="text-2xl">Añadir Mundos y Servicios:</h3>
                                     <div className="w-4/5 mx-auto px-4 pt-4 m-10">
                                         <EdicionMundosServicios user={user} />
                                     </div>
@@ -403,7 +403,7 @@ export const Perfil = () => {
             <div className="w-full lg:w-1/2">
                 <div className="w-full flex relative rounded-full bg-[#f1f1f1] justify-around">
                     <span className={`absolute w-1/2 bg-primary h-full left-0 z-0 transition-all duration-500 rounded-full ${enviadosResividos == false && "left-1/2"}`}></span>
-                    <button className="z-[1] w-1/2" onClick={handleSetResividos}>Resibidos</button>
+                    <button className="z-[1] w-1/2" onClick={handleSetResividos}>Recibidos</button>
                     <button className="z-[1] w-1/2" onClick={handleSetEnviados}>Enviados</button>
                 </div>
                 {
