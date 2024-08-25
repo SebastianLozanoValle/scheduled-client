@@ -62,8 +62,8 @@ let daysOfWeek = {
 
 // cambiar link en produccionnn importanteeeeeeeee
 
-// const rutaApi = "https://sever-qurux.onrender.com/files/"
-const rutaApi = "http://localhost:33402/files"
+const rutaApi = "https://sever-qurux.onrender.com/files/"
+// const rutaApi = "http://localhost:33402/files"
 
 //#################################################
 
