@@ -42,7 +42,7 @@ export const NavBar = ({ setToken }) => {
     return (
         <Box bg="#161c26" px={4} position={'fixed'} top={0} w={'100vw'} borderBottom='solid 1px #ccc' className='z-10'>
             <Flex h='60px' alignItems={'center'} justifyContent={'space-between'}>
-                <Link className='bg-white rounded-full h-4/5 w-auto' to='/'><img src={logo} className='h-full w-auto' /></Link>
+                <Link className='rounded-full h-4/5 w-auto' to='/'><img src={logo} className='h-full w-auto' /></Link>
                 <Box display={{ base: 'block', md: 'none' }} onClick={onOpen} color='brand.primary' fontSize='2xl'>
                     <RxHamburgerMenu />
                 </Box>
