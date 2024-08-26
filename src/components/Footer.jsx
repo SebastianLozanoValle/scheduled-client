@@ -126,9 +126,9 @@ export const Footer = () => {
                     <div className='min-w-full bg-gray-900 text-gray-500 px-10' >
                         <div   className='max-w-7xl flex flex-col sm:flex-row py-4 mx-auto justify-between items-center'>
                             <div className='text-center'>
-                                <div>
-                                    Copyright  <strong><span>Netword.solutions</span></strong>. All Rights Reserved
-                                </div>
+                                <a href='https://sebastian-dev-portfolio.vercel.app'>
+                                    Copyright  <strong><span>Sebastian Lozano Valle</span></strong>. All Rights Reserved
+                                </a>
                             </div>
                         </div>
                         <div className=" text-right text-xl">
