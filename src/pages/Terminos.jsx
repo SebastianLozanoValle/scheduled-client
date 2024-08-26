@@ -18,10 +18,10 @@ return(
                  Condiciones
                  </Text>
                  <Box position='relative'> 
-                 <Text fontSize='22px'  color='white' m={8} Top='10vh'  textAlign='justify'> 
+                 {/* <Text fontSize='22px'  color='white' m={8} Top='10vh'  textAlign='justify'> 
                       Los términos y condiciones de una empresa, como los establecidos por Qurux, desempeñan un papel fundamental en la relación entre la empresa y sus usuarios. 
                       Estos documentos son esenciales para garantizar una interacción clara, justa y segura.
-                 </Text>
+                 </Text> */}
                  </Box>
                   <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
                         <a href="../public/Terminos.pdf" download="Terminos.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>
@@ -41,9 +41,9 @@ return(
                  <Heading  color='white' fontSize={isSmallerThan760 ? '30px' : '60px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} textAlign='center'>
                  Terminos y condiciones
                  </Heading>
-                 <Text color='white' margin='60px 30px 30px ' textAlign='center'> Los términos y condiciones de una empresa, como los establecidos por Qurux, desempeñan un papel fundamental en la relación entre la empresa y sus usuarios. 
+                 {/* <Text color='white' margin='60px 30px 30px ' textAlign='center'> Los términos y condiciones de una empresa, como los establecidos por Qurux, desempeñan un papel fundamental en la relación entre la empresa y sus usuarios. 
                       Estos documentos son esenciales para garantizar una interacción clara, justa y segura.
-                 </Text> 
+                 </Text>  */}
                  <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
                         <a href="../public/Terminos.pdf" download="Terminos.pdf"><Button bg='#fc3c3c'><CiSaveDown1  fontSize='30px'/></Button></a>
                  </Box>

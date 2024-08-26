@@ -18,11 +18,11 @@ return(
                  Condiciones Especilistas
                  </Text>
                  <Box position='relative'> 
-                 <Text fontSize='19px'  color='white' m={8} Top='9vh'  textAlign='justify'> 
+                 {/* <Text fontSize='19px'  color='white' m={8} Top='9vh'  textAlign='justify'> 
                  Bienvenido al equipo de Qurux. Estamos emocionados de tenerte como parte fundamental de 
                  nuestra comunidad laboral. Antes de comenzar tu experiencia con nosotros, es esencial 
                  comprender y aceptar los siguientes términos y condiciones que rigen nuestra relación laboral.
-                 </Text>
+                 </Text> */}
                  </Box>
                   <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='60px'marginLeft='10px' >
                         <a href="../public/TCPROFESIONALES.pdf" download="TCPROFESIONALES.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>
@@ -42,10 +42,10 @@ return(
                  <Heading  color='white' fontSize={isSmallerThan760 ? '30px' : '60px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} textAlign='center'>
                  Terminos y condiciones especialistas
                  </Heading>
-                 <Text color='white' margin='60px 30px 30px ' textAlign='center'>  Bienvenido al equipo de Qurux. Estamos emocionados de tenerte como parte fundamental de 
+                 {/* <Text color='white' margin='60px 30px 30px ' textAlign='center'>  Bienvenido al equipo de Qurux. Estamos emocionados de tenerte como parte fundamental de 
                  nuestra comunidad laboral. Antes de comenzar tu experiencia con nosotros, es esencial 
                  comprender y aceptar los siguientes términos y condiciones que rigen nuestra relación laboral.
-                 </Text> 
+                 </Text>  */}
                  <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
                         <a href="../public/TCPROFESIONALES.pdf" download="TCPROFESIONALES.pdf"><Button bg='#fc3c3c'><CiSaveDown1  fontSize='30px'/></Button></a>
                  </Box>

@@ -16,6 +16,7 @@ import { Checkout } from "../pages/pasarela/Checkout"
 import { useUserStore } from "../store/userStore"
 import { ClientRegisterForm } from "../pages/login/ClienteRegisterForm"
 import { SpecialistsRegisterForm } from "../pages/login/SpecialistsRegisterForm"
+import { PseudoCheckout } from "../pages/pasarela/Checkout copy"
 
 
 
@@ -40,17 +41,18 @@ export const QuruxRoutes = ({ setToken }) => {
                         <Route path="/mundomujeres" element={!specialist ? <Mundomujeres /> : <Navigate to="/dashboard/perfil" />} />
                         <Route path="/mundomascotas" element={!specialist ? <Mundomascotas /> : <Navigate to="/dashboard/perfil" />} />
                         <Route path="/dashboard/*" element={<DashboardRoutes />} />
-                        <Route path="/Guiaespecialista" element={<Guiaespecialista />} />
-                        <Route path="/GuiaUsuario" element={<GuiaUsuario />} />
-                        <Route path="/TCEspecialistas" element={<TCEspecialistas />} />
-                        <Route path="/Terminos" element={<Terminos />} />
+                        {/* <Route path="/Guiaespecialista" element={<Guiaespecialista />} /> */}
+                        {/* <Route path="/GuiaUsuario" element={<GuiaUsuario />} /> */}
+                        {/* <Route path="/TCEspecialistas" element={<TCEspecialistas />} /> */}
+                        {/* <Route path="/Terminos" element={<Terminos />} /> */}
                         {/* <Route path="/ListaE" element={<ListaE />} /> */}
                         <Route path="/login" element={!loged ? <Login setToken={setToken} /> : <Navigate to="/" />} />
                         <Route path="/signup" element={!loged ? <ClientRegisterForm /> : <Navigate to="/" />} />
                         <Route path="/signup-especialistas" element={!loged ? <SpecialistsRegisterForm /> : <Navigate to="/" />} />
                         <Route path="/auth" element={!loged ? <Auth /> : <Navigate to="/" />} />
                         <Route path="/agendar-especialista/:id/:paramsToSearch" element={client || userRole === ''?<AgendarEspecialista />:<Navigate to={'/'} />} />
-                        <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={client?<Checkout />:<Navigate to={'/'} />} />
+                        {/* <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={client?<Checkout />:<Navigate to={'/'} />} /> */}
+                        <Route path="/checkout/:specialistId/:date/:value/:iva/:subject/:startTime/:estimatedEndTime/:serviceType/:specialistName" element={client?<PseudoCheckout />:<Navigate to={'/'} />} />
 
 
 

@@ -103,7 +103,8 @@ export const CustomCard = ({ especialista }) => {
     const profilePicture = especialista.files?.find((file) => {
         return file.tipo === 'profilePic';
     });
-    const profilePictureUrl = "http://localhost:33402/files/" + profilePicture?.filename;
+    const profilePictureUrl = "https://sever-qurux.onrender.com/files/" + profilePicture?.filename;
+    // const profilePictureUrl = "http://localhost:33402/files/" + profilePicture?.filename;
     console.log('profilePIcture:', profilePicture?.filename);
 
     console.log('especialista:', especialista.files?.length)
@@ -194,9 +195,11 @@ export const CustomCard = ({ especialista }) => {
                                             <VStack align="start" spacing={2} mb={4} borderTop='1px' borderBottom='1px' key={file.id} className='overflow-x-scroll'>
                                                 <Text fontWeight="bold">Tipo: {file.tipo}</Text>
                                                 <Text fontWeight="bold">Nombre: {file.filename}</Text>
-                                                <Text color={'#d3983f'} _hover={{ color: "#caa776" }} fontWeight="bold"><a target='_blank' href={"http://localhost:33402/files/" + file.filename}>Link Revision</a></Text>
+                                                {/* <Text color={'#d3983f'} _hover={{ color: "#caa776" }} fontWeight="bold"><a target='_blank' href={"http://localhost:33402/files/" + file.filename}>Link Revision</a></Text> */}
+                                                <Text color={'#d3983f'} _hover={{ color: "#caa776" }} fontWeight="bold"><a target='_blank' href={"https://sever-qurux.onrender.com/files/" + file.filename}>Link Revision</a></Text>
                                                 <Text fontWeight="bold">Vista previa:</Text>
-                                                <Image className='h-[400px] w-[400px] object-cover' src={"http://localhost:33402/files/" + file.filename} alt="preview" />
+                                                {/* <Image className='h-[400px] w-[400px] object-cover' src={"http://localhost:33402/files/" + file.filename} alt="preview" /> */}
+                                                <Image className='h-[400px] w-[400px] object-cover' src={"https://sever-qurux.onrender.com/files/" + file.filename} alt="preview" />
                                             </VStack>
                                         )
                                     })}

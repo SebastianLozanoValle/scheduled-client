@@ -18,10 +18,10 @@ return(
                  Especialistas
                  </Text>
                  <Box position='relative'> 
-                 <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' m={8} Top='10vh'  textAlign='justify'> 
-                        Le damos la bienvenida al sistema Qurux, una herramienta que facilitará su trabajo de manera eficiente.
+                 {/* <Text fontSize='22px' margin='20px 20px 0px 20px ' color='white' m={8} Top='10vh'  textAlign='justify'> 
+                        Le damos la bienvenida al sistema Scheduled, una herramienta que facilitará su trabajo de manera eficiente.
                         Para comprender mejor nuestro modo de trabajo, le invitamos a descargar el siguiente documento
-                 </Text>
+                 </Text> */}
                  </Box>
                   <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
                         <a href="../public/GUIA.pdf" download="GUIA.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>

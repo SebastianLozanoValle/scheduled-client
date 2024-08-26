@@ -49,7 +49,8 @@ export const TarjetaSpecialista = ({ especialista, paramsToSearch }) => {
                     <img className='bg-[#e2e8f0] rounded-xl h-48 w-auto object-cover m-auto sm:max-w-md' src={
                         especialista.files.length > 0 ?
                             especialista.files.find(file => file.filename.includes("Local")) !== undefined ?
-                                "http://localhost:33402/files/" + especialista.files.find(file => file.filename.includes("Local")).filename :
+                                "https://sever-qurux.onrender.com/files/" + especialista.files.find(file => file.filename.includes("Local")).filename :
+                                // "http://localhost:33402/files/" + especialista.files.find(file => file.filename.includes("Local")).filename :
                                 imagenGenerica :
                             imagenGenerica
                     } alt="" />
@@ -59,7 +60,8 @@ export const TarjetaSpecialista = ({ especialista, paramsToSearch }) => {
                 <img className='object-cover w-12 h-12 rounded-full' src={
                     especialista.files.length > 0 ?
                         especialista.files.find(file => file.filename.includes("ProfilePicture")) !== undefined ?
-                            "http://localhost:33402/files/" + especialista.files.find(file => file.filename.includes("ProfilePicture")).filename :
+                            "https://sever-qurux.onrender.com/files/" + especialista.files.find(file => file.filename.includes("ProfilePicture")).filename :
+                            // "http://localhost:33402/files/" + especialista.files.find(file => file.filename.includes("ProfilePicture")).filename :
                             imagenGenerica :
                         imagenGenerica
                 } alt="" />

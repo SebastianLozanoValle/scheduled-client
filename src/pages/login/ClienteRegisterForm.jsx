@@ -46,7 +46,7 @@ export const ClientRegisterForm = () => {
 
                     <form onSubmit={handleSubmit(onSubmit)} className="xl:w-[50%] xs:w-full sm:w-full px-8 py-10 flex flex-col gap-4">
                         <div>
-                            <Link to='/' className="text-2xl text-[#caa776]">Qurux</Link>
+                            <Link to='/' className="text-2xl text-[#caa776]">Scheduled</Link>
 
                             <p className="text-[12px] text-gray-600">
                                 Suministre los datos requeridos para registrarse.

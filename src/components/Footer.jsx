@@ -82,7 +82,7 @@ export const Footer = () => {
                                     <h4 className='text-2xl pb-5 text-gray-50 font-bold'>Boletín Informativo</h4>
                                     <form className="flex flex-col items-center rounded-md p-4">
                                         <div>
-                                            <a href="mailto:info@qurux.net">
+                                            <a href="#">
                                                
                                              <Box className="bg-[#d3983f] hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16 text-center flex items-center justify-center">
                                                 Info
@@ -95,7 +95,7 @@ export const Footer = () => {
                                     <form className="flex flex-col items-center rounded-md p-4">
                                         
                                         <div>
-                                            <a href="mailto:info@qurux.net">
+                                            <a href="#">
                                                
                                              <Box className="bg-[#d3983f] hover:bg-gray-200 text-white font-semibold hover:text-black py-2 px-4 rounded-md w-80 transition-background duration-300 ease-in-out h-16 text-center flex items-center justify-center">
                                                  Si no eres cliente contactanos
@@ -132,8 +132,8 @@ export const Footer = () => {
                             </div>
                         </div>
                         <div className=" text-right text-xl">
-                            <a href="https://www.facebook.com/profile.php?id=100078239791278&mibextid=ZbWKwL" className="h-8 w-8 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1" target='_blank'><FaFacebookF className='w-full h-full' /></a>
-                            <a href="https://www.instagram.com/qurux.cr?igsh=dWJwNzFpbGVjbXQ5" className="h-8 w-8 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1" target='_blank' ><FaInstagram className='w-full h-full' /></a>
+                            <a href="https://www.facebook.com/" className="h-8 w-8 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1" target='_blank'><FaFacebookF className='w-full h-full' /></a>
+                            <a href="https://www.instagram.com/" className="h-8 w-8 rounded-full bg-white hover:bg-[#d3983f] mx-1 inline-block pt-1" target='_blank' ><FaInstagram className='w-full h-full' /></a>
                             {/* <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a>
                         <a href="#" class="h-10 w-10 rounded-full bg-white hover:bg-red-800 mx-1 inline-block pt-1"><Face/></a> */}
                         </div>

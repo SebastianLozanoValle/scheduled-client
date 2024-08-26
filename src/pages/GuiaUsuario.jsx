@@ -18,12 +18,12 @@ return(
                  Usuario
                  </Text>
                  <Box position='relative' display='flex' alignItems='center'> 
-                 <Text fontSize='20px'  color='white' m={8} Top='10vh'  textAlign='justify'> 
+                 {/* <Text fontSize='20px'  color='white' m={8} Top='10vh'  textAlign='justify'> 
                      Bienvenido a Qurux, donde tu experiencia digital es nuestra prioridad. 
                      Esta guía del usuario está diseñada para proporcionarte una visión 
                      integral sobre cómo aprovechar al máximo nuestra plataforma y garantizar 
                      que disfrutes de todas las funciones y servicios que ofrecemos. ¡Comencemos!
-                 </Text>
+                 </Text> */}
                  </Box>
                   <Box  overflow='hidden' width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
                         <a href="../public/GUIAUSUARIO.pdf" download="GUIAUSUARIO.pdf"><Button><CiSaveDown1  fontSize='30px'/></Button></a>
@@ -43,11 +43,11 @@ return(
                  <Heading  color='white' fontSize={isSmallerThan760 ? '30px' : '60px'} paddingLeft={isSmallerThan760 ? '0px' : '40px'} textAlign='center'>
                  Guia del usuario 
                  </Heading>
-                 <Text color='white' margin='60px 30px 30px ' textAlign='center'> Bienvenido a Qurux, donde tu experiencia digital es nuestra prioridad. 
+                 {/* <Text color='white' margin='60px 30px 30px ' textAlign='center'> Bienvenido a Qurux, donde tu experiencia digital es nuestra prioridad. 
                      Esta guía del usuario está diseñada para proporcionarte una visión 
                      integral sobre cómo aprovechar al máximo nuestra plataforma y garantizar 
                      que disfrutes de todas las funciones y servicios que ofrecemos. ¡Comencemos!
-                 </Text> 
+                 </Text>  */}
                  <Box width='100%'  display='flex' justifyContent='center' paddingRight='10px' marginTop='70px'marginLeft='10px' >
                         <a href="../public/GUIAUSUARIO.pdf" download="GUIAUSUARIO.pdf"><Button bg='#fc3c3c'><CiSaveDown1  fontSize='30px'/></Button></a>
                  </Box>

@@ -265,7 +265,7 @@ export const SpecialistsRegisterForm = () => {
                         {/* ... */}
 
                         <div>
-                            <Link to='/' className="text-2xl text-[#caa776]">Qurux</Link>
+                            <Link to='/' className="text-2xl text-[#caa776]">Scheduled</Link>
 
                             <p className="text-[12px] text-gray-600">
                                 Suministre los datos requeridos para registrarse.
@@ -299,7 +299,7 @@ export const SpecialistsRegisterForm = () => {
                                         <option value="Mixto">Mixto</option>
                                     </select>
                                     <p className='text-[#ccc] font-extralight text-sm'>
-                                        Como especialista de Qurux puedes ofrecer tus servicios en tu local o asistir al domicilio de tus clientes si lo prefieres y ellos tambien.
+                                        Como especialista de Scheduled puedes ofrecer tus servicios en tu local o asistir al domicilio de tus clientes si lo prefieres y ellos tambien.
                                     </p>
                                     <label htmlFor="accountNumber" className="font-light">Cuenta para Pagos y/o Depositos</label>
                                     <InputFormField mitad={false} defaultValue={watch().accountNumber} register={register} label="Numero de Cuenta" id="accountNumber" placeholder="Numero de Cuenta" type='number' errors={errors} />

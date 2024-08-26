@@ -217,7 +217,8 @@ export const Perfil = () => {
                                             {user.files.find(file => file.filename.includes("Profile")) && (
                                                 <img
                                                     className='h-full w-full rounded-full object-cover bg-primary'
-                                                    src={"http://localhost:33402/files/" + user.files.find(file => file.filename.includes("Profile")).filename}
+                                                    // src={"http://localhost:33402/files/" + user.files.find(file => file.filename.includes("Profile")).filename}
+                                                    src={"https://sever-qurux.onrender.com/files/" + user.files.find(file => file.filename.includes("Profile")).filename}
                                                     alt={`Imagen de perfil`}
                                                 />
                                             )}

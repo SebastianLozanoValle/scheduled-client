@@ -57,7 +57,7 @@ export const Inicio = () => {
       <Box>
         <Box bg='#161c26' backgroundPosition='center' py={28} justifyContent='center' width='100%' backgroundRepeat='no-repeat' backgroundSize='cover' height={isSmallerThan760 ? '100%' : '700px'}>
           <Heading textAlign='center' fontSize={isSmallerThan760 ? '20px' : '70px'} color='#caa776' fontFamily="Sacramento, cursive">El mundo de la belleza digital</Heading>
-          <Heading textAlign='center' fontSize={isSmallerThan760 ? '40px' : '90px'} fontWeight='bold' textTransform='uppercase' color='white'><b>BIENVENIDO A QURUX</b></Heading>
+          <Heading textAlign='center' fontSize={isSmallerThan760 ? '40px' : '90px'} fontWeight='bold' textTransform='uppercase' color='white'><b>BIENVENIDO A SCHEDULED</b></Heading>
           <div className="flex items-center justify-center">
             {/* <Buscador onSearch={handleSearch} tabs={tabs} /> */}
           </div>
@@ -146,7 +146,7 @@ export const Inicio = () => {
         <Box height='100%' width='auto'>
           <Box bg='#161c26' height='750px'>
             <Box height='100px' paddingBottom='200px'>
-              <Heading p='20px' color='white' textAlign='center' fontSize={isSmallerThan760 ? '30px' : '40px'} >COMO FUNCIONA QURUX</Heading><Text p='20px' color='white' textAlign='center' fontSize={isSmallerThan760 ? '20px' : '20px'}>Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
+              <Heading p='20px' color='white' textAlign='center' fontSize={isSmallerThan760 ? '30px' : '40px'} >COMO FUNCIONA SCHEDULED</Heading><Text p='20px' color='white' textAlign='center' fontSize={isSmallerThan760 ? '20px' : '20px'}>Lorem ipsum dolor amet, cibo mundi ea duo, vim exerci phaedrum</Text>
             </Box>
             <Container
               display='flex'
@@ -161,7 +161,7 @@ export const Inicio = () => {
               <iframe
                 width={isSmallerThan760 ? '90%' : '70%'}
                 height={isSmallerThan760 ? '400px' : '600px'}
-                src="https://www.youtube.com/embed/dsLjyLn859g?si=yPE3byugBzpWs2dO"
+                src="https://www.youtube.com/embed/72WbalHfQEA?si=kZ0W5evnSpPf7H25"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
