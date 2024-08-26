@@ -103,7 +103,7 @@ export const ClientRegisterForm = () => {
                     </form>
                     <div className="flex items-center justify-center h-full w-0 xl:w-1/2">
                         {/* Aquí puedes poner tu imagen */}
-                        <img src={logo} className='w-[330px] mx-auto' alt="Descripción de la imagen" />
+                        <img src={logo} className='w-[330px] mx-auto rounded-full bg-[#caa776]' alt="Descripción de la imagen" />
                     </div>
                 </div>
             </div>
